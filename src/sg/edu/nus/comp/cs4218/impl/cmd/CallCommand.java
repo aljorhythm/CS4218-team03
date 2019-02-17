@@ -31,7 +31,7 @@ public class CallCommand implements Command {
     }
 
     @Override
-    public void evaluate(InputStream stdout, OutputStream stdin)
+    public void evaluate(InputStream stdin, OutputStream stdout)
             throws AbstractApplicationException, ShellException {
         if (argsList == null || argsList.isEmpty()) {
             throw new ShellException(ERR_SYNTAX);
