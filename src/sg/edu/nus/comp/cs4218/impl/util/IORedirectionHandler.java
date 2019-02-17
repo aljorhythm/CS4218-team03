@@ -26,7 +26,7 @@ public class IORedirectionHandler {
         this.outputStream = origOutputStream;
     }
 
-    public void extractRedirOptions() throws ShellException {
+    public void extractRedirOptions(){
         if (argsList == null || argsList.isEmpty()) {
             throw new ShellException(ERR_SYNTAX);
         }
