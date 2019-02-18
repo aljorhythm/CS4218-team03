@@ -7,6 +7,7 @@ import sg.edu.nus.comp.cs4218.impl.util.ApplicationRunner;
 import sg.edu.nus.comp.cs4218.impl.util.ArgumentResolver;
 import sg.edu.nus.comp.cs4218.impl.util.IORedirectionHandler;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.List;
@@ -39,7 +40,11 @@ public class CallCommand implements Command {
 
         // Handle IO redirection
         IORedirectionHandler redirHandler = new IORedirectionHandler(argsList, stdin, stdout);
-        redirHandler.extractRedirOptions();
+        try{
+            redirHandler.extractRedirOptions();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
         List<String> noRedirArgsList = redirHandler.getNoRedirArgsList();
         InputStream inputStream = redirHandler.getInputStream();
         OutputStream outputStream = redirHandler.getOutputStream();
