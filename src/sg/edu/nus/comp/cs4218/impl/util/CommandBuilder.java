@@ -51,7 +51,7 @@ public final class CommandBuilder {
 
         List<Command> cmdsForSequence = new LinkedList<>();
         List<CallCommand> callCmdsForPipe = new LinkedList<>();
-        List<Character> tokens = new LinkedList<>();
+        List<String> tokens = new LinkedList<>();
 
         String commandSubstring = commandString;
         while (!commandSubstring.isEmpty()) {

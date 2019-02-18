@@ -28,14 +28,16 @@ public class ApplicationRunner {
      */
     public void runApp(String app, String[] argsArray, InputStream inputStream,
                        OutputStream outputStream)
-            throws ShellException {
+            throws ShellException, AbstractApplicationException {
         Application application;
 
         switch (app) {
             case APP_CAT:
                 application = new CatApplication();
+                break;
             case APP_CD:
                 application = new CdApplication();
+                break;
             default:
                 throw new ShellException(app + ": " + ERR_INVALID_APP);
         }

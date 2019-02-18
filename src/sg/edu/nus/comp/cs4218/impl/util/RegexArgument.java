@@ -75,7 +75,7 @@ public final class RegexArgument {
         }
 
         if (globbedFiles.isEmpty()) {
-            globbedFiles.add(plaintext.toString();
+            globbedFiles.add(plaintext.toString());
         }
 
         return globbedFiles;

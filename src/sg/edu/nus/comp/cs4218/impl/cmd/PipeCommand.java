@@ -1,12 +1,10 @@
 package sg.edu.nus.comp.cs4218.impl.cmd;
 
+import sg.edu.nus.comp.cs4218.Command;
 import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
 import sg.edu.nus.comp.cs4218.exception.ShellException;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.List;
 
 /**
@@ -17,7 +15,7 @@ import java.util.List;
  * <b>Command format:</b> <code>&lt;Call&gt; | &lt;Call&gt; or &lt;Pipe&gt; | &lt;Call&gt;</code>
  * </p>
  */
-public class PipeCommand{
+public class PipeCommand implements Command {
     private final List<CallCommand> callCommands;
 
     public PipeCommand(List<CallCommand> callCommands) {
@@ -50,7 +48,7 @@ public class PipeCommand{
                 absAppException = e;
             } catch (ShellException e) {
                 shellException = e;
-            }
+            } 
         }
 
         if (absAppException != null) {

@@ -73,7 +73,7 @@ public final class ArgumentResolver {
                     unmatchedQuotes.remove();
 
                     // evaluate subCommand and get the output
-                    String subCommandOutput = evaluateSubCommand(subCommand);
+                    String subCommandOutput = evaluateSubCommand(subCommand.toString());
 
                     // check if back quotes are nested
                     if (unmatchedQuotes.isEmpty()) {
@@ -161,7 +161,7 @@ public final class ArgumentResolver {
         }
 
         OutputStream outputStream = new ByteArrayOutputStream();
-        String output;
+        String output = null;
 
         try {
             Command command = CommandBuilder.parseCommand(commandString, new ApplicationRunner());

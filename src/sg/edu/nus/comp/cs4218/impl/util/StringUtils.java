@@ -66,7 +66,7 @@ public final class StringUtils {
      * @param str String to be tokenized
      * @return String array containing the tokens
      */
-    public static String tokenize(String str) {
+    public static String[] tokenize(String str) {
         if (isBlank(str)) {
             return new String[0];
         }

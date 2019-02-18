@@ -2,6 +2,7 @@ package sg.edu.nus.comp.cs4218.impl.util;
 
 import sg.edu.nus.comp.cs4218.exception.ShellException;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.LinkedList;
@@ -26,7 +27,7 @@ public class IORedirectionHandler {
         this.outputStream = origOutputStream;
     }
 
-    public void extractRedirOptions(){
+    public void extractRedirOptions() throws ShellException, IOException {
         if (argsList == null || argsList.isEmpty()) {
             throw new ShellException(ERR_SYNTAX);
         }
@@ -58,7 +59,7 @@ public class IORedirectionHandler {
                 // ambiguous redirect if file resolves to more than one parsed arg
                 throw new ShellException(ERR_SYNTAX);
             }
-            file = fileSegment;
+            file = fileSegment.get(0);
 
             // replace existing inputStream / outputStream
             if (arg.equals(String.valueOf(CHAR_REDIR_OUTPUT))) {
