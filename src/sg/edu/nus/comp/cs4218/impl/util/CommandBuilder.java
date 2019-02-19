@@ -54,6 +54,7 @@ public final class CommandBuilder {
         List<String> tokens = new LinkedList<>();
 
         String commandSubstring = commandString;
+//        System.out.println(commandSubstring);
         while (!commandSubstring.isEmpty()) {
 //            commandSubstring = commandSubstring.trim();
             Matcher matcher = ARGUMENT_REGEX.matcher(commandSubstring);
@@ -75,6 +76,9 @@ public final class CommandBuilder {
             commandSubstring = commandSubstring.substring(0);
 
             switch (firstChar) {
+
+                case CHAR_SPACE:
+                    break;
 
                 case CHAR_REDIR_OUTPUT:
                     // add as a separate token on its own

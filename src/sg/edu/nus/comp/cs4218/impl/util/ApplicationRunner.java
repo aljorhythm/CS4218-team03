@@ -13,6 +13,7 @@ import static sg.edu.nus.comp.cs4218.impl.ShellImpl.ERR_INVALID_APP;
 public class ApplicationRunner {
     public final static String APP_CAT = "cat";
     public final static String APP_CD = "cd";
+    public final static String APP_EXIT = "exit";
 
     /**
      * Run the application as specified by the application command keyword and arguments.
@@ -37,6 +38,9 @@ public class ApplicationRunner {
                 break;
             case APP_CD:
                 application = new CdApplication();
+                break;
+            case APP_EXIT:
+                application = new ExitApplication();
                 break;
             default:
                 throw new ShellException(app + ": " + ERR_INVALID_APP);

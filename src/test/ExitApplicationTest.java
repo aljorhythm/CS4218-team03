@@ -8,11 +8,14 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.runner.RunWith;
+import sg.edu.nus.comp.cs4218.impl.app.ExitApplication;
 
 import static org.junit.Assert.*;
 
 @RunWith(Arquillian.class)
 public class ExitApplicationTest {
+    ExitApplication exitApplication;
+
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -22,6 +25,7 @@ public class ExitApplicationTest {
 
     @Before
     public void setUp() throws Exception {
+        exitApplication = new ExitApplication();
     }
 
     @After
