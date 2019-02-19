@@ -14,6 +14,9 @@ public class ApplicationRunner {
     public final static String APP_CAT = "cat";
     public final static String APP_CD = "cd";
     public final static String APP_EXIT = "exit";
+    public final static String APP_ECHO = "echo";
+    public final static String APP_DATE = "date";
+
 
     /**
      * Run the application as specified by the application command keyword and arguments.
@@ -41,6 +44,12 @@ public class ApplicationRunner {
                 break;
             case APP_EXIT:
                 application = new ExitApplication();
+                break;
+            case APP_ECHO:
+                application = new EchoApplication();
+                break;
+            case APP_DATE:
+                application = new DateApplication();
                 break;
             default:
                 throw new ShellException(app + ": " + ERR_INVALID_APP);
