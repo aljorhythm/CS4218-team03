@@ -49,6 +49,6 @@ public class ShellImpl implements Shell {
     public void parseAndEvaluate(String commandString, OutputStream stdout)
             throws AbstractApplicationException, ShellException {
         Command command = CommandBuilder.parseCommand(commandString, new ApplicationRunner());
-
+        command.evaluate(System.in,stdout);
     }
 }

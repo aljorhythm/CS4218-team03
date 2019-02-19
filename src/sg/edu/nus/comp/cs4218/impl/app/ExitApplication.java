@@ -8,6 +8,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class ExitApplication implements ExitInterface {
+    public static final String EXIT_REMINDER = "Terminate process.";
+
     @Override
     public void terminateExecution() throws Exception {
 
@@ -16,7 +18,7 @@ public class ExitApplication implements ExitInterface {
     /**
      * Runs the exit application with the specified arguments.
      *
-     * @param args   Array of arguments for the application.Not used ?
+     * @param args   Array of arguments for the application,"exit" exactly.
      * @param stdin  An InputStream. Not used.
      * @param stdout An OutputStream. Not used.
      *
@@ -24,6 +26,7 @@ public class ExitApplication implements ExitInterface {
      */
     @Override
     public void run(String[] args, InputStream stdin, OutputStream stdout) throws ExitException {
-
+        System.out.println(EXIT_REMINDER);
+        System.exit(1);
     }
 }
