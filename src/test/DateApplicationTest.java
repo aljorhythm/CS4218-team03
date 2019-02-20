@@ -1,4 +1,4 @@
-package sg.edu.nus.comp.cs4218.test;
+package test;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
