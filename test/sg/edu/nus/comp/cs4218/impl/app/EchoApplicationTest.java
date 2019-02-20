@@ -16,7 +16,6 @@ public class EchoApplicationTest {
 
     @Test
     public void constructResult() {
-        Assertions.assertEquals(1, 1);
     }
 
     @Test
