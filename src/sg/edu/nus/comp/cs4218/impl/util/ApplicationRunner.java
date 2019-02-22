@@ -36,18 +36,19 @@ public class ApplicationRunner {
         Application application;
 
         switch (app) {
-            case APP_CAT:
-                application = new CatApplication();
-                break;
-            case APP_CD:
-                application = new CdApplication();
-                break;
+            // when u finish the app, turn these comments into use.
+//            case APP_CAT:
+//                application = new CatApplication();
+//                break;
+//            case APP_CD:
+//                application = new CdApplication();
+//                break;
             case APP_EXIT:
                 application = new ExitApplication();
                 break;
-            case APP_ECHO:
-                application = new EchoApplication();
-                break;
+//            case APP_ECHO:
+//                application = new EchoApplication();
+//                break;
             case APP_DATE:
                 application = new DateApplication();
                 break;

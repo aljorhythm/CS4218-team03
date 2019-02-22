@@ -77,15 +77,21 @@ public final class CommandBuilder {
 
             switch (firstChar) {
 
-                case CHAR_SPACE:
-                    break;
+//                case CHAR_SPACE:
+//                    if(commandSubstring.length() > 1)
+//                        commandSubstring = commandSubstring.substring(1);
+//                    else
+//                        commandSubstring = null;
+//                    break;
 
                 case CHAR_REDIR_OUTPUT:
+                    // CHAR_REDIR_OUTPUT = '>';
                     // add as a separate token on its own
                     tokens.add(String.valueOf(firstChar));
                     break;
 
                 case CHAR_PIPE:
+                    // CHAR_PIPE = '|';
                     if (tokens.isEmpty()) {
                         // cannot start a new command with pipe
                         throw new ShellException(ERR_SYNTAX);
@@ -97,6 +103,7 @@ public final class CommandBuilder {
                     break;
 
                 case CHAR_SEMICOLON:
+                    // CHAR_SEMICOLON = ';';
                     if (tokens.isEmpty()) {
                         // cannot start a new command with semicolon
                         throw new ShellException(ERR_SYNTAX);
