@@ -11,8 +11,8 @@ public class ExitApplication implements ExitInterface {
     public static final String EXIT_REMINDER = "Terminate process.";
 
     @Override
-    public void terminateExecution() throws Exception {
-
+    public void terminateExecution() throws ExitException {
+        System.exit(1);
     }
 
     /**
@@ -27,6 +27,6 @@ public class ExitApplication implements ExitInterface {
     @Override
     public void run(String[] args, InputStream stdin, OutputStream stdout) throws ExitException {
         System.out.println(EXIT_REMINDER);
-        System.exit(1);
+        terminateExecution();
     }
 }

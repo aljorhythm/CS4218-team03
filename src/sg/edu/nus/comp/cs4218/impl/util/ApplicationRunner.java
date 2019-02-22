@@ -16,6 +16,7 @@ public class ApplicationRunner {
     public final static String APP_EXIT = "exit";
     public final static String APP_ECHO = "echo";
     public final static String APP_DATE = "date";
+    public final static String APP_PWD = "pwd";
 
 
     /**
@@ -45,6 +46,9 @@ public class ApplicationRunner {
 //                break;
             case APP_EXIT:
                 application = new ExitApplication();
+                break;
+            case APP_PWD:
+                application = new PwdApplication();
                 break;
 //            case APP_ECHO:
 //                application = new EchoApplication();
