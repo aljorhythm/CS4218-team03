@@ -4,10 +4,7 @@ import sg.edu.nus.comp.cs4218.Command;
 import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
 import sg.edu.nus.comp.cs4218.exception.ShellException;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.List;
 
 /**
@@ -51,7 +48,7 @@ public class PipeCommand implements Command {
                 absAppException = e;
             } catch (ShellException e) {
                 shellException = e;
-            }
+            } 
         }
 
         if (absAppException != null) {
