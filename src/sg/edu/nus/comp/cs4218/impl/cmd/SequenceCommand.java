@@ -20,6 +20,7 @@ import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
  * <p>
  * <b>Command format:</b> <code>&lt;Command&gt; ; &lt;Command&gt;</code>
  * </p>
+ *
  */
 public class SequenceCommand implements Command {
     private final List<Command> commands;
