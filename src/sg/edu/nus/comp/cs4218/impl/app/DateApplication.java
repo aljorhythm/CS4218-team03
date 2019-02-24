@@ -34,7 +34,9 @@ public class DateApplication implements DateInterface {
      */
     @Override
     public void run(String[] args, InputStream stdin, OutputStream stdout) throws DateException {
-        System.out.println(Arrays.toString(args));
-        System.out.println(getDate(null));
+        if(args.length != 2 || !args[0].equals("date")){
+            throw new DateException("Invalid syntax.");
+        }
+        System.out.println(getDate(args[1]));
     }
 }
