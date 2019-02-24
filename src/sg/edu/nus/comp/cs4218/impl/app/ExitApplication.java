@@ -26,7 +26,12 @@ public class ExitApplication implements ExitInterface {
      */
     @Override
     public void run(String[] args, InputStream stdin, OutputStream stdout) throws ExitException {
-        System.out.println(EXIT_REMINDER);
-        terminateExecution();
+        if(args.length != 0){
+            throw new ExitException("!!!");
+        }
+        else {
+            System.out.println(EXIT_REMINDER);
+            terminateExecution();
+        }
     }
 }
