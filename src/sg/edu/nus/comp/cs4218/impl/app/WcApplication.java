@@ -6,9 +6,6 @@ import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-/**
- * Created by Joakim Boman on 2019-02-18.
- */
 public class WcApplication implements WcInterface {
 
     @Override
