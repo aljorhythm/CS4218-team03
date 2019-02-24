@@ -50,7 +50,9 @@ public class CallCommand implements Command {
         OutputStream outputStream = redirHandler.getOutputStream();
 
         // Handle quoting + globing + command substitution
+        System.out.println(noRedirArgsList.size());
         List<String> parsedArgsList = ArgumentResolver.parseArguments(noRedirArgsList);
+        System.out.println(parsedArgsList.size());
         if (!parsedArgsList.isEmpty()) {
             String app = argsList.get(0);
 //            String app = parsedArgsList.remove(0);

@@ -26,8 +26,8 @@ public class ExitApplication implements ExitInterface {
      */
     @Override
     public void run(String[] args, InputStream stdin, OutputStream stdout) throws ExitException {
-        if(args.length != 0){
-            throw new ExitException("!!!");
+        if(args.length != 1){
+            throw new ExitException("Invalid syntax.");
         }
         else {
             System.out.println(EXIT_REMINDER);

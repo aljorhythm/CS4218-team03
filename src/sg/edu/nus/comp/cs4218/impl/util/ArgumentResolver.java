@@ -31,7 +31,7 @@ public final class ArgumentResolver {
 
         List<String> parsedArgsSegment = new LinkedList<>();
         for (String arg : argsList) {
-            parsedArgsSegment = resolveOneArgument(arg);
+            parsedArgsSegment.addAll(resolveOneArgument(arg));
         }
         parsedArgsList.addAll(parsedArgsSegment);
 

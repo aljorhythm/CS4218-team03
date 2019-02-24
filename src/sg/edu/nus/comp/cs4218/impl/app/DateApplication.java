@@ -6,6 +6,7 @@ import sg.edu.nus.comp.cs4218.exception.EchoException;
 
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -33,6 +34,7 @@ public class DateApplication implements DateInterface {
      */
     @Override
     public void run(String[] args, InputStream stdin, OutputStream stdout) throws DateException {
+        System.out.println(Arrays.toString(args));
         System.out.println(getDate(null));
     }
 }
