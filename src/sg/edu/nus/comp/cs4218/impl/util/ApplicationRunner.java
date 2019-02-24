@@ -13,10 +13,17 @@ import static sg.edu.nus.comp.cs4218.impl.ShellImpl.ERR_INVALID_APP;
 public class ApplicationRunner {
     public final static String APP_CAT = "cat";
     public final static String APP_CD = "cd";
+    public final static String APP_DATE = "date";
     public final static String APP_EXIT = "exit";
     public final static String APP_ECHO = "echo";
-    public final static String APP_DATE = "date";
+    public final static String APP_FIND = "find";
+    public final static String APP_GREP = "grep";
+    public final static String APP_LS = "ls";
+    public final static String APP_MKDIR = "mkdir";
     public final static String APP_PWD = "pwd";
+    public final static String APP_SED = "sed";
+    public final static String APP_SORT = "sort";
+    public final static String APP_WC = "wc";
 
 
     /**
@@ -38,24 +45,45 @@ public class ApplicationRunner {
 
         switch (app) {
             // when u finish the app, turn these comments into use.
-//            case APP_CAT:
-//                application = new CatApplication();
-//                break;
-//            case APP_CD:
-//                application = new CdApplication();
-//                break;
+            case APP_CAT:
+                application = new CatApplication();
+                break;
+            case APP_CD:
+                application = new CdApplication();
+                break;
+            case APP_DATE:
+                application = new DateApplication();
+                break;
+            case APP_ECHO:
+                application = new EchoApplication();
+                break;
             case APP_EXIT:
                 application = new ExitApplication();
+                break;
+//            case APP_FIND:
+//                application = new FindApplication();
+//                break;
+//            case APP_GREP:
+//                application = new GrepApplication();
+//                break;
+//            case APP_LS:
+//                application = new LsApplication();
+//                break;
+            case APP_MKDIR:
+                application = new MkdirApplication();
                 break;
             case APP_PWD:
                 application = new PwdApplication();
                 break;
-//            case APP_ECHO:
-//                application = new EchoApplication();
+//            case APP_SED:
+//                application = new SedApplication();
 //                break;
-            case APP_DATE:
-                application = new DateApplication();
-                break;
+//            case APP_SORT:
+//                application = new SortApplication();
+//                break;
+//            case APP_WC:
+//                application = new WcApplication();
+//                break;
             default:
                 throw new ShellException(app + ": " + ERR_INVALID_APP);
         }

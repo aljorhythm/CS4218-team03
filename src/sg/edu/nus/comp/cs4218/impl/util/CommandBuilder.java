@@ -67,31 +67,36 @@ public final class CommandBuilder {
             // found a valid argument at the start of the command substring
             if (matcher.start() == 0) {
                 tokens.add(matcher.group());
+//                System.out.println("matcher.group(): "+matcher.group());
                 commandSubstring = commandSubstring.substring(matcher.end());
+//                System.out.println("commandSubstring: "+commandSubstring);
                 continue;
             }
 
             // found a valid argument but not at the start of the command substring
             char firstChar = commandSubstring.charAt(0);
             commandSubstring = commandSubstring.substring(0);
+//            System.out.println("commandSubstring: "+commandSubstring);
+//            System.out.println("firstChar: "+firstChar);
 
             switch (firstChar) {
 
-//                case CHAR_SPACE:
-//                    if(commandSubstring.length() > 1)
-//                        commandSubstring = commandSubstring.substring(1);
-//                    else
-//                        commandSubstring = null;
-//                    break;
-
+                case CHAR_REDIR_INPUT:
+                    tokens.add(String.valueOf(firstChar));
+                    break;
                 case CHAR_REDIR_OUTPUT:
-                    // CHAR_REDIR_OUTPUT = '>';
                     // add as a separate token on its own
                     tokens.add(String.valueOf(firstChar));
                     break;
-
+                case CHAR_SPACE:
+                    if(tokens.isEmpty())
+                        throw new ShellException(ERR_SYNTAX);
+                    if(commandSubstring.length() > 1)
+                        commandSubstring = commandSubstring.substring(1);
+                    else
+                        commandSubstring = null;
+                    break;
                 case CHAR_PIPE:
-                    // CHAR_PIPE = '|';
                     if (tokens.isEmpty()) {
                         // cannot start a new command with pipe
                         throw new ShellException(ERR_SYNTAX);
@@ -129,6 +134,9 @@ public final class CommandBuilder {
         }
 
         Command finalCommand = new CallCommand(tokens, appRunner);
+//        for (String temp:tokens) {
+//            System.out.println(temp);
+//        }
         if (!callCmdsForPipe.isEmpty()) {
             // add CallCommand as part of ongoing PipeCommand
             callCmdsForPipe.add((CallCommand) finalCommand);
