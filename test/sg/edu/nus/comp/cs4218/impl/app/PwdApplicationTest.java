@@ -1,11 +1,10 @@
-package test;
+package sg.edu.nus.comp.cs4218.impl.app;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import sg.edu.nus.comp.cs4218.Environment;
 import sg.edu.nus.comp.cs4218.exception.PwdException;
-import sg.edu.nus.comp.cs4218.impl.app.PwdApplication;
 
 import static org.junit.jupiter.api.Assertions.*;
 
