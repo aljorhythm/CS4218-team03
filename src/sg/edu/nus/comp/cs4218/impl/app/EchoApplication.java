@@ -22,6 +22,15 @@ public class EchoApplication implements EchoInterface {
         return res.toString();
     }
 
+    /**
+     * Runs the echo application with the specified arguments.
+     *
+     * @param args   Array of arguments for the application, consists of some strings.
+     * @param stdin  An InputStream. Not used.
+     * @param stdout An OutputStream. Not used.
+     *
+     * @throws EchoException If the shell doesn't work.
+     */
     @Override
     public void run(String[] args, InputStream stdin, OutputStream stdout) throws EchoException {
         if(!args[0].equals("echo") || args.length <= 1){
