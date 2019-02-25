@@ -13,17 +13,15 @@ public class MkdirApplication implements MkdirInterface {
     public void createFolder(String... folderName) throws MkdirException {
         File file;
         for(int i = 1;i < folderName.length;i++){
-            if(isValidFileName(folderName[i])) {
-                file = new File(folderName[i]);
-                if (!file.exists()) {
-                    file.mkdir();
+            file = new File(folderName[i]);
+            if (!file.exists()) {
+                if(!file.mkdirs())
+                    System.out.println("mkdir: " + folderName[i] + " invalid filename.");
+                else {
                     System.out.println("mkdir: " + folderName[i] + " created successfully.");
-                } else {
-                    System.out.println("mkdir: " + folderName[i] + " existed.");
                 }
-            }
-            else{
-                System.out.println("mkdir: " + folderName[i] + " invalid filename.");
+            } else {
+                System.out.println("mkdir: " + folderName[i] + " existed.");
             }
         }
     }
@@ -44,9 +42,4 @@ public class MkdirApplication implements MkdirInterface {
         }
         createFolder(args);
     }
-
-    public static boolean isValidFileName(String fileName) {
-        if (fileName == null || fileName.length() > 255)
-            return false;
-        else return fileName.matches("[^\\s\\\\/:\\*\\?\\\"<>\\|](\\x20|[^\\s\\\\/:\\*\\?\\\"<>\\|])*[^\\s\\\\/:\\*\\?\\\"<>\\|\\.]$"); }
 }
