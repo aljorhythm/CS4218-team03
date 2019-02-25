@@ -1,6 +1,7 @@
 package sg.edu.nus.comp.cs4218.app;
 
 import sg.edu.nus.comp.cs4218.Application;
+import sg.edu.nus.comp.cs4218.exception.MkdirException;
 
 public interface MkdirInterface extends Application {
     /**
@@ -12,5 +13,5 @@ public interface MkdirInterface extends Application {
      * @param folderName Array of string of folder names to be created
      * @throws Exception
      */
-    void createFolder(String... folderName) throws Exception;
+    void createFolder(String... folderName) throws MkdirException;
 }
