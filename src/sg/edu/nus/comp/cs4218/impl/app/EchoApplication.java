@@ -4,6 +4,7 @@ import sg.edu.nus.comp.cs4218.app.EchoInterface;
 import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
 import sg.edu.nus.comp.cs4218.exception.EchoException;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
@@ -36,6 +37,10 @@ public class EchoApplication implements EchoInterface {
         if(!args[0].equals("echo") || args.length <= 1){
             throw new EchoException("Invalid syntax.");
         }
-        System.out.println(constructResult(args));
+        try {
+            stdout.write((constructResult(args)+"\n").getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
