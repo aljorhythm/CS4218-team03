@@ -38,7 +38,7 @@ public class ShellImpl implements Shell {
                     shell.parseAndEvaluate(commandString, System.out);
                 }
             } catch (ExitException e) {
-                continue;
+                break;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }

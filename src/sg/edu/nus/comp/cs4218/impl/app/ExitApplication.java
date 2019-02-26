@@ -12,7 +12,7 @@ public class ExitApplication implements ExitInterface {
 
     @Override
     public void terminateExecution() throws ExitException {
-        System.exit(1);
+        throw new ExitException(EXIT_REMINDER);
     }
 
     /**
@@ -30,7 +30,6 @@ public class ExitApplication implements ExitInterface {
             throw new ExitException("Invalid syntax.");
         }
         else {
-            System.out.println(EXIT_REMINDER);
             terminateExecution();
         }
     }
