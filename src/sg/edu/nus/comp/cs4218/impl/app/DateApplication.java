@@ -4,6 +4,7 @@ import sg.edu.nus.comp.cs4218.app.DateInterface;
 import sg.edu.nus.comp.cs4218.exception.DateException;
 import sg.edu.nus.comp.cs4218.exception.EchoException;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Arrays;
@@ -34,9 +35,14 @@ public class DateApplication implements DateInterface {
      */
     @Override
     public void run(String[] args, InputStream stdin, OutputStream stdout) throws DateException {
-        if(args.length != 2 || !args[0].equals("date")){
+        if(args.length < 1 || args.length > 2 || !args[0].equals("date")){
             throw new DateException("Invalid syntax.");
         }
-        System.out.println(getDate(args[1]));
+        String format = (args.length == 1) ? null : args[1];
+        try {
+            stdout.write((getDate(format)+"\n").getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
