@@ -30,12 +30,12 @@ public class CatApplication implements CatInterface {
     }
 
     @Override
-    public String catFiles(String... fileName) throws Exception {
+    public String catFiles(String... fileName) throws CatException {
         return null;
     }
 
     @Override
-    public String catStdin(InputStream stdin) throws Exception {
+    public String catStdin(InputStream stdin) throws CatException {
         return null;
     }
 }
