@@ -1,3 +1,5 @@
+# python3 join_java_strings.py join_java_strings.sample.txt
+
 # converts lines of strings into java code snippet:
 # String.join(StringUtils.NEW_LINE, new String[]{ .... });
 
