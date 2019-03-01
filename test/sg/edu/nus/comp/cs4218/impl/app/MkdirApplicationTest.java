@@ -13,7 +13,7 @@ public class MkdirApplicationTest {
     MkdirApplication mkdirApplication;
     String pathToTestDir = System.getProperty("user.dir") + File.separator + "test" + File.separator +
             "sg" + File.separator + "edu" + File.separator + "nus" + File.separator + "comp" + File.separator +
-            "cs4218" + File.separator + "inputFiles" + File.separator;
+            "cs4218" + File.separator + "mkdirTestDir" + File.separator;
     String tempDir = pathToTestDir + "mkdirTest";
     String tempDir2 = pathToTestDir + "mkdirTest2";
     String tempParent = pathToTestDir + "mkdirTestParent";
