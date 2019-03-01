@@ -29,15 +29,15 @@ class SortApplicationTest {
      */
     static String string_empty = "";
     static String string_1 = "abcdefg";
-    static String string_2 = String.join(StringUtils.NEW_LINE, new String[]{"abc", "aac", "cde", "bcd"});
-    static String string_2_sorted = String.join(StringUtils.NEW_LINE, new String[]{"aac", "abc", "bcd", "cde"});
-    static String string_2_sorted_reverse = String.join(StringUtils.NEW_LINE, new String[]{"cde", "bcd", "abc", "aac"});
-    static String string_3 = String.join(StringUtils.NEW_LINE, new String[]{"2 abc", "10 sss", "3 cde", "10 asdas", "1 asd"});
-    static String string_3_sorted_non_number = String.join(StringUtils.NEW_LINE, new String[]{"1 asd", "10 asdas", "10 sss", "2 abc", "3 cde"});
-    static String string_3_sorted_number = String.join(StringUtils.NEW_LINE, new String[]{"1 asd", "2 abc", "3 cde", "10 asdas", "10 sss"});
-    static String string_4 = String.join(StringUtils.NEW_LINE, new String[]{"aAa", "aaa", "ccc", "cCc", "bbb"});
-    static String string_4_sorted_depcase = String.join(StringUtils.NEW_LINE, new String[]{"aaa", "aAa", "bbb", "ccc", "cCc"});
-    static String string_4_sorted_indcase = String.join(StringUtils.NEW_LINE, new String[]{"aAa", "aaa", "bbb", "ccc", "cCc"});
+    static String string_2 = String.join(StringUtils.STRING_NEWLINE, new String[]{"abc", "aac", "cde", "bcd"});
+    static String string_2_sorted = String.join(StringUtils.STRING_NEWLINE, new String[]{"aac", "abc", "bcd", "cde"});
+    static String string_2_sorted_reverse = String.join(StringUtils.STRING_NEWLINE, new String[]{"cde", "bcd", "abc", "aac"});
+    static String string_3 = String.join(StringUtils.STRING_NEWLINE, new String[]{"2 abc", "10 sss", "3 cde", "10 asdas", "1 asd"});
+    static String string_3_sorted_non_number = String.join(StringUtils.STRING_NEWLINE, new String[]{"1 asd", "10 asdas", "10 sss", "2 abc", "3 cde"});
+    static String string_3_sorted_number = String.join(StringUtils.STRING_NEWLINE, new String[]{"1 asd", "2 abc", "3 cde", "10 asdas", "10 sss"});
+    static String string_4 = String.join(StringUtils.STRING_NEWLINE, new String[]{"aAa", "aaa", "ccc", "cCc", "bbb"});
+    static String string_4_sorted_depcase = String.join(StringUtils.STRING_NEWLINE, new String[]{"aaa", "aAa", "bbb", "ccc", "cCc"});
+    static String string_4_sorted_indcase = String.join(StringUtils.STRING_NEWLINE, new String[]{"aAa", "aaa", "bbb", "ccc", "cCc"});
 
     /**
      * Helper class for easier reading and writing of test cases.
