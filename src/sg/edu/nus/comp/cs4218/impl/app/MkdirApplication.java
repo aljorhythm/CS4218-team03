@@ -9,11 +9,18 @@ import java.io.OutputStream;
 
 public class MkdirApplication implements MkdirInterface {
 
-
+    /**
+     * Create folder from the given folder names. Do nothing if folder already exists.
+     * If the path before the folder names does not exist raise an exception.
+     *
+     * @param folderName Array of string of folder names to be created
+     *                   
+     * @throws MkdirException If input or folderName is null. Also, if path does not exist.
+     */
     @Override
     public void createFolder(String... folderName) throws MkdirException {
         if (folderName == null) {
-            throw new MkdirException("Dir name is null!");
+            throw new MkdirException("Input is null!");
         }
         File file;
         for(int i = 0; i < folderName.length; i++) {
