@@ -81,21 +81,19 @@ public final class IOUtils {
     }
 
     /**
-     * todo
-     * @param arg
-     * @return
+     * @param arg argument
+     * @return an InputStream where input is argument
      */
     public static InputStream stringToInputStream(String arg){
         return new ByteArrayInputStream(arg.getBytes(StandardCharsets.UTF_8));
     }
 
     /**
-     * todo
-     * @param inputStream
-     * @return
+     * @param inputStrings variable length argument of strings
+     * @return an InputStream where input is arguments joined together by system line separator
      */
     public static InputStream stringsToInputStream(String... inputStrings) {
-        String inputString = Stream.of(inputStrings).collect(Collectors.joining("/n"));
+        String inputString = Stream.of(inputStrings).collect(Collectors.joining(StringUtils.STRING_NEWLINE));
         return new ByteArrayInputStream(inputString.getBytes(StandardCharsets.UTF_8));
     }
 }
