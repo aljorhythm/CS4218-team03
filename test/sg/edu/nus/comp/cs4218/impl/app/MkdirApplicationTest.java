@@ -14,6 +14,10 @@ public class MkdirApplicationTest {
     String pathToTestDir = System.getProperty("user.dir") + File.separator + "test" + File.separator +
             "sg" + File.separator + "edu" + File.separator + "nus" + File.separator + "comp" + File.separator +
             "cs4218" + File.separator + "inputFiles" + File.separator;
+    String tempDir = pathToTestDir + "mkdirTest";
+    String tempDir2 = pathToTestDir + "mkdirTest2";
+    String tempParent = pathToTestDir + "mkdirTestParent";
+    String tempChild = tempParent + File.separator + "mkdirTestChild";
 
     @BeforeEach
     void setUp() {
@@ -30,7 +34,7 @@ public class MkdirApplicationTest {
      * @param directory
      * @param files
      */
-    public static void deleteDirectory(File directory, File[] files) {
+    public static void deleteDirectory(File directory, File... files) {
         if(null != files){
             for(int i=0; i< files.length; i++) {
                 if(files[i].isDirectory()) {
@@ -41,7 +45,9 @@ public class MkdirApplicationTest {
                 }
             }
         }
-        if(directory != null) directory.delete();
+        if(directory != null) {
+            directory.delete();
+        }
     }
 
     @Test
@@ -57,22 +63,21 @@ public class MkdirApplicationTest {
 
     @Test
     void testCreateFolderOneNewDirectoryInputSuccess() throws MkdirException {
-        mkdirApplication.createFolder(pathToTestDir + "mkdirTest");
-        assertTrue(new File(pathToTestDir + "mkdirTest").exists());
+        mkdirApplication.createFolder(tempDir);
+        assertTrue(new File(tempDir).exists());
     }
 
     @Test
     void testCreateFolderTwoNewDirectoryInputSuccess() throws MkdirException {
-        mkdirApplication.createFolder(pathToTestDir + "mkdirTest1", pathToTestDir + "mkdirTest2");
-        assertTrue(new File(pathToTestDir + "mkdirTest1").exists());
-        assertTrue(new File(pathToTestDir + "mkdirTest2").exists());
+        mkdirApplication.createFolder(tempDir, tempDir2);
+        assertTrue(new File(tempDir).exists());
+        assertTrue(new File(tempDir2).exists());
     }
 
     @Test
     void testCreateFolderDirectoryInDirectoryInputSuccess() throws MkdirException {
-        mkdirApplication.createFolder(pathToTestDir + "mkdirTestParent",
-                pathToTestDir + "mkdirTestParent" + File.separator + "mkdirTestChild");
-        assertTrue(new File(pathToTestDir + "mkdirTestParent" + File.separator + "mkdirTestChild").exists());
+        mkdirApplication.createFolder(tempParent, tempChild);
+        assertTrue(new File(tempChild).exists());
     }
 
     @Test
@@ -90,29 +95,27 @@ public class MkdirApplicationTest {
     @Test
     void testRunOneNewDirectoryInputSuccess() throws MkdirException {
         String[] args = new String[1];
-        args[0] = pathToTestDir + "mkdirTest";
+        args[0] = tempDir;
         mkdirApplication.run(args, null, null);
-        assertTrue(new File(pathToTestDir + "mkdirTest").exists());
+        assertTrue(new File(tempDir).exists());
     }
 
     @Test
     void testRunTwoNewDirectoryInputSuccess() throws MkdirException {
         String[] args = new String[2];
-        args[0] = pathToTestDir + "mkdirTest1";
-        args[1] = pathToTestDir + "mkdirTest2";
+        args[0] = tempDir;
+        args[1] = tempDir2;
         mkdirApplication.run(args, null, null);
-        assertTrue(new File(pathToTestDir + "mkdirTest1").exists());
-        assertTrue(new File(pathToTestDir + "mkdirTest2").exists());
+        assertTrue(new File(tempDir).exists());
+        assertTrue(new File(tempDir2).exists());
     }
 
     @Test
     void testRunDirectoryInDirectoryInputSuccess() throws MkdirException {
         String[] args = new String[2];
-        args[0] = pathToTestDir + "mkdirTestParent";
-        args[1] = pathToTestDir + "mkdirTestParent" + File.separator + "mkdirTestChild";
+        args[0] = tempParent;
+        args[1] = tempChild;
         mkdirApplication.run(args, null, null);
-        assertTrue(new File(pathToTestDir + "mkdirTestParent" + File.separator + "mkdirTestChild").exists());
+        assertTrue(new File(tempChild).exists());
     }
-
-
 }

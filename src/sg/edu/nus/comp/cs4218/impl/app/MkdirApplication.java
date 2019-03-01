@@ -12,14 +12,20 @@ public class MkdirApplication implements MkdirInterface {
 
     @Override
     public void createFolder(String... folderName) throws MkdirException {
-        if (folderName == null) throw new MkdirException("Dir name is null!");
+        if (folderName == null) {
+            throw new MkdirException("Dir name is null!");
+        }
         File file;
         for(int i = 0; i < folderName.length; i++) {
-            if (folderName[i] == null) throw new MkdirException("Dir name is null!");
-            if (folderName[i].equals("")) continue;
+            if (folderName[i] == null) {
+                throw new MkdirException("Dir name is null!");
+            }
+            if (folderName[i].equals("")) {
+                continue;
+            }
             file = new File(folderName[i]);
-            if (!file.exists()) {
-                if(!file.mkdir()) throw new MkdirException("Path does not exist!");
+            if (!file.exists() && !file.mkdir()) {
+                throw new MkdirException("Path does not exist!");
             }
         }
     }
