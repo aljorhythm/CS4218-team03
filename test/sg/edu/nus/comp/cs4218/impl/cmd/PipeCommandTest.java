@@ -14,6 +14,7 @@ import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHARSET_UTF8;
 
 class PipeCommandTest {
     /**
+     * Mocks a call command
      * Simply writes input from stdin and "abc" to output
      */
     class MockCommand extends CallCommand {
@@ -80,7 +81,7 @@ class PipeCommandTest {
 
         PipeCommand pipeCommand = new PipeCommand((List<CallCommand>) Arrays.asList(commands));
         pipeCommand.evaluate(inputStream, outputStream);
-        String expected = "test data abcabc";
+        String expected = "test data abcabcabc";
         String actual = ((ByteArrayOutputStream) outputStream).toString("UTF-8");
         assertEquals(actual, expected);
     }
