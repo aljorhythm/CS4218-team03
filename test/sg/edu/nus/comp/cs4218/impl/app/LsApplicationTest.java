@@ -2,9 +2,15 @@ package sg.edu.nus.comp.cs4218.impl.app;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+class LsApplicationTest{
+    /**
+     * Configuration
+     */
+    LsApplication application;
 
-class LsApplicationTest {
+    class TestCase {
+        boolean isFoldersOnly, isRecursive, folderName;
+    }
 
     @Test
     void listFolderContent() {
