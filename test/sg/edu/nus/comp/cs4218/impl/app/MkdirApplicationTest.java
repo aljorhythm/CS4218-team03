@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import sg.edu.nus.comp.cs4218.exception.MkdirException;
 
 import java.io.File;
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,19 +21,22 @@ public class MkdirApplicationTest {
     String tempChild = tempParent + File.separator + "mkdirTestChild";
 
     /**
-     * Set up mkdir application for each test.
+     * Set up mkdir application for each test. Reset the file structure between the tests.
      */
     @BeforeEach
     void setUp() {
         mkdirApplication = new MkdirApplication();
+        deleteDirectory(null, new File(pathToTestDir).listFiles());
     }
 
     /**
-     * Reset the file structure between the tests.
+     *  Add empty txt file so git tracks the directory.
      */
     @AfterEach
-    void tearDown() {
-        deleteDirectory(null, new File(pathToTestDir).listFiles());
+    void tearDown() throws IOException {
+
+        File f = new File(pathToTestDir + File.separator + "EmptyFileForGitTracking.txt");
+        f.createNewFile();
     }
 
     /**
