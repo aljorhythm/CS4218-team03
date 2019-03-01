@@ -10,5 +10,5 @@ with open(filename) as file:
     sanitized = sanitized[1:]
     wrapped = [ '"{}"'.format(s) for s in sanitized]
     joined = ",".join(wrapped)
-    output = 'static String {} = String.join(StringUtils.NEW_LINE, new String[]{{{}}});'.format(var_name, joined)
+    output = 'static String {} = String.join(StringUtils.STRING_NEWLINE, new String[]{{{}}});'.format(var_name, joined)
     print(output)
