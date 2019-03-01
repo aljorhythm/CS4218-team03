@@ -40,9 +40,9 @@ public class CallCommand implements Command {
 
         // Handle IO redirection
         IORedirectionHandler redirHandler = new IORedirectionHandler(argsList, stdin, stdout);
-        try {
+        try{
             redirHandler.extractRedirOptions();
-        } catch (IOException e) {
+        } catch (IOException e){
             e.printStackTrace();
         }
         List<String> noRedirArgsList = redirHandler.getNoRedirArgsList();
