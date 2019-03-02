@@ -22,6 +22,7 @@ public class CatApplicationTest {
 
     /**
      * Set up a new cat application and mock inputstreams in between each test.
+     *
      * @throws Exception
      */
     @BeforeEach
@@ -38,11 +39,14 @@ public class CatApplicationTest {
      */
     @Test
     public void testCatStdinNullInputFailure() {
-        assertThrows(CatException.class, () -> {catApplication.catStdin(null);});
+        assertThrows(CatException.class, () -> {
+            catApplication.catStdin(null);
+        });
     }
 
     /**
      * Test catStdin with empty inputstream which should return an empty string.
+     *
      * @throws CatException
      */
     @Test
@@ -52,6 +56,7 @@ public class CatApplicationTest {
 
     /**
      * Test catStdin with an inputstream with content.
+     *
      * @throws CatException
      */
     @Test
@@ -64,7 +69,9 @@ public class CatApplicationTest {
      */
     @Test
     public void testCatFilesNullInputFailure() {
-        assertThrows(CatException.class, () -> {catApplication.catFiles(null);});
+        assertThrows(CatException.class, () -> {
+            catApplication.catFiles(null);
+        });
     }
 
     /**
@@ -72,11 +79,14 @@ public class CatApplicationTest {
      */
     @Test
     public void testCatFilesNonExistingFileFailure() {
-        assertThrows(CatException.class, () -> {catApplication.catFiles("wrong.txt");});
+        assertThrows(CatException.class, () -> {
+            catApplication.catFiles("wrong.txt");
+        });
     }
 
     /**
      * Test catFiles with an empty input file, should return an empty string.
+     *
      * @throws CatException
      */
     @Test
@@ -86,6 +96,7 @@ public class CatApplicationTest {
 
     /**
      * Test catFiles with a file with content.
+     *
      * @throws CatException
      */
     @Test
@@ -95,6 +106,7 @@ public class CatApplicationTest {
 
     /**
      * Test catFiles with two files as input.
+     *
      * @throws CatException
      */
     @Test
@@ -109,7 +121,9 @@ public class CatApplicationTest {
     @Test
     public void testRunNullArgsFailure() {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        assertThrows(CatException.class, () -> {catApplication.run(null, emptyIStream, baos);});
+        assertThrows(CatException.class, () -> {
+            catApplication.run(null, emptyIStream, baos);
+        });
     }
 
     /**
@@ -119,7 +133,9 @@ public class CatApplicationTest {
     public void testRunNullInputStreamFailure() {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         String[] emptyStringArray = new String[0];
-        assertThrows(CatException.class, () -> {catApplication.run(emptyStringArray, null, baos);});
+        assertThrows(CatException.class, () -> {
+            catApplication.run(emptyStringArray, null, baos);
+        });
     }
 
     /**
@@ -128,7 +144,9 @@ public class CatApplicationTest {
     @Test
     public void testRunNullOutputStreamFailure() {
         String[] emptyStringArray = new String[0];
-        assertThrows(CatException.class, () -> {catApplication.run(emptyStringArray, emptyIStream, null);});
+        assertThrows(CatException.class, () -> {
+            catApplication.run(emptyStringArray, emptyIStream, null);
+        });
     }
 
     /**
@@ -145,6 +163,7 @@ public class CatApplicationTest {
 
     /**
      * Test run function with a file as argument.
+     *
      * @throws CatException
      */
     @Test
@@ -159,6 +178,7 @@ public class CatApplicationTest {
 
     /**
      * Test run function with two files as args.
+     *
      * @throws CatException
      */
     @Test
