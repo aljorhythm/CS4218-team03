@@ -4,8 +4,11 @@ import sg.edu.nus.comp.cs4218.Environment;
 import sg.edu.nus.comp.cs4218.exception.ShellException;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public final class IOUtils {
     private IOUtils() {
@@ -75,5 +78,22 @@ public final class IOUtils {
     public static Path resolveFilePath(String fileName) {
         Path currentDirectory = Paths.get(Environment.currentDirectory);
         return currentDirectory.resolve(fileName);
+    }
+
+    /**
+     * @param arg argument
+     * @return an InputStream where input is argument
+     */
+    public static InputStream stringToInputStream(String arg){
+        return new ByteArrayInputStream(arg.getBytes(StandardCharsets.UTF_8));
+    }
+
+    /**
+     * @param inputStrings variable length argument of strings
+     * @return an InputStream where input is arguments joined together by system line separator
+     */
+    public static InputStream stringsToInputStream(String... inputStrings) {
+        String inputString = Stream.of(inputStrings).collect(Collectors.joining(StringUtils.STRING_NEWLINE));
+        return new ByteArrayInputStream(inputString.getBytes(StandardCharsets.UTF_8));
     }
 }
