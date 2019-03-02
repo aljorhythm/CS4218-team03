@@ -1,4 +1,4 @@
-package sg.edu.nus.comp.cs4218.impl;
+package sg.edu.nus.comp.cs4218.impl.cmd;
 
 import org.junit.jupiter.api.Test;
 import sg.edu.nus.comp.cs4218.Command;
