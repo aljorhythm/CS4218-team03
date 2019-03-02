@@ -9,9 +9,7 @@ public class TestUtils {
     /**
      * Test data folder
      */
-    public static final String pathToTestDataDir = System.getProperty("user.dir") + File.separator + "test" + File.separator +
-            "sg" + File.separator + "edu" + File.separator + "nus" + File.separator + "comp" + File.separator +
-            "cs4218";
+    public static final String pathToTestDataDir = System.getProperty("user.dir") + File.separator + "resources";
 
     /**
      *
