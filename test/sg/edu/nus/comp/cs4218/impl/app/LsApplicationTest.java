@@ -150,12 +150,13 @@ class LsApplicationTest {
      * Folder not found
      */
     @Test
-    void listFolderContent_test7_emptyDirectory() {
+    void listFolderContent_test7_emptyDirectory() throws Exception {
         newCase()
                 .isFoldersOnly(false)
                 .isRecursive(false)
                 .folderName(FOLDER_E)
-                .assertException(LsException.class);
+                .expected(test7_output)
+                .run();
     }
 
     @Test
