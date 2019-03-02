@@ -11,8 +11,10 @@ import java.io.OutputStream;
 public class MkdirApplication implements MkdirInterface {
     @Override
     public void createFolder(String... folderName) throws MkdirException {
+        if (folderName == null)
+            throw new MkdirException("Please check the filename.");
         File file;
-        for(int i = 1;i < folderName.length;i++){
+        for(int i = 0;i < folderName.length;i++){
             file = new File(folderName[i]);
             if (!file.exists()) {
                 if(!file.mkdirs())
@@ -37,9 +39,15 @@ public class MkdirApplication implements MkdirInterface {
      */
     @Override
     public void run(String[] args, InputStream stdin, OutputStream stdout) throws MkdirException {
+        if(args == null || args.length == 0)
+            throw new MkdirException("Invalid syntax.");
         if(!args[0].equals("mkdir") || args.length <= 1){
             throw new MkdirException("Invalid syntax.");
         }
-        createFolder(args);
+        String[] filename = new String[args.length-1];
+        for (int i=0;i<filename.length;i++){
+            filename[i] = args[i+1];
+        }
+        createFolder(filename);
     }
 }
