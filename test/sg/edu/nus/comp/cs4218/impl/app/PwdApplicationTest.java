@@ -2,6 +2,7 @@ package sg.edu.nus.comp.cs4218.impl.app;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import sg.edu.nus.comp.cs4218.TestUtils;
 import sg.edu.nus.comp.cs4218.exception.PwdException;
 
 import java.io.*;
@@ -56,9 +57,7 @@ class PwdApplicationTest {
      */
     @Test
     void testRunClosedOutputStreamFailure() throws PwdException, IOException {
-        FileOutputStream fos = new FileOutputStream(System.getProperty("user.dir")
-                + File.separator + "test" + File.separator + "sg" + File.separator + "edu" + File.separator +
-                "nus" + File.separator + "comp" + File.separator + "cs4218" + File.separator +"inputFiles" +
+        FileOutputStream fos = new FileOutputStream(TestUtils.pathToTestDataDir +
                 File.separator + "pwd.txt");
         fos.close();
         assertThrows(PwdException.class, () -> {pwdApplication.run(new String[0], null, fos);});
