@@ -31,7 +31,9 @@ public class PipeCommand implements Command {
         InputStream nextInputStream = stdin;
         OutputStream nextOutputStream;
 
-        for (int i = 0; i <= callCommands.size(); i++) {
+        for (int i = 0; i < callCommands.size(); i++) {
+            boolean isLastCommand = i == callCommands.size() - 1;
+
             CallCommand callCommand = callCommands.get(i);
 
             if (absAppException != null || shellException != null) {
@@ -40,7 +42,11 @@ public class PipeCommand implements Command {
             }
 
             try {
-                nextOutputStream = new ByteArrayOutputStream();
+                if (isLastCommand) {
+                    nextOutputStream = stdout;
+                } else {
+                    nextOutputStream = new ByteArrayOutputStream();
+                }
                 callCommand.evaluate(nextInputStream, nextOutputStream);
                 nextInputStream = new ByteArrayInputStream(
                         ((ByteArrayOutputStream) nextOutputStream).toByteArray());
@@ -48,7 +54,7 @@ public class PipeCommand implements Command {
                 absAppException = e;
             } catch (ShellException e) {
                 shellException = e;
-            } 
+            }
         }
 
         if (absAppException != null) {
