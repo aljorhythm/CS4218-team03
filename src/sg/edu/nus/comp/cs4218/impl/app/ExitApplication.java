@@ -27,7 +27,7 @@ public class ExitApplication implements ExitInterface {
      */
     @Override
     public void run(String[] args, InputStream stdin, OutputStream stdout) throws ExitException {
-        if(args.length == 1 && args[0].equals("exit")){
+        if(args.length == 0){
             terminateExecution();
         }
         else{

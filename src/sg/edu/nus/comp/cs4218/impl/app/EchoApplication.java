@@ -34,15 +34,11 @@ public class EchoApplication implements EchoInterface {
      */
     @Override
     public void run(String[] args, InputStream stdin, OutputStream stdout) throws EchoException {
-        if(!args[0].equals("echo") || args.length <= 1){
+        if(args.length == 0){
             throw new EchoException("Invalid syntax.");
         }
-        String[] args_n = new String[args.length-1];
-        for(int i=0;i<args_n.length;i++) {
-            args_n[i] = args[i + 1];
-        }
         try {
-            stdout.write((constructResult(args_n)+"\n").getBytes());
+            stdout.write((constructResult(args)+"\n").getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }

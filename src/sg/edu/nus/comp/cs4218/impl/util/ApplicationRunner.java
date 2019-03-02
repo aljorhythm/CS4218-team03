@@ -87,7 +87,15 @@ public class ApplicationRunner {
             default:
                 throw new ShellException(app + ": " + ERR_INVALID_APP);
         }
+        String[] argsT = deleteDefaultArg(argsArray);
+        application.run(argsT, inputStream, outputStream);
+    }
 
-        application.run(argsArray, inputStream, outputStream);
+    private static String[] deleteDefaultArg(String[] argsArray){
+        String[] res = new String[argsArray.length-1];
+        for(int i = 0;i<res.length;i++){
+            res[i] = argsArray[i+1];
+        }
+        return res;
     }
 }

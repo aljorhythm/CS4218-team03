@@ -133,9 +133,8 @@ public class MkdirApplicationTest {
      */
     @Test
     void testRunOneNewDirectoryInputSuccess() throws MkdirException {
-        String[] args = new String[2];
-        args[0] = "mkdir";
-        args[1] = tempDir;
+        String[] args = new String[1];
+        args[0] = tempDir;
         mkdirApplication.run(args, null, null);
         assertTrue(new File(tempDir).exists());
     }
@@ -147,10 +146,9 @@ public class MkdirApplicationTest {
      */
     @Test
     void testRunTwoNewDirectoryInputSuccess() throws MkdirException {
-        String[] args = new String[3];
-        args[0] = "mkdir";
-        args[1] = tempDir;
-        args[2] = tempDir2;
+        String[] args = new String[2];
+        args[0] = tempDir;
+        args[1] = tempDir2;
         mkdirApplication.run(args, null, null);
         assertTrue(new File(tempDir).exists());
         assertTrue(new File(tempDir2).exists());
@@ -163,10 +161,9 @@ public class MkdirApplicationTest {
      */
     @Test
     void testRunDirectoryInDirectoryInputSuccess() throws MkdirException {
-        String[] args = new String[3];
-        args[0] = "mkdir";
-        args[1] = tempParent;
-        args[2] = tempChild;
+        String[] args = new String[2];
+        args[0] = tempParent;
+        args[1] = tempChild;
         mkdirApplication.run(args, null, null);
         assertTrue(new File(tempChild).exists());
     }

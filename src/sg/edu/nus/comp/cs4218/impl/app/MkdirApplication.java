@@ -18,13 +18,6 @@ public class MkdirApplication implements MkdirInterface {
             file = new File(folderName[i]);
             if (!file.exists()) {
                 file.mkdirs();
-//                if(!file.mkdirs())
-//                    System.out.println("mkdir: " + folderName[i] + " invalid filename.");
-//                else {
-//                    System.out.println("mkdir: " + folderName[i] + " created successfully.");
-//                }
-//            } else {
-//                System.out.println("mkdir: " + folderName[i] + " existed.");
             }
         }
     }
@@ -42,13 +35,6 @@ public class MkdirApplication implements MkdirInterface {
     public void run(String[] args, InputStream stdin, OutputStream stdout) throws MkdirException {
         if(args == null || args.length == 0)
             throw new MkdirException("Invalid syntax.");
-        if(!args[0].equals("mkdir") || args.length <= 1){
-            throw new MkdirException("Invalid syntax.");
-        }
-        String[] filename = new String[args.length-1];
-        for (int i=0;i<filename.length;i++){
-            filename[i] = args[i+1];
-        }
-        createFolder(filename);
+        createFolder(args);
     }
 }
