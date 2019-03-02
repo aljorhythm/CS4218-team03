@@ -4,8 +4,8 @@ import sg.edu.nus.comp.cs4218.app.GrepInterface;
 import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
 import sg.edu.nus.comp.cs4218.exception.GrepException;
 
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class GrepApplication implements GrepInterface {
@@ -33,15 +33,42 @@ public class GrepApplication implements GrepInterface {
      * @throws Exception
      */
     @java.lang.Override
-    public String grepFromStdin(String pattern, Boolean isCaseInsensitive, Boolean isCountOfLinesOnly, InputStream stdin) throws GrepException {
+    public String grepFromStdin(String pattern, Boolean isCaseInsensitive, Boolean isCountOfLinesOnly, InputStream stdin) throws GrepException, IOException {
         if (pattern == null) {
             throw new GrepException("Pattern is null!");
         }
-        Pattern p = Pattern.compile(pattern);
-        
-        return null;
+        Pattern p;
+        if (isCaseInsensitive != null && isCaseInsensitive) {
+            p = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE);
+        } else {
+            p = Pattern.compile(pattern);
+        }
+        BufferedReader reader = new BufferedReader(new InputStreamReader(stdin));
+        StringBuilder result = new StringBuilder();
+        int numberOfMatches = 0;
+        for (String line; (line = reader.readLine()) != null; ) {
+            Matcher m = p.matcher(line);
+            if (m.find()){
+                result.append(line).append("\n");
+                numberOfMatches++;
+            }
+        }
+        if (isCountOfLinesOnly) {
+            return Integer.toString(numberOfMatches);
+        }
+        else {
+            return result.toString().trim();
+        }
     }
 
+    /**
+     * Run the grep application.
+     *
+     * @param args Array of arguments for the application.
+     * @param stdin An inputstream.
+     * @param stdout An outputstream.
+     * @throws GrepException
+     */
     @java.lang.Override
     public void run(String[] args, InputStream stdin, OutputStream stdout) throws GrepException {
 

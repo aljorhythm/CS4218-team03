@@ -111,7 +111,7 @@ class GrepApplicationTest {
         public void assertExpected() {
             try {
                 String actual = application.grepFromStdin(pattern, isCaseInsensitive, isCountOfLinesOnly, inputStream);
-                assertEquals(actual, expected);
+                assertEquals(expected, actual);
             } catch (Exception e) {
                 fail(e);
             }
@@ -169,12 +169,12 @@ class GrepApplicationTest {
     void grepFromStdin_emptyPattern() {
         StdinTestCase[] testCases = {
                 new StdinTestCase()
-                        .expected("0")
+                        .expected("1")
                         .pattern("")
                         .inputStream("abcde")
                         .isCountOfLinesOnly(true),
                 new StdinTestCase()
-                        .expected("")
+                        .expected("abcde")
                         .pattern("")
                         .inputStream("abcde")
                         .isCountOfLinesOnly(false)
@@ -267,12 +267,12 @@ class GrepApplicationTest {
                         .expected("0")
                         .pattern("sequence")
                         .inputStream(linesData)
-                        .isCountOfLinesOnly(false),
+                        .isCountOfLinesOnly(true),
                 new StdinTestCase()
                         .expected("")
                         .pattern("sequence")
                         .inputStream(linesData)
-                        .isCountOfLinesOnly(true)
+                        .isCountOfLinesOnly(false)
         };
 
         for (StdinTestCase testCase : testCases) {
