@@ -7,14 +7,15 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
 public final class IOUtils {
+    public static String NULL_STREAM = "null_stream";
+    public static String NULL_STRING= "null_string";
+
     private IOUtils() {
     }
 
@@ -88,7 +89,11 @@ public final class IOUtils {
      * @param arg argument
      * @return an InputStream where input is argument
      */
-    public static InputStream stringToInputStream(String arg) {
+    public static InputStream stringToInputStream(String arg) throws IOException {
+        if(arg == null) {
+            throw new IOException(NULL_STRING);
+        }
+
         return new ByteArrayInputStream(arg.getBytes(StandardCharsets.UTF_8));
     }
 
@@ -105,36 +110,50 @@ public final class IOUtils {
 
     /**
      * Converts input from stream into String
-     * @param in input stream
+     *
+     * @param inputStream input stream
      * @return String from input stream
      * @throws IOException
      */
-    public static String stringFromInputStream(InputStream in) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-        String string;
-        if(!reader.ready()) {
-            string = "";
-        }else {
-            string = reader
-                    .lines()
-                    .collect(Collectors.joining(STRING_NEWLINE));
+    public static String stringFromInputStream(InputStream inputStream) throws IOException {
+        if (inputStream == null) {
+            throw new IOException(NULL_STREAM);
         }
-        return string;
+
+        String newLine = STRING_NEWLINE;
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        StringBuilder result = new StringBuilder();
+
+        if (reader.ready()) {
+            boolean flag = false;
+            for (String line; (line = reader.readLine()) != null; ) {
+                result
+                        .append(flag ? newLine : "")
+                        .append(line);
+                flag = true;
+            }
+        }
+
+        return result.toString();
     }
 
     /**
      * Converts input from stream into list of String representing lines
+     *
      * @param in input stream
      * @return String from input stream
      * @throws IOException
      */
-    public static List<String> stringsFromInputStream(InputStream in) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-        ArrayList<String> out = new ArrayList<String>();
-        String line;
-        while ((line = reader.readLine()) != null) {
-            out.add(line);
+    public static String[] stringsFromInputStream(InputStream in) throws IOException {
+        if (in == null) {
+            throw new IOException(NULL_STREAM);
         }
-        return out;
+
+        String string = stringFromInputStream(in);
+        if(string.isEmpty()) {
+            return new String[]{};
+        }
+
+        return string.split(STRING_NEWLINE);
     }
 }
