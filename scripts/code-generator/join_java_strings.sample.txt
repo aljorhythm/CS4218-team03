@@ -1,0 +1,6 @@
+string_4_sorted_indcase
+aAa
+aaa
+bbb
+ccc
+cCc
