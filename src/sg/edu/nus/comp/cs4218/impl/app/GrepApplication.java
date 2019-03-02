@@ -2,9 +2,11 @@ package sg.edu.nus.comp.cs4218.impl.app;
 
 import sg.edu.nus.comp.cs4218.app.GrepInterface;
 import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
+import sg.edu.nus.comp.cs4218.exception.GrepException;
 
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.regex.Pattern;
 
 public class GrepApplication implements GrepInterface {
     /**
@@ -31,12 +33,17 @@ public class GrepApplication implements GrepInterface {
      * @throws Exception
      */
     @java.lang.Override
-    public String grepFromStdin(String pattern, Boolean isCaseInsensitive, Boolean isCountOfLinesOnly, InputStream stdin) throws Exception {
+    public String grepFromStdin(String pattern, Boolean isCaseInsensitive, Boolean isCountOfLinesOnly, InputStream stdin) throws GrepException {
+        if (pattern == null) {
+            throw new GrepException("Pattern is null!");
+        }
+        Pattern p = Pattern.compile(pattern);
+        
         return null;
     }
 
     @java.lang.Override
-    public void run(String[] args, InputStream stdin, OutputStream stdout) throws AbstractApplicationException {
+    public void run(String[] args, InputStream stdin, OutputStream stdout) throws GrepException {
 
     }
 }
