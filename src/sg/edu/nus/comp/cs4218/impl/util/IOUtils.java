@@ -7,8 +7,12 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
 public final class IOUtils {
     private IOUtils() {
@@ -84,7 +88,7 @@ public final class IOUtils {
      * @param arg argument
      * @return an InputStream where input is argument
      */
-    public static InputStream stringToInputStream(String arg){
+    public static InputStream stringToInputStream(String arg) {
         return new ByteArrayInputStream(arg.getBytes(StandardCharsets.UTF_8));
     }
 
@@ -93,7 +97,37 @@ public final class IOUtils {
      * @return an InputStream where input is arguments joined together by system line separator
      */
     public static InputStream stringsToInputStream(String... inputStrings) {
-        String inputString = Stream.of(inputStrings).collect(Collectors.joining(StringUtils.STRING_NEWLINE));
+        String inputString = Stream
+                .of(inputStrings)
+                .collect(Collectors.joining(STRING_NEWLINE));
         return new ByteArrayInputStream(inputString.getBytes(StandardCharsets.UTF_8));
+    }
+
+    /**
+     * Converts input from stream into String
+     * @param in input stream
+     * @return String from input stream
+     * @throws IOException
+     */
+    public static String stringFromInputStream(InputStream in) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+        String string = reader.lines().collect(Collectors.joining(STRING_NEWLINE));
+        return string;
+    }
+
+    /**
+     * Converts input from stream into list of String representing lines
+     * @param in input stream
+     * @return String from input stream
+     * @throws IOException
+     */
+    public static List<String> stringsFromInputStream(InputStream in) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+        ArrayList<String> out = new ArrayList<String>();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            out.add(line);
+        }
+        return out;
     }
 }
