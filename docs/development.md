@@ -17,6 +17,10 @@ Go to `Module Settings` ->  `Project Structure` -> `+` -> `Maven`
 
 ![Screenshot](img/install-maven-lib.png)
 
+### Add library
+
+![Screenshot](img/add-lib.png)
+
 Example List
 - org.jboss.arquillian.junit:arquillian-junit-container:1.4.1.Final
 
