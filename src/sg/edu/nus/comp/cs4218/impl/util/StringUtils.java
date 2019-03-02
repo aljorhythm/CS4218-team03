@@ -19,6 +19,7 @@ public final class StringUtils {
     public static final char CHAR_SEMICOLON = ';';
     public static final char CHAR_ASTERISK = '*';
     public static final char CHAR_FLAG_PREFIX = '-';
+    public static final String CHARSET_UTF8 = "UTF-8";
 
     private StringUtils() {
     }

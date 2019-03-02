@@ -58,7 +58,7 @@ class PwdApplicationTest {
     void testRunClosedOutputStreamFailure() throws PwdException, IOException {
         FileOutputStream fos = new FileOutputStream(System.getProperty("user.dir")
                 + File.separator + "test" + File.separator + "sg" + File.separator + "edu" + File.separator +
-                "nus" + File.separator + "comp" + File.separator + "cs4218" + File.separator +"inputtest" +
+                "nus" + File.separator + "comp" + File.separator + "cs4218" + File.separator +"inputFiles" +
                 File.separator + "pwd.txt");
         fos.close();
         assertThrows(PwdException.class, () -> {pwdApplication.run(new String[0], null, fos);});
