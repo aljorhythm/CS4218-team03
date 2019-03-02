@@ -12,10 +12,14 @@ import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHARSET_UTF8;
 public class EchoApplication implements EchoInterface {
     public static final String FAIL_ECHO = "fail_echo";
     public static final String FAIL_ECHO_WRITE = "fail_echo_write";
+    public static final String FAIL_ECHO_EMPTY_PARAMS = "fail_echo_empty_params";
 
     @Override
     public String constructResult(String... args) throws Exception {
-        return null;
+        if(args == null) {
+            throw new Exception(FAIL_ECHO_EMPTY_PARAMS);
+        }
+        return String.join(" ", args);
     }
 
     @Override
@@ -25,6 +29,10 @@ public class EchoApplication implements EchoInterface {
             result = this.constructResult(args);
         } catch (Exception e) {
             throw new AbstractApplicationException(FAIL_ECHO){};
+        }
+
+        if(stdout == null) {
+            return;
         }
 
         try {

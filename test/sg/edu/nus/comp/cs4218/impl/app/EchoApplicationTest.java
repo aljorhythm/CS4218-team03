@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHARSET_UTF8;
 
 /**
@@ -70,6 +69,7 @@ class EchoApplicationTest {
      *
      * @throws Exception
      */
+    @Test
     public void run_noInputOutput() throws Exception {
         application.run(new String[]{}, null, null);
     }
@@ -79,20 +79,24 @@ class EchoApplicationTest {
      *
      * @throws Exception
      */
-    public void run_noArgs_noInputOutput() throws Exception {
-        application.run(null, null, null);
+    @Test
+    public void run_noArgs_noInputOutput() {
+        assertThrows(Exception.class, () -> {
+            application.run(null, null, null);
+        });
     }
 
     /**
      * Test running of echo
      * @throws Exception
      */
+    @Test
     public void run() throws Exception {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        String[] stringList = new String[]{"abc", "cde"};
+        String[] stringList = new String[]{"abc", "cde", "fgh"};
         application.run(stringList, null, outputStream);
         String actual = outputStream.toString(CHARSET_UTF8);
-        String expected = String.join(CHARSET_UTF8, stringList);
+        String expected = "abc cde fgh";
         assertEquals(actual, expected);
     }
 }
