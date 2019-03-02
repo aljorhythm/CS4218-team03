@@ -22,23 +22,7 @@ class ExitApplicationTest {
 
     @Test
     void testExit_DefaultInput_Success(){
-        String[] args_test = new String[1];
-        args_test[0] = "exit";
+        String[] args_test = new String[0];
         assertThrows(ExitException.class,() -> {exitApplication.run(args_test,System.in,System.out);});
     }
-
-//    @Test
-//    void testExit_errorSimpleInput_Failure(){
-//        String[] args_test = new String[1];
-//        args_test[0] = "Exit";
-//        assertDoesNotThrow(exitApplication.run(args_test,System.in,System.out));
-//    }
-//
-//    @Test
-//    void testExit_errorMultipleInput_Failure(){
-//        String[] args_test = new String[2];
-//        args_test[0] = "exit";
-//        args_test[1] = "exit";
-//        assertThrows(ExitException.class,() -> {exitApplication.run(args_test,System.in,System.out);});
-//    }
 }

@@ -64,10 +64,10 @@ public class DateApplication implements DateInterface {
      */
     @Override
     public void run(String[] args, InputStream stdin, OutputStream stdout) throws DateException {
-        if(args.length < 1 || args.length > 2 || !args[0].equals("date")){
+        if(args.length > 1){
             throw new DateException("Invalid syntax.");
         }
-        String format = (args.length == 1) ? "" : args[1];
+        String format = (args.length == 0) ? "" : args[0];
         try {
             stdout.write((getDate(format)+"\n").getBytes());
         } catch (IOException e) {
