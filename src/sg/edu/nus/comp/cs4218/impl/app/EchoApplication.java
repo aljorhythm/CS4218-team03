@@ -12,7 +12,7 @@ public class EchoApplication implements EchoInterface {
     @Override
     public String constructResult(String... args) throws EchoException {
         StringBuilder res = new StringBuilder();
-        for (int i=1;i<args.length;i++){
+        for (int i=0;i<args.length;i++){
             if(i == args.length - 1){
                 res.append(args[i]);
             }
@@ -37,8 +37,12 @@ public class EchoApplication implements EchoInterface {
         if(!args[0].equals("echo") || args.length <= 1){
             throw new EchoException("Invalid syntax.");
         }
+        String[] args_n = new String[args.length-1];
+        for(int i=0;i<args_n.length;i++) {
+            args_n[i] = args[i + 1];
+        }
         try {
-            stdout.write((constructResult(args)+"\n").getBytes());
+            stdout.write((constructResult(args_n)+"\n").getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }
