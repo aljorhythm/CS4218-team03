@@ -26,16 +26,19 @@ public class CatApplication implements CatInterface {
      */
     @Override
     public void run(String[] args, InputStream stdin, OutputStream stdout) throws CatException {
-
     }
 
     @Override
     public String catFiles(String... fileName) throws CatException {
+
         return null;
     }
 
     @Override
     public String catStdin(InputStream stdin) throws CatException {
+        if(stdin == null) {
+           throw new CatException(ERR_NULL_STREAMS);
+        }
         return null;
     }
 }
