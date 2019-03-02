@@ -111,7 +111,14 @@ public final class IOUtils {
      */
     public static String stringFromInputStream(InputStream in) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-        String string = reader.lines().collect(Collectors.joining(STRING_NEWLINE));
+        String string;
+        if(!reader.ready()) {
+            string = "";
+        }else {
+            string = reader
+                    .lines()
+                    .collect(Collectors.joining(STRING_NEWLINE));
+        }
         return string;
     }
 

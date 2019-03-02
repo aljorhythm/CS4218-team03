@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
 class IOUtilsTest {
@@ -75,6 +77,15 @@ class IOUtilsTest {
         InputStream inputStream = IOUtils.stringToInputStream(inputString);
         String actual = IOUtils.stringFromInputStream(inputStream);
         String expected = inputString;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void stringFromInputStream_empty() throws IOException {
+        InputStream inputStream = mock(InputStream.class);
+        when(inputStream.read()).thenReturn(-1);
+        String actual = IOUtils.stringFromInputStream(inputStream);
+        String expected = "";
         assertEquals(expected, actual);
     }
 
