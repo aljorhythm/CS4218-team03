@@ -17,13 +17,14 @@ public class MkdirApplication implements MkdirInterface {
         for(int i = 0;i < folderName.length;i++){
             file = new File(folderName[i]);
             if (!file.exists()) {
-                if(!file.mkdirs())
-                    System.out.println("mkdir: " + folderName[i] + " invalid filename.");
-                else {
-                    System.out.println("mkdir: " + folderName[i] + " created successfully.");
-                }
-            } else {
-                System.out.println("mkdir: " + folderName[i] + " existed.");
+                file.mkdirs();
+//                if(!file.mkdirs())
+//                    System.out.println("mkdir: " + folderName[i] + " invalid filename.");
+//                else {
+//                    System.out.println("mkdir: " + folderName[i] + " created successfully.");
+//                }
+//            } else {
+//                System.out.println("mkdir: " + folderName[i] + " existed.");
             }
         }
     }
