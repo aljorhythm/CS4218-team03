@@ -66,12 +66,7 @@ class GrepApplicationTest {
         }
 
         StdinTestCase inputStream(String inputString) {
-            try {
-                return this.inputStream(IOUtils.stringToInputStream(inputString));
-            } catch (Exception e) {
-                fail("Test case should not have invalid input string");
-                return this;
-            }
+            return this.inputStream(IOUtils.stringToInputStream(inputString));
         }
 
         StdinTestCase inputStream(String... inputStrings) {
@@ -116,7 +111,7 @@ class GrepApplicationTest {
         public void assertExpected() {
             try {
                 String actual = application.grepFromStdin(pattern, isCaseInsensitive, isCountOfLinesOnly, inputStream);
-                assertEquals(expected, actual);
+                assertEquals(actual, expected);
             } catch (Exception e) {
                 fail(e);
             }
@@ -174,12 +169,12 @@ class GrepApplicationTest {
     void grepFromStdin_emptyPattern() {
         StdinTestCase[] testCases = {
                 new StdinTestCase()
-                        .expected("1")
+                        .expected("0")
                         .pattern("")
                         .inputStream("abcde")
                         .isCountOfLinesOnly(true),
                 new StdinTestCase()
-                        .expected("abcde")
+                        .expected("")
                         .pattern("")
                         .inputStream("abcde")
                         .isCountOfLinesOnly(false)
@@ -272,12 +267,12 @@ class GrepApplicationTest {
                         .expected("0")
                         .pattern("sequence")
                         .inputStream(linesData)
-                        .isCountOfLinesOnly(true),
+                        .isCountOfLinesOnly(false),
                 new StdinTestCase()
                         .expected("")
                         .pattern("sequence")
                         .inputStream(linesData)
-                        .isCountOfLinesOnly(false)
+                        .isCountOfLinesOnly(true)
         };
 
         for (StdinTestCase testCase : testCases) {
