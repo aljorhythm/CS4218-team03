@@ -1,6 +1,7 @@
 package sg.edu.nus.comp.cs4218.impl.app;
 
 import sg.edu.nus.comp.cs4218.app.MkdirInterface;
+
 import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
 import sg.edu.nus.comp.cs4218.exception.MkdirException;
 
@@ -25,7 +26,7 @@ public class MkdirApplication implements MkdirInterface {
     /**
      * Runs the mkdir application with the specified arguments.
      *
-     * @param args   Array of arguments for the application,the path to those new files.
+     * @param args   Array of arguments for the application, the path to those new files.
      * @param stdin  An InputStream. Not used.
      * @param stdout An OutputStream. Not used.
      *
