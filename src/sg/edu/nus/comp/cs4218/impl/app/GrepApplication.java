@@ -3,6 +3,8 @@ package sg.edu.nus.comp.cs4218.impl.app;
 import sg.edu.nus.comp.cs4218.app.GrepInterface;
 import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
 import sg.edu.nus.comp.cs4218.exception.GrepException;
+import sg.edu.nus.comp.cs4218.exception.ShellException;
+import sg.edu.nus.comp.cs4218.impl.util.IOUtils;
 
 import java.io.*;
 import java.util.regex.Matcher;
@@ -16,11 +18,23 @@ public class GrepApplication implements GrepInterface {
      * @param isCaseInsensitive  Boolean option to perform case insensitive matching
      * @param isCountOfLinesOnly Boolean option to only write out a count of matched lines
      * @param fileNames          Array of file names
-     * @throws Exception
+     * @return All lines in the files that match the pattern
+     * @throws GrepException
+     * @throws ShellException
+     * @throws IOException
      */
     @java.lang.Override
-    public String grepFromFiles(String pattern, Boolean isCaseInsensitive, Boolean isCountOfLinesOnly, String... fileNames) throws Exception {
-        return null;
+    public String grepFromFiles(String pattern, Boolean isCaseInsensitive, Boolean isCountOfLinesOnly, String... fileNames) throws GrepException, ShellException, IOException {
+        if (fileNames == null) {
+            throw new GrepException("filesNames is null!");
+        }
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < fileNames.length; i++) {
+            InputStream inputStream = IOUtils.openInputStream(fileNames[i]);
+            result.append(grepFromStdin(pattern, isCaseInsensitive, isCountOfLinesOnly, inputStream)).append("\n");
+            IOUtils.closeInputStream(inputStream);
+        }
+        return result.toString().trim();
     }
 
     /**
@@ -71,6 +85,6 @@ public class GrepApplication implements GrepInterface {
      */
     @java.lang.Override
     public void run(String[] args, InputStream stdin, OutputStream stdout) throws GrepException {
-
+        
     }
 }
