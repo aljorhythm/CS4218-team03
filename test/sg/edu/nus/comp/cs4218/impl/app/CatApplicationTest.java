@@ -3,6 +3,7 @@ package sg.edu.nus.comp.cs4218.impl.app;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import sg.edu.nus.comp.cs4218.exception.CatException;
+import sg.edu.nus.comp.cs4218.impl.util.IOUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -10,10 +11,12 @@ import java.io.InputStream;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
 public class CatApplicationTest {
     CatApplication catApplication;
     InputStream defaultIStream;
+    String defaultString = "ab abc" + STRING_NEWLINE + "b ccc";
     InputStream emptyIStream;
     String testFileName1 = "catContent1.txt";
     String testFileName2 = "catContent2.txt";
@@ -28,8 +31,7 @@ public class CatApplicationTest {
     @BeforeEach
     public void setUp() throws Exception {
         catApplication = new CatApplication();
-        defaultIStream = mock(InputStream.class);
-        when(defaultIStream.read()).thenReturn(97, 98, 32, 97, 98, 99, 10, 98, 32, 99, 99, 99, -1);
+        defaultIStream = IOUtils.stringToInputStream(defaultString);
         emptyIStream = mock(InputStream.class);
         when(emptyIStream.read()).thenReturn(-1);
     }
