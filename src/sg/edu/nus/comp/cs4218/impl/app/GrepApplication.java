@@ -21,10 +21,7 @@ public class GrepApplication implements GrepInterface {
      * @param isCaseInsensitive  Boolean option to perform case insensitive matching
      * @param isCountOfLinesOnly Boolean option to only write out a count of matched lines
      * @param fileNames          Array of file names
-     * @return All lines in the files that match the pattern
-     * @throws GrepException
-     * @throws ShellException
-     * @throws IOException
+     * @throws Exception
      */
     @java.lang.Override
     public String grepFromFiles(String pattern, Boolean isCaseInsensitive, Boolean isCountOfLinesOnly, String... fileNames) throws GrepException {
@@ -84,14 +81,6 @@ public class GrepApplication implements GrepInterface {
         }
     }
 
-    /**
-     * Run the grep application.
-     *
-     * @param args Array of arguments for the application.
-     * @param stdin An inputstream.
-     * @param stdout An outputstream.
-     * @throws GrepException
-     */
     @java.lang.Override
     public void run(String[] args, InputStream stdin, OutputStream stdout) throws GrepException {
         String result;

@@ -2,6 +2,7 @@ package sg.edu.nus.comp.cs4218.impl.app;
 
 import sg.edu.nus.comp.cs4218.app.EchoInterface;
 import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
+import sg.edu.nus.comp.cs4218.exception.EchoException;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,6 +23,15 @@ public class EchoApplication implements EchoInterface {
         return String.join(" ", args);
     }
 
+    /**
+     * Runs the echo application with the specified arguments.
+     *
+     * @param args   Array of arguments for the application, consists of some strings.
+     * @param stdin  An InputStream. Not used.
+     * @param stdout An OutputStream. Not used.
+     *
+     * @throws EchoException If the shell doesn't work.
+     */
     @Override
     public void run(String[] args, InputStream stdin, OutputStream stdout) throws AbstractApplicationException {
         String result;
