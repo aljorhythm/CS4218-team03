@@ -16,7 +16,9 @@ public class CatApplication implements CatInterface {
     public static final String ERR_WRITE_STREAM = "Could not write to output stream";
     public static final String ERR_NULL_STREAMS = "null input stream provided";
     public static final String ERR_NULL_FILENAME = "null input file provided";
+    public static final String ERR_NULL_OUTPUTSTREAM = "null output stream provided";
     public static final String ERR_GENERAL = "Exception Caught";
+    public static final String ERR_NULL_ARGS = "null arguments";
 
     /**
      * Runs the cat application with the specified arguments.
@@ -30,6 +32,23 @@ public class CatApplication implements CatInterface {
      */
     @Override
     public void run(String[] args, InputStream stdin, OutputStream stdout) throws CatException {
+        String catString;
+        if(args == null) {
+            throw new CatException(ERR_NULL_ARGS);
+        }
+        if (args.length == 0) {
+            catString = catStdin(stdin);
+        } else {
+            catString = catFiles(args);
+        }
+        if(stdout == null) {
+            throw new CatException(ERR_NULL_OUTPUTSTREAM);
+        }
+        try {
+            stdout.write(catString.getBytes());
+        } catch (IOException e) {
+            throw new CatException(ERR_WRITE_STREAM);
+        }
     }
 
     @Override
@@ -57,12 +76,14 @@ public class CatApplication implements CatInterface {
         String[] outputs = new String[fileNames.length];
 
         for (int i = 0; i < fileInputStreams.length; i++) {
-            InputStream in = fileInputStreams[0];
+            InputStream in = fileInputStreams[i];
+
             try {
                 outputs[i] = IOUtils.stringFromInputStream(in);
             } catch (IOException e) {
                 throw new CatException(ERR_READING_FILE);
             }
+
             try {
                 IOUtils.closeInputStream(in);
             } catch (ShellException e) {

@@ -2,14 +2,15 @@ package sg.edu.nus.comp.cs4218.impl.app;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import sg.edu.nus.comp.cs4218.TestUtils;
 import sg.edu.nus.comp.cs4218.exception.CatException;
-import sg.edu.nus.comp.cs4218.impl.util.IOUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHAR_FILE_SEP;
@@ -25,7 +26,7 @@ public class CatApplicationTest {
     String emptyFile = test_dir + CHAR_FILE_SEP + "catEmpty.txt";
     String testFileName1 = test_dir + CHAR_FILE_SEP + "catContent1.txt";
     String testFileName2 = test_dir + CHAR_FILE_SEP + "catContent2.txt";
-    String testFile1Content = "test string for\ntesting cat\nwith junit 5.\n";
+    String testFile1Content = "test string for" + STRING_NEWLINE + "testing cat\nwith junit 5." + STRING_NEWLINE;
     String testFile2Content = "another file, number 2\nsecond for testing that\ncat \nworks like \nit should\n. 1234 %&#!$@\n";
 
     /**
@@ -36,8 +37,9 @@ public class CatApplicationTest {
     @BeforeEach
     public void setUp() throws Exception {
         catApplication = new CatApplication();
-        defaultIStream = IOUtils.stringToInputStream(defaultString);
-        emptyIStream = mock(InputStream.class);
+        defaultIStream = mock(InputStream.class, Mockito.CALLS_REAL_METHODS);
+        when(defaultIStream.read()).thenReturn(97, 98, 32, 97, 98, 99, 10, 98, 32, 99, 99, 99, - 1);
+        emptyIStream = mock(InputStream.class, Mockito.CALLS_REAL_METHODS);
         when(emptyIStream.read()).thenReturn(-1);
     }
 
@@ -68,7 +70,7 @@ public class CatApplicationTest {
      */
     @Test
     public void testCatStdinDefaultInputSuccess() throws CatException {
-        assertEquals("ab abc\nb ccc", catApplication.catStdin(defaultIStream));
+        assertEquals(defaultString, catApplication.catStdin(defaultIStream));
     }
 
     /**
@@ -108,7 +110,9 @@ public class CatApplicationTest {
      */
     @Test
     public void testCatFilesDefaultInputSuccess() throws CatException {
-        assertEquals(testFile1Content, catApplication.catFiles(testFileName1));
+        String expected = testFile1Content;
+        String actual = catApplication.catFiles(testFileName1);
+        assertEquals(expected, actual);
     }
 
     /**
@@ -118,7 +122,7 @@ public class CatApplicationTest {
      */
     @Test
     public void testCatFilesTwoInputFilesSuccess() throws CatException {
-        assertEquals(testFile1Content + testFile2Content,
+        assertEquals(testFile1Content + STRING_NEWLINE + testFile2Content,
                 catApplication.catFiles(testFileName1, testFileName2));
     }
 
@@ -196,7 +200,7 @@ public class CatApplicationTest {
         args[1] = testFileName2;
         catApplication.run(args, null, baos);
         byte[] byteArray = baos.toByteArray();
-        assertEquals(testFile1Content + testFile2Content, new String(byteArray));
+        assertEquals(testFile1Content + STRING_NEWLINE + testFile2Content, new String(byteArray));
     }
 
 }
