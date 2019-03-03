@@ -28,12 +28,7 @@ public class SortApplication implements SortInterface{
             String string;
             while ((string = bufferedReader.readLine()) != null){
                 if (isFirstWordNumber){
-                    if (string.length()>0){
-                        string = string.split(" ")[0];
-                    }
-                }
-                if (isCaseIndependent){
-                    string = string.toUpperCase();
+                    if (!StringUtils.isNumberic(string.split(" ")[0])) throw new SortException("");
                 }
                 list.add(string);
             }
@@ -43,14 +38,28 @@ public class SortApplication implements SortInterface{
         Collections.sort(list, new Comparator<String>() {
             @Override
             public int compare(String o1, String o2) {
-                int result = 1;
+                int result = o1.length()>=o2.length()?1:-1;
                 int index = 0;
-                while (index < o1.length() && index < o2.length()){
-                    if (o1.charAt(index) >= o2.charAt(index)) continue;
-                    else {
-                        result = -1;
-                        break;
+                int wordLength = Math.min(o1.length(),o2.length());
+                if (isFirstWordNumber){
+                    if (StringUtils.getFirstNum(o1)>StringUtils.getFirstNum(o2))
+                        return 1;
+                    else if (StringUtils.getFirstNum(o1)<StringUtils.getFirstNum(o2))
+                        return -1;
+                }
+                while (index < wordLength){
+                    char charOfO1 = o1.charAt(index), charOfO2 = o2.charAt(index);
+                    if (isCaseIndependent){
+                        charOfO1 = String.valueOf(charOfO1).toUpperCase().charAt(0);
+                        charOfO2 = String.valueOf(charOfO2).toUpperCase().charAt(0);
                     }
+                    if (charOfO1 > charOfO2) {
+                        return 1;
+                    }
+                    else if (charOfO1 < charOfO2){
+                        return -1;
+                    }
+                    index++;
                 }
                 return result;
             }
@@ -58,11 +67,7 @@ public class SortApplication implements SortInterface{
         if (isReverseOrder){
             Collections.reverse(list);
         }
-        StringBuilder string = new StringBuilder();
-        for (String str : list){
-            string = string.append(str).append(StringUtils.STRING_NEWLINE);
-        }
-        return string.toString();
+        return String.join(StringUtils.STRING_NEWLINE,list.toArray(new String[list.size()]));
     }
 
     /**
