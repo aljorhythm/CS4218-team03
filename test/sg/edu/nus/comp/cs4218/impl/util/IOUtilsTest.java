@@ -1,41 +1,152 @@
 package sg.edu.nus.comp.cs4218.impl.util;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import sg.edu.nus.comp.cs4218.Environment;
+import sg.edu.nus.comp.cs4218.TestUtils;
+import sg.edu.nus.comp.cs4218.exception.ShellException;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.file.Paths;
+import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHAR_FILE_SEP;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
 class IOUtilsTest {
+    /**
+     * Stream that can be closed. write(int) and read(int) throws exception when closed.
+     */
+    static class CloseableOutputMockStream extends OutputStream {
+        boolean isClosed = false;
 
-    @Test
-    void openInputStream() {
-        fail("TODO");
+        @Override
+        public void write(int b) throws IOException {
+            if (isClosed) {
+                throw new IOException();
+            }
+        }
+
+        @Override
+        public void close() throws IOException {
+            super.close();
+            isClosed = true;
+        }
+    }
+
+    /**
+     * Stream that can be closed. write(int) and read(int) throws exception when closed.
+     */
+    static class CloseableInputMockStream extends InputStream {
+        boolean isClosed = false;
+
+        @Override
+        public int read() throws IOException {
+            if (isClosed) {
+                throw new IOException();
+            }
+            return 1;
+        }
+
+        @Override
+        public void close() throws IOException {
+            super.close();
+            isClosed = true;
+        }
+    }
+
+    String currentDir = Paths
+            .get(Environment.currentDirectory)
+            .toAbsolutePath()
+            .toString();
+
+    static String testDataDir = TestUtils.pathToTestDataSubdir("ioTests");
+    static String out1 = testDataDir + CHAR_FILE_SEP + "out1.out";
+    static String in1 = testDataDir + CHAR_FILE_SEP + "abc.in";
+
+    @BeforeAll
+    static void init() {
+        deleteOutputFiles();
+    }
+
+    /**
+     * Force deletes all output files
+     */
+    static void deleteOutputFiles() {
+        String[] outputFiles = {
+                out1
+        };
+
+        for (String fileName : outputFiles) {
+            forceDelete(fileName);
+        }
+    }
+
+    /**
+     * Deletes a file. Will not throw exceptions.
+     * @param fileName
+     */
+    static void forceDelete(String fileName) {
+        File file = new File(fileName);
+        file.delete();
     }
 
     @Test
-    void openOutputStream() {
-        fail("TODO");
+    void openInputStream() throws ShellException, IOException {
+        InputStream inputStream = IOUtils.openInputStream(in1);
+        byte[] bytes = new byte[5];
+        inputStream.read(bytes);
+        inputStream.close();
+        assertArrayEquals("abcde".getBytes(), bytes);
     }
 
     @Test
-    void closeInputStream() {
-        fail("TODO");
+    void openOutputStream() throws ShellException, IOException {
+        OutputStream outputStream = IOUtils.openOutputStream(out1);
+        outputStream.write(new byte[]{97});
+        outputStream.close();
+        Scanner scanner = new Scanner(new File(out1));
+        assertEquals("a", scanner.nextLine());
     }
 
     @Test
-    void closeOutputStream() {
-        fail("TODO");
+    void closeInputStream_close() throws ShellException, IOException {
+        InputStream stream = new CloseableInputMockStream();
+        IOUtils.closeInputStream(stream);
+        assertThrows(IOException.class, () -> {
+            stream.read();
+        });
+    }
+
+    @Test
+    void closeOutputStream_null_doNothing() throws ShellException, IOException {
+        IOUtils.closeOutputStream(null);
+    }
+
+    @Test
+    void closeOutputStream_close() throws ShellException, IOException {
+        OutputStream stream = new CloseableOutputMockStream();
+        IOUtils.closeOutputStream(stream);
+        assertThrows(IOException.class, () -> {
+            stream.write(1);
+        });
     }
 
     @Test
     void resolveFilePath() {
-        fail("TODO");
+        String fileName = "abc.txt";
+        String expected = currentDir + CHAR_FILE_SEP + fileName;
+        String actual = IOUtils
+                .resolveFilePath(fileName)
+                .toString();
+        assertEquals(expected, actual);
     }
 
     /**
