@@ -1,0 +1,6 @@
+another file, number 2
+second for testing that
+cat 
+works like 
+it should
+. 1234 %&#!$@
