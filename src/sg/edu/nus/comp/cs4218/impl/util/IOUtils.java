@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHARSET_UTF8;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
 public final class IOUtils {
@@ -121,20 +122,15 @@ public final class IOUtils {
         }
 
         String newLine = STRING_NEWLINE;
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-        StringBuilder result = new StringBuilder();
 
-        if (reader.ready()) {
-            boolean flag = false;
-            for (String line; (line = reader.readLine()) != null; ) {
-                result
-                        .append(flag ? newLine : "")
-                        .append(line);
-                flag = true;
-            }
+        ByteArrayOutputStream result = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        int length;
+        while ((length = inputStream.read(buffer)) != -1) {
+            result.write(buffer, 0, length);
         }
 
-        return result.toString();
+        return result.toString(CHARSET_UTF8).replaceAll("\n\r", STRING_NEWLINE);
     }
 
     /**
