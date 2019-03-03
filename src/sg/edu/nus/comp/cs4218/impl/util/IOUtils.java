@@ -130,7 +130,7 @@ public final class IOUtils {
             result.write(buffer, 0, length);
         }
 
-        return result.toString(CHARSET_UTF8).replaceAll("\n\r", STRING_NEWLINE);
+        return result.toString(CHARSET_UTF8).replaceAll("\\r\\n", STRING_NEWLINE);
     }
 
     /**
