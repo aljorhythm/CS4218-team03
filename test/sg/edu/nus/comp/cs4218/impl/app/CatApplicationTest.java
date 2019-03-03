@@ -2,6 +2,7 @@ package sg.edu.nus.comp.cs4218.impl.app;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import sg.edu.nus.comp.cs4218.TestUtils;
 import sg.edu.nus.comp.cs4218.exception.CatException;
 import sg.edu.nus.comp.cs4218.impl.util.IOUtils;
 
@@ -11,6 +12,7 @@ import java.io.InputStream;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHAR_FILE_SEP;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
 public class CatApplicationTest {
@@ -19,8 +21,10 @@ public class CatApplicationTest {
     String defaultString = "ab abc" + STRING_NEWLINE + "b ccc";
     InputStream emptyIStream;
     String nonExistentFile = "wrong.txt";
-    String testFileName1 = "catContent1.txt";
-    String testFileName2 = "catContent2.txt";
+    String test_dir = TestUtils.pathToTestDataSubdir("inputFiles");
+    String emptyFile = test_dir + CHAR_FILE_SEP + "catEmpty.txt";
+    String testFileName1 = test_dir + CHAR_FILE_SEP + "catContent1.txt";
+    String testFileName2 = test_dir + CHAR_FILE_SEP + "catContent2.txt";
     String testFile1Content = "test string for\ntesting cat\nwith junit 5.\n";
     String testFile2Content = "another file, number 2\nsecond for testing that\ncat \nworks like \nit should\n. 1234 %&#!$@\n";
 
@@ -94,7 +98,7 @@ public class CatApplicationTest {
      */
     @Test
     public void testCatFilesEmptyInputSuccess() throws CatException {
-        assertEquals("", catApplication.catFiles("catEmpty.txt"));
+        assertEquals("", catApplication.catFiles(emptyFile));
     }
 
     /**

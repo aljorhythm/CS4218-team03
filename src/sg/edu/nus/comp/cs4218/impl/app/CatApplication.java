@@ -7,6 +7,8 @@ import sg.edu.nus.comp.cs4218.impl.util.IOUtils;
 
 import java.io.*;
 
+import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
+
 public class CatApplication implements CatInterface {
     public static final String ERR_IS_DIR = "This is a directory";
     public static final String ERR_READING_FILE = "Could not read file";
@@ -36,12 +38,13 @@ public class CatApplication implements CatInterface {
             throw new CatException(ERR_NULL_FILENAME);
         }
 
-        String output = "";
         InputStream[] fileInputStreams = new InputStream[fileNames.length];
         Exception toThrow;
-        for (String fileName : fileNames) {
+        for (int i = 0; i < fileNames.length; i++) {
+            String fileName = fileNames[i];
             try {
                 InputStream fileInputStream = IOUtils.openInputStream(fileName);
+                fileInputStreams[i] = fileInputStream;
             } catch (ShellException e) {
                 toThrow = e;
                 break;
@@ -51,15 +54,22 @@ public class CatApplication implements CatInterface {
             }
         }
 
-        for (InputStream in : fileInputStreams) {
-            catStdin(in);
+        String[] outputs = new String[fileNames.length];
+
+        for (int i = 0; i < fileInputStreams.length; i++) {
+            InputStream in = fileInputStreams[0];
+            try {
+                outputs[i] = IOUtils.stringFromInputStream(in);
+            } catch (IOException e) {
+                throw new CatException(ERR_READING_FILE);
+            }
             try {
                 IOUtils.closeInputStream(in);
             } catch (ShellException e) {
             } catch (IOException e) {
             }
         }
-        return output;
+        return String.join(STRING_NEWLINE, outputs);
     }
 
     @Override
