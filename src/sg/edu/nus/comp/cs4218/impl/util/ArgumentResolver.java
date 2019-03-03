@@ -31,10 +31,9 @@ public final class ArgumentResolver {
 
         List<String> parsedArgsSegment = new LinkedList<>();
         for (String arg : argsList) {
-            parsedArgsSegment = resolveOneArgument(arg);
+            parsedArgsSegment.addAll(resolveOneArgument(arg));
         }
         parsedArgsList.addAll(parsedArgsSegment);
-
         return parsedArgsList;
     }
 
@@ -71,7 +70,12 @@ public final class ArgumentResolver {
                 } else if (unmatchedQuotes.peek() == chr) {
                     // end of command substitution
                     unmatchedQuotes.remove();
-
+//                    while (unmatchedQuotes.size() > 0){
+//                        subCommand.append(unmatchedQuotes.remove());
+//                    }
+//                    if (!unmatchedQuotes.isEmpty()){
+//                        unmatchedQuotes.remove();
+//                    }
                     // evaluate subCommand and get the output
                     String subCommandOutput = evaluateSubCommand(subCommand.toString());
 
@@ -113,6 +117,7 @@ public final class ArgumentResolver {
                     appendParsedArgIntoSegment(parsedArgsSegment, new RegexArgument());
                 } else if (unmatchedQuotes.peek() == CHAR_BACK_QUOTE) {
                     // ongoing back quote: add chr to subCommand
+                    subCommand.append(chr);
                     parsedArg.append(chr);
                 } else {
                     // ongoing single/double quote
@@ -120,10 +125,11 @@ public final class ArgumentResolver {
                 }
             } else if (chr == CHAR_ASTERISK) {
                 if (unmatchedQuotes.isEmpty()) {
-                    // each unquoted * matches a (possibly empty) sequence of non-slash chars
+                    // each unquoted * matches a (possibly empty) sequence of non-slash chars   
                     parsedArg.appendAsterisk();
                 } else if (unmatchedQuotes.peek() == CHAR_BACK_QUOTE) {
                     // ongoing back quote: add chr to subCommand
+                    subCommand.append(chr);
                     parsedArg.append(chr);
                 } else {
                     // ongoing single/double quote
@@ -135,6 +141,7 @@ public final class ArgumentResolver {
                     parsedArg.append(chr);
                 } else if (unmatchedQuotes.peek() == CHAR_BACK_QUOTE) {
                     // ongoing back quote: add chr to subCommand
+                    subCommand.append(chr);
                     parsedArg.append(chr);
                 } else {
                     // ongoing single/double quote
@@ -185,8 +192,8 @@ public final class ArgumentResolver {
             parsedArgsSegment.add(parsedArg);
         } else {
             RegexArgument lastParsedArg = parsedArgsSegment.removeLast();
-            parsedArgsSegment.add(lastParsedArg);
             lastParsedArg.merge(parsedArg);
+            parsedArgsSegment.add(lastParsedArg);
         }
     }
 }
