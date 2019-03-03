@@ -71,9 +71,26 @@ class CommandBuilderTest {
     }
 
     /**
+     * Pipe sub commands have no arguments
+     */
+    @Test
+    void parseCommand_pipe_noArgs() {
+        String stringCommand = "echo | ls";
+        Command command = null;
+        try {
+            command = CommandBuilder.parseCommand(stringCommand, mockAppRunner);
+        } catch (ShellException e) {
+            e.printStackTrace();
+        }
+        PipeCommand seqCommand = (PipeCommand) command;
+        String[][] expected = {{"echo"}, {"ls"}};
+        assertPipe(seqCommand, expected);
+    }
+
+    /**
      * Asserts pipe command has call commands with args
      */
-    void assertPipe(PipeCommand pipeCommand, String[][] expected) {
+    static void assertPipe(PipeCommand pipeCommand, String[][] expected) {
         String[][] actual = new String[pipeCommand.getCallCommands().size()][];
         List<CallCommand> callCommands = pipeCommand.getCallCommands();
         for(int i = 0; i < actual.length; i++) {
@@ -87,7 +104,7 @@ class CommandBuilderTest {
     /**
      * Asserts sequence command has call commands with args
      */
-    void assertSequenceHasCalls(SequenceCommand seqCommand, String[][] expected) {
+    static void assertSequenceHasCalls(SequenceCommand seqCommand, String[][] expected) {
         List<Command> callCommands = seqCommand.getCommands();
         String[][] actual = new String[seqCommand.getCommands().size()][];
         for(int i = 0; i < actual.length; i++) {
