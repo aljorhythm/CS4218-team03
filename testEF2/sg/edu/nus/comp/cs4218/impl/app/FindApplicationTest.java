@@ -29,31 +29,55 @@ public class FindApplicationTest {
         findApplication = new FindApplication();
     }
 
+    /**
+     * Tests findFolderContent with null as fileName input, should throw an exception.
+     * @throws FindException
+     */
     @Test
     void testFindFolderContentNullFileInputFailure() throws FindException {
         assertThrows(FindException.class, () -> {findApplication.findFolderContent(null, findTestDir);});
     }
 
+    /**
+     * Tests findFolderContent with null as folderName input, should throw an exception.
+     * @throws FindException
+     */
     @Test
     void testFindFolderContentNullFolderInputFailure() throws FindException {
         assertThrows(FindException.class, () -> {findApplication.findFolderContent(findFileName, null);});
     }
 
+    /**
+     * Test to find a file that exists.
+     * @throws FindException
+     */
     @Test
     void testFindFolderDefaultInputSuccess() throws FindException {
         assertEquals(here + File.separator + findFileName, findApplication.findFolderContent(findFileName, here));
     }
 
+    /**
+     * Test to find a file by not providing the full name.
+     * @throws FindException
+     */
     @Test
     void testFindFolderWildcardInputSuccess() throws FindException {
         assertEquals(here + File.separator + findFileName, findApplication.findFolderContent("find*", here));
     }
 
+    /**
+     * Test to find file that does not exist in the folder.
+     * @throws FindException
+     */
     @Test
     void testFindFolderNoPresentFileInputSuccess() throws FindException {
         assertEquals("", findApplication.findFolderContent(findFileName, notHere));
     }
 
+    /**
+     * Test to find a file that occurs in two different folder, should output both paths.
+     * @throws FindException
+     */
     @Test
     void testFindFolderTwoOccurrencesSuccess() throws FindException {
         assertEquals(here + File.separator + findFileName + StringUtils.STRING_NEWLINE
@@ -61,24 +85,40 @@ public class FindApplicationTest {
                 , findApplication.findFolderContent(findFileName, here, andHere));
     }
 
+    /**
+     * Try to find a file that is nested inside the folder.
+     * @throws FindException
+     */
     @Test
     void testFindFolderNestedSuccess() throws FindException {
         assertEquals(nested + File.separator + "in" + File.separator + findFileName
                 , findApplication.findFolderContent(findFileName, nested));
     }
 
+    /**
+     * Test to find a file that is only in one of the provided folders.
+     * @throws FindException
+     */
     @Test
     void testFindFolderTwoFoldersOneOccurrenceSuccess() throws FindException {
         assertEquals(here + File.separator + findFileName,
                 findApplication.findFolderContent(findFileName, notHere, here));
     }
 
+    /**
+     * Test to run the find application with null as args, should throw an exception.
+     * @throws FindException
+     */
     @Test
     void testRunNullArgsFailure() throws FindException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         assertThrows(FindException.class, () -> {findApplication.run(null, null, baos);});
     }
 
+    /**
+     * Try to run the find application with no args, should throw an exception.
+     * @throws FindException
+     */
     @Test
     void testRunEmptyArgsFailure() throws FindException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -86,6 +126,10 @@ public class FindApplicationTest {
         assertThrows(FindException.class, () -> {findApplication.run(emptyStringArray, null, baos);});
     }
 
+    /**
+     * Try to run the find application with no fileName provided, should throw an exception.
+     * @throws FindException
+     */
     @Test
     void testRunMissingFileNameFailure() throws FindException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -94,6 +138,10 @@ public class FindApplicationTest {
         assertThrows(FindException.class, () -> {findApplication.run(args, null, baos);});
     }
 
+    /**
+     * Test to run the find application with standard input, find a file in a folder.
+     * @throws FindException
+     */
     @Test
     void testRunFindFileSuccess() throws FindException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -106,6 +154,10 @@ public class FindApplicationTest {
         assertEquals(here + File.separator + findFileName, new String(byteArray));
     }
 
+    /**
+     * Test to run the find application with a fileName that is not in the folder.
+     * @throws FindException
+     */
     @Test
     void testRunNoSuchFileSuccess() throws FindException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -118,6 +170,10 @@ public class FindApplicationTest {
         assertEquals("", new String(byteArray));
     }
 
+    /**
+     * Test to run the find application to find the file in multiple folders.
+     * @throws FindException
+     */
     @Test
     void testRunMultipleFoldersSuccess() throws FindException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
