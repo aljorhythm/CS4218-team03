@@ -13,8 +13,6 @@ import sg.edu.nus.comp.cs4218.impl.util.StringUtils;
 
 import java.io.*;
 
-import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
-
 public class ShellImpl implements Shell {
     public static final String ERR_INVALID_APP = "Invalid app.";
     public static final String ERR_NOT_SUPPORTED = "Not supported yet.";
@@ -68,14 +66,12 @@ public class ShellImpl implements Shell {
                 if (!StringUtils.isBlank(commandString)) {
                     parseAndEvaluate(commandString, outputStream);
                 }
-
-                outputStream.write(STRING_NEWLINE.getBytes());
             } catch (ExitException e) {
                 IOUtils.closeInputStream(inputStream);
                 IOUtils.closeOutputStream(outputStream);
                 break;
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                outputStream.write(e.getMessage().getBytes());
             }
         }
     }

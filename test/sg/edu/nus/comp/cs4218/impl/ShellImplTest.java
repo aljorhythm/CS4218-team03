@@ -57,7 +57,7 @@ class ShellImplTest {
         ShellImpl shell = new ShellImpl(inputStream, outputStream);
         shell.run();
         String currentDirectory = Environment.currentDirectory;
-        String expected = currentDirectory + ">abcde" + STRING_NEWLINE + currentDirectory + ">abc" + currentDirectory + ">";
+        String expected = currentDirectory + ">abcde" + STRING_NEWLINE + "abc" + STRING_NEWLINE + currentDirectory + ">";
         String actual = outputStream.toString(CHARSET_UTF8);
         assertEquals(expected, actual);
     }
