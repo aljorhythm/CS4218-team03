@@ -16,7 +16,6 @@ public class EchoApplication implements EchoInterface {
     public static final String FAIL_ECHO_EMPTY_PARAMS = "fail_echo_empty_params";
 
     @Override
-
     public String constructResult(String... args) throws Exception {
         if(args == null) {
             throw new Exception(FAIL_ECHO_EMPTY_PARAMS);
@@ -35,9 +34,6 @@ public class EchoApplication implements EchoInterface {
      */
     @Override
     public void run(String[] args, InputStream stdin, OutputStream stdout) throws AbstractApplicationException {
-        if(args.length == 0){
-            throw new EchoException("Invalid syntax.");
-        }
         String result;
         try {
             result = this.constructResult(args);
