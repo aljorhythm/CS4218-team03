@@ -1,6 +1,8 @@
 package sg.edu.nus.comp.cs4218.app;
 
-public interface DateInterface {
+import sg.edu.nus.comp.cs4218.Application;
+
+public interface DateInterface extends Application {
     /**
      * Return the string of date.
      *

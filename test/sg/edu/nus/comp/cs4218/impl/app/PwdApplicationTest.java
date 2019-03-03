@@ -12,9 +12,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class PwdApplicationTest {
     PwdApplication pwdApplication;
 
-    /**
-     * Set up a new pwd application in between each test.
-     */
     @BeforeEach
     void setUp() {
         pwdApplication = new PwdApplication();
