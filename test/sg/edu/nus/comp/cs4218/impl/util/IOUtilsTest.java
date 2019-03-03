@@ -1,6 +1,7 @@
 package sg.edu.nus.comp.cs4218.impl.util;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -105,7 +106,7 @@ class IOUtilsTest {
      */
     @Test
     void stringFromInputStream_empty() throws IOException {
-        InputStream inputStream = mock(InputStream.class);
+        InputStream inputStream = mock(InputStream.class, Mockito.CALLS_REAL_METHODS);
         when(inputStream.read()).thenReturn(-1);
         String actual = IOUtils.stringFromInputStream(inputStream);
         String expected = "";
@@ -129,7 +130,7 @@ class IOUtilsTest {
     @Test
     void stringFromInputStream_oneChar() throws IOException {
         fail("to resolve see #38");
-        InputStream inputStream = mock(InputStream.class);
+        InputStream inputStream = mock(InputStream.class, Mockito.CALLS_REAL_METHODS);
         when(inputStream.read()).thenReturn(97, -1);
         String actual = IOUtils.stringFromInputStream(inputStream);
         String expected = "a";
@@ -154,7 +155,7 @@ class IOUtilsTest {
      */
     @Test
     void stringsFromInputStream_empty() throws IOException {
-        InputStream inputStream = mock(InputStream.class);
+        InputStream inputStream = mock(InputStream.class, Mockito.CALLS_REAL_METHODS);
         when(inputStream.read()).thenReturn(-1);
         String[] actual = IOUtils.stringsFromInputStream(inputStream);
         String[] expected = new String[]{};
@@ -170,5 +171,23 @@ class IOUtilsTest {
         assertThrows(IOException.class, () -> {
             IOUtils.stringsFromInputStream(inputStream);
         });
+    }
+
+    /**
+     * Tests conversion of system dependent new lines into current system new line
+     */
+    @Test
+    void stringFromInputStream_newline() throws IOException {
+        InputStream inputStream = mock(InputStream.class, Mockito.CALLS_REAL_METHODS);
+        when(inputStream.read()).thenReturn(10, -1);
+        String actual = IOUtils.stringFromInputStream(inputStream);
+        String expected = STRING_NEWLINE;
+        assertEquals(expected, actual);
+
+        inputStream = mock(InputStream.class, Mockito.CALLS_REAL_METHODS);
+        when(inputStream.read()).thenReturn(10, 13, -1);
+        actual = IOUtils.stringFromInputStream(inputStream);
+        expected = STRING_NEWLINE;
+        assertEquals(expected, actual);
     }
 }
