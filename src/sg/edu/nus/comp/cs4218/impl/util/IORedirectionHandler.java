@@ -18,6 +18,7 @@ public class IORedirectionHandler {
     private List<String> noRedirArgsList;
     private InputStream inputStream;
     private OutputStream outputStream;
+    private static ArgumentResolver argumentResolver;
 
     // TODO ArgumentResolver should be a dependency so that we can unit test IORedirectionHandler
     public IORedirectionHandler(List<String> argsList, InputStream origInputStream,
@@ -54,7 +55,7 @@ public class IORedirectionHandler {
             }
 
             // handle quoting + globing + command substitution in file arg
-            List<String> fileSegment = ArgumentResolver.resolveOneArgument(file);
+            List<String> fileSegment = argumentResolver.resolveOneArgument(file);
             if (fileSegment.size() >= 1) {
                 // ambiguous redirect if file resolves to more than one parsed arg
                 throw new ShellException(ERR_SYNTAX);
