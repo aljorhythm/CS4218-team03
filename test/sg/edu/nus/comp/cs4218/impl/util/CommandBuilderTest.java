@@ -15,6 +15,9 @@ import static org.mockito.Mockito.mock;
 class CommandBuilderTest {
     ApplicationRunner mockAppRunner = mock(ApplicationRunner.class);
 
+    /**
+     * Parse command string without sequence or pipe operators
+     */
     @Test
     void parseCommand_simpleTokens() {
         ApplicationRunner runner = mock(ApplicationRunner.class);
