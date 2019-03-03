@@ -66,7 +66,12 @@ class GrepApplicationTest {
         }
 
         StdinTestCase inputStream(String inputString) {
-            return this.inputStream(IOUtils.stringToInputStream(inputString));
+            try {
+                return this.inputStream(IOUtils.stringToInputStream(inputString));
+            } catch (Exception e) {
+                fail("Test case should not have invalid input string");
+                return this;
+            }
         }
 
         StdinTestCase inputStream(String... inputStrings) {
