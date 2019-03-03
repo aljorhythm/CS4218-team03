@@ -6,6 +6,7 @@ import sg.edu.nus.comp.cs4218.Shell;
 import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
 import sg.edu.nus.comp.cs4218.exception.ExitException;
 import sg.edu.nus.comp.cs4218.exception.ShellException;
+import sg.edu.nus.comp.cs4218.impl.app.ExitApplication;
 import sg.edu.nus.comp.cs4218.impl.util.ApplicationRunner;
 import sg.edu.nus.comp.cs4218.impl.util.CommandBuilder;
 import sg.edu.nus.comp.cs4218.impl.util.StringUtils;
@@ -38,7 +39,7 @@ public class ShellImpl implements Shell {
                     shell.parseAndEvaluate(commandString, System.out);
                 }
             } catch (ExitException e) {
-                continue;
+                break;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -49,6 +50,12 @@ public class ShellImpl implements Shell {
     public void parseAndEvaluate(String commandString, OutputStream stdout)
             throws AbstractApplicationException, ShellException {
         Command command = CommandBuilder.parseCommand(commandString, new ApplicationRunner());
-
+        try{
+            command.evaluate(System.in,stdout);
+        } catch (ExitException e){
+            throw new ExitException(ExitApplication.EXIT_REMINDER);
+        } catch (AbstractApplicationException e){
+            System.out.println(e.getMessage());
+        }
     }
 }

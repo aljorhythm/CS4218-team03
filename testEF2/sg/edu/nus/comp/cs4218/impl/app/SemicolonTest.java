@@ -22,14 +22,18 @@ class SemicolonTest {
     ByteArrayOutputStream baoStream = new ByteArrayOutputStream();
     String echoSemicolonStringWithSpace = "echo a ; echo b";
     String echoSemicolonStringWithoutSpace = "echo a;echo b";
+
     /**
      * Mocks a call command
-     * Simply writes input from stdin and "ABC" to output
+     * Simply writes input from stdin and "ABC" or "DEF" to output
      */
-    class MockCommandABC extends CallCommand{
+    static class MockCommand extends CallCommand{
 
-        public MockCommandABC() {
+        private static String input;
+
+        public MockCommand(String word) {
             super(null, null);
+            String input = word;
         }
 
         @Override
@@ -42,40 +46,7 @@ class SemicolonTest {
                 while ((length = stdin.read(buffer)) != -1) {
                     stdout.write(buffer, 0, length);
                 }
-                buffer = "ABC".getBytes(CHARSET_UTF8);
-                stdout.write(buffer);
-            } catch (IOException e) {
-                throw new ShellException(INVALID_INPUT_STREAM);
-            }
-        }
-
-        @Override
-        public void terminate() {
-
-        }
-    }
-
-    /**
-     * Mocks a call command
-     * Simply writes input from stdin and "DEF" to output
-     */
-    class MockCommandDEF extends CallCommand{
-
-        public MockCommandDEF() {
-            super(null, null);
-        }
-
-        @Override
-        public void evaluate(InputStream stdin, OutputStream stdout) throws ShellException {
-            byte[] buffer = new byte[1024];
-            int length;
-
-            try {
-
-                while ((length = stdin.read(buffer)) != -1) {
-                    stdout.write(buffer, 0, length);
-                }
-                buffer = "DEF".getBytes(CHARSET_UTF8);
+                buffer = MockCommand.input.getBytes(CHARSET_UTF8);
                 stdout.write(buffer);
             } catch (IOException e) {
                 throw new ShellException(INVALID_INPUT_STREAM);
@@ -98,7 +69,7 @@ class SemicolonTest {
         OutputStream outputStream = new ByteArrayOutputStream();
 
         CallCommand[] commands = {
-                new MockCommandABC(), new MockCommandDEF()
+                new MockCommand("ABC"), new MockCommand("DEF")
         };
 
         SequenceCommand sequenceCommand = new SequenceCommand(Arrays.asList(commands));
@@ -118,7 +89,7 @@ class SemicolonTest {
         OutputStream outputStream = new ByteArrayOutputStream();
 
         CallCommand[] commands = {
-                new MockCommandDEF(), new MockCommandABC()
+                new MockCommand("DEF"), new MockCommand("ABC")
         };
 
         SequenceCommand sequenceCommand = new SequenceCommand(Arrays.asList(commands));

@@ -124,8 +124,7 @@ public class MkdirApplicationTest {
     @Test
     void testRunEmptyInputSuccess() throws MkdirException {
         String[] args = new String[0];
-        mkdirApplication.run(args, null, null);
-        assertEquals(0, new File(pathToTestDir).list().length);
+        assertThrows(MkdirException.class, () -> {mkdirApplication.run(args, null, null);});
     }
 
     /**
