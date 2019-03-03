@@ -2,11 +2,10 @@ package sg.edu.nus.comp.cs4218.impl.app;
 
 import sg.edu.nus.comp.cs4218.app.CatInterface;
 import sg.edu.nus.comp.cs4218.exception.CatException;
+import sg.edu.nus.comp.cs4218.exception.ShellException;
 import sg.edu.nus.comp.cs4218.impl.util.IOUtils;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 
 public class CatApplication implements CatInterface {
     public static final String ERR_IS_DIR = "This is a directory";
@@ -32,11 +31,35 @@ public class CatApplication implements CatInterface {
     }
 
     @Override
-    public String catFiles(String... fileName) throws CatException {
-        if(fileName == null) {
+    public String catFiles(String... fileNames) throws CatException {
+        if (fileNames == null) {
             throw new CatException(ERR_NULL_FILENAME);
         }
-        return null;
+
+        String output = "";
+        InputStream[] fileInputStreams = new InputStream[fileNames.length];
+        Exception toThrow;
+        for (String fileName : fileNames) {
+            try {
+                InputStream fileInputStream = IOUtils.openInputStream(fileName);
+            } catch (ShellException e) {
+                toThrow = e;
+                break;
+            } catch (FileNotFoundException e) {
+                toThrow = e;
+                break;
+            }
+        }
+
+        for (InputStream in : fileInputStreams) {
+            catStdin(in);
+            try {
+                IOUtils.closeInputStream(in);
+            } catch (ShellException e) {
+            } catch (IOException e) {
+            }
+        }
+        return output;
     }
 
     @Override

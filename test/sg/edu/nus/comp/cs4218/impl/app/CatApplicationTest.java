@@ -18,6 +18,7 @@ public class CatApplicationTest {
     InputStream defaultIStream;
     String defaultString = "ab abc" + STRING_NEWLINE + "b ccc";
     InputStream emptyIStream;
+    String nonExistentFile = "wrong.txt";
     String testFileName1 = "catContent1.txt";
     String testFileName2 = "catContent2.txt";
     String testFile1Content = "test string for\ntesting cat\nwith junit 5.\n";
@@ -82,7 +83,7 @@ public class CatApplicationTest {
     @Test
     public void testCatFilesNonExistingFileFailure() {
         assertThrows(CatException.class, () -> {
-            catApplication.catFiles("wrong.txt");
+            catApplication.catFiles(nonExistentFile);
         });
     }
 
