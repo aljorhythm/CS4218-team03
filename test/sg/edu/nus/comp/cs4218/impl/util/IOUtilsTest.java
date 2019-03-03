@@ -55,7 +55,7 @@ class IOUtilsTest {
     @Test
     void stringToInputStream_null() throws IOException {
         String stringData = null;
-        assertThrows(IOException.class, ()->{
+        assertThrows(IOException.class, () -> {
             InputStream inputStream = IOUtils.stringToInputStream(stringData);
         });
     }
@@ -85,6 +85,7 @@ class IOUtilsTest {
 
     /**
      * Convert InputStream with line breaks to String
+     *
      * @throws IOException
      */
     @Test
@@ -99,6 +100,7 @@ class IOUtilsTest {
 
     /**
      * Convert empty InputStream to String
+     *
      * @throws IOException
      */
     @Test
@@ -116,7 +118,7 @@ class IOUtilsTest {
     @Test
     void stringFromInputStream_null() {
         InputStream inputStream = null;
-        assertThrows(IOException.class, ()->{
+        assertThrows(IOException.class, () -> {
             IOUtils.stringFromInputStream(null);
         });
     }
@@ -126,6 +128,7 @@ class IOUtilsTest {
      */
     @Test
     void stringFromInputStream_oneChar() throws IOException {
+        fail("to resolve see #38");
         InputStream inputStream = mock(InputStream.class);
         when(inputStream.read()).thenReturn(97, -1);
         String actual = IOUtils.stringFromInputStream(inputStream);
@@ -164,7 +167,7 @@ class IOUtilsTest {
     @Test
     void stringsFromInputStream_null() throws IOException {
         InputStream inputStream = null;
-        assertThrows( IOException.class, ()->{
+        assertThrows(IOException.class, () -> {
             IOUtils.stringsFromInputStream(inputStream);
         });
     }
