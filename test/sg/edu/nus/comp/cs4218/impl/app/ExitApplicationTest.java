@@ -1,15 +1,25 @@
 package sg.edu.nus.comp.cs4218.impl.app;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import sg.edu.nus.comp.cs4218.exception.ExitException;
 
-public class ExitApplicationTest {
-    @BeforeAll
-    public void setUp() throws Exception {
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+class ExitApplicationTest {
+
+    ExitApplication exitApplication;
+
+    @BeforeEach
+    void setUp() {
+        exitApplication = new ExitApplication();
     }
 
-    @AfterAll
-    public void tearDown() throws Exception {
+    @Test
+    void testExit_DefaultInput_Success() {
+        String[] args_test = new String[0];
+        assertThrows(ExitException.class, () -> {
+            exitApplication.run(args_test, System.in, System.out);
+        });
     }
 }

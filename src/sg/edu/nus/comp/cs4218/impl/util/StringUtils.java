@@ -2,6 +2,7 @@ package sg.edu.nus.comp.cs4218.impl.util;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.regex.Pattern;
 
 public final class StringUtils {
     public static final String STRING_NEWLINE = System.lineSeparator();
@@ -19,6 +20,7 @@ public final class StringUtils {
     public static final char CHAR_SEMICOLON = ';';
     public static final char CHAR_ASTERISK = '*';
     public static final char CHAR_FLAG_PREFIX = '-';
+    public static final String CHARSET_UTF8 = "UTF-8";
 
     private StringUtils() {
     }
@@ -38,7 +40,7 @@ public final class StringUtils {
         }
 
         for (int i = 0; i < str.length(); i++) {
-            if (Character.isWhitespace(str.charAt(i))) {
+            if (!Character.isWhitespace(str.charAt(i))) {
                 return false;
             }
         }
@@ -72,5 +74,28 @@ public final class StringUtils {
         }
 
         return str.trim().split("\\s+");
+    }
+
+    /**
+     * isNumberic is a num string
+     *
+     * @param str String to be judge
+     * @return boolean
+     */
+    public static boolean isNumberic(String str){
+        for (int i = 0; i < str.length(); i++){
+            if (!Character.isDigit(str.charAt(i))) return false;
+        }
+        return true;
+    }
+
+    /**
+     * getFirstNum is to get the first num of string
+     *
+     * @param str String to be get
+     * @return int num
+     */
+    public static int getFirstNum(String str){
+        return Integer.parseInt(str.split(" ")[0]);
     }
 }
