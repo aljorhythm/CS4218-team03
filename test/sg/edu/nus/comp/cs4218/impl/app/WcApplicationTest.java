@@ -34,62 +34,62 @@ class WcApplicationTest {
     }
 
     @Test
-    void testCountFromFiles_Default_Succes() {
+    void testCountFromFiles_Default_Success() {
 
     }
 
     @Test
-    void testGetDate_NullInput_Failure() throws Exception {
+    void testGetDateNullInputFailure() {
         assertThrows(WcException.class, () -> {wcApp.countFromStdin(true, true, true, null);});
     }
 
     @Test
-    void testCountFromStdin_EmptyInput_Success() throws Exception {
+    void testCountFromStdinEmptyInputSuccess() throws Exception {
         assertEquals("0 0 0", wcApp.countFromStdin(true, true, true, emptyInputStream));
     }
 
     @Test
-    void testCountFromStdin_DefaultOutPutAll_Success() throws Exception {
+    void testCountFromStdinDefaultOutPutAllSuccess() throws Exception {
         assertEquals("2 4 12", wcApp.countFromStdin(true, true, true, defaultInputStream));
     }
 
     @Test
-    void testCountFromStdin_NoBytessWanted_Success() throws Exception {
+    void testCountFromStdinNoBytessWantedSuccess() throws Exception {
         assertEquals("2 4", wcApp.countFromStdin(false, true, true, defaultInputStream));
     }
 
     @Test
-    void testCountFromStdin_OnlyLines_Success() throws Exception {
+    void testCountFromStdinOnlyLinesSuccess() throws Exception {
         assertEquals("2", wcApp.countFromStdin(false, true, false, defaultInputStream));
     }
 
     @Test
-    void testCountFromStdin_NoWordsWanted_Success() throws Exception {
+    void testCountFromStdinNoWordsWantedSuccess() throws Exception {
         assertEquals("2 12", wcApp.countFromStdin(true, true, false, defaultInputStream));
     }
 
     @Test
-    void testCountFromStdin_OnlyBytes_Success() throws Exception {
+    void testCountFromStdinOnlyBytesSuccess() throws Exception {
         assertEquals("2", wcApp.countFromStdin(true, false, false, defaultInputStream));
     }
 
     @Test
-    void testCountFromStdin_NoOutPutWanted_Success() throws Exception {
+    void testCountFromStdinNoOutPutWantedSuccess() throws Exception {
         assertEquals("", wcApp.countFromStdin(false, false, true, defaultInputStream));
     }
 
     @Test
-    void testCountFromStdin_NoLinesWanted_Success() throws Exception {
+    void testCountFromStdinNoLinesWantedSuccess() throws Exception {
         assertEquals("4 12", wcApp.countFromStdin(true, false, true, defaultInputStream));
     }
 
     @Test
-    void testCountFromStdin_OnlyWords_Success() throws Exception {
+    void testCountFromStdinOnlyWordsSuccess() throws Exception {
         assertEquals("2", wcApp.countFromStdin(false, false, true, defaultInputStream));
     }
 
     @Test
-    void testRun_DefaultOutPutAll_Success() throws AbstractApplicationException {
+    void testRunDefaultOutPutAllSuccess() throws AbstractApplicationException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         WcApplication wcApp = new WcApplication();
         String[] emptyStringArray = new String[0];
