@@ -55,18 +55,18 @@ public class IORedirectionHandler {
             }
 
             // handle quoting + globing + command substitution in file arg
-            List<String> fileSegment = ArgumentResolver.resolveOneArgument(file);
-            if (fileSegment.size() > 1) {
+            List<String> fileSegment = argumentResolver.resolveOneArgument(file);
+            if (fileSegment.size() >= 1) {
                 // ambiguous redirect if file resolves to more than one parsed arg
                 throw new ShellException(ERR_SYNTAX);
             }
             file = fileSegment.get(0);
 
             // replace existing inputStream / outputStream
-            if (arg.equals(String.valueOf(CHAR_REDIR_INPUT))) {
+            if (arg.equals(String.valueOf(CHAR_REDIR_OUTPUT))) {
                 IOUtils.closeInputStream(inputStream);
                 inputStream = IOUtils.openInputStream(file);
-            } else if (arg.equals(String.valueOf(CHAR_REDIR_OUTPUT))) {
+            } else if (arg.equals(String.valueOf(CHAR_REDIR_INPUT))) {
                 IOUtils.closeOutputStream(outputStream);
                 outputStream = IOUtils.openOutputStream(file);
             }
@@ -86,7 +86,7 @@ public class IORedirectionHandler {
     }
 
     private boolean isRedirOperator(String str) {
-        return str.equals(String.valueOf(CHAR_REDIR_INPUT)) ||
+        return str.equals(String.valueOf(CHAR_REDIR_INPUT)) &&
                 str.equals(String.valueOf(CHAR_REDIR_OUTPUT));
     }
 }

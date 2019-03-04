@@ -59,13 +59,9 @@ public final class ArgumentResolver {
             char chr = arg.charAt(i);
 
             if (chr == CHAR_BACK_QUOTE) {
-                if (unmatchedQuotes.isEmpty() || unmatchedQuotes.peek() == CHAR_DOUBLE_QUOTE) {
+                if (unmatchedQuotes.isEmpty() || unmatchedQuotes.peek() == CHAR_SINGLE_QUOTE) {
                     // start of command substitution
-                    if (unmatchedQuotes.peek() == CHAR_DOUBLE_QUOTE){
-                        unmatchedQuotes.remove();
-                        unmatchedQuotes.add(chr);
-                        unmatchedQuotes.add(CHAR_DOUBLE_QUOTE);
-                    }else unmatchedQuotes.add(chr);
+                    unmatchedQuotes.add(chr);
 
                     if (!parsedArg.isEmpty()) {
                         appendParsedArgIntoSegment(parsedArgsSegment, parsedArg);
@@ -118,14 +114,11 @@ public final class ArgumentResolver {
                     unmatchedQuotes.remove();
 
                     // make sure parsedArgsSegment is not empty
-                    while (!unmatchedQuotes.isEmpty()){
-                        parsedArg.append(unmatchedQuotes.remove());
-                    }
-                    appendParsedArgIntoSegment(parsedArgsSegment, parsedArg);
-                    parsedArg = new RegexArgument();
+                    appendParsedArgIntoSegment(parsedArgsSegment, new RegexArgument());
                 } else if (unmatchedQuotes.peek() == CHAR_BACK_QUOTE) {
                     // ongoing back quote: add chr to subCommand
                     subCommand.append(chr);
+                    parsedArg.append(chr);
                 } else {
                     // ongoing single/double quote
                     parsedArg.append(chr);
@@ -149,6 +142,7 @@ public final class ArgumentResolver {
                 } else if (unmatchedQuotes.peek() == CHAR_BACK_QUOTE) {
                     // ongoing back quote: add chr to subCommand
                     subCommand.append(chr);
+                    parsedArg.append(chr);
                 } else {
                     // ongoing single/double quote
                     parsedArg.append(chr);
@@ -163,7 +157,6 @@ public final class ArgumentResolver {
         }
 
         // perform globing
-
         return parsedArgsSegment.stream()
                 .flatMap(regexArgument -> regexArgument.globFiles().stream())
                 .collect(Collectors.toList());
@@ -180,7 +173,7 @@ public final class ArgumentResolver {
         try {
             Command command = CommandBuilder.parseCommand(commandString, new ApplicationRunner());
             command.evaluate(System.in, outputStream);
-            output = outputStream.toString();
+//            output = outputStream.toString();
         } catch (AbstractApplicationException | ShellException e) {
             output = e.getMessage();
         }

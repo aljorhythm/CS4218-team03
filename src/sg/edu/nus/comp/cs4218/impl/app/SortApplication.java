@@ -11,7 +11,7 @@ import java.util.*;
 public class SortApplication implements SortInterface{
     /**
      * Returns string containing the orders of the lines of the specified file
-     *
+     * 
      * @param isFirstWordNumber Boolean option to treat the first word of a line as a number
      * @param isReverseOrder    Boolean option to sort in reverse order
      * @param isCaseIndependent Boolean option to perform case-independent sorting
