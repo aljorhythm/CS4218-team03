@@ -51,7 +51,6 @@ public final class CommandBuilder {
 
         List<Command> cmdsForSequence = new LinkedList<>();
         List<CallCommand> callCmdsForPipe = new LinkedList<>();
-        List<Command> cmdsForIORedirection = new LinkedList<>();
         List<String> tokens = new LinkedList<>();
 
         String commandSubstring = commandString;
@@ -83,36 +82,11 @@ public final class CommandBuilder {
             switch (firstChar) {
 
                 case CHAR_REDIR_INPUT:
-//                    tokens.add(String.valueOf(firstChar));
-//                    if (cmdsForIORedirection.isEmpty()){
-//                        int index = commandSubstring.indexOf(CHAR_SPACE,1);
-//                        if (index < 1) {
-//                            tokens.add(commandSubstring);
-//                            commandSubstring = "";
-//                        }
-//                        else {
-//                            tokens.add(commandSubstring.substring(1,index+1));
-//                            commandSubstring = commandSubstring.substring(index+1);
-//                        }
-//                        cmdsForIORedirection.add(new CallCommand(tokens,appRunner));
-//                    }
-//                    commandSubstring = commandSubstring.substring(1);
-//                    break;
+                    tokens.add(String.valueOf(firstChar));
+                    break;
                 case CHAR_REDIR_OUTPUT:
                     // add as a separate token on its own
                     tokens.add(String.valueOf(firstChar));
-                    if (cmdsForIORedirection.isEmpty()){
-                        int index = commandSubstring.indexOf(CHAR_SPACE,2);
-                        if (index < 2) {
-                            tokens.add(commandSubstring.substring(2));
-                            commandSubstring = "";
-                        }
-                        else {
-                            tokens.add(commandSubstring.substring(2,index+1));
-                            commandSubstring = commandSubstring.substring(index+1);
-                        }
-                        cmdsForIORedirection.add(new CallCommand(tokens,appRunner));
-                    }
                     break;
                 case CHAR_SPACE:
                     if(tokens.isEmpty())
@@ -129,6 +103,7 @@ public final class CommandBuilder {
                     } else {
                         // add CallCommand as part of a PipeCommand
                         callCmdsForPipe.add(new CallCommand(tokens, appRunner));
+
                     }
                     break;
 
