@@ -18,6 +18,7 @@ import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHARSET_UTF8;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
 class SubstitutionTest {
+    
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     String currentDirectory = Environment.currentDirectory;
 
