@@ -68,7 +68,7 @@ public class DateApplication implements DateInterface {
         }
         String format = (args.length == 0) ? "" : args[0];
         try {
-            stdout.write((getDate(format)+"\n").getBytes());
+            stdout.write((getDate(format)).getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }
