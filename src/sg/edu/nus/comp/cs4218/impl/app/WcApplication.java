@@ -3,8 +3,7 @@ package sg.edu.nus.comp.cs4218.impl.app;
 import sg.edu.nus.comp.cs4218.app.WcInterface;
 import sg.edu.nus.comp.cs4218.exception.WcException;
 
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 
 public class WcApplication implements WcInterface {
 
@@ -14,11 +13,30 @@ public class WcApplication implements WcInterface {
     }
 
     @Override
-    public String countFromStdin(Boolean isBytes, Boolean isLines, Boolean isWords, InputStream stdin) throws WcException {
+    public String countFromStdin(Boolean isBytes, Boolean isLines, Boolean isWords, InputStream stdin) throws WcException, IOException {
+        if (stdin == null) {
+            throw new WcException("stdin is null!");
+        }
         int numberOfBytes = 0;
         int numberOfLines = 0;
         int numberOfWords = 0;
-        return null;
+        BufferedReader reader = new BufferedReader(new InputStreamReader(stdin));
+        for (String line; (line = reader.readLine()) != null; ) {
+            numberOfLines += 1;
+            numberOfBytes += line.getBytes().length;
+            numberOfWords += line.split(" ").length;
+        }
+        String result = "";
+        if (isLines) {
+            result += numberOfLines + " ";
+        }
+        if (isWords) {
+            result += numberOfWords + " ";
+        }
+        if (isBytes) {
+            result += numberOfBytes  + " ";
+        }
+        return result.trim();
     }
 
     @Override
