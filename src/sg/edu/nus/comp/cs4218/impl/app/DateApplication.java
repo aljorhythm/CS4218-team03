@@ -10,7 +10,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Map;
 
 public class DateApplication implements DateInterface {
 
@@ -69,7 +68,7 @@ public class DateApplication implements DateInterface {
         }
         String format = (args.length == 0) ? "" : args[0];
         try {
-            stdout.write((getDate(format)+"\n").getBytes());
+            stdout.write((getDate(format)).getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }
