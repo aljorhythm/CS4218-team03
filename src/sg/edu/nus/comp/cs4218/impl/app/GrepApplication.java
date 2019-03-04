@@ -119,7 +119,7 @@ public class GrepApplication implements GrepInterface {
                 }
             }
         }
-        if (!patternProvided || !fileNames.isEmpty()) {
+        if (!patternProvided || fileNames.isEmpty()) {
             throw new GrepException("Not correct number of arguments for grep!");
         }
         String[] fileNamesArray = fileNames.toArray(new String[0]);
