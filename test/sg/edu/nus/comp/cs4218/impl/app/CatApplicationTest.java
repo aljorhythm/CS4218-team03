@@ -64,16 +64,6 @@ public class CatApplicationTest {
     }
 
     /**
-     * Test catStdin with an inputstream with content.
-     *
-     * @throws CatException
-     */
-    @Test
-    public void testCatStdinDefaultInputSuccess() throws CatException {
-        assertEquals(defaultString, catApplication.catStdin(defaultIStream));
-    }
-
-    /**
      * Test catFiles with null input which should throw an exception.
      */
     @Test
@@ -101,29 +91,6 @@ public class CatApplicationTest {
     @Test
     public void testCatFilesEmptyInputSuccess() throws CatException {
         assertEquals("", catApplication.catFiles(emptyFile));
-    }
-
-    /**
-     * Test catFiles with a file with content.
-     *
-     * @throws CatException
-     */
-    @Test
-    public void testCatFilesDefaultInputSuccess() throws CatException {
-        String expected = testFile1Content;
-        String actual = catApplication.catFiles(testFileName1);
-        assertEquals(expected, actual);
-    }
-
-    /**
-     * Test catFiles with two files as input.
-     *
-     * @throws CatException
-     */
-    @Test
-    public void testCatFilesTwoInputFilesSuccess() throws CatException {
-        assertEquals(testFile1Content + STRING_NEWLINE + testFile2Content,
-                catApplication.catFiles(testFileName1, testFileName2));
     }
 
     /**
@@ -170,37 +137,6 @@ public class CatApplicationTest {
         catApplication.run(emptyArgs, defaultIStream, baos);
         byte[] byteArray = baos.toByteArray();
         assertEquals("ab abc\nb ccc", new String(byteArray));
-    }
-
-    /**
-     * Test run function with a file as argument.
-     *
-     * @throws CatException
-     */
-    @Test
-    public void testRunOneArgSuccess() throws CatException {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        String[] args = new String[1];
-        args[0] = testFileName1;
-        catApplication.run(args, null, baos);
-        byte[] byteArray = baos.toByteArray();
-        assertEquals(testFile1Content, new String(byteArray));
-    }
-
-    /**
-     * Test run function with two files as args.
-     *
-     * @throws CatException
-     */
-    @Test
-    public void testRunTwoArgSuccess() throws CatException {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        String[] args = new String[2];
-        args[0] = testFileName1;
-        args[1] = testFileName2;
-        catApplication.run(args, null, baos);
-        byte[] byteArray = baos.toByteArray();
-        assertEquals(testFile1Content + STRING_NEWLINE + testFile2Content, new String(byteArray));
     }
 
 }

@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static sg.edu.nus.comp.cs4218.impl.app.MkdirApplicationTest.deleteDirectory;
 
-class CdTest {
+class CdApplicationTest {
     CdApplication cdApplication;
     String pathToTestDir = System.getProperty("user.dir") + File.separator + "testEF2" + File.separator +
             "sg" + File.separator + "edu" + File.separator + "nus" + File.separator + "comp" + File.separator +

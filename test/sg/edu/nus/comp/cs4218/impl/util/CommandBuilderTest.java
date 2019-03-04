@@ -71,23 +71,6 @@ class CommandBuilderTest {
     }
 
     /**
-     * Pipe sub commands have no arguments
-     */
-    @Test
-    void parseCommand_pipe_noArgs() {
-        String stringCommand = "echo | ls";
-        Command command = null;
-        try {
-            command = CommandBuilder.parseCommand(stringCommand, mockAppRunner);
-        } catch (ShellException e) {
-            e.printStackTrace();
-        }
-        PipeCommand seqCommand = (PipeCommand) command;
-        String[][] expected = {{"echo"}, {"ls"}};
-        assertPipe(seqCommand, expected);
-    }
-
-    /**
      * Asserts pipe command has call commands with args
      */
     static void assertPipe(PipeCommand pipeCommand, String[][] expected) {

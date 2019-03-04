@@ -130,30 +130,6 @@ class GrepApplicationTest {
     }
 
     /**
-     *
-     */
-    @Test
-    void grepFromFiles() {
-        fail("TODO");
-    }
-
-    /**
-     * todo description
-     */
-    @Test
-    void grepFromStdin_test1_stdin() {
-        fail("todo");
-    }
-
-    /**
-     * Invalid File
-     */
-    @Test
-    void grepFromFile_test2_invalidFile_fail() {
-        fail("todo");
-    }
-
-    /**
      * Null pattern is invalid
      */
     @Test

@@ -70,11 +70,11 @@ public class WcApplication implements WcInterface {
         for (int i = 0; i < args.length; i++) {
             if (args[i].charAt(0) == '-') {
 
-                if (args[i].charAt(1) == 'c') {
+                if (args[i].contains("c")) {
                     isBytes = true;
-                } else if (args[i].charAt(1) == 'l') {
+                } else if (args[i].contains("l")) {
                     isLines = true;
-                } else if (args[i].charAt(1) == 'w') {
+                } else if (args[i].contains("w")) {
                     isWords = true;
                 } else {
                     throw new WcException("Unknown option for wc!");

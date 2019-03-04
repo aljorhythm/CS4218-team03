@@ -65,16 +65,6 @@ class EchoApplicationTest {
     }
 
     /**
-     * Tests with no input and output streams
-     *
-     * @throws Exception
-     */
-    @Test
-    public void run_noInputOutput() throws Exception {
-        application.run(new String[]{}, null, null);
-    }
-
-    /**
      * Tests with no args and input and output streams
      *
      * @throws Exception

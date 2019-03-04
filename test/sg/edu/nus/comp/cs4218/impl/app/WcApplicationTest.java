@@ -73,14 +73,4 @@ class WcApplicationTest {
     void testCountFromStdinOnlyWordsSuccess() throws Exception {
         assertEquals("4", wcApp.countFromStdin(false, false, true, defaultInputStream));
     }
-
-    @Test
-    void testRunDefaultOutPutAllSuccess() throws AbstractApplicationException {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        WcApplication wcApp = new WcApplication();
-        String[] emptyStringArray = new String[0];
-        wcApp.run(emptyStringArray, defaultInputStream, baos);
-        byte[] byteArray = baos.toByteArray();
-        assertEquals("2 4 11", new String(byteArray));
-    }
 }
