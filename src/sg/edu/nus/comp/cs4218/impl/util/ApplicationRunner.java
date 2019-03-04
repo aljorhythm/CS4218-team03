@@ -63,9 +63,9 @@ public class ApplicationRunner {
 //            case APP_FIND:
 //                application = new FindApplication();
 //                break;
-//            case APP_GREP:
-//                application = new GrepApplication();
-//                break;
+            case APP_GREP:
+                application = new GrepApplication();
+                break;
 //            case APP_LS:
 //                application = new LsApplication();
 //                break;
@@ -75,15 +75,15 @@ public class ApplicationRunner {
             case APP_PWD:
                 application = new PwdApplication();
                 break;
-//            case APP_SED:
-//                application = new SedApplication();
-//                break;
-//            case APP_SORT:
-//                application = new SortApplication();
-//                break;
-//            case APP_WC:
-//                application = new WcApplication();
-//                break;
+            case APP_SED:
+                application = new SedApplication();
+                break;
+            case APP_SORT:
+                application = new SortApplication();
+                break;
+            case APP_WC:
+                application = new WcApplication();
+                break;
             default:
                 throw new ShellException(app + ": " + ERR_INVALID_APP);
         }
