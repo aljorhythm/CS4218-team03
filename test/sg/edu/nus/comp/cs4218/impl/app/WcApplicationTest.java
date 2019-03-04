@@ -1,83 +1,86 @@
 package sg.edu.nus.comp.cs4218.impl.app;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
+import sg.edu.nus.comp.cs4218.exception.WcException;
+import sg.edu.nus.comp.cs4218.impl.util.IOUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
-/**
- * Created by Joakim Boman on 2019-02-18.
- */
 class WcApplicationTest {
+    WcApplication wcApp;
     InputStream defaultInputStream;
-    InputStream oneLineInputStream;
     InputStream emptyInputStream;
 
     @BeforeEach
     void setUp() throws IOException {
-        defaultInputStream = mock(InputStream.class);
-        when(defaultInputStream.read()).thenReturn(97, 98, 32, 97, 98, 99, 10, 98, 32, 99, 99, 99, -1);
-        oneLineInputStream = mock(InputStream.class);
-        when(oneLineInputStream.read()).thenReturn(64, 65, 32, 88, 89, 90, -1);
-        emptyInputStream = mock(InputStream.class);
-        when(emptyInputStream.read()).thenReturn(-1);
-    }
-
-    @AfterEach
-    void tearDown() {
-
+        wcApp = new WcApplication();
+        defaultInputStream = IOUtils.stringToInputStream("ab abc\nb ccc");
+        emptyInputStream = IOUtils.stringToInputStream("");
     }
 
     @Test
-    void testCountFromFiles_Default_Succes() {
-
+    void testGetDateNullInputFailure() {
+        assertThrows(WcException.class, () -> {wcApp.countFromStdin(true, true, true, null);});
     }
 
     @Test
-    void testCountFromStdin_DefaultOutPutAll_Success() throws Exception {
-        WcApplication wcApp = new WcApplication();
-        assertEquals("2 4 12", wcApp.countFromStdin(true, true, true, defaultInputStream));
-    }
-
-    @Test
-    void testCountFromStdin_EmptyOutPutAll_Success() throws Exception {
-        WcApplication wcApp = new WcApplication();
+    void testCountFromStdinEmptyInputSuccess() throws Exception {
         assertEquals("0 0 0", wcApp.countFromStdin(true, true, true, emptyInputStream));
     }
 
     @Test
-    void testCountFromStdin_NoLinesWanted_Success() throws Exception {
-        WcApplication wcApp = new WcApplication();
-        assertEquals("4 12", wcApp.countFromStdin(true, false, true, defaultInputStream));
+    void testCountFromStdinDefaultOutPutAllSuccess() throws Exception {
+        assertEquals("2 4 11", wcApp.countFromStdin(true, true, true, defaultInputStream));
     }
 
     @Test
-    void testCountFromStdin_NoWordsWanted_Success() throws Exception {
-        WcApplication wcApp = new WcApplication();
-        assertEquals("2 12", wcApp.countFromStdin(true, false, true, defaultInputStream));
+    void testCountFromStdinNoBytessWantedSuccess() throws Exception {
+        assertEquals("2 4", wcApp.countFromStdin(false, true, true, defaultInputStream));
     }
 
     @Test
-    void testCountFromStdin_NoBytessWanted_Success() throws Exception {
-        WcApplication wcApp = new WcApplication();
-        assertEquals("2 4", wcApp.countFromStdin(true, false, true, defaultInputStream));
+    void testCountFromStdinOnlyLinesSuccess() throws Exception {
+        assertEquals("2", wcApp.countFromStdin(false, true, false, defaultInputStream));
     }
 
     @Test
-    void testRun_DefaultOutPutAll_Success() throws AbstractApplicationException {
+    void testCountFromStdinNoWordsWantedSuccess() throws Exception {
+        assertEquals("2 11", wcApp.countFromStdin(true, true, false, defaultInputStream));
+    }
+
+    @Test
+    void testCountFromStdinOnlyBytesSuccess() throws Exception {
+        assertEquals("11", wcApp.countFromStdin(true, false, false, defaultInputStream));
+    }
+
+    @Test
+    void testCountFromStdinNoOutPutWantedSuccess() throws Exception {
+        assertEquals("", wcApp.countFromStdin(false, false, false, defaultInputStream));
+    }
+
+    @Test
+    void testCountFromStdinNoLinesWantedSuccess() throws Exception {
+        assertEquals("4 11", wcApp.countFromStdin(true, false, true, defaultInputStream));
+    }
+
+    @Test
+    void testCountFromStdinOnlyWordsSuccess() throws Exception {
+        assertEquals("4", wcApp.countFromStdin(false, false, true, defaultInputStream));
+    }
+
+    @Test
+    void testRunDefaultOutPutAllSuccess() throws AbstractApplicationException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         WcApplication wcApp = new WcApplication();
         String[] emptyStringArray = new String[0];
         wcApp.run(emptyStringArray, defaultInputStream, baos);
         byte[] byteArray = baos.toByteArray();
-        assertEquals("2 4 12", new String(byteArray));
+        assertEquals("2 4 11", new String(byteArray));
     }
 }
