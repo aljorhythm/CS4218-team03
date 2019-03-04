@@ -13,6 +13,7 @@ import java.io.OutputStream;
 import java.util.List;
 
 import static sg.edu.nus.comp.cs4218.impl.ShellImpl.ERR_SYNTAX;
+import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
 /**
  * A Call Command is a sub-command consisting of at least one non-keyword or quoted.
@@ -22,6 +23,7 @@ import static sg.edu.nus.comp.cs4218.impl.ShellImpl.ERR_SYNTAX;
  * </p>
  */
 public class CallCommand implements Command {
+    private static final String ERR_WRITE_OUTPUT_STREAM = "write_output_stream";
     private final List<String> argsList;
     private final ApplicationRunner appRunner;
 
@@ -56,8 +58,11 @@ public class CallCommand implements Command {
 //            String app = parsedArgsList.remove(0);
             appRunner.runApp(app, parsedArgsList.toArray(new String[0]), inputStream, outputStream);
         }
-
-
+        try {
+            outputStream.write(STRING_NEWLINE.getBytes());
+        } catch (IOException e) {
+            throw new ShellException(ERR_WRITE_OUTPUT_STREAM);
+        }
     }
 
     @Override

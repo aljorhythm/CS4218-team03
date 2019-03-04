@@ -33,7 +33,7 @@ class ShellImplTest {
      */
     @Test
     void shell_run_echo() throws IOException, ShellException {
-        InputStream inputStream = IOUtils.stringsToInputStream(new String[] {
+        InputStream inputStream = IOUtils.stringsToInputStream(new String[]{
                 "echo abc", "exit"
         });
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -41,6 +41,23 @@ class ShellImplTest {
         shell.run();
         String currentDirectory = Environment.currentDirectory;
         String expected = currentDirectory + ">abc" + STRING_NEWLINE + currentDirectory + ">";
+        String actual = outputStream.toString(CHARSET_UTF8);
+        assertEquals(expected, actual);
+    }
+
+    /**
+     * Test simple shell command
+     */
+    @Test
+    void shell_run_pipe() throws IOException, ShellException {
+        InputStream inputStream = IOUtils.stringsToInputStream(new String[]{
+                "echo abcde;echo abc", "exit"
+        });
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        ShellImpl shell = new ShellImpl(inputStream, outputStream);
+        shell.run();
+        String currentDirectory = Environment.currentDirectory;
+        String expected = currentDirectory + ">abcde" + STRING_NEWLINE + "abc" + STRING_NEWLINE + currentDirectory + ">";
         String actual = outputStream.toString(CHARSET_UTF8);
         assertEquals(expected, actual);
     }

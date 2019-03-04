@@ -39,7 +39,6 @@ public class SequenceCommand implements Command {
             try {
                 OutputStream outputStream = new ByteArrayOutputStream();
                 command.evaluate(stdin, outputStream);
-
                 String outputLine = outputStream.toString();
                 if (!outputLine.isEmpty()) {
                     outputLines.add(outputLine);

@@ -54,9 +54,7 @@ public final class CommandBuilder {
         List<String> tokens = new LinkedList<>();
 
         String commandSubstring = commandString;
-//        System.out.println(commandSubstring);
         while (!commandSubstring.isEmpty()) {
-//            commandSubstring = commandSubstring.trim();
             Matcher matcher = ARGUMENT_REGEX.matcher(commandSubstring);
 
             // no valid arguments found
@@ -75,7 +73,7 @@ public final class CommandBuilder {
 
             // found a valid argument but not at the start of the command substring
             char firstChar = commandSubstring.charAt(0);
-            commandSubstring = commandSubstring.substring(0);
+            commandSubstring = commandSubstring.substring(1);
 //            System.out.println("commandSubstring: "+commandSubstring);
 //            System.out.println("firstChar: "+firstChar);
 
@@ -92,7 +90,7 @@ public final class CommandBuilder {
                     if(tokens.isEmpty())
                         throw new ShellException(ERR_SYNTAX);
                     if(commandSubstring.length() > 1)
-                        commandSubstring = commandSubstring.substring(1);
+                        commandSubstring = commandSubstring.substring(0);
                     else
                         commandSubstring = null;
                     break;
@@ -115,12 +113,10 @@ public final class CommandBuilder {
                     } else if (callCmdsForPipe.isEmpty()) {
                         // add CallCommand as part of a SequenceCommand
                         cmdsForSequence.add(new CallCommand(tokens, appRunner));
-
+                        tokens = new LinkedList<>();
                     } else {
                         // add CallCommand as part of ongoing PipeCommand
                         callCmdsForPipe.add(new CallCommand(tokens, appRunner));
-
-
                         // add PipeCommand as part of a SequenceCommand
                         cmdsForSequence.add(new PipeCommand(callCmdsForPipe));
                         callCmdsForPipe = new LinkedList<>();
@@ -134,9 +130,6 @@ public final class CommandBuilder {
         }
 
         Command finalCommand = new CallCommand(tokens, appRunner);
-//        for (String temp:tokens) {
-//            System.out.println(temp);
-//        }
         if (!callCmdsForPipe.isEmpty()) {
             // add CallCommand as part of ongoing PipeCommand
             callCmdsForPipe.add((CallCommand) finalCommand);
