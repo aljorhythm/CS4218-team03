@@ -1,6 +1,5 @@
 package sg.edu.nus.comp.cs4218.impl.cmd;
 
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -53,7 +52,7 @@ class GlobbingTest {
     /**
      * use cat(EF1) to test globbing
      * file system
-     * folder/aa.txt(test aa) bb.txt(test bb) temp(file to test *.txt)
+     * folder/aa.txt(test aa) bb.txt(test bb) temp(empty)
      * a.txt(test a) b.txt(test b)
      */
     @BeforeEach

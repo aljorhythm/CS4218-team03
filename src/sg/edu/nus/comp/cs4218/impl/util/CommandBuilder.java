@@ -51,12 +51,11 @@ public final class CommandBuilder {
 
         List<Command> cmdsForSequence = new LinkedList<>();
         List<CallCommand> callCmdsForPipe = new LinkedList<>();
+        List<Command> cmdsForIORedirection = new LinkedList<>();
         List<String> tokens = new LinkedList<>();
 
         String commandSubstring = commandString;
-//        System.out.println(commandSubstring);
         while (!commandSubstring.isEmpty()) {
-//            commandSubstring = commandSubstring.trim();
             Matcher matcher = ARGUMENT_REGEX.matcher(commandSubstring);
 
             // no valid arguments found
@@ -75,24 +74,49 @@ public final class CommandBuilder {
 
             // found a valid argument but not at the start of the command substring
             char firstChar = commandSubstring.charAt(0);
-            commandSubstring = commandSubstring.substring(0);
+            commandSubstring = commandSubstring.substring(1);
 //            System.out.println("commandSubstring: "+commandSubstring);
 //            System.out.println("firstChar: "+firstChar);
 
             switch (firstChar) {
 
                 case CHAR_REDIR_INPUT:
-                    tokens.add(String.valueOf(firstChar));
-                    break;
+//                    tokens.add(String.valueOf(firstChar));
+//                    if (cmdsForIORedirection.isEmpty()){
+//                        int index = commandSubstring.indexOf(CHAR_SPACE,1);
+//                        if (index < 1) {
+//                            tokens.add(commandSubstring);
+//                            commandSubstring = "";
+//                        }
+//                        else {
+//                            tokens.add(commandSubstring.substring(1,index+1));
+//                            commandSubstring = commandSubstring.substring(index+1);
+//                        }
+//                        cmdsForIORedirection.add(new CallCommand(tokens,appRunner));
+//                    }
+//                    commandSubstring = commandSubstring.substring(1);
+//                    break;
                 case CHAR_REDIR_OUTPUT:
                     // add as a separate token on its own
                     tokens.add(String.valueOf(firstChar));
+                    if (cmdsForIORedirection.isEmpty()){
+                        int index = commandSubstring.indexOf(CHAR_SPACE,2);
+                        if (index < 2) {
+                            tokens.add(commandSubstring.substring(2));
+                            commandSubstring = "";
+                        }
+                        else {
+                            tokens.add(commandSubstring.substring(2,index+1));
+                            commandSubstring = commandSubstring.substring(index+1);
+                        }
+                        cmdsForIORedirection.add(new CallCommand(tokens,appRunner));
+                    }
                     break;
                 case CHAR_SPACE:
                     if(tokens.isEmpty())
                         throw new ShellException(ERR_SYNTAX);
                     if(commandSubstring.length() > 1)
-                        commandSubstring = commandSubstring.substring(1);
+                        commandSubstring = commandSubstring.substring(0);
                     else
                         commandSubstring = null;
                     break;
@@ -103,7 +127,6 @@ public final class CommandBuilder {
                     } else {
                         // add CallCommand as part of a PipeCommand
                         callCmdsForPipe.add(new CallCommand(tokens, appRunner));
-
                     }
                     break;
 
@@ -115,12 +138,10 @@ public final class CommandBuilder {
                     } else if (callCmdsForPipe.isEmpty()) {
                         // add CallCommand as part of a SequenceCommand
                         cmdsForSequence.add(new CallCommand(tokens, appRunner));
-
+                        tokens = new LinkedList<>();
                     } else {
                         // add CallCommand as part of ongoing PipeCommand
                         callCmdsForPipe.add(new CallCommand(tokens, appRunner));
-
-
                         // add PipeCommand as part of a SequenceCommand
                         cmdsForSequence.add(new PipeCommand(callCmdsForPipe));
                         callCmdsForPipe = new LinkedList<>();
@@ -134,9 +155,6 @@ public final class CommandBuilder {
         }
 
         Command finalCommand = new CallCommand(tokens, appRunner);
-//        for (String temp:tokens) {
-//            System.out.println(temp);
-//        }
         if (!callCmdsForPipe.isEmpty()) {
             // add CallCommand as part of ongoing PipeCommand
             callCmdsForPipe.add((CallCommand) finalCommand);

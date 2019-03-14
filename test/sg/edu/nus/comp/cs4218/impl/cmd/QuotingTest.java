@@ -16,7 +16,6 @@ class QuotingTest {
     Command command;
     String commandStringSingle = "echo \'test\'";
     String commandStringDouble = "echo \"test\"";
-    String commandStringBack = "echo `test`";
     String commandStringSingleOne = "echo \'test";
     String commandStringDoubleOne = "echo \"test";
     String commandStringBackOne = "echo `test";
@@ -33,14 +32,6 @@ class QuotingTest {
     @Test
     void testDoubleQuotes() throws ShellException, AbstractApplicationException, IOException {
         command = CommandBuilder.parseCommand(commandStringDouble, new ApplicationRunner());
-        command.evaluate(System.in,baoStream);
-        assertEquals("test\n",baoStream.toString());
-        baoStream.flush();
-    }
-
-    @Test
-    void testBackQuotes() throws ShellException, AbstractApplicationException, IOException {
-        command = CommandBuilder.parseCommand(commandStringBack, new ApplicationRunner());
         command.evaluate(System.in,baoStream);
         assertEquals("test\n",baoStream.toString());
         baoStream.flush();

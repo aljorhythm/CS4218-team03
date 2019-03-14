@@ -3,6 +3,7 @@ package sg.edu.nus.comp.cs4218.impl.app;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import sg.edu.nus.comp.cs4218.TestUtils;
 import sg.edu.nus.comp.cs4218.exception.MkdirException;
 
 import java.io.File;
@@ -12,9 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class MkdirApplicationTest {
     MkdirApplication mkdirApplication;
-    String pathToTestDir = System.getProperty("user.dir") + File.separator + "test" + File.separator +
-            "sg" + File.separator + "edu" + File.separator + "nus" + File.separator + "comp" + File.separator +
-            "cs4218" + File.separator + "mkdirTestDir" + File.separator;
+    String pathToTestDir = TestUtils.pathToTestDataDir + File.separator + "mkdirTestDir" + File.separator;
     String tempDir = pathToTestDir + "mkdirTest";
     String tempDir2 = pathToTestDir + "mkdirTest2";
     String tempParent = pathToTestDir + "mkdirTestParent";

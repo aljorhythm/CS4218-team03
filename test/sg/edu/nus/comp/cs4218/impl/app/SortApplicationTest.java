@@ -207,8 +207,4 @@ class SortApplicationTest {
                 .run();
     }
 
-//    @Test
-//    void run() {
-//        Assertions.fail("todo test SortApplication.run()");
-//    }
 }
