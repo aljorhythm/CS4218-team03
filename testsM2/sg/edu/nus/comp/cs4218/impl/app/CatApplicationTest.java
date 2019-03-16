@@ -126,6 +126,7 @@ class CatApplicationTest {
 
     @Test
     public void testThrowCatExceptionIfStdoutNull() {
+        fail("this test is redundant, program should still run if there is no stdout");
         CatException exception = assertThrows(CatException.class, () -> {
             catApplication.run(new String[0], System.in, null);
         });
