@@ -41,13 +41,13 @@ class SequenceCmdTest {
                 buffer = MockCommand.input.getBytes(CHARSET_UTF8);
                 stdout.write(buffer);
             } catch (IOException e) {
-                throw new ShellException(INVALID_INPUT_STREAM);
+                throw new ShellException(INVALID_INPUT_STREAM);//NOPMD
             }
         }
 
         @Override
         public void terminate() {
-
+            //override, useless here
         }
     }
 
@@ -55,7 +55,7 @@ class SequenceCmdTest {
      * Tests sequence of two commands ABC first.
      */
     @Test
-    void evaluate_twoCommandsAFDL() throws Exception {
+    void evaluateTwoCommandsAFDL() throws Exception {
         mock(CallCommand.class);
         InputStream inputStream = new ByteArrayInputStream("test data ".getBytes());
         OutputStream outputStream = new ByteArrayOutputStream();
@@ -75,7 +75,7 @@ class SequenceCmdTest {
      * Tests sequence of two commands DEF first.
      */
     @Test
-    void evaluate_twoCommandsDFAL() throws Exception {
+    void evaluateTwoCommandsDFAL() throws Exception {
         mock(CallCommand.class);
         InputStream inputStream = new ByteArrayInputStream("test data ".getBytes());
         OutputStream outputStream = new ByteArrayOutputStream();

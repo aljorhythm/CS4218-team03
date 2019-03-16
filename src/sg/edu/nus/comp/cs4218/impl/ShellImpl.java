@@ -17,23 +17,23 @@ public class ShellImpl implements Shell {
     public static final String ERR_INVALID_APP = "Invalid app.";
     public static final String ERR_NOT_SUPPORTED = "Not supported yet.";
     public static final String ERR_SYNTAX = "Invalid syntax.";
-    private InputStream inputStream;
-    private OutputStream outputStream;
+    private InputStream inputStream = System.in;
+    private OutputStream outputStream = System.out;
 
     /**
      * Initializes shell with stdin
      */
     public ShellImpl() {
-        inputStream = System.in;
-        outputStream = System.out;
+        // Default function
+        // System.in & out
     }
 
     /**
      * Initializes shell with specified streams
      */
-    public ShellImpl(InputStream in, OutputStream out) {
-        inputStream = in;
-        outputStream = out;
+    public ShellImpl(InputStream inputStream, OutputStream outputStream) {
+        this.inputStream = inputStream;
+        this.outputStream = outputStream;
     }
 
     /**
@@ -45,9 +45,7 @@ public class ShellImpl implements Shell {
         ShellImpl shell = new ShellImpl();
         try {
             shell.run();
-        } catch (ShellException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ShellException | IOException e) {
             e.printStackTrace();
         }
     }
