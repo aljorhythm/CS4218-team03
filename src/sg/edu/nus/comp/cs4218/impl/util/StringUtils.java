@@ -2,7 +2,6 @@ package sg.edu.nus.comp.cs4218.impl.util;
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.regex.Pattern;
 
 public final class StringUtils {
     public static final String STRING_NEWLINE = System.lineSeparator();
