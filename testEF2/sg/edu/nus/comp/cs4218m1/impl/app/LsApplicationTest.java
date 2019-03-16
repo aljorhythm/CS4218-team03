@@ -60,7 +60,7 @@ class LsApplicationTest {
 
         void run() throws Exception {
             String actual = application.listFolderContent(isFoldersOnly, isRecursive, folder);
-            assertEquals(actual, expected);
+            assertEquals(expected, actual);
         }
 
         void assertException(Class exceptionClass) {
@@ -71,7 +71,7 @@ class LsApplicationTest {
 
         private void assertException() throws Exception {
             String actual = application.listFolderContent(isFoldersOnly, isRecursive, folder);
-            assertEquals(actual, expected);
+            assertEquals(expected, actual);
         }
     }
 
