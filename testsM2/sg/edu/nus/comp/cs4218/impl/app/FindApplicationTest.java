@@ -11,6 +11,7 @@ import org.mockito.Mockito;
 import sg.edu.nus.comp.cs4218.exception.FindException;
 import sg.edu.nus.comp.cs4218.impl.app.FindApplication;
 import sg.edu.nus.comp.cs4218.impl.util.StringUtils;
+import sg.edu.nus.comp.cs4218m1.TestUtils;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ class FindApplicationTest {
     private static ByteArrayOutputStream mockBos;
     private static ArrayList<String> testFilePath;
 
-    private static final String FOLDER_PATH = System.getProperty("user.dir");
+    private static final String FOLDER_PATH = TestUtils.pathToTestDataSubdir("findTestDirTDD");
     private static final String BASIC_FOLDER = "testFolder";
     private static final String ANOTHER_FOLDER = "anotherTestFolder";
     private static final String NESTED_FOLDER = "nestedFolder";
@@ -54,10 +55,6 @@ class FindApplicationTest {
         if (baseFolder.mkdirs()) {
         }
         baseFolder = new File(FOLDER_PATH + File.separator + BASIC_FOLDER);
-        if (baseFolder.mkdirs()) {
-            addFileToFolder(baseFolder, BASIC_FILE_NAME);
-            addFileToFolder(baseFolder, NUMERIC_FILE_NAME);
-        }
         File baseNestedFolder = new File(baseFolder.getPath() + File.separator + NESTED_FOLDER);
         if (baseNestedFolder.mkdirs()) {
             addFileToFolder(baseNestedFolder, ANOTHER_FILE_NAME);
@@ -90,7 +87,6 @@ class FindApplicationTest {
         numericFolder.delete();
         baseNestedFolder.delete();
         anotherBaseFolder.delete();
-        baseFolder.delete();
     }
 
     @BeforeEach

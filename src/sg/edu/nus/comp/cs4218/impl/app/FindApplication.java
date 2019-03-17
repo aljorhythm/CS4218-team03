@@ -7,12 +7,15 @@ import sg.edu.nus.comp.cs4218.exception.FindException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-/**
- * This class is part of EF2, so only tests are provided and no implementation.
- */
 public class FindApplication implements FindInterface {
 
-
+    /**
+     * Return the string listing the names of the matched file/folder in the specified folder.
+     *
+     * @param fileName   String of a regular expression of the file name
+     * @param folderName Array of String of given folder/folders' name
+     * @throws FindException
+     */
     @Override
     public String findFolderContent(String fileName, String... folderName) throws FindException {
         return null;
