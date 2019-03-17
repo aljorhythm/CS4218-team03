@@ -18,12 +18,14 @@ class LsApplicationTest {
     LsApplication application;
     private static String TEST_DIR = pathToTestDataSubdir("lsTestDir");
     private static String test1_and_2_output = String.join(StringUtils.STRING_NEWLINE, new String[]{TEST_DIR + File.separator + "folder_b"});
-    private static String test3_output = String.join(StringUtils.STRING_NEWLINE, new String[]{TEST_DIR + File.separator + "folder_a",
-            TEST_DIR + File.separator + "folder_a/file_a", TEST_DIR + File.separator + "folder_b/folder_c",
-            TEST_DIR + File.separator + "folder_b/folder_c/folder_e", TEST_DIR + File.separator + "folder_b/folder_c/file_a",
-            TEST_DIR + File.separator + "folder_b/folder_d/", TEST_DIR + File.separator + "folder_b/folder_d/file_b"});
-    private static String test4_output = String.join(StringUtils.STRING_NEWLINE, new String[]{"folder_a", "folder_b"});
-    private static String test7_output = "";
+    private static String test3_output = String.join(StringUtils.STRING_NEWLINE, new String[]{
+            TEST_DIR + ":", "folder_a folder_b" + StringUtils.STRING_NEWLINE,
+            TEST_DIR + File.separator + "folder_a:", "file_a" + StringUtils.STRING_NEWLINE,
+            TEST_DIR + File.separator + "folder_b:", "folder_c folder_d" + StringUtils.STRING_NEWLINE,
+            TEST_DIR + File.separator + "folder_b" + File.separator + "folder_c:", "file_a" + StringUtils.STRING_NEWLINE,
+            TEST_DIR + File.separator + "folder_b" + File.separator + "folder_d:", "file_b"});
+    private static String test4_output = String.join(" ", new String[]{"folder_a", "folder_b"});
+    private static String test5_output = TEST_DIR + File.separator + "folder_a" + File.separator + "file_a";
     private static String FOLDER_B = TEST_DIR + File.separator + "folder_b";
     private static String FOLDER_A = TEST_DIR + File.separator + "folder_a";
     private static String FILE_A = FOLDER_A + File.separator + "file_a";
@@ -126,15 +128,16 @@ class LsApplicationTest {
     }
 
     /**
-     * Input folder expected but file given
+     * Input is a file
      */
     @Test
-    void listFolderContent_test5_filePathNotExpected() {
+    void listFolderContent_test5_fileInput() throws Exception {
         newCase()
                 .isFoldersOnly(false)
                 .isRecursive(false)
                 .folderName(FILE_A)
-                .assertException(LsException.class);
+                .expected(test5_output)
+                .run();
     }
 
     /**
@@ -158,12 +161,7 @@ class LsApplicationTest {
                 .isFoldersOnly(false)
                 .isRecursive(false)
                 .folderName(FOLDER_E)
-                .expected(test7_output)
-                .run();
+                .assertException(LsException.class);
     }
 
-    @Test
-    void run() {
-        fail("todo");
-    }
 }

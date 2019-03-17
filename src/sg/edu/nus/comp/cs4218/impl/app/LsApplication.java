@@ -44,12 +44,14 @@ public class LsApplication implements LsInterface {
 
     private String getFolderContent(Boolean isFoldersOnly, Boolean isRecursive, String folderName) throws LsException {
         File file = new File(folderName);
-        if (!file.exists()) {
+        if (file == null || !file.exists()) {
             throw new LsException("File does not exist, make sure the path is correct!");
         }
         String result;
         if(isFoldersOnly) {
             result = file.getPath();
+        } else if (!file.isDirectory()) {
+            result = folderName;
         } else {
             String[] content = file.list();
             result = String.join(" ", content);
