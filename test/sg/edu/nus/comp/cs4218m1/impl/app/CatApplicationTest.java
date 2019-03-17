@@ -20,15 +20,17 @@ import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 public class CatApplicationTest {
     CatApplication catApplication;
     InputStream defaultIStream;
-    String defaultString = "ab abc" + STRING_NEWLINE + "b ccc";
+    String defaultString = "ab abc\nb ccc";
     InputStream emptyIStream;
     String nonExistentFile = "wrong.txt";
-    String test_dir = TestUtils.pathToTestDataSubdir("inputFiles");
-    String emptyFile = test_dir + CHAR_FILE_SEP + "catEmpty.txt";
-    String testFileName1 = test_dir + CHAR_FILE_SEP + "catContent1.txt";
-    String testFileName2 = test_dir + CHAR_FILE_SEP + "catContent2.txt";
-    String testFile1Content = "test string for" + STRING_NEWLINE + "testing cat\nwith junit 5." + STRING_NEWLINE;
-    String testFile2Content = "another file, number 2\nsecond for testing that\ncat \nworks like \nit should\n. 1234 %&#!$@\n";
+    String testDir = TestUtils.pathToTestDataSubdir("inputFiles");
+    String emptyFile = testDir + CHAR_FILE_SEP + "catEmpty.txt";
+    String testFileName1 = testDir + CHAR_FILE_SEP + "catContent1.txt";
+    String testFileName2 = testDir + CHAR_FILE_SEP + "catContent2.txt";
+    String testFile1Content = "test string for" + STRING_NEWLINE + "testing cat" + STRING_NEWLINE
+            + "with junit 5." + STRING_NEWLINE;
+    String testFile2Content = "another file, number 2" + STRING_NEWLINE + "second for testing that"
+            + STRING_NEWLINE + "cat " + STRING_NEWLINE + "works like " + STRING_NEWLINE + "it should" + STRING_NEWLINE + ". 1234 %&#!$@" + STRING_NEWLINE;
 
     /**
      * Set up a new cat application and mock inputstreams in between each test.
@@ -42,6 +44,16 @@ public class CatApplicationTest {
         when(defaultIStream.read()).thenReturn(97, 98, 32, 97, 98, 99, 10, 98, 32, 99, 99, 99, - 1);
         emptyIStream = mock(InputStream.class, Mockito.CALLS_REAL_METHODS);
         when(emptyIStream.read()).thenReturn(-1);
+    }
+
+    /**
+     * Test catStdin with an inputstream with content.
+     *
+     * @throws CatException
+     */
+    @Test
+    public void testCatStdinDefaultInputSuccess() throws CatException {
+        assertEquals(defaultString, catApplication.catStdin(defaultIStream));
     }
 
     /**
@@ -95,6 +107,29 @@ public class CatApplicationTest {
     }
 
     /**
+     * Test catFiles with a file with content.
+     *
+     * @throws CatException
+     */
+    @Test
+    public void testCatFilesDefaultInputSuccess() throws CatException {
+        String expected = testFile1Content;
+        String actual = catApplication.catFiles(testFileName1);
+        assertEquals(expected, actual);
+    }
+
+    /**
+     * Test catFiles with two files as input.
+     *
+     * @throws CatException
+     */
+    @Test
+    public void testCatFilesTwoInputFilesSuccess() throws CatException {
+        assertEquals(testFile1Content + STRING_NEWLINE + testFile2Content,
+                catApplication.catFiles(testFileName1, testFileName2));
+    }
+
+    /**
      * Test run function with null args, should throw an exception.
      */
     @Test
@@ -140,4 +175,34 @@ public class CatApplicationTest {
         assertEquals("ab abc\nb ccc", new String(byteArray));
     }
 
+    /**
+     * Test run function with a file as argument.
+     *
+     * @throws CatException
+     */
+    @Test
+    public void testRunOneArgSuccess() throws CatException {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        String[] args = new String[1];
+        args[0] = testFileName1;
+        catApplication.run(args, null, baos);
+        byte[] byteArray = baos.toByteArray();
+        assertEquals(testFile1Content, new String(byteArray));
+    }
+
+    /**
+     * Test run function with two files as args.
+     *
+     * @throws CatException
+     */
+    @Test
+    public void testRunTwoArgSuccess() throws CatException {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        String[] args = new String[2];
+        args[0] = testFileName1;
+        args[1] = testFileName2;
+        catApplication.run(args, null, baos);
+        byte[] byteArray = baos.toByteArray();
+        assertEquals(testFile1Content + STRING_NEWLINE + testFile2Content, new String(byteArray));
+    }
 }
