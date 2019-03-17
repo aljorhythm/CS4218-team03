@@ -31,6 +31,9 @@ public class FindApplication implements FindInterface {
         String result = "";
         for (String f: folderName) {
             File file = new File(f);
+            if (!file.exists()) {
+                throw new FindException("nonExistentFolder: No such file or directory");
+            }
             if (file.isDirectory()) {
                 String[] subFiles = file.list();
                 result += getFolderContent(fileName, f, subFiles);
@@ -54,7 +57,7 @@ public class FindApplication implements FindInterface {
             String path = parentPath + File.separator + f;
             File file = new File(path);
             if (f.matches(fileName)) {
-                result += path + StringUtils.STRING_NEWLINE;
+                result = path + StringUtils.STRING_NEWLINE + result;
             }
             if (file.isDirectory()) {
                 String[] subFiles = file.list();
@@ -69,6 +72,9 @@ public class FindApplication implements FindInterface {
         if (args == null) {
             throw new FindException("Args cannot be null for find!");
         }
+        if (stdout == null) {
+            throw new FindException("output stream is null");
+        }
         String result;
         String fileName = null;
         List<String> folderNames = new ArrayList<>();
@@ -76,6 +82,9 @@ public class FindApplication implements FindInterface {
             if (args[i].charAt(0) == '-') {
 
                 if (args[i].contains("name")) {
+                    if (args.length != i + 2) {
+                        throw new FindException("Invalid syntax. Check that an argument is given after -name");
+                    }
                     fileName = args[i + 1];
                     i++;
                 } else {
@@ -86,14 +95,14 @@ public class FindApplication implements FindInterface {
             }
         }
         if (folderNames.isEmpty() || fileName == null) {
-            throw new FindException("Not correct number of arguments for find!");
+            throw new FindException("Invalid syntax. Check that an argument is given after -name");
         }
         String[] folderNamesArray = folderNames.toArray(new String[0]);
         result = findFolderContent(fileName, folderNamesArray);
         try {
             stdout.write(result.getBytes(CHARSET_UTF8));
         } catch (IOException e) {
-            throw (FindException) new FindException("wc failed to write!").initCause(e);
+            throw (FindException) new FindException("find failed to write!").initCause(e);
         }
     }
 }
