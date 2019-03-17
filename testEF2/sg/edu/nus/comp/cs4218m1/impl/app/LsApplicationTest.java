@@ -16,12 +16,14 @@ class LsApplicationTest {
      * Configuration and data
      */
     LsApplication application;
-    private static String test1_output = String.join(StringUtils.STRING_NEWLINE, new String[]{"folder_b/folder_c", "folder_c/folder_e", "folder_d"});
-    private static String test2_output = String.join(StringUtils.STRING_NEWLINE, new String[]{"folder_c", "folder_d"});
-    private static String test3_output = String.join(StringUtils.STRING_NEWLINE, new String[]{"folder_a", "folder_a/file_a", "folder_b/folder_c", "folder_b/folder_c/folder_e", "folder_b/folder_c/file_a", "folder_b/folder_d/", "folder_b/folder_d/file_b"});
+    private static String TEST_DIR = pathToTestDataSubdir("lsTestDir");
+    private static String test1_and_2_output = String.join(StringUtils.STRING_NEWLINE, new String[]{TEST_DIR + File.separator + "folder_b"});
+    private static String test3_output = String.join(StringUtils.STRING_NEWLINE, new String[]{TEST_DIR + File.separator + "folder_a",
+            TEST_DIR + File.separator + "folder_a/file_a", TEST_DIR + File.separator + "folder_b/folder_c",
+            TEST_DIR + File.separator + "folder_b/folder_c/folder_e", TEST_DIR + File.separator + "folder_b/folder_c/file_a",
+            TEST_DIR + File.separator + "folder_b/folder_d/", TEST_DIR + File.separator + "folder_b/folder_d/file_b"});
     private static String test4_output = String.join(StringUtils.STRING_NEWLINE, new String[]{"folder_a", "folder_b"});
     private static String test7_output = "";
-    private static String TEST_DIR = pathToTestDataSubdir("lsTestDir");
     private static String FOLDER_B = TEST_DIR + File.separator + "folder_b";
     private static String FOLDER_A = TEST_DIR + File.separator + "folder_a";
     private static String FILE_A = FOLDER_A + File.separator + "file_a";
@@ -89,7 +91,7 @@ class LsApplicationTest {
                 .isFoldersOnly(true)
                 .isRecursive(true)
                 .folderName(FOLDER_B)
-                .expected(test1_output)
+                .expected(test1_and_2_output)
                 .run();
     }
 
@@ -99,7 +101,7 @@ class LsApplicationTest {
                 .isFoldersOnly(true)
                 .isRecursive(false)
                 .folderName(FOLDER_B)
-                .expected(test2_output)
+                .expected(test1_and_2_output)
                 .run();
     }
 
