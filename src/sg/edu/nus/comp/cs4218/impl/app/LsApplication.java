@@ -50,23 +50,21 @@ public class LsApplication implements LsInterface {
         String result;
         if(isFoldersOnly) {
             result = file.getPath();
-        } else if (!file.isDirectory()) {
-            result = folderName;
-        } else {
+        } else if (file.isDirectory()) {
             String[] content = file.list();
             result = String.join(" ", content);
-            if (isRecursive) {
-                if (content.length > 0) {
-                    for (String c: content) {
-                        String recursivePath = folderName + File.separator + c;
-                        File f = new File(recursivePath);
-                        if (f.isDirectory()) {
-                            result += StringUtils.STRING_NEWLINE + StringUtils.STRING_NEWLINE + recursivePath + ":"
-                                    + StringUtils.STRING_NEWLINE + getFolderContent(isFoldersOnly, true, recursivePath);
-                        }
+            if (isRecursive && content.length > 0) {
+                for (String c: content) {
+                    String recursivePath = folderName + File.separator + c;
+                    File subFolder = new File(recursivePath);
+                    if (subFolder.isDirectory()) {
+                        result += StringUtils.STRING_NEWLINE + StringUtils.STRING_NEWLINE + recursivePath + ":"
+                                + StringUtils.STRING_NEWLINE + getFolderContent(isFoldersOnly, true, recursivePath);
                     }
                 }
             }
+        } else {
+            result = folderName;
         }
         return result;
     }
