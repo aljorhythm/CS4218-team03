@@ -5,10 +5,10 @@ public class InvalidArgsException extends Exception {
     private static final long serialVersionUID = 7060671468402158735L;
 
     public InvalidArgsException(String message) {
-        super(message);
+        super(message + "\n");
     }
 
     public InvalidArgsException(String message, Throwable cause) {
-        super(message, cause);
+        super(message + "\n", cause);
     }
 }

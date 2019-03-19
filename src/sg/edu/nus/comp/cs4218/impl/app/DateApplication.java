@@ -55,8 +55,7 @@ public class DateApplication implements DateInterface {
     }
 
     /**
-     * Runs the cd application with the specified arguments.
-     * Assumption: The application must take in one arg. (cd without args is not supported)
+     * Runs the date application with the specified arguments.
      *
      * @param args   Array of arguments for the application.It may contain the format.
      * @param stdin  An InputStream, not used.

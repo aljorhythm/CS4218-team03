@@ -5,7 +5,7 @@ public class FindException extends AbstractApplicationException {
     private static final long serialVersionUID = -4647741054058509116L;
 
     public FindException(String message) {
-        super("find: " + message);
+        super("find: " + message + "\n");
     }
 
 }

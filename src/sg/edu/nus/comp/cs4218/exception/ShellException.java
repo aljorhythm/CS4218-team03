@@ -6,6 +6,6 @@ public class ShellException extends Exception {
     public static final String INVALID_INPUT_STREAM = "invalid input stream";
 
     public ShellException(String message) {
-        super("shell: " + message);
+        super("shell: " + message + "\n");
     }
 }
