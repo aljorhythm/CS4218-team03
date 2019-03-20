@@ -43,12 +43,12 @@ class DateApplicationTest {
 
     @Test
     void testGetDate_MonthDayYearInput_Success() throws Exception {
-        assertTrue(Pattern.matches(monthDayYearWithDashPattern.toString(), dateApp.getDate("%m-%d-%y")));
+        assertTrue(Pattern.matches(monthDayYearWithDashPattern.toString(), dateApp.getDate("+%m-%d-%y")));
     }
 
     @Test
     void testGetDate_HourMinuteSecondInput_Success() throws Exception {
-        assertTrue(Pattern.matches(hourMinuteSecondWhiteSpacePattern.toString(), dateApp.getDate("%H %M %S")));
+        assertTrue(Pattern.matches(hourMinuteSecondWhiteSpacePattern.toString(), dateApp.getDate("+%H %M %S")));
     }
 
     @Test
@@ -58,6 +58,6 @@ class DateApplicationTest {
 
     @Test
     void testGetDate_ExtraStringInput_Success() throws Exception {
-        assertTrue(Pattern.matches(customStringDateCombinationPattern.toString(), dateApp.getDate("year %y")));
+        assertTrue(Pattern.matches(customStringDateCombinationPattern.toString(), dateApp.getDate("+year %y")));
     }
 }
