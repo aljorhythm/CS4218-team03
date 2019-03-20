@@ -14,50 +14,45 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class DateApplicationTest {
     DateApplication dateApp;
     Pattern fullDatePattern = Pattern.compile("^(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])\\-\\d{4} \\d{2}:\\d{2}:\\d{2}$");
-    Pattern monthDayYearWithDashPattern = Pattern.compile("^(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])\\-\\d{4}$");
-    Pattern hourMinuteSecondWhiteSpacePattern = Pattern.compile("^\\d{2} \\d{2} \\d{2}$");
-    Pattern customStringDateCombinationPattern = Pattern.compile("^year \\d{4}$");
+    Pattern monthDayYear = Pattern.compile("^(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])\\-\\d{4}$");
+    Pattern hourMinuteSecond = Pattern.compile("^\\d{2} \\d{2} \\d{2}$");
+    Pattern customDate = Pattern.compile("^year \\d{4}$");
 
     @BeforeEach
     void setUp() {
         dateApp = new DateApplication();
     }
 
-    @AfterEach
-    void tearDown() {
-
-    }
-
     @Test
-    void testRegexPatterns_Success() {
+    void testRegexPatternsSuccess() {
         assertTrue(Pattern.matches(fullDatePattern.toString(), "01-21-2019 13:23:23"));
-        assertTrue(Pattern.matches(monthDayYearWithDashPattern.toString(), "01-21-2019"));
-        assertTrue(Pattern.matches(hourMinuteSecondWhiteSpacePattern.toString(), "13 23 23"));
-        assertTrue(Pattern.matches(customStringDateCombinationPattern.toString(), "year 2019"));
+        assertTrue(Pattern.matches(monthDayYear.toString(), "01-21-2019"));
+        assertTrue(Pattern.matches(hourMinuteSecond.toString(), "13 23 23"));
+        assertTrue(Pattern.matches(customDate.toString(), "year 2019"));
     }
 
     @Test
-    void testGetDate_DefaultInput_Success() throws Exception {
+    void testGetDateDefaultInputSuccess() throws Exception {
         assertTrue(Pattern.matches(fullDatePattern.toString(), dateApp.getDate("")));
     }
 
     @Test
-    void testGetDate_MonthDayYearInput_Success() throws Exception {
-        assertTrue(Pattern.matches(monthDayYearWithDashPattern.toString(), dateApp.getDate("+%m-%d-%y")));
+    void testGetDateMonthDayYearInputSuccess() throws Exception {
+        assertTrue(Pattern.matches(monthDayYear.toString(), dateApp.getDate("+%m-%d-%y")));
     }
 
     @Test
-    void testGetDate_HourMinuteSecondInput_Success() throws Exception {
-        assertTrue(Pattern.matches(hourMinuteSecondWhiteSpacePattern.toString(), dateApp.getDate("+%H %M %S")));
+    void testGetDateHourMinuteSecondInputSuccess() throws Exception {
+        assertTrue(Pattern.matches(hourMinuteSecond.toString(), dateApp.getDate("+%H %M %S")));
     }
 
     @Test
-    void testGetDate_NullInput_Failure() throws Exception {
+    void testGetDateNullInputFailure() throws Exception {
         assertThrows(DateException.class, () -> {dateApp.getDate(null);});
     }
 
     @Test
-    void testGetDate_ExtraStringInput_Success() throws Exception {
-        assertTrue(Pattern.matches(customStringDateCombinationPattern.toString(), dateApp.getDate("+year %y")));
+    void testGetDateExtraStringInputSuccess() throws Exception {
+        assertTrue(Pattern.matches(customDate.toString(), dateApp.getDate("+year %y")));
     }
 }
