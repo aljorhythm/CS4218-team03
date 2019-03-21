@@ -117,7 +117,6 @@ public class GrepApplication implements GrepInterface {
         List<String> fileNames = new ArrayList<>();
         for (int i = 0; i < args.length; i++) {
             if (args[i].length() > 0 && args[i].charAt(0) == '-') {
-
                 if (args[i].charAt(1) == 'i') {
                     isCaseInsensitive = true;
                 } else if (args[i].charAt(1) == 'c') {
@@ -135,24 +134,22 @@ public class GrepApplication implements GrepInterface {
             }
         }
         if (!patternProvided || fileNames.isEmpty()) {
-            if (!(stdin == null)) {
+            if (stdin == null) {
+                throw new GrepException("Not correct number of arguments for grep!");
+            } else {
                 String inputString;
                 try {
                     inputString = IOUtils.stringFromInputStream(stdin);
                     InputStream inputStream = new ByteArrayInputStream(inputString.getBytes());
                     result = grepFromStdin(pattern, isCaseInsensitive, isCountOfLinesOnly, inputStream);
-
                 } catch (IOException e) {
                     throw (GrepException) new GrepException("could not read input stream").initCause(e);
                 }
-            } else {
-                throw new GrepException("Not correct number of arguments for grep!");
             }
         } else {
             String[] fileNamesArray = fileNames.toArray(new String[0]);
             result = grepFromFiles(pattern, isCaseInsensitive, isCountOfLinesOnly, fileNamesArray);
         }
-
         try {
             stdout.write(result.getBytes(CHARSET_UTF8));
         } catch (IOException e) {

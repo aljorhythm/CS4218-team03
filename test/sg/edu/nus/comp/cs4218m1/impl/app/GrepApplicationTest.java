@@ -16,21 +16,21 @@ import static org.junit.jupiter.api.Assertions.fail;
 class GrepApplicationTest {
     GrepApplication application;
 
+    String[] linesList1 = {
+            "aBcde on this line",
+            "12345 on this line",
+            "!@#$% on this line"
+    };
+    String[] linesList2 = {
+            "aBcde on this line",
+            "12345 on this line",
+            "!@#$% on this Line"
+    };
+
     @BeforeEach
     void initializeApp() {
         application = new GrepApplication();
     }
-
-    /**
-     * Helper assertion method
-     *
-     * @param expected
-     * @param pattern
-     */
-    void assertGrepFromFile(String expected, String pattern) {
-        fail("TODO");
-    }
-
 
     /**
      * Helper class to abstract tests for GrepApplication.grepFromStdIn.
@@ -43,9 +43,6 @@ class GrepApplicationTest {
         private InputStream inputStream;
         private String expected;
         private Class expectedExceptionClass;
-
-        public StdinTestCase() {
-        }
 
         StdinTestCase pattern(String pattern) {
             this.pattern = pattern;
@@ -104,8 +101,6 @@ class GrepApplicationTest {
 
         /**
          * Helper assertion method
-         *
-         * @param expected
          */
         public void run() {
             if (this.expected == null) {
@@ -135,7 +130,7 @@ class GrepApplicationTest {
      * Null pattern is invalid
      */
     @Test
-    void grepFromStdin_test3_nullPattern_fail() {
+    void grepFromStdinTest3NullPatternFail() {
         StdinTestCase[] testCases = {
                 new StdinTestCase().expected(GrepException.class).pattern(null),
         };
@@ -149,7 +144,7 @@ class GrepApplicationTest {
      * Empty patterns: ""
      */
     @Test
-    void grepFromStdin_emptyPattern() {
+    void grepFromStdinEmptyPattern() {
         StdinTestCase[] testCases = {
                 new StdinTestCase()
                         .expected("1")
@@ -171,15 +166,9 @@ class GrepApplicationTest {
      * Tests if number of output lines matching pattern are correct
      */
     @Test
-    void grepFromStdin_test6_countOfLines() {
+    void grepFromStdinTest6CountOfLines() {
 
-        String[] linesList = {
-                "aBcde on this line",
-                "12345 on this line",
-                "!@#$% on this line"
-        };
-
-        String linesData = String.join("\n", linesList);
+        String linesData = String.join("\n", linesList1);
 
         StdinTestCase[] testCases = {
                 new StdinTestCase()
@@ -202,19 +191,13 @@ class GrepApplicationTest {
      * Tests if output lines matching pattern are correct
      */
     @Test
-    void grepFromStdin_test7_linesContaining() {
+    void grepFromStdinTest7LinesContaining() {
 
-        String[] linesList = {
-                "aBcde on this line",
-                "12345 on this line",
-                "!@#$% on this line"
-        };
-
-        String linesData = String.join(StringUtils.STRING_NEWLINE, linesList);
+        String linesData = String.join(StringUtils.STRING_NEWLINE, linesList1);
 
         StdinTestCase[] testCases = {
                 new StdinTestCase()
-                        .expected(linesList[0])
+                        .expected(linesList1[0])
                         .pattern("aBcde")
                         .inputStream(linesData)
                         .isCountOfLinesOnly(false),
@@ -235,15 +218,8 @@ class GrepApplicationTest {
      * Tests if output lines matching pattern are correct
      */
     @Test
-    void grepFromStdin_noMatches() {
-
-        String[] linesList = {
-                "aBcde on this line",
-                "12345 on this line",
-                "!@#$% on this line"
-        };
-
-        String linesData = String.join("\n", linesList);
+    void grepFromStdinNoMatches() {
+        String linesData = String.join("\n", linesList1);
 
         StdinTestCase[] testCases = {
                 new StdinTestCase()
@@ -268,15 +244,8 @@ class GrepApplicationTest {
      * Tests if output lines matching pattern are correct
      */
     @Test
-    void grepFromStdin_test10_caseInsensi_count() {
-
-        String[] linesList = {
-                "abcde on this line",
-                "12345 on this Line",
-                "!@#$% on this line"
-        };
-
-        String linesData = String.join("\n", linesList);
+    void grepFromStdinTest10CaseInsensitiveCount() {
+        String linesData = String.join("\n", linesList1);
 
         StdinTestCase[] testCases = {
                 new StdinTestCase()
@@ -303,15 +272,8 @@ class GrepApplicationTest {
      * Tests if output lines matching pattern are correct
      */
     @Test
-    void grepFromStdin_test11_caseSensi_count() {
-
-        String[] linesList = {
-                "aBcde on this line",
-                "12345 on this line",
-                "!@#$% on this Line"
-        };
-
-        String linesData = String.join("\n", linesList);
+    void grepFromStdinTest11CaseSensitiveCount() {
+        String linesData = String.join("\n", linesList2);
 
         StdinTestCase[] testCases = {
                 new StdinTestCase()
@@ -338,25 +300,18 @@ class GrepApplicationTest {
      * Tests if output lines matching pattern are correct
      */
     @Test
-    void grepFromStdin_test11_caseInsensi_lines() {
-
-        String[] linesList = {
-                "abcde on this line",
-                "12345 on this line",
-                "!@#$% on this Line"
-        };
-
-        String linesData = String.join("\n", linesList);
+    void grepFromStdinTest11CaseInsensitiveLines() {
+        String linesData = String.join("\n", linesList2);
 
         StdinTestCase[] testCases = {
                 new StdinTestCase()
-                        .expected(linesList[0])
+                        .expected(linesList2[0])
                         .pattern("aBcde")
                         .inputStream(linesData)
                         .isCaseInsensitive(true)
                         .isCountOfLinesOnly(false),
                 new StdinTestCase()
-                        .expected(String.join(StringUtils.STRING_NEWLINE, linesList))
+                        .expected(String.join(StringUtils.STRING_NEWLINE, linesList2))
                         .pattern("on this Line")
                         .inputStream(linesData)
                         .isCaseInsensitive(true)
@@ -373,25 +328,18 @@ class GrepApplicationTest {
      * Tests if output lines matching pattern are correct
      */
     @Test
-    void grepFromStdin_test12_caseSensi_lines() {
-
-        String[] linesList = {
-                "aBcde on this line",
-                "12345 on this line",
-                "!@#$% on this Line"
-        };
-
-        String linesData = String.join("\n", linesList);
+    void grepFromStdinTest12CaseSensitiveLines() {
+        String linesData = String.join("\n", linesList2);
 
         StdinTestCase[] testCases = {
                 new StdinTestCase()
-                        .expected(linesList[0])
+                        .expected(linesList2[0])
                         .pattern("aBcde")
                         .inputStream(linesData)
                         .isCountOfLinesOnly(false)
                         .isCaseInsensitive(false),
                 new StdinTestCase()
-                        .expected(linesList[2])
+                        .expected(linesList2[2])
                         .pattern("on this Line")
                         .inputStream(linesData)
                         .isCountOfLinesOnly(false)
