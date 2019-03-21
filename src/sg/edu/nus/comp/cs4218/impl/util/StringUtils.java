@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.Arrays;
 
 public final class StringUtils {
-    public static final String STRING_NEWLINE = "\n";//System.lineSeparator();
+    public static final String STRING_NEWLINE = System.lineSeparator();
     public static final String STRING_CURR_DIR = ".";
     public static final String STRING_PARENT_DIR = "..";
     public static final char CHAR_FILE_SEP = File.separatorChar;
