@@ -45,6 +45,8 @@ public class DateApplication implements DateInterface {
         else{
             if(formatStr.charAt(0)=='+'){
                 formatStr = formatStr.substring(1);
+            } else {
+                throw new DateException("Invalid format. Date format must start with '+'");
             }
             for(String entry : dateStr.keySet()){
                 formatStr = formatStr.replaceAll(entry, dateStr.get(entry));
@@ -66,6 +68,9 @@ public class DateApplication implements DateInterface {
      */
     @Override
     public void run(String[] args, InputStream stdin, OutputStream stdout) throws DateException {
+        if (args == null || stdout == null) {
+            throw new DateException("Null Pointer Exception");
+        }
         if(args.length > 1){
             throw new DateException("Invalid syntax.");
         }
@@ -73,7 +78,7 @@ public class DateApplication implements DateInterface {
         try {
             stdout.write((getDate(format)).getBytes());
         } catch (IOException e) {
-            e.printStackTrace();
+            throw (DateException) new DateException("Could not write to output stream").initCause(e);
         }
     }
 }
