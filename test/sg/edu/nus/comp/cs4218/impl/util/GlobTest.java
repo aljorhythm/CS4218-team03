@@ -11,19 +11,26 @@ public class GlobTest extends DirectoryStructureTest {
 
     @Test
     void glob() throws IOException {
-        List<String> res = Glob.glob(Paths.get(testDir), "*");
-        Assertions.assertEquals(allFiles, res.toArray(new String[]{}));
+        List<String> res = Glob.glob(Paths.get(testRootDir), "*");
+        Assertions.assertEquals(allTestRootFiles, res.toArray(new String[]{}));
     }
 
     @Test
     void globDirectory() throws IOException {
-        List<String> res = Glob.glob(Paths.get(testDir), "*");
-        Assertions.assertArrayEquals(allFiles, res.toArray(new String[]{}));
+        List<String> res = Glob.glob(Paths.get(testRootDir), "*");
+        Assertions.assertArrayEquals(allTestRootFiles, res.toArray(new String[]{}));
     }
 
     @Test
-    void globDirectoryAndFiles() {
+    void globDirectoryAndFiles() throws IOException {
+        List<String> res = Glob.glob(Paths.get(testRootDir), "*");
+        Assertions.assertArrayEquals(allTestRootFiles, res.toArray(new String[]{}));
+    }
 
+    @Test
+    void globSystemRootDirectory() {
+//        List<String> res = Glob.glob(Paths.get(), "*");
+//        Assertions.assertArrayEquals(allTestRootFiles, res.toArray(new String[]{}));
     }
 
 }

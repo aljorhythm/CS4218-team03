@@ -36,7 +36,7 @@ class RegexArgumentTest extends DirectoryStructureTest {
      */
     @Test()
     void expandAllFiles() throws AbstractApplicationException, ShellException, IOException {
-        RegexArgument argument = new RegexArgument(testDir + "/*");
+        RegexArgument argument = new RegexArgument(testRootDir + "/*");
         List<String> actual = argument.globFiles();
         assertEquals(allFilesList, actual);
     }
