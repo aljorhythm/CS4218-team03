@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import sg.edu.nus.comp.cs4218.exception.GrepException;
 import sg.edu.nus.comp.cs4218.impl.app.GrepApplication;
 import sg.edu.nus.comp.cs4218.impl.util.IOUtils;
+import sg.edu.nus.comp.cs4218.impl.util.StringUtils;
 
 import java.io.InputStream;
 
@@ -209,7 +210,7 @@ class GrepApplicationTest {
                 "!@#$% on this line"
         };
 
-        String linesData = String.join("\n", linesList);
+        String linesData = String.join(StringUtils.STRING_NEWLINE, linesList);
 
         StdinTestCase[] testCases = {
                 new StdinTestCase()
@@ -355,7 +356,7 @@ class GrepApplicationTest {
                         .isCaseInsensitive(true)
                         .isCountOfLinesOnly(false),
                 new StdinTestCase()
-                        .expected(String.join("\n", linesList))
+                        .expected(String.join(StringUtils.STRING_NEWLINE, linesList))
                         .pattern("on this Line")
                         .inputStream(linesData)
                         .isCaseInsensitive(true)
