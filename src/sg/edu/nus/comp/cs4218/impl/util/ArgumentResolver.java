@@ -65,7 +65,9 @@ public final class ArgumentResolver {
                         unmatchedQuotes.remove();
                         unmatchedQuotes.add(chr);
                         unmatchedQuotes.add(CHAR_DOUBLE_QUOTE);
-                    }else unmatchedQuotes.add(chr);
+                    }else {
+                        unmatchedQuotes.add(chr);
+                    }
 
                     if (!parsedArg.isEmpty()) {
                         appendParsedArgIntoSegment(parsedArgsSegment, parsedArg);
@@ -156,10 +158,11 @@ public final class ArgumentResolver {
             }
         }
 
-
-
         if (!parsedArg.isEmpty()) {
             appendParsedArgIntoSegment(parsedArgsSegment, parsedArg);
+        }
+        if (subCommand.length() != 0){
+            appendParsedArgIntoSegment(parsedArgsSegment,new RegexArgument(subCommand.toString()));
         }
 
         // perform globing
