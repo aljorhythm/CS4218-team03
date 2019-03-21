@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
 import sg.edu.nus.comp.cs4218.exception.ShellException;
-import sg.edu.nus.comp.cs4218.impl.util.GlobTest;
+import sg.edu.nus.comp.cs4218.impl.util.DirectoryStructureTest;
 import sg.edu.nus.comp.cs4218.impl.util.RegexArgument;
 
 import java.io.IOException;
@@ -12,7 +12,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class RegexArgumentTest extends GlobTest {
+class RegexArgumentTest extends DirectoryStructureTest {
 
     /**
      * test if *.txt expansion is correct
