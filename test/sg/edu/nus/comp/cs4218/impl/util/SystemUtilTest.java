@@ -5,18 +5,18 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SystemUtilsTest {
+class SystemUtilTest {
 
     /**
      * Checks logical equivalency of file separator and operating system
      */
     @Test
     void shouldReturnRespectiveFileSeparator() {
-        if(SystemUtils.isMac()) {
+        if(SystemUtil.isMac()) {
             assertEquals("/", StringUtils.STRING_FILE_SEP);
-        } else if (SystemUtils.isUnix()) {
+        } else if (SystemUtil.isUnix()) {
             assertEquals("/", StringUtils.STRING_FILE_SEP);
-        } else if(SystemUtils.isWindows()) {
+        } else if(SystemUtil.isWindows()) {
             assertEquals("\\", StringUtils.STRING_FILE_SEP);
         } else {
             Assertions.fail("OS not handled");
