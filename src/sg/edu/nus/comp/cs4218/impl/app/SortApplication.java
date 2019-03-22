@@ -27,47 +27,19 @@ public class SortApplication implements SortInterface{
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String string;
             while ((string = bufferedReader.readLine()) != null){
-                if (isFirstWordNumber){
-                    if (!StringUtils.isNumberic(string.split(" ")[0])) throw new SortException("");
+                if (isFirstWordNumber && !StringUtils.isNumberic(string.split(" ")[0])){
+                    throw new SortException("");
                 }
                 list.add(string);
             }
             bufferedReader.close();
             fileReader.close();
         }
-        Collections.sort(list, new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-                int result = o1.length()>=o2.length()?1:-1;
-                int index = 0;
-                int wordLength = Math.min(o1.length(),o2.length());
-                if (isFirstWordNumber){
-                    if (StringUtils.getFirstNum(o1)>StringUtils.getFirstNum(o2))
-                        return 1;
-                    else if (StringUtils.getFirstNum(o1)<StringUtils.getFirstNum(o2))
-                        return -1;
-                }
-                while (index < wordLength){
-                    char charOfO1 = o1.charAt(index), charOfO2 = o2.charAt(index);
-                    if (isCaseIndependent){
-                        charOfO1 = String.valueOf(charOfO1).toUpperCase().charAt(0);
-                        charOfO2 = String.valueOf(charOfO2).toUpperCase().charAt(0);
-                    }
-                    if (charOfO1 > charOfO2) {
-                        return 1;
-                    }
-                    else if (charOfO1 < charOfO2){
-                        return -1;
-                    }
-                    index++;
-                }
-                return result;
-            }
-        });
+        sortList(list, isFirstWordNumber, isCaseIndependent);
         if (isReverseOrder){
             Collections.reverse(list);
         }
-        return String.join(StringUtils.STRING_NEWLINE,list.toArray(new String[list.size()]));
+        return String.join(StringUtils.STRING_NEWLINE,list.toArray(new String[0]));
     }
 
     /**
@@ -86,44 +58,16 @@ public class SortApplication implements SortInterface{
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(stdin));
         String temp;
         while ((temp = bufferedReader.readLine()) != null){
-            if (isFirstWordNumber){
-                if (!StringUtils.isNumberic(temp.split(" ")[0])) throw new SortException("");
+            if (isFirstWordNumber && !StringUtils.isNumberic(temp.split(" ")[0])){
+                throw new SortException("");
             }
             list.add(temp);
         }
-        Collections.sort(list, new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-                int result = o1.length()>=o2.length()?1:-1;
-                int index = 0;
-                int wordLength = Math.min(o1.length(),o2.length());
-                if (isFirstWordNumber){
-                    if (StringUtils.getFirstNum(o1)>StringUtils.getFirstNum(o2))
-                        return 1;
-                    else if (StringUtils.getFirstNum(o1)<StringUtils.getFirstNum(o2))
-                        return -1;
-                }
-                while (index < wordLength){
-                    char charOfO1 = o1.charAt(index), charOfO2 = o2.charAt(index);
-                    if (isCaseIndependent){
-                        charOfO1 = String.valueOf(charOfO1).toUpperCase().charAt(0);
-                        charOfO2 = String.valueOf(charOfO2).toUpperCase().charAt(0);
-                    }
-                    if (charOfO1 > charOfO2) {
-                        return 1;
-                    }
-                    else if (charOfO1 < charOfO2){
-                        return -1;
-                    }
-                    index++;
-                }
-                return result;
-            }
-        });
+        sortList(list, isFirstWordNumber, isCaseIndependent);
         if (isReverseOrder){
             Collections.reverse(list);
         }
-        return String.join(StringUtils.STRING_NEWLINE,list.toArray(new String[list.size()]));
+        return String.join(StringUtils.STRING_NEWLINE,list.toArray(new String[0]));
     }
 
     public void run(String[] args, InputStream stdin, OutputStream stdout) throws AbstractApplicationException {
@@ -131,9 +75,15 @@ public class SortApplication implements SortInterface{
         ArrayList<String> files = new ArrayList<>();
         for (String arg : args){
             if (arg.charAt(0) == '-'){
-                if (arg.contains("n")) firstWord = true;
-                if (arg.contains("r")) reverseOrder = true;
-                if (arg.contains("f")) caseIndependent = true;
+                if (arg.contains("n")) {
+                    firstWord = true;
+                }
+                if (arg.contains("r")) {
+                    reverseOrder = true;
+                }
+                if (arg.contains("f")) {
+                    caseIndependent = true;
+                }
             }
             else {
                 useFile = true;
@@ -158,5 +108,41 @@ public class SortApplication implements SortInterface{
                 e.printStackTrace();
             }
         }
+    }
+    public static void sortList(List list, boolean isFirstWordNumber, boolean isCaseIndependent){
+        Collections.sort(list, new Comparator<String>() {
+            @Override
+            public int compare(String string1, String string2) {
+                int result = string1.length()>=string2.length()?1:-1;
+                int index = 0;
+                int wordLength = Math.min(string1.length(),string2.length());
+                if (isFirstWordNumber){
+                    if (StringUtils.getFirstNum(string1)>StringUtils.getFirstNum(string2))
+                    {
+                        return 1;
+                    }
+                    else if (StringUtils.getFirstNum(string1)<StringUtils.getFirstNum(string2))
+                    {
+                        return -1;
+                    }
+                }
+                while (index < wordLength){
+                    char charOfO1 = string1.charAt(index), charOfO2 = string2.charAt(index);
+                    if (isCaseIndependent){
+                        Locale defLoc = Locale.getDefault();
+                        charOfO1 = String.valueOf(charOfO1).toUpperCase(defLoc).charAt(0);
+                        charOfO2 = String.valueOf(charOfO2).toUpperCase(defLoc).charAt(0);
+                    }
+                    if (charOfO1 > charOfO2) {
+                        return 1;
+                    }
+                    else if (charOfO1 < charOfO2){
+                        return -1;
+                    }
+                    index++;
+                }
+                return result;
+            }
+        });
     }
 }
