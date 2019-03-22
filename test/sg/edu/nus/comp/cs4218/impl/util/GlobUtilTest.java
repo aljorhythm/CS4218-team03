@@ -35,7 +35,7 @@ public class GlobUtilTest extends DirectoryStructureTest {
     @Test
     void globTestDirectory_all() throws IOException {
         List<String> res = GlobUtil.glob(Paths.get(testRootDir), "*");
-        TestUtils.assertArrayListEquals(allTestRootFiles, res);
+        TestUtils.assertArrayEqualsList(allTestRootFiles, res);
     }
 
     /**
@@ -134,7 +134,6 @@ public class GlobUtilTest extends DirectoryStructureTest {
                 .getDefault()
                 .getRootDirectories();
         for (Path root : roots) {
-            System.out.println(root);
             List<String> res = GlobUtil.glob(root, "*ome");
             String[] expected = new String[]{"/home"};
             Assertions.assertArrayEquals(expected, res.toArray(new String[]{}));

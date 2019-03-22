@@ -34,7 +34,7 @@ public class TestUtils {
      * @param arr
      * @param res List that will be converted to an array before assertion
      */
-    public static void assertArrayListEquals(String[] arr, List<String> res) {
+    public static void assertArrayEqualsList(String[] arr, List<String> res) {
         if(arr == null) {
             assertEquals(arr ,res);
         } else {
@@ -55,15 +55,15 @@ public class TestUtils {
     @Test
     public void arrayAndListAreEqual() {
         String hello = "HELLO", two = "2222";
-        assertArrayListEquals(null, null);
+        assertArrayEqualsList(null, null);
         ArrayList<String> strings = new ArrayList<String>();
-        assertArrayListEquals(new String[]{}, strings);
+        assertArrayEqualsList(new String[]{}, strings);
         strings.add(hello);
-        assertArrayListEquals(new String[]{hello}, strings);
+        assertArrayEqualsList(new String[]{hello}, strings);
         strings.add(two);
-        assertArrayListEquals(new String[]{hello, two}, strings);
+        assertArrayEqualsList(new String[]{hello, two}, strings);
         assertThrows(AssertionFailedError.class, () -> {
-            assertArrayListEquals(new String[]{hello}, strings);
+            assertArrayEqualsList(new String[]{hello}, strings);
         });
     }
 }

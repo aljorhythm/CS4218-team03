@@ -67,7 +67,6 @@ public final class GlobUtil {
          */
         void find(Path file) {
             Path name = file.toAbsolutePath();
-            System.out.println(file);
             boolean toCollect = name != null && matcher.matches(name);
             if (toCollect) {
                 collect(file);
