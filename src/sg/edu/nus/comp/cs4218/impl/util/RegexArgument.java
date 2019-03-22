@@ -50,7 +50,7 @@ public final class RegexArgument {
     }
 
     /**
-     * Empty list returned if directory is invalid or no files are matched.
+     * List containing only plain text returned if directory is invalid or no files are matched.
      *
      * @return list of files and directories with names that match glob pattern
      */
