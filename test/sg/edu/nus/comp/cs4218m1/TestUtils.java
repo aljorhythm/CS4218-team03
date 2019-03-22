@@ -12,6 +12,11 @@ public class TestUtils {
     public static final String pathToTestDataDir = System.getProperty("user.dir") + File.separator + "resources";
 
     /**
+     * Non existent folder
+     */
+    public static final String nonExistentFolder = pathToTestDataSubdir("non-existent");
+
+    /**
      *
      * @param subDir
      * @return sub-directory path from test data folder
