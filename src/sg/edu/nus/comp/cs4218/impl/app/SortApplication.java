@@ -97,14 +97,14 @@ public class SortApplication implements SortInterface{
                     file[i] = files.get(i);
                 }
                 sortFromFiles(firstWord,reverseOrder,caseIndependent,file);
-            }catch (Exception e){
+            } catch (Exception e){
                 e.printStackTrace();
             }
         }
         else {
             try {
                 sortFromStdin(firstWord,reverseOrder,caseIndependent,stdin);
-            }catch (Exception e){
+            } catch (Exception e){
                 e.printStackTrace();
             }
         }
