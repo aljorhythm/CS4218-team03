@@ -1,0 +1,5 @@
+This will be the file that will contain everything.
+This will be a long space     .
+ <34>
+Here come a few Other characters: .;'/,["[ ] &&   &
+Here comes a line with no newline at the end.

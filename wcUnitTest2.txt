@@ -1,0 +1,3 @@
+This file will have a few whitespaces with alphabets.
+	Tab here.
+     Random spaces             here.
