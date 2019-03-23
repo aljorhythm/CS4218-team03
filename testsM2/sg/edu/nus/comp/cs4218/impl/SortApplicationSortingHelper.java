@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
+
 public class SortApplicationSortingHelper {
 
     private SortApplicationNumericComparatorHelper numericSorter;
@@ -72,11 +74,12 @@ public class SortApplicationSortingHelper {
         // Put everything back into a string
         StringBuilder result = new StringBuilder();
         for (String temp : tempList) {
-            String temp2 = temp + "\n";
+            String temp2 = temp + STRING_NEWLINE;
             result.append(temp2);
         }
 
         // To remove the trailing newline character
+        result = result.deleteCharAt(result.length() - 1);
         result = result.deleteCharAt(result.length() - 1);
 
         return result.toString();

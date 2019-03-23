@@ -63,7 +63,7 @@ public class FindApplicationTest {
      */
     @Test
     void testFindFolderWildcardInputSuccess() throws FindException {
-        assertEquals(here + File.separator + findFileName, findApplication.findFolderContent("find*", here));
+        assertEquals(here + File.separator + findFileName, findApplication.findFolderContent("find.*", here));
     }
 
     /**

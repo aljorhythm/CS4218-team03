@@ -25,16 +25,17 @@ class SedApplicationTest {
     /**
      * Data
      */
-    static String string_empty = "";
-    static String string_empty_sed = "";
-    static String string1_for_first = "first * test";
-    static String string1_for_first_sed = "first replacement test";
+    static String stringEmpty = "";
+    static String stringEmptySed = "";
+    static String string1ForFirst = "first * test";
+    static String string1ForFirstSed = "first replacement test";
     static String replacement = "replacement";
-    static String regexp1 = ".*\\*.*";
-    static String string2_for_second = String.join(StringUtils.STRING_NEWLINE, new String[]{"second * test","second * test"});
-    static String string2_for_second_sed = String.join(StringUtils.STRING_NEWLINE, new String[]{"second replacement test","second replacement test"});
-    static String string3_for_third = "third * test *";
-    static String string3_for_third_sed = "third * test replacement";
+    // You need to add [] around * to replace * itself.
+    static String regexp1 = "[*]";
+    static String string2ForSecond = String.join(StringUtils.STRING_NEWLINE, new String[]{"second * test","second * test"});
+    static String string2ForSecondSed = String.join(StringUtils.STRING_NEWLINE, new String[]{"second replacement test","second replacement test"});
+    static String string3ForThird = "third * test *";
+    static String string3ForThirdSed = "third * test replacement";
 
     /**
      * Helper class for easier reading and writing of test cases.
@@ -122,43 +123,46 @@ class SedApplicationTest {
 //    }
 
     @Test
-    void sedFromStdin_test0() throws Exception {
+    void sedFromStdinTest0() throws Exception {
         newCase()
-                .input(string_empty)
-                .expected(string_empty_sed)
-                .run();
-    }
-
-    @Test
-    void sedFromStdin_test1() throws Exception {
-        newCase()
-                .input(string1_for_first)
-                .setRegexp(regexp1)
-                .setReplacement(replacement)
-                .setReplacementIndex(0)
-                .expected(string1_for_first_sed)
-                .run();
-    }
-
-    @Test
-    void sedFromStdin_test2() throws Exception {
-        newCase()
-                .input(string2_for_second)
-                .setRegexp(regexp1)
-                .setReplacement(replacement)
-                .setReplacementIndex(0)
-                .expected(string2_for_second_sed)
-                .run();
-    }
-
-    @Test
-    void sedFromStdin_test3() throws Exception{
-        newCase()
-                .input(string3_for_third)
+                .input(stringEmpty)
                 .setRegexp(regexp1)
                 .setReplacement(replacement)
                 .setReplacementIndex(1)
-                .expected(string3_for_third_sed)
+                .expected(stringEmptySed)
+                .run();
+    }
+
+    @Test
+    void sedFromStdinTest1() throws Exception {
+        newCase()
+                .input(string1ForFirst)
+                .setRegexp(regexp1)
+                .setReplacement(replacement)
+                .setReplacementIndex(1)
+                .expected(string1ForFirstSed)
+                .run();
+    }
+
+    @Test
+    void sedFromStdinTest2() throws Exception {
+        newCase()
+                .input(string2ForSecond)
+                .setRegexp(regexp1)
+                .setReplacement(replacement)
+                .setReplacementIndex(1)
+                .expected(string2ForSecondSed)
+                .run();
+    }
+
+    @Test
+    void sedFromStdinTest3() throws Exception{
+        newCase()
+                .input(string3ForThird)
+                .setRegexp(regexp1)
+                .setReplacement(replacement)
+                .setReplacementIndex(2)
+                .expected(string3ForThirdSed)
                 .run();
     }
 

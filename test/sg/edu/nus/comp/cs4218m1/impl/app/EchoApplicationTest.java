@@ -61,8 +61,9 @@ class EchoApplicationTest {
      */
     @Test
     public void echoStrings() {
-        assertParamsAndExpected("abc", "abc");
-        assertParamsAndExpected("abc cde.", new String[]{"abc", "cde."});
+        String testString = "abc";
+        assertParamsAndExpected(testString, testString);
+        assertParamsAndExpected("abc cde.", new String[]{testString, "cde."});
     }
 
     /**
@@ -71,7 +72,7 @@ class EchoApplicationTest {
      * @throws Exception
      */
     @Test
-    public void run_noArgs_noInputOutput() {
+    public void runNoArgsNoInputOutput() {
         assertThrows(Exception.class, () -> {
             application.run(null, null, null);
         });

@@ -28,6 +28,7 @@ public class ApplicationRunner {
 
     /**
      * Run the application as specified by the application command keyword and arguments.
+     * The first argument of argsArray will be deleted before running commands.
      *
      * @param app          String containing the keyword that specifies what application to run.
      * @param argsArray    String array containing the arguments to pass to the applications for
@@ -38,7 +39,7 @@ public class ApplicationRunner {
      * @throws ShellException               If an unsupported or invalid application command is
      *                                      detected.
      */
-    public void runApp(String app, String[] argsArray, InputStream inputStream,
+    public void runApp(String app, String[] argsArray, InputStream inputStream,//NOPMD
                        OutputStream outputStream)
             throws ShellException, AbstractApplicationException {
         Application application;
@@ -60,15 +61,15 @@ public class ApplicationRunner {
             case APP_EXIT:
                 application = new ExitApplication();
                 break;
-//            case APP_FIND:
-//                application = new FindApplication();
-//                break;
+            case APP_FIND:
+                application = new FindApplication();
+                break;
             case APP_GREP:
                 application = new GrepApplication();
                 break;
-//            case APP_LS:
-//                application = new LsApplication();
-//                break;
+            case APP_LS:
+                application = new LsApplication();
+                break;
             case APP_MKDIR:
                 application = new MkdirApplication();
                 break;
@@ -91,7 +92,15 @@ public class ApplicationRunner {
         application.run(argsT, inputStream, outputStream);
     }
 
-    private static String[] deleteDefaultArg(String[] argsArray){
+    /**
+     * Deletes first argument if not empty
+     * @param argsArray
+     * @return empty array if argsArray is null
+     */
+    public static String[] deleteDefaultArg(String... argsArray){
+        if(argsArray == null) {
+            return new String[]{};
+        }
         String[] res = new String[argsArray.length-1];
         for(int i = 0;i<res.length;i++){
             res[i] = argsArray[i+1];

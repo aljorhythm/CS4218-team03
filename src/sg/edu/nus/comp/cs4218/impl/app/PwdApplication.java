@@ -1,12 +1,12 @@
 package sg.edu.nus.comp.cs4218.impl.app;
 
+import sg.edu.nus.comp.cs4218.Environment;
 import sg.edu.nus.comp.cs4218.app.PwdInterface;
 import sg.edu.nus.comp.cs4218.exception.PwdException;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.file.Paths;
 
 public class PwdApplication implements PwdInterface {
 
@@ -18,7 +18,7 @@ public class PwdApplication implements PwdInterface {
      */
     @Override
     public String getAbsolutePath() throws PwdException {
-        return Paths.get("").toAbsolutePath().toString();
+        return Environment.currentDirectory;
     }
 
     /**
@@ -34,9 +34,9 @@ public class PwdApplication implements PwdInterface {
         try {
             stdout.write(getAbsolutePath().getBytes());
         } catch (IOException e) {
-            throw (PwdException) new PwdException("could not write to outputstream").initCause(e);
+            throw (PwdException) new PwdException("Could not write to output stream").initCause(e);
         } catch (NullPointerException e) {
-            throw (PwdException) new PwdException("outputstream is null").initCause(e);
+            throw (PwdException) new PwdException("Null Pointer Exception").initCause(e);
         }
     }
 }

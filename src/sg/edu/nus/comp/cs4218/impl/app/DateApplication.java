@@ -1,5 +1,6 @@
 package sg.edu.nus.comp.cs4218.impl.app;
 
+import sg.edu.nus.comp.cs4218.Environment;
 import sg.edu.nus.comp.cs4218.app.DateInterface;
 import sg.edu.nus.comp.cs4218.exception.DateException;
 
@@ -10,50 +11,60 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class DateApplication implements DateInterface {
 
-    public void initMap(HashMap<String,String> date_str){
+    public void initMap(HashMap<String,String> dateStr){
         Date date = new Date();
-        DateFormat sdf = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
+        // Should specify Locale.US (or whatever)
+        DateFormat sdf = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss", Locale.CHINA);
         String formatDate = sdf.format(date);
-        date_str.put("%y",formatDate.substring(6,10));
-        date_str.put("%m",formatDate.substring(0,2));
-        date_str.put("%d",formatDate.substring(3,5));
-        date_str.put("%H",formatDate.substring(11,13));
-        date_str.put("%M",formatDate.substring(14,16));
-        date_str.put("%S",formatDate.substring(17));
+        dateStr.put("%y",formatDate.substring(6,10));
+        dateStr.put("%m",formatDate.substring(0,2));
+        dateStr.put("%d",formatDate.substring(3,5));
+        dateStr.put("%H",formatDate.substring(11,13));
+        dateStr.put("%M",formatDate.substring(14,16));
+        dateStr.put("%S",formatDate.substring(17));
     }
 
+    /**
+     *
+     * @param format String of user-defined format
+     * @return
+     * @throws DateException
+     */
     @Override
     public String getDate(String format) throws DateException {
-        if(format == null){
+        String formatStr = format;
+        if(formatStr == null){
             throw new DateException("Null format");
         }
-        HashMap<String,String> date_str = new HashMap<>();
-        initMap(date_str);
+        HashMap<String,String> dateStr = new HashMap<>();
+        initMap(dateStr);
         String formatDate = null;
         Date date = new Date();
-        DateFormat sdf = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
+        DateFormat sdf = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss", Environment.LOCALE);
         //This is the default version.
-        if(format.length() == 0){
+        if(formatStr.length() == 0){
             formatDate = sdf.format(date);
         }
         else{
-            if(format.charAt(0)=='+'){
-                format = format.substring(1);
+            if(formatStr.charAt(0)=='+'){
+                formatStr = formatStr.substring(1);
+            } else {
+                throw new DateException("Invalid format. Date format must start with '+'");
             }
-            for(String entry : date_str.keySet()){
-                format = format.replaceAll(entry, date_str.get(entry));
+            for(String entry : dateStr.keySet()){
+                formatStr = formatStr.replaceAll(entry, dateStr.get(entry));
             }
-            formatDate = format;
+            formatDate = formatStr;
         }
         return formatDate;
     }
 
     /**
-     * Runs the cd application with the specified arguments.
-     * Assumption: The application must take in one arg. (cd without args is not supported)
+     * Runs the date application with the specified arguments.
      *
      * @param args   Array of arguments for the application.It may contain the format.
      * @param stdin  An InputStream, not used.
@@ -63,6 +74,9 @@ public class DateApplication implements DateInterface {
      */
     @Override
     public void run(String[] args, InputStream stdin, OutputStream stdout) throws DateException {
+        if (args == null || stdout == null) {
+            throw new DateException("Null Pointer Exception");
+        }
         if(args.length > 1){
             throw new DateException("Invalid syntax.");
         }
@@ -70,7 +84,7 @@ public class DateApplication implements DateInterface {
         try {
             stdout.write((getDate(format)).getBytes());
         } catch (IOException e) {
-            e.printStackTrace();
+            throw (DateException) new DateException("Could not write to output stream").initCause(e);
         }
     }
 }

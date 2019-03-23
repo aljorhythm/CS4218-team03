@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
+
 public final class FileIOTestHelper {
 
     private FileIOTestHelper() {}
@@ -26,7 +28,7 @@ public final class FileIOTestHelper {
         StringBuilder result = new StringBuilder();
         String currentLine = reader.readLine();
         while(currentLine != null) {
-            currentLine = currentLine + "\n";
+            currentLine = currentLine + STRING_NEWLINE;
             result.append(currentLine);
             currentLine = reader.readLine();
         }

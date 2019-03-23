@@ -15,7 +15,7 @@ import static sg.edu.nus.comp.cs4218.impl.ShellImpl.ERR_SYNTAX;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.*;
 
 @SuppressWarnings("PMD.ExcessiveMethodLength")
-public final class CommandBuilder {
+public final class CommandBuilder {//NOPMD
     /**
      * Regular expression for extracting valid arguments from the command string:
      * (NO_QUOTE | SINGLE_QUOTE | NESTED_BACK_QUOTE | DOUBLE_QUOTE | BACK_QUOTE)+
@@ -51,7 +51,7 @@ public final class CommandBuilder {
 
         List<Command> cmdsForSequence = new LinkedList<>();
         List<CallCommand> callCmdsForPipe = new LinkedList<>();
-        List<Command> cmdsForIORedirection = new LinkedList<>();
+        List<Command> cmdsForIORedirection = new LinkedList<>();//NOPMD
         List<String> tokens = new LinkedList<>();
 
         String commandSubstring = commandString;
@@ -99,26 +99,27 @@ public final class CommandBuilder {
                 case CHAR_REDIR_OUTPUT:
                     // add as a separate token on its own
                     tokens.add(String.valueOf(firstChar));
-                    if (cmdsForIORedirection.isEmpty()){
-                        int index = commandSubstring.indexOf(CHAR_SPACE,2);
+                    if (cmdsForIORedirection.isEmpty()) {
+                        int index = commandSubstring.indexOf(CHAR_SPACE, 2);
                         if (index < 2) {
                             tokens.add(commandSubstring.substring(2));
                             commandSubstring = "";
+                        } else {
+                            tokens.add(commandSubstring.substring(2, index + 1));
+                            commandSubstring = commandSubstring.substring(index + 1);
                         }
-                        else {
-                            tokens.add(commandSubstring.substring(2,index+1));
-                            commandSubstring = commandSubstring.substring(index+1);
-                        }
-                        cmdsForIORedirection.add(new CallCommand(tokens,appRunner));
+                        cmdsForIORedirection.add(new CallCommand(tokens, appRunner));
                     }
                     break;
                 case CHAR_SPACE:
-                    if(tokens.isEmpty())
+                    if (tokens.isEmpty()) {
                         throw new ShellException(ERR_SYNTAX);
-                    if(commandSubstring.length() > 1)
+                    }
+                    if (commandSubstring.length() > 1) {
                         commandSubstring = commandSubstring.substring(0);
-                    else
+                    } else {
                         commandSubstring = null;
+                    }
                     break;
                 case CHAR_PIPE:
                     if (tokens.isEmpty()) {

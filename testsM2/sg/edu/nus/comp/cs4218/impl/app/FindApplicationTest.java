@@ -9,8 +9,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import sg.edu.nus.comp.cs4218.exception.FindException;
-import sg.edu.nus.comp.cs4218.impl.app.FindApplication;
 import sg.edu.nus.comp.cs4218.impl.util.StringUtils;
+import sg.edu.nus.comp.cs4218m1.TestUtils;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -28,13 +28,14 @@ class FindApplicationTest {
     private static ByteArrayOutputStream mockBos;
     private static ArrayList<String> testFilePath;
 
-    private static final String FOLDER_PATH = System.getProperty("user.dir");
-    private static final String BASIC_FOLDER = "testFolder";
-    private static final String ANOTHER_FOLDER = "anotherTestFolder";
+    private static final String FOLDER_PATH = TestUtils.pathToTestDataSubdir("findTestDirTDD");
+    private static final String BASIC_FOLDER = FOLDER_PATH + File.separator + "testFolder";
+    private static final String ANOTHER_FOLDER = FOLDER_PATH + File.separator + "anotherTestFolder";
+    private static final String EMPTY_FOLDER = FOLDER_PATH + File.separator + "emptyFolder";
     private static final String NESTED_FOLDER = "nestedFolder";
     private static final String NUMERIC_FOLDER = "123";
     private static final String INVALID_FOLDER = "nonExistentFolder";
-    private static final String EMPTY_FOLDER = "emptyFolder";
+
 
     private static final String BASIC_FILE_NAME = "test.txt";
     private static final String ANOTHER_FILE_NAME = "anothertest.txt";
@@ -50,14 +51,10 @@ class FindApplicationTest {
     static void setUpAll() throws IOException {
         testFilePath = new ArrayList<>();
         //Create folders and files for testing
-        File baseFolder = new File(FOLDER_PATH + File.separator + EMPTY_FOLDER);
+        File baseFolder = new File(EMPTY_FOLDER);
         if (baseFolder.mkdirs()) {
         }
-        baseFolder = new File(FOLDER_PATH + File.separator + BASIC_FOLDER);
-        if (baseFolder.mkdirs()) {
-            addFileToFolder(baseFolder, BASIC_FILE_NAME);
-            addFileToFolder(baseFolder, NUMERIC_FILE_NAME);
-        }
+        baseFolder = new File(BASIC_FOLDER);
         File baseNestedFolder = new File(baseFolder.getPath() + File.separator + NESTED_FOLDER);
         if (baseNestedFolder.mkdirs()) {
             addFileToFolder(baseNestedFolder, ANOTHER_FILE_NAME);
@@ -66,7 +63,7 @@ class FindApplicationTest {
         if (numericFolder.mkdirs()) {
             addFileToFolder(numericFolder, NUMERIC_FILE_NAME);
         }
-        baseFolder = new File(FOLDER_PATH + File.separator + ANOTHER_FOLDER);
+        baseFolder = new File(ANOTHER_FOLDER);
         if (baseFolder.mkdirs()) {
             addFileToFolder(baseFolder, ANOTHER_FILE_NAME);
         }
@@ -80,17 +77,16 @@ class FindApplicationTest {
             file.delete();
         }
         //Delete all folders, starting from nested folders
-        File baseFolder = new File(FOLDER_PATH + File.separator + BASIC_FOLDER);
-        File anotherBaseFolder = new File(FOLDER_PATH + File.separator + ANOTHER_FOLDER);
+        File baseFolder = new File(BASIC_FOLDER);
+        File anotherBaseFolder = new File(ANOTHER_FOLDER);
         File baseNestedFolder = new File(baseFolder.getPath() + File.separator + NESTED_FOLDER);
         File numericFolder = new File(baseFolder.getPath() + File.separator + NUMERIC_FOLDER);
-        File emptyFolder = new File(FOLDER_PATH + File.separator + EMPTY_FOLDER);
+        File emptyFolder = new File(EMPTY_FOLDER);
 
         emptyFolder.delete();
         numericFolder.delete();
         baseNestedFolder.delete();
         anotherBaseFolder.delete();
-        baseFolder.delete();
     }
 
     @BeforeEach
@@ -119,8 +115,8 @@ class FindApplicationTest {
     @Test
     void testFindMultipleFoldersContentSameFileExists() throws Exception {
         String[] folders = new String[]{BASIC_FOLDER, ANOTHER_FOLDER};
-        String expectedResult = ANOTHER_FOLDER + File.separator + ANOTHER_FILE_NAME + StringUtils.STRING_NEWLINE +
-                BASIC_FOLDER + File.separator + NESTED_FOLDER + File.separator + ANOTHER_FILE_NAME;
+        String expectedResult = BASIC_FOLDER + File.separator + NESTED_FOLDER + File.separator + ANOTHER_FILE_NAME
+                + StringUtils.STRING_NEWLINE + ANOTHER_FOLDER + File.separator + ANOTHER_FILE_NAME;
 
         assertEquals(expectedResult, application.findFolderContent(ANOTHER_FILE_NAME, folders));
     }
@@ -171,8 +167,8 @@ class FindApplicationTest {
     @Test
     void testFindFolderNotExistsContent() throws Exception {
         String expectedResult = "find: " + INVALID_FOLDER + NOT_FOUND_MSG;
-
-        assertEquals(expectedResult, application.findFolderContent(BASIC_FILE_NAME, INVALID_FOLDER));
+        Exception actualException = assertThrows(FindException.class, () -> application.findFolderContent(BASIC_FILE_NAME, INVALID_FOLDER));
+        assertEquals(expectedResult, actualException.getMessage());
     }
 
     @Test
@@ -274,7 +270,7 @@ class FindApplicationTest {
 
         Exception actualException = assertThrows(FindException.class, () ->
                 application.run(args, mockIs, null));
-        assertEquals(actualException.getMessage(), OUTPUT_ERROR_MSG);
+        assertEquals(OUTPUT_ERROR_MSG, actualException.getMessage());
     }
 
     @Test
@@ -293,8 +289,7 @@ class FindApplicationTest {
     void testRunOutputFileLocationResult() throws Exception {
         String[] args = new String[]{BASIC_FOLDER, FIND_FILTER, NUMERIC_FILE_NAME};
         String expectedResult = BASIC_FOLDER + File.separator + NUMERIC_FILE_NAME + StringUtils.STRING_NEWLINE +
-                BASIC_FOLDER + File.separator + NUMERIC_FOLDER + File.separator + NUMERIC_FILE_NAME +
-                StringUtils.STRING_NEWLINE;
+                BASIC_FOLDER + File.separator + NUMERIC_FOLDER + File.separator + NUMERIC_FILE_NAME;
         mockBos = new ByteArrayOutputStream();
 
         application.run(args, mockIs, mockBos);
@@ -304,7 +299,7 @@ class FindApplicationTest {
     @Test
     void testRunOutputEmptyResult() throws Exception {
         String[] args = new String[]{BASIC_FOLDER, FIND_FILTER, INVALID_FILE_NAME};
-        String expectedResult = StringUtils.STRING_NEWLINE;
+        String expectedResult = "";
         mockBos = new ByteArrayOutputStream();
 
         application.run(args, mockIs, mockBos);
@@ -314,22 +309,23 @@ class FindApplicationTest {
     @Test
     void testRunOutputFolderNotExistsResult() throws Exception {
         String[] args = new String[]{INVALID_FOLDER, FIND_FILTER, BASIC_FILE_NAME};
-        String expectedResult = "find: " + INVALID_FOLDER + NOT_FOUND_MSG + StringUtils.STRING_NEWLINE;
+        String expectedResult = "find: " + INVALID_FOLDER + NOT_FOUND_MSG;
         mockBos = new ByteArrayOutputStream();
 
-        application.run(args, mockIs, mockBos);
-        assertEquals(expectedResult, new String(mockBos.toByteArray()));
+        Exception actualException = assertThrows(FindException.class, () ->
+                application.run(args, mockIs, mockBos));
+        assertEquals(expectedResult, actualException.getMessage());
     }
 
     @Test
     void testRunOutputMixedResults() throws Exception {
         String[] args = new String[]{INVALID_FOLDER, BASIC_FOLDER, FIND_FILTER, BASIC_FILE_NAME};
-        String expectedResult = "find: " + INVALID_FOLDER + NOT_FOUND_MSG + StringUtils.STRING_NEWLINE +
-                BASIC_FOLDER + File.separator + BASIC_FILE_NAME + StringUtils.STRING_NEWLINE;
+        String expectedResult = "find: " + INVALID_FOLDER + NOT_FOUND_MSG;
         mockBos = new ByteArrayOutputStream();
 
-        application.run(args, mockIs, mockBos);
-        assertEquals(expectedResult, new String(mockBos.toByteArray()));
+        Exception actualException = assertThrows(FindException.class, () ->
+                application.run(args, mockIs, mockBos));
+        assertEquals(expectedResult, actualException.getMessage());
     }
 }
 

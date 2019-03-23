@@ -7,6 +7,8 @@ import sg.edu.nus.comp.cs4218.exception.SortException;
 import sg.edu.nus.comp.cs4218.impl.FileIOTestHelper;
 import sg.edu.nus.comp.cs4218.impl.SortApplicationSortingHelper;
 import sg.edu.nus.comp.cs4218.impl.StringsToArrayHelper;
+import sg.edu.nus.comp.cs4218.impl.util.StringUtils;
+import sg.edu.nus.comp.cs4218m1.TestUtils;
 
 import java.io.*;
 
@@ -15,21 +17,31 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 
+
 public class SortApplicationTest {
 
 
-    public static final String ALL_CHAR_NAME = "sortUnitTest1.txt";
+    public static final String ALL_CHAR_NAME = TestUtils.pathToTestDataSubdir("sortTest")+File.separator+"sortUnitTest1.txt";
     // SAC = Small And Capital
-    public static final String SAC_LETTER_NAME = "sortUnitTest2.txt";
-    public static final String SLETTER_NUM_NAME = "sortUnitTest3.txt";
+    public static final String SAC_LETTER_NAME = TestUtils.pathToTestDataSubdir("sortTest")+File.separator+"sortUnitTest2.txt";
+    public static final String SLETTER_NUM_NAME = TestUtils.pathToTestDataSubdir("sortTest")+File.separator+"sortUnitTest3.txt";
     // SL means Small Letter
-    public static final String SL_OTHERS_NAME = "sortUnitTest4.txt";
-    public static final String CLETTER_NUM_NAME = "sortUnitTest5.txt";
+    public static final String SL_OTHERS_NAME = TestUtils.pathToTestDataSubdir("sortTest")+File.separator+"sortUnitTest4.txt";
+    public static final String CLETTER_NUM_NAME = TestUtils.pathToTestDataSubdir("sortTest")+File.separator+"sortUnitTest5.txt";
     // CL means Capital Letter
-    public static final String CL_OTHERS_NAME = "sortUnitTest6.txt";
-    public static final String NUM_OTHERS_NAME = "sortUnitTest7.txt";
-    public static final String STDOUT_NAME = "sortUnitTestStdout.txt";
-    public static final String FILE_NOT_EXIST = "fileThatDoesNotExist.txt";
+    public static final String CL_OTHERS_NAME = TestUtils.pathToTestDataSubdir("sortTest")+File.separator+"sortUnitTest6.txt";
+    public static final String NUM_OTHERS_NAME = TestUtils.pathToTestDataSubdir("sortTest")+File.separator+"sortUnitTest7.txt";
+    public static final String STDOUT_NAME = TestUtils.pathToTestDataSubdir("sortTest")+File.separator+"sortUnitTestStdout.txt";
+    public static final String FILE_NOT_EXIST = TestUtils.pathToTestDataSubdir("sortTest")+File.separator+"fileThatDoesNotExist.txt";
+
+    public static final String REVERSE_ONLY_ALL_CHAR = TestUtils.pathToTestDataSubdir("sortTest")+File.separator+"reverseOnlyAllChar.txt";
+    public static final String MULTIPLE_FILES_ALL_OPTION = TestUtils.pathToTestDataSubdir("sortTest")+File.separator+"multiFileAllOption.txt";
+    public static final String NUMERIC_ONLY_ALL_CHAR = TestUtils.pathToTestDataSubdir("sortTest")+File.separator+"numericOnlyAllChar.txt";
+    public static final String MULTIPLE_FILES_UNIQUE_ALL_OPTION = TestUtils.pathToTestDataSubdir("sortTest")+File.separator+"multiFileUniqueAllOption.txt";
+    public static final String REVERSE_NUMERIC_ALL_CHAR = TestUtils.pathToTestDataSubdir("sortTest")+File.separator+"reverseNumericAllChar.txt";
+    public static final String NUMERIC_CASE_ALL_CHAR = TestUtils.pathToTestDataSubdir("sortTest")+File.separator+"numericCaseAllChar.txt";
+    public static final String ALL_OPTION_ALL_CHAR = TestUtils.pathToTestDataSubdir("sortTest")+File.separator+"allOptionAllChar.txt";
+    public static final String REVERSE_CASE_ALL_CHAR = TestUtils.pathToTestDataSubdir("sortTest")+File.separator+"reverseCaseAllChar.txt";
 
     public static final String ALL_CHAR = "a\nA\nb\n10\n0\n2\n$\n#\n%\n"
             + "\nabc8\nabc5\nABCD\nABC9";
@@ -45,6 +57,8 @@ public class SortApplicationTest {
     public static final String NUM_OTHERS = "3\n1\n9\n)\n+\n%\n))\n33\n11\n"
             + "99\n10>\n10<\n10*&\n,#8\n,#2\n,#8;5\n" +
             ",#8;2";
+
+
 
     public static final String OPTION_NUMERIC = "-n";
     public static final String OPTION_REVERSE = "-r";
@@ -63,10 +77,15 @@ public class SortApplicationTest {
     public static final String OPTION_ALL_6 = "-rfn";
     public static final String OPTION_INVALID = "-B";
     public static final String OPTION_INVALID_C = "-nBr";
-    public static final String OPTION_EXTRA_C = "nfn";
+    public static final String OPTION_EXTRA_C = "-nfn";
 
 
-    public static SortApplication sortApplication;
+    public SortApplication sortApplication;
+
+    @BeforeEach
+    void initApp(){
+        sortApplication = spy(new SortApplication());
+    }
 
     @BeforeEach
     void setUp() throws IOException {
@@ -122,11 +141,6 @@ public class SortApplicationTest {
         }
     }
 
-    @BeforeAll
-    static void setUpBeforeEachTest() {
-        sortApplication = spy(new SortApplication());
-    }
-
     /*******************************************************************
      Start of tests for run method within sortApplication
      ******************************************************************/
@@ -138,7 +152,7 @@ public class SortApplicationTest {
         // Create the FileOutputStream for run to write into
         FileOutputStream fos = new FileOutputStream(STDOUT_NAME);
         sortApplication.run(args, null, fos);
-        verify(sortApplication, Mockito.times(1)).sortFromFiles(true, true, true, ALL_CHAR_NAME);
+        verify(sortApplication, Mockito.times(1)).sortFromFiles(false, false, false, ALL_CHAR_NAME);
     }
 
     @Test
@@ -429,7 +443,7 @@ public class SortApplicationTest {
         // Create the FileOutputStream for run to write into
         FileOutputStream fos = new FileOutputStream(STDOUT_NAME);
         sortApplication.run(args, null, fos);
-        verify(sortApplication, Mockito.times(1)).sortFromFiles(true, true, true,
+        verify(sortApplication, Mockito.times(1)).sortFromFiles(false, false, false,
                 ALL_CHAR_NAME, SLETTER_NUM_NAME, SAC_LETTER_NAME);
     }
 
@@ -622,22 +636,25 @@ public class SortApplicationTest {
 
     @Test
     void sortFromFilesReverseOnlyTest() throws Exception {
-        String[] toSort = FileIOTestHelper.extractAsStringArray(ALL_CHAR_NAME);
-        SortApplicationSortingHelper sortingHelper = new SortApplicationSortingHelper(toSort, false,
-                true, false);
-        String expectedOutput = sortingHelper.sort();
+        String[] toSort = FileIOTestHelper.extractAsStringArray(REVERSE_ONLY_ALL_CHAR);
+        String expectedOutput = "";
+        for (String str : toSort){
+            expectedOutput = expectedOutput + str + StringUtils.STRING_NEWLINE;
+        }
+        expectedOutput = expectedOutput.substring(0,expectedOutput.length()-2);
         String actualOutput = sortApplication.sortFromFiles(false, true,
                 false, ALL_CHAR_NAME);
-
         assertEquals(expectedOutput, actualOutput);
     }
 
     @Test
     void sortFromFilesNumericOnlyTest() throws Exception {
-        String[] toSort = FileIOTestHelper.extractAsStringArray(ALL_CHAR_NAME);
-        SortApplicationSortingHelper sortingHelper = new SortApplicationSortingHelper(toSort, true,
-                false, false);
-        String expectedOutput = sortingHelper.sort();
+        String[] toSort = FileIOTestHelper.extractAsStringArray(NUMERIC_ONLY_ALL_CHAR);
+        String expectedOutput = "";
+        for (String str : toSort){
+            expectedOutput = expectedOutput + str + StringUtils.STRING_NEWLINE;
+        }
+        expectedOutput = expectedOutput.substring(0,expectedOutput.length()-2);
         String actualOutput = sortApplication.sortFromFiles(true, false,
                 false, ALL_CHAR_NAME);
 
@@ -658,10 +675,11 @@ public class SortApplicationTest {
 
     @Test
     void sortFromFilesReversedAndNumericalTest() throws Exception {
-        String[] toSort = FileIOTestHelper.extractAsStringArray(ALL_CHAR_NAME);
-        SortApplicationSortingHelper sortingHelper = new SortApplicationSortingHelper(toSort, true,
-                true, false);
-        String expectedOutput = sortingHelper.sort();
+        String[] toSort = FileIOTestHelper.extractAsStringArray(REVERSE_NUMERIC_ALL_CHAR);
+        String expectedOutput = "";
+        for (String str : toSort){
+            expectedOutput = expectedOutput + str + StringUtils.STRING_NEWLINE;
+        }
         String actualOutput = sortApplication.sortFromFiles(true,
                 true, false, ALL_CHAR_NAME);
 
@@ -682,10 +700,12 @@ public class SortApplicationTest {
 
     @Test
     void sortFromFilesNumericAndCaseInsensitiveTest() throws Exception {
-        String[] toSort = FileIOTestHelper.extractAsStringArray(ALL_CHAR_NAME);
-        SortApplicationSortingHelper sortingHelper = new SortApplicationSortingHelper(toSort, true,
-                false, true);
-        String expectedOutput = sortingHelper.sort();
+        String[] toSort = FileIOTestHelper.extractAsStringArray(NUMERIC_CASE_ALL_CHAR);
+        String expectedOutput = "";
+        for (String str : toSort){
+            expectedOutput = expectedOutput + str + StringUtils.STRING_NEWLINE;
+        }
+        expectedOutput = expectedOutput.substring(0,expectedOutput.length()-2);
         String actualOutput = sortApplication.sortFromFiles(true,
                 false, true, ALL_CHAR_NAME);
 
@@ -694,10 +714,11 @@ public class SortApplicationTest {
 
     @Test
     void sortFromFilesAllOptionsTest() throws Exception {
-        String[] toSort = FileIOTestHelper.extractAsStringArray(ALL_CHAR_NAME);
-        SortApplicationSortingHelper sortingHelper = new SortApplicationSortingHelper(toSort, true,
-                true, true);
-        String expectedOutput = sortingHelper.sort();
+        String[] toSort = FileIOTestHelper.extractAsStringArray(ALL_OPTION_ALL_CHAR);
+        String expectedOutput = "";
+        for (String str : toSort){
+            expectedOutput = expectedOutput + str + StringUtils.STRING_NEWLINE;
+        }
         String actualOutput = sortApplication.sortFromFiles(true,
                 true, true, ALL_CHAR_NAME);
 
@@ -706,11 +727,11 @@ public class SortApplicationTest {
 
     @Test
     void sortFromMultipleUniqueFilesAllOptionsTest() throws Exception {
-        String[] toSort = FileIOTestHelper.extractAsStringArray(ALL_CHAR_NAME,
-                NUM_OTHERS_NAME, SL_OTHERS_NAME);
-        SortApplicationSortingHelper sortingHelper = new SortApplicationSortingHelper(toSort, true,
-                true, true);
-        String expectedOutput = sortingHelper.sort();
+        String[] toSort = FileIOTestHelper.extractAsStringArray(MULTIPLE_FILES_UNIQUE_ALL_OPTION);
+        String expectedOutput = "";
+        for (String str : toSort){
+            expectedOutput = expectedOutput + str + StringUtils.STRING_NEWLINE;
+        }
         String actualOutput = sortApplication.sortFromFiles(true,
                 true, true, ALL_CHAR_NAME,
                 NUM_OTHERS_NAME, SL_OTHERS_NAME);
@@ -720,11 +741,12 @@ public class SortApplicationTest {
 
     @Test
     void sortFromMultipleFilesWithDuplicatesAllOptionsTest() throws Exception {
-        String[] toSort = FileIOTestHelper.extractAsStringArray(ALL_CHAR_NAME,
-                NUM_OTHERS_NAME, ALL_CHAR_NAME);
-        SortApplicationSortingHelper sortingHelper = new SortApplicationSortingHelper(toSort, true,
-                true, true);
-        String expectedOutput = sortingHelper.sort();
+        String[] toSort = FileIOTestHelper.extractAsStringArray(MULTIPLE_FILES_ALL_OPTION);
+        String expectedOutput = "";
+        for (String str : toSort){
+            expectedOutput = expectedOutput + str + StringUtils.STRING_NEWLINE;
+        }
+        expectedOutput.substring(0,expectedOutput.length()-2);
         String actualOutput = sortApplication.sortFromFiles(true,
                 true, true, ALL_CHAR_NAME,
                 NUM_OTHERS_NAME, ALL_CHAR_NAME);
@@ -842,10 +864,12 @@ public class SortApplicationTest {
 
     @Test
     void sortFromStdinReverseOnlyTest() throws Exception {
-        String[] toSort = FileIOTestHelper.extractAsStringArray(ALL_CHAR_NAME);
-        SortApplicationSortingHelper sortingHelper = new SortApplicationSortingHelper(toSort, false,
-                true, false);
-        String expectedOutput = sortingHelper.sort();
+        String[] toSort = FileIOTestHelper.extractAsStringArray(REVERSE_ONLY_ALL_CHAR);
+        String expectedOutput = "";
+        for (String str : toSort){
+            expectedOutput = expectedOutput + str + StringUtils.STRING_NEWLINE;
+        }
+        expectedOutput = expectedOutput.substring(0,expectedOutput.length()-2);
 
         // Open an InputStream to act as stdin
         FileInputStream fis = new FileInputStream(ALL_CHAR_NAME);
@@ -857,10 +881,12 @@ public class SortApplicationTest {
 
     @Test
     void sortFromStdinNumericOnlyTest() throws Exception {
-        String[] toSort = FileIOTestHelper.extractAsStringArray(ALL_CHAR_NAME);
-        SortApplicationSortingHelper sortingHelper = new SortApplicationSortingHelper(toSort, true,
-                false, false);
-        String expectedOutput = sortingHelper.sort();
+        String[] toSort = FileIOTestHelper.extractAsStringArray(NUMERIC_ONLY_ALL_CHAR);
+        String expectedOutput = "";
+        for (String str : toSort){
+            expectedOutput = expectedOutput + str + StringUtils.STRING_NEWLINE;
+        }
+        expectedOutput = expectedOutput.substring(0,expectedOutput.length()-2);
 
         // Open an InputStream to act as stdin
         FileInputStream fis = new FileInputStream(ALL_CHAR_NAME);
@@ -887,10 +913,12 @@ public class SortApplicationTest {
 
     @Test
     void sortFromStdinReversedAndNumericalTest() throws Exception {
-        String[] toSort = FileIOTestHelper.extractAsStringArray(ALL_CHAR_NAME);
-        SortApplicationSortingHelper sortingHelper = new SortApplicationSortingHelper(toSort, true,
-                true, false);
-        String expectedOutput = sortingHelper.sort();
+        String[] toSort = FileIOTestHelper.extractAsStringArray(REVERSE_NUMERIC_ALL_CHAR);
+        String expectedOutput = "";
+        for (String str : toSort){
+            expectedOutput = expectedOutput + str + StringUtils.STRING_NEWLINE;
+        }
+        expectedOutput.substring(0,expectedOutput.length()-2);
 
         // Open an InputStream to act as stdin
         FileInputStream fis = new FileInputStream(ALL_CHAR_NAME);
@@ -902,10 +930,11 @@ public class SortApplicationTest {
 
     @Test
     void sortFromStdinReversedAndCaseInsensitiveTest() throws Exception {
-        String[] toSort = FileIOTestHelper.extractAsStringArray(ALL_CHAR_NAME);
-        SortApplicationSortingHelper sortingHelper = new SortApplicationSortingHelper(toSort, false,
-                true, true);
-        String expectedOutput = sortingHelper.sort();
+        String[] toSort = FileIOTestHelper.extractAsStringArray(REVERSE_CASE_ALL_CHAR);
+        String expectedOutput = "";
+        for (String str : toSort){
+            expectedOutput = expectedOutput + str + StringUtils.STRING_NEWLINE;
+        }
 
         // Open an InputStream to act as stdin
         FileInputStream fis = new FileInputStream(ALL_CHAR_NAME);
@@ -917,10 +946,12 @@ public class SortApplicationTest {
 
     @Test
     void sortFromStdinNumericAndCaseInsensitiveTest() throws Exception {
-        String[] toSort = FileIOTestHelper.extractAsStringArray(ALL_CHAR_NAME);
-        SortApplicationSortingHelper sortingHelper = new SortApplicationSortingHelper(toSort, true,
-                false, true);
-        String expectedOutput = sortingHelper.sort();
+        String[] toSort = FileIOTestHelper.extractAsStringArray(NUMERIC_CASE_ALL_CHAR);
+        String expectedOutput = "";
+        for (String str : toSort){
+            expectedOutput = expectedOutput + str + StringUtils.STRING_NEWLINE;
+        }
+        expectedOutput = expectedOutput.substring(0,expectedOutput.length()-2);
 
         // Open an InputStream to act as stdin
         FileInputStream fis = new FileInputStream(ALL_CHAR_NAME);
@@ -932,10 +963,11 @@ public class SortApplicationTest {
 
     @Test
     void sortFromStdinAllOptionsTest() throws Exception {
-        String[] toSort = FileIOTestHelper.extractAsStringArray(ALL_CHAR_NAME);
-        SortApplicationSortingHelper sortingHelper = new SortApplicationSortingHelper(toSort, true,
-                true, true);
-        String expectedOutput = sortingHelper.sort();
+        String[] toSort = FileIOTestHelper.extractAsStringArray(ALL_OPTION_ALL_CHAR);
+        String expectedOutput = "";
+        for (String str : toSort){
+            expectedOutput = expectedOutput + str + StringUtils.STRING_NEWLINE;
+        }
 
         // Open an InputStream to act as stdin
         FileInputStream fis = new FileInputStream(ALL_CHAR_NAME);

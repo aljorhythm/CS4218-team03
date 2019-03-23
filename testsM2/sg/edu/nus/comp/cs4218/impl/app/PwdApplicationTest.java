@@ -35,7 +35,7 @@ class PwdApplicationTest {
     public void testRun() throws PwdException {
         input = new ByteArrayInputStream(INPUT_DATA.getBytes());
         output = new ByteArrayOutputStream();
-        String expected = Environment.currentDirectory + System.lineSeparator();
+        String expected = Environment.currentDirectory;
         pwdApplication.run(new String[]{""}, input, output);
         assertEquals(expected, output.toString());
     }
