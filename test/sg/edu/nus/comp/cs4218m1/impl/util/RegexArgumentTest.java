@@ -15,17 +15,18 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_ASTERISK;
 
 class RegexArgumentTest extends DirectoryStructureTest {
 
-    private static String originalWorkingDirectory;
+    private static String oriWorkingDir;
 
     /**
      * Set working directory for tests
      */
     @BeforeAll
     static void setWorkingDirectory() {
-        originalWorkingDirectory = Environment.currentDirectory;
+        oriWorkingDir = Environment.currentDirectory;
         Environment.currentDirectory = testRootDir;
     }
 
@@ -34,8 +35,9 @@ class RegexArgumentTest extends DirectoryStructureTest {
      */
     @AfterAll
     static void revertWorkingDirectory() {
-        Environment.currentDirectory = originalWorkingDirectory;
+        Environment.currentDirectory = oriWorkingDir;
     }
+
     /**
      * test if *.txt expansion is correct
      *
@@ -52,7 +54,10 @@ class RegexArgumentTest extends DirectoryStructureTest {
         arg.append('x');
         arg.append('t');
         List<String> globbed = arg.globFiles();
-        String[] expected = Arrays.stream(allTestRootFiles).filter(s -> s.endsWith(".txt")).toArray(String[]::new);
+        String[] expected = Arrays
+                .stream(allTestRootFiles)
+                .filter(s -> s.endsWith(".txt"))
+                .toArray(String[]::new);
         TestUtils.assertArrayEqualsList(expected, globbed);
     }
 
@@ -70,6 +75,24 @@ class RegexArgumentTest extends DirectoryStructureTest {
         arg.appendAsterisk();
         List<String> globbed = arg.globFiles();
         TestUtils.assertArrayEqualsList(allTestRootFiles, globbed);
+    }
+
+    /**
+     * Should return glob pattern if no files are found
+     *
+     * @throws AbstractApplicationException
+     * @throws ShellException
+     * @throws IOException
+     */
+    @Test()
+    void expandNonExistentFile() throws AbstractApplicationException, ShellException, IOException {
+        RegexArgument arg = new RegexArgument();
+        String glob = TestUtils.NON_EXISTENT_DIR;
+        for (char s : glob.toCharArray()) {
+            arg.append(s);
+        }
+        List<String> globbed = arg.globFiles();
+        assertEquals(Arrays.asList(new String[]{glob}), globbed);
     }
 
     /**
@@ -99,14 +122,14 @@ class RegexArgumentTest extends DirectoryStructureTest {
     void appendAsterisk() {
         RegexArgument arg = new RegexArgument();
         arg.appendAsterisk();
-        assertEquals("*", arg.toString());
+        assertEquals(STRING_ASTERISK, arg.toString());
     }
 
     /**
      * Append string and asterisk to regex argument
      */
     @Test
-    void append_appendAsterisk() {
+    void appendAndAppendAsterisk() {
         RegexArgument arg = new RegexArgument();
         arg.appendAsterisk();
         arg.append('s');
@@ -153,5 +176,32 @@ class RegexArgumentTest extends DirectoryStructureTest {
     void isEmptyFalseRegex() {
         RegexArgument argument = new RegexArgument("^");
         assertFalse(argument.isEmpty());
+    }
+
+    /**
+     * Should return front portion of possible glob pattern where there are no asterisks
+     */
+    @Test
+    void nearestAncestorsReturnNoAsterisk() {
+        String abcde = "abcde";
+        String actual = RegexArgument.getNonGlobAncestors(abcde);
+        assertEquals(abcde, actual);
+    }
+
+    /**
+     * Should return front portion of possible glob pattern where there are no asterisks
+     */
+    @Test
+    void nearestAncestorsReturnNone() {
+        String abcde = "*/abcde";
+        String actual = RegexArgument.getNonGlobAncestors(abcde);
+        assertEquals("", actual);
+    }
+
+    @Test
+    void nearestAncestorsReturn() {
+        String path = "abcde/*/abcde";
+        String actual = RegexArgument.getNonGlobAncestors(path);
+        assertEquals("abcde/", actual);
     }
 }

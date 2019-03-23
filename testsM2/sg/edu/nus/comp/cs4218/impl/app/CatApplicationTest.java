@@ -1,14 +1,15 @@
 /**
  * From Team 09
  */
-package sg.edu.nus.comp.cs4218.impl.app;import org.junit.jupiter.api.BeforeEach;
+package sg.edu.nus.comp.cs4218.impl.app;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledOnOs;
 import org.junit.jupiter.api.io.TempDir;
 import org.mockito.Mockito;
 import sg.edu.nus.comp.cs4218.exception.CatException;
 import sg.edu.nus.comp.cs4218.impl.util.IOUtils;
-import sg.edu.nus.comp.cs4218.impl.util.StringUtils;
 
 import java.io.*;
 import java.nio.file.Path;
@@ -64,7 +65,7 @@ class CatApplicationTest {
         catApplication = mock(CatApplication.class);
         when(catApplication.catFiles(Mockito.any())).thenCallRealMethod();
         String dummy = pathToTestDataDir +"/wc/wc_file1.txt";
-        String expected = "Hello World" + "\n";
+        String expected = "Hello World" + STRING_NEWLINE;
         assertEquals(expected, catApplication.catFiles(dummy));
     }
 
@@ -179,7 +180,7 @@ class CatApplicationTest {
         String filename1 = pathToTestDataDir + "/wc/wc_file1.txt";
         String filename2 = pathToTestDataDir + "/wc/wc_file2.txt";
         catApplication.run(new String[]{filename1, filename2}, input, output);
-        String expected = "Hello World" + "\n" + STRING_NEWLINE + "EmptyFile";
+        String expected = "Hello World" + STRING_NEWLINE + STRING_NEWLINE + "EmptyFile";
         assertEquals(expected, output.toString());
     }
 }

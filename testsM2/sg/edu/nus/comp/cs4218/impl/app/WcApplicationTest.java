@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
+import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
 class WcApplicationTest {
 
@@ -101,7 +102,7 @@ class WcApplicationTest {
 
 
     public static final String SPACE_CHAR = " ";
-    public static final String NEWLINE_CHAR = "\n";
+    public static final String NEWLINE_CHAR = STRING_NEWLINE;
 
     public static WcApplication wcApplication;
 

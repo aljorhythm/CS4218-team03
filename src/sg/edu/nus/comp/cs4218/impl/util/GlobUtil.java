@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,7 +21,7 @@ public final class GlobUtil {
      */
     public static List<String> glob(Path dir, String globPattern) throws IOException {
         ArrayList<String> files = new ArrayList<String>();
-        String fileSep = dir.toAbsolutePath().toString().endsWith("/") ? "" : STRING_FILE_SEP;
+        String fileSep = dir.toAbsolutePath().toString().endsWith(STRING_FILE_SEP) ? "" : STRING_FILE_SEP;
         String fullGlobPattern = dir.toAbsolutePath() + fileSep + globPattern;
         AbstractGlobFileVisitor visitor = new AbstractGlobFileVisitor(fullGlobPattern) {
             @Override
@@ -108,7 +107,6 @@ public final class GlobUtil {
          */
         private boolean toVisitDirDescendants(Path dir) {
             String[] dirSegments = dir.toAbsolutePath().toString().split(STRING_FILE_SEP);
-            System.out.println(dirSegments.length + "  " + pattern + " " +segments.length + Arrays.toString(segments));
             return dirSegments.length < segments.length;
         }
 

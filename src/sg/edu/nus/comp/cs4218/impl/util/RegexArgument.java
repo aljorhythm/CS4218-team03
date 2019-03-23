@@ -4,6 +4,7 @@ import sg.edu.nus.comp.cs4218.Environment;
 
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -59,7 +60,9 @@ public final class RegexArgument {
         String globPattern = plaintext.toString();
         try {
             if (globPattern.startsWith(STRING_FILE_SEP)) {
-                globbedFiles = GlobUtil.glob(Paths.get(STRING_FILE_SEP), globPattern.replaceFirst(STRING_FILE_SEP, ""));
+                String nonGlobAncestors = getNonGlobAncestors(globPattern);
+                String subDirGlobPattern = globPattern.replaceFirst(nonGlobAncestors, "");
+                globbedFiles = GlobUtil.glob(Paths.get(nonGlobAncestors), subDirGlobPattern);
             } else {
                 globbedFiles = GlobUtil.glob(Paths.get(Environment.currentDirectory), globPattern);
             }
@@ -67,8 +70,8 @@ public final class RegexArgument {
             return new LinkedList<>();
         }
 
-        if(globbedFiles.isEmpty()) {
-            globbedFiles = new LinkedList<>();
+        if (globbedFiles.isEmpty()) {
+            globbedFiles = Arrays.asList(new String[]{globPattern});
         }
         return globbedFiles;
     }
@@ -79,5 +82,28 @@ public final class RegexArgument {
 
     public String toString() {
         return plaintext.toString();
+    }
+
+
+    /**
+     * get nearest non glob ancestors
+     * Returns front portion of path with no asterisk
+     */
+    public static String getNonGlobAncestors(String path) {
+        StringBuilder nonGlobAncestors = new StringBuilder();
+        StringBuilder ancestor = new StringBuilder();
+        for (char c : path.toCharArray()) {
+            if (c == CHAR_FILE_SEP) {
+                ancestor.append(c);
+                nonGlobAncestors.append(ancestor);
+                ancestor = new StringBuilder();
+            } else if (c == CHAR_ASTERISK) {
+                break;
+            } else {
+                ancestor.append(c);
+            }
+        }
+        nonGlobAncestors.append(ancestor);
+        return nonGlobAncestors.toString();
     }
 }

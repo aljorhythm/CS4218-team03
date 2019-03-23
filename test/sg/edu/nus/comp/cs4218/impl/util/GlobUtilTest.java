@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_ASTERISK;
 import static sg.edu.nus.comp.cs4218m1.TestUtils.NON_EXISTENT_DIR;
 
 public class GlobUtilTest extends DirectoryStructureTest {
@@ -22,7 +23,7 @@ public class GlobUtilTest extends DirectoryStructureTest {
      * @throws IOException
      */
     @Test
-    void globTestDirectory_pattern_none() throws IOException {
+    void globTestDirectoryPatternNone() throws IOException {
         List<String> res = GlobUtil.glob(Paths.get(testRootDir), "suubdir*");
         Assertions.assertArrayEquals(new String[]{}, res.toArray(new String[]{}));
     }
@@ -33,8 +34,8 @@ public class GlobUtilTest extends DirectoryStructureTest {
      * @throws IOException
      */
     @Test
-    void globTestDirectory_all() throws IOException {
-        List<String> res = GlobUtil.glob(Paths.get(testRootDir), "*");
+    void globTestDirectoryAll() throws IOException {
+        List<String> res = GlobUtil.glob(Paths.get(testRootDir), STRING_ASTERISK);
         TestUtils.assertArrayEqualsList(allTestRootFiles, res);
     }
 
@@ -44,7 +45,7 @@ public class GlobUtilTest extends DirectoryStructureTest {
      * @throws IOException
      */
     @Test
-    void globTestDirectory_pattern_subdir() throws IOException {
+    void globTestDirectoryPatternSubDir() throws IOException {
         List<String> res = GlobUtil.glob(Paths.get(testRootDir), "subdir*");
         String[] expected = Stream
                 .of(allTestRootFiles)
@@ -59,7 +60,7 @@ public class GlobUtilTest extends DirectoryStructureTest {
      * @throws IOException
      */
     @Test
-    void globTestDirectory_pattern_txt() throws IOException {
+    void globTestDirectoryPatternTxt() throws IOException {
         List<String> res = GlobUtil.glob(Paths.get(testRootDir), "*.txt");
         String[] expected = Stream
                 .of(rootTxtFiles)
@@ -74,7 +75,7 @@ public class GlobUtilTest extends DirectoryStructureTest {
      * @throws IOException
      */
     @Test
-    void globTestSubdirectories_none() throws IOException {
+    void globTestSubdirectoriesNone() throws IOException {
         List<String> res = GlobUtil.glob(Paths.get(testRootDir), "*/suubdir*");
         Assertions.assertArrayEquals(new String[]{}, res.toArray(new String[]{}));
     }
@@ -85,7 +86,7 @@ public class GlobUtilTest extends DirectoryStructureTest {
      * @throws IOException
      */
     @Test
-    void globTestSubdirectories_all() throws IOException {
+    void globTestSubdirectoriesAll() throws IOException {
         List<String> res = GlobUtil.glob(Paths.get(testRootDir), "*/*");
         Assertions.assertArrayEquals(allSubDirFiles, res.toArray(new String[]{}));
     }
@@ -96,7 +97,7 @@ public class GlobUtilTest extends DirectoryStructureTest {
      * @throws IOException
      */
     @Test
-    void globTestSubdirectories_prefix() throws IOException {
+    void globTestSubdirectoriesPrefix() throws IOException {
         List<String> res = GlobUtil.glob(Paths.get(testRootDir), "*/file*");
         Assertions.assertArrayEquals(new String[]{subDir_filesub}, res.toArray(new String[]{}));
     }
@@ -107,7 +108,7 @@ public class GlobUtilTest extends DirectoryStructureTest {
      * @throws IOException
      */
     @Test
-    void globTestSubdirectories_allTxt() throws IOException {
+    void globTestSubdirectoriesAllTxt() throws IOException {
         List<String> res = GlobUtil.glob(Paths.get(testRootDir), "*/*.txt");
         String[] expected = Stream
                 .of(allSubDirFiles)
@@ -121,7 +122,7 @@ public class GlobUtilTest extends DirectoryStructureTest {
      */
     @Test
     void globNonExistent() throws IOException {
-        List<String> res = GlobUtil.glob(Paths.get(NON_EXISTENT_DIR), "*");
+        List<String> res = GlobUtil.glob(Paths.get(NON_EXISTENT_DIR), STRING_ASTERISK);
         assertTrue(res.isEmpty());
     }
 
@@ -130,13 +131,16 @@ public class GlobUtilTest extends DirectoryStructureTest {
      */
     @Test
     void globUnixRoot() throws IOException {
-        Iterable<Path> roots = FileSystems
-                .getDefault()
-                .getRootDirectories();
-        for (Path root : roots) {
-            List<String> res = GlobUtil.glob(root, "*ome");
-            String[] expected = new String[]{"/home"};
-            Assertions.assertArrayEquals(expected, res.toArray(new String[]{}));
+        if (!SystemUtil.isWindows()) {
+            Iterable<Path> roots = FileSystems
+                    .getDefault()
+                    .getRootDirectories();
+            for (Path root : roots) {
+                List<String> res = GlobUtil.glob(root, "*ome");
+                String[] expected = new String[]{"/home"};
+                Assertions.assertArrayEquals(expected, res.toArray(new String[]{}));
+            }
         }
     }
+
 }

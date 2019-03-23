@@ -13,6 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
+import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHAR_ASTERISK;
+import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_FILE_SEP;
 
 class SedApplicationTest {
 
@@ -302,7 +304,7 @@ class SedApplicationTest {
 
     @Test
     void runNonAlphanumericDelimiterAsteriskTest() throws Exception {
-        String[] args = StringsToArrayHelper.appendStringsToArray("s*^*" + STRING_ALPHA + "*",
+        String[] args = StringsToArrayHelper.appendStringsToArray("s*^*" + STRING_ALPHA + CHAR_ASTERISK,
                 UT_FILE_1_NAME);
 
         // Create the file for run to write into
@@ -326,7 +328,7 @@ class SedApplicationTest {
 
     @Test
     void runFirstArgumentNotSTest1() throws Exception {
-        String[] args = StringsToArrayHelper.appendStringsToArray("t/^/" + STRING_ALPHA + "/",
+        String[] args = StringsToArrayHelper.appendStringsToArray("t/^/" + STRING_ALPHA + STRING_FILE_SEP,
                 UT_FILE_1_NAME);
 
         // Create the file for run to write into
@@ -336,7 +338,7 @@ class SedApplicationTest {
 
     @Test
     void runFirstArgumentNotSTest2() throws Exception {
-        String[] args = StringsToArrayHelper.appendStringsToArray("S/^/" + STRING_ALPHA + "/",
+        String[] args = StringsToArrayHelper.appendStringsToArray("S/^/" + STRING_ALPHA + STRING_FILE_SEP,
                 UT_FILE_1_NAME);
 
         // Create the file for run to write into
@@ -346,7 +348,7 @@ class SedApplicationTest {
 
     @Test
     void runSecondArgumentMissingTest() throws Exception {
-        String[] args = StringsToArrayHelper.appendStringsToArray("s//" + STRING_ALPHA + "/",
+        String[] args = StringsToArrayHelper.appendStringsToArray("s//" + STRING_ALPHA + STRING_FILE_SEP,
                 UT_FILE_1_NAME);
 
         // Create the file for run to write into
@@ -426,7 +428,7 @@ class SedApplicationTest {
 
     @Test
     void runMoreThanOneFileArgumentTest() throws Exception {
-        String[] args = StringsToArrayHelper.appendStringsToArray(R_STRING_PART + STRING_ALPHA + "/",
+        String[] args = StringsToArrayHelper.appendStringsToArray(R_STRING_PART + STRING_ALPHA + STRING_FILE_SEP,
                 UT_FILE_1_NAME, UT_FILE_2_NAME);
 
         // Create the file for run to write into
@@ -438,7 +440,7 @@ class SedApplicationTest {
 
     @Test
     void runFileAndFolderArgumentTest() throws Exception {
-        String[] args = StringsToArrayHelper.appendStringsToArray(R_STRING_PART + STRING_ALPHA + "/",
+        String[] args = StringsToArrayHelper.appendStringsToArray(R_STRING_PART + STRING_ALPHA + STRING_FILE_SEP,
                 SED_FOLDER_NAME, UT_FILE_2_NAME);
 
         // Create the file for run to write into

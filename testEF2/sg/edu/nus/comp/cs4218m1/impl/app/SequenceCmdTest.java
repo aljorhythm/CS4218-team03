@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static sg.edu.nus.comp.cs4218.exception.ShellException.INVALID_INPUT_STREAM;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHARSET_UTF8;
+import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
 class SequenceCmdTest {
 
@@ -44,11 +45,6 @@ class SequenceCmdTest {
                 throw new ShellException(INVALID_INPUT_STREAM);//NOPMD
             }
         }
-
-        @Override
-        public void terminate() {
-            //override, useless here
-        }
     }
 
     /**
@@ -66,7 +62,7 @@ class SequenceCmdTest {
 
         SequenceCommand sequenceCommand = new SequenceCommand(Arrays.asList(commands));
         sequenceCommand.evaluate(inputStream, outputStream);
-        String expected = "test data ABC\nDEF\n";
+        String expected = "test data ABC" + STRING_NEWLINE + "DEF" + STRING_NEWLINE;
         String actual = ((ByteArrayOutputStream) outputStream).toString("UTF-8");
         assertEquals(actual, expected);
     }
@@ -86,7 +82,7 @@ class SequenceCmdTest {
 
         SequenceCommand sequenceCommand = new SequenceCommand(Arrays.asList(commands));
         sequenceCommand.evaluate(inputStream, outputStream);
-        String expected = "test data DEF\nABC\n";
+        String expected = "test data DEF" + STRING_NEWLINE + "ABC" + STRING_NEWLINE;
         String actual = ((ByteArrayOutputStream) outputStream).toString("UTF-8");
         assertEquals(actual, expected);
     }

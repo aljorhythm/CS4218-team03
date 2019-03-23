@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_FILE_SEP;
 
 class SystemUtilTest {
 
@@ -13,11 +14,11 @@ class SystemUtilTest {
     @Test
     void shouldReturnRespectiveFileSeparator() {
         if(SystemUtil.isMac()) {
-            assertEquals("/", StringUtils.STRING_FILE_SEP);
+            assertEquals("/", STRING_FILE_SEP);
         } else if (SystemUtil.isUnix()) {
-            assertEquals("/", StringUtils.STRING_FILE_SEP);
+            assertEquals("/", STRING_FILE_SEP);
         } else if(SystemUtil.isWindows()) {
-            assertEquals("\\", StringUtils.STRING_FILE_SEP);
+            assertEquals("\\", STRING_FILE_SEP);
         } else {
             Assertions.fail("OS not handled");
         }

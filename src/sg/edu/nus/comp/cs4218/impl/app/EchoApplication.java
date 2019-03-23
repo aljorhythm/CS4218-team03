@@ -16,7 +16,6 @@ public class EchoApplication implements EchoInterface {
     public static final String FAIL_ECHO_EMPTY = "fail_echo_empty_params";
 
     @Override
-
     public String constructResult(String... args) throws EchoException {
         if(args == null) {
             throw new EchoException(FAIL_ECHO_EMPTY);
@@ -42,7 +41,7 @@ public class EchoApplication implements EchoInterface {
         try {
             result = this.constructResult(args);
         } catch (AbstractApplicationException e) {
-            throw new EchoException(FAIL_ECHO){};//NOPMD
+            throw new EchoException(FAIL_ECHO);//NOPMD
         }
 
         if(stdout == null) {
@@ -52,7 +51,7 @@ public class EchoApplication implements EchoInterface {
         try {
             stdout.write(result.getBytes(CHARSET_UTF8));
         } catch (IOException e) {
-            throw new EchoException(FAIL_ECHO_WRITE){};//NOPMD
+            throw new EchoException(FAIL_ECHO_WRITE);//NOPMD
         }
     }
 }

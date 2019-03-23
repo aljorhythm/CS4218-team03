@@ -3,29 +3,32 @@ package sg.edu.nus.comp.cs4218m1.impl.app;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import sg.edu.nus.comp.cs4218.app.GrepInterface;
 import sg.edu.nus.comp.cs4218.exception.GrepException;
 import sg.edu.nus.comp.cs4218.impl.app.GrepApplication;
 import sg.edu.nus.comp.cs4218.impl.util.IOUtils;
-import sg.edu.nus.comp.cs4218.impl.util.StringUtils;
 
 import java.io.InputStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
+import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
-class GrepApplicationTest {
-    GrepApplication application;
+public class GrepApplicationTest {
+    private GrepApplication application;
 
-    String[] linesList1 = {
+    private final String[] linesList1 = {
             "aBcde on this line",
             "12345 on this line",
             "!@#$% on this line"
     };
-    String[] linesList2 = {
+    private final String[] linesList2 = {
             "aBcde on this line",
             "12345 on this line",
             "!@#$% on this Line"
     };
+    private static final String string_aBcde = "aBcde";//NOPMD
+    private static final String string_on_this_Line = "on this Line";//NOPMD
 
     @BeforeEach
     void initializeApp() {
@@ -37,12 +40,12 @@ class GrepApplicationTest {
      * Will run assertThrows or assertEquals based on supplied argument in expected()
      */
     private class StdinTestCase implements Runnable {
-        private String pattern;
-        private Boolean isCaseInsensitive;
-        private Boolean isCountOfLinesOnly;
-        private InputStream inputStream;
-        private String expected;
-        private Class expectedExceptionClass;
+        private String pattern;//NOPMD
+        private Boolean isCaseInsensitive;//NOPMD
+        private Boolean isLineCountsOnly;
+        private InputStream inputStream;//NOPMD
+        private String expected;//NOPMD
+        private Class expectedException;
 
         StdinTestCase pattern(String pattern) {
             this.pattern = pattern;
@@ -55,7 +58,7 @@ class GrepApplicationTest {
         }
 
         StdinTestCase isCountOfLinesOnly(Boolean val) {
-            this.isCountOfLinesOnly = val;
+            this.isLineCountsOnly = val;
             return this;
         }
 
@@ -95,7 +98,7 @@ class GrepApplicationTest {
          * @return
          */
         StdinTestCase expected(Class expected) {
-            this.expectedExceptionClass = expected;
+            this.expectedException = expected;
             return this;
         }
 
@@ -112,16 +115,20 @@ class GrepApplicationTest {
 
         public void assertExpected() {
             try {
-                String actual = application.grepFromStdin(pattern, isCaseInsensitive, isCountOfLinesOnly, inputStream);
+                String actual = getApp().grepFromStdin(pattern, isCaseInsensitive, isLineCountsOnly, inputStream);
                 assertEquals(expected, actual);
             } catch (Exception e) {
                 fail(e);
             }
         }
 
+        public GrepInterface getApp() {
+            return GrepApplicationTest.this.application;//NOPMD
+        }
+
         public void expectException() {
-            Assertions.assertThrows(expectedExceptionClass, () -> {
-                application.grepFromStdin(pattern, isCaseInsensitive, isCountOfLinesOnly, inputStream);
+            Assertions.assertThrows(expectedException, () -> {
+                getApp().grepFromStdin(pattern, isCaseInsensitive, isLineCountsOnly, inputStream);
             });
         }
     }
@@ -168,12 +175,12 @@ class GrepApplicationTest {
     @Test
     void grepFromStdinTest6CountOfLines() {
 
-        String linesData = String.join("\n", linesList1);
+        String linesData = String.join(STRING_NEWLINE, linesList1);
 
         StdinTestCase[] testCases = {
                 new StdinTestCase()
                         .expected("1")
-                        .pattern("aBcde")
+                        .pattern(string_aBcde)
                         .inputStream(linesData)
                         .isCountOfLinesOnly(true),
                 new StdinTestCase()
@@ -193,12 +200,12 @@ class GrepApplicationTest {
     @Test
     void grepFromStdinTest7LinesContaining() {
 
-        String linesData = String.join(StringUtils.STRING_NEWLINE, linesList1);
+        String linesData = String.join(STRING_NEWLINE, linesList1);
 
         StdinTestCase[] testCases = {
                 new StdinTestCase()
                         .expected(linesList1[0])
-                        .pattern("aBcde")
+                        .pattern(string_aBcde)
                         .inputStream(linesData)
                         .isCountOfLinesOnly(false),
                 new StdinTestCase()
@@ -219,7 +226,7 @@ class GrepApplicationTest {
      */
     @Test
     void grepFromStdinNoMatches() {
-        String linesData = String.join("\n", linesList1);
+        String linesData = String.join(STRING_NEWLINE, linesList1);
 
         StdinTestCase[] testCases = {
                 new StdinTestCase()
@@ -245,18 +252,18 @@ class GrepApplicationTest {
      */
     @Test
     void grepFromStdinTest10CaseInsensitiveCount() {
-        String linesData = String.join("\n", linesList1);
+        String linesData = String.join(STRING_NEWLINE, linesList1);
 
         StdinTestCase[] testCases = {
                 new StdinTestCase()
                         .expected("1")
-                        .pattern("aBcde")
+                        .pattern(string_aBcde)
                         .inputStream(linesData)
                         .isCaseInsensitive(true)
                         .isCountOfLinesOnly(true),
                 new StdinTestCase()
                         .expected("3")
-                        .pattern("on this Line")
+                        .pattern(string_on_this_Line)
                         .inputStream(linesData)
                         .isCaseInsensitive(true)
                         .isCountOfLinesOnly(true)
@@ -273,18 +280,18 @@ class GrepApplicationTest {
      */
     @Test
     void grepFromStdinTest11CaseSensitiveCount() {
-        String linesData = String.join("\n", linesList2);
+        String linesData = String.join(STRING_NEWLINE, linesList2);
 
         StdinTestCase[] testCases = {
                 new StdinTestCase()
                         .expected("1")
-                        .pattern("aBcde")
+                        .pattern(string_aBcde)
                         .inputStream(linesData)
                         .isCaseInsensitive(false)
                         .isCountOfLinesOnly(true),
                 new StdinTestCase()
                         .expected("1")
-                        .pattern("on this Line")
+                        .pattern(string_on_this_Line)
                         .inputStream(linesData)
                         .isCaseInsensitive(false)
                         .isCountOfLinesOnly(true)
@@ -301,18 +308,18 @@ class GrepApplicationTest {
      */
     @Test
     void grepFromStdinTest11CaseInsensitiveLines() {
-        String linesData = String.join("\n", linesList2);
+        String linesData = String.join(STRING_NEWLINE, linesList2);
 
         StdinTestCase[] testCases = {
                 new StdinTestCase()
                         .expected(linesList2[0])
-                        .pattern("aBcde")
+                        .pattern(string_aBcde)
                         .inputStream(linesData)
                         .isCaseInsensitive(true)
                         .isCountOfLinesOnly(false),
                 new StdinTestCase()
-                        .expected(String.join(StringUtils.STRING_NEWLINE, linesList2))
-                        .pattern("on this Line")
+                        .expected(String.join(STRING_NEWLINE, linesList2))
+                        .pattern(string_on_this_Line)
                         .inputStream(linesData)
                         .isCaseInsensitive(true)
                         .isCountOfLinesOnly(false)
@@ -329,18 +336,18 @@ class GrepApplicationTest {
      */
     @Test
     void grepFromStdinTest12CaseSensitiveLines() {
-        String linesData = String.join("\n", linesList2);
+        String linesData = String.join(STRING_NEWLINE, linesList2);
 
         StdinTestCase[] testCases = {
                 new StdinTestCase()
                         .expected(linesList2[0])
-                        .pattern("aBcde")
+                        .pattern(string_aBcde)
                         .inputStream(linesData)
                         .isCountOfLinesOnly(false)
                         .isCaseInsensitive(false),
                 new StdinTestCase()
                         .expected(linesList2[2])
-                        .pattern("on this Line")
+                        .pattern(string_on_this_Line)
                         .inputStream(linesData)
                         .isCountOfLinesOnly(false)
                         .isCaseInsensitive(false),
