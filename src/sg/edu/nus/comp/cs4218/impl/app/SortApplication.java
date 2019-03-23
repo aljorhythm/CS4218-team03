@@ -70,7 +70,7 @@ public class SortApplication implements SortInterface{
         return String.join(StringUtils.STRING_NEWLINE,list.toArray(new String[0]));
     }
 
-    public void run(String[] args, InputStream stdin, OutputStream stdout) throws AbstractApplicationException {
+    public void run(String[] args, InputStream stdin, OutputStream stdout) throws SortException {
         boolean firstWord = false,reverseOrder = false, caseIndependent = false, useFile = false;
         ArrayList<String> files = new ArrayList<>();
         for (String arg : args){
@@ -98,14 +98,14 @@ public class SortApplication implements SortInterface{
                 }
                 sortFromFiles(firstWord,reverseOrder,caseIndependent,file);
             }catch (Exception e){
-                e.printStackTrace();
+                throw (SortException) new SortException("").initCause(e);
             }
         }
         else {
             try {
                 sortFromStdin(firstWord,reverseOrder,caseIndependent,stdin);
             }catch (Exception e){
-                e.printStackTrace();
+                throw (SortException) new SortException("").initCause(e);
             }
         }
     }
