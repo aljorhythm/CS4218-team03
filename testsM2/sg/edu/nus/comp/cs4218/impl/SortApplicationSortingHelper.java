@@ -72,11 +72,12 @@ public class SortApplicationSortingHelper {
         // Put everything back into a string
         StringBuilder result = new StringBuilder();
         for (String temp : tempList) {
-            String temp2 = temp + "\n";
+            String temp2 = temp + System.lineSeparator();
             result.append(temp2);
         }
 
         // To remove the trailing newline character
+        result = result.deleteCharAt(result.length() - 1);
         result = result.deleteCharAt(result.length() - 1);
 
         return result.toString();

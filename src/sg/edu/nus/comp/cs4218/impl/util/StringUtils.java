@@ -97,4 +97,24 @@ public final class StringUtils {
     public static int getFirstNum(String str){
         return Integer.parseInt(str.split(" ")[0]);
     }
+
+    /**
+     * getCharacterType is to get the character type to compare
+     *
+     * @param  cha to be get type
+     * @return int num, special character would be 1, number would be 2, capital letter would be 3 and a smaller be 4
+     */
+    public static int getCharacterType(char cha){
+        if (Character.isLowerCase(cha)){
+            return 4;
+        }
+        else if (Character.isUpperCase(cha)){
+            return 3;
+        }else if (Character.isDigit(cha)){
+            return 2;
+        }
+        else {
+            return 1;
+        }
+    }
 }
