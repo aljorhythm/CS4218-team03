@@ -17,10 +17,9 @@ class ExitApplicationTest {
     }
 
     @Test
-    void testExit_DefaultInput_Success() {
-        String[] args_test = new String[0];
+    void testExitDefaultInputSuccess() {
         assertThrows(ExitException.class, () -> {
-            exitApplication.run(args_test, System.in, System.out);
+            exitApplication.run(new String[0], System.in, System.out);
         });
     }
 }

@@ -23,7 +23,7 @@ import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
  * </p>
  */
 public class CallCommand implements Command {
-    private static final String ERR_WRITE_OUTPUT_STREAM = "write_output_stream";
+//    private static final String ERR_WRITE_OUTPUT_STREAM = "write_output_stream";
     private final List<String> argsList;
     private final ApplicationRunner appRunner;
 
@@ -36,6 +36,7 @@ public class CallCommand implements Command {
     @Override
     public void evaluate(InputStream stdin, OutputStream stdout)
             throws AbstractApplicationException, ShellException {
+        IOException ioException = null;
         if (argsList == null || argsList.isEmpty()) {
             throw new ShellException(ERR_SYNTAX);
         }
@@ -56,12 +57,14 @@ public class CallCommand implements Command {
         if (!parsedArgsList.isEmpty()) {
             String app = argsList.get(0);
 //            String app = parsedArgsList.remove(0);
-            appRunner.runApp(app, parsedArgsList.toArray(new String[0]), inputStream, outputStream);
+            appRunner.runApp(app, parsedArgsList.toArray(new String[]{}), inputStream, outputStream);
         }
-        try {
-            outputStream.write(STRING_NEWLINE.getBytes());
-        } catch (IOException e) {
-            throw new ShellException(ERR_WRITE_OUTPUT_STREAM);
+        if (!(outputStream.toString().length() == 0)) {
+            try {
+                outputStream.write(STRING_NEWLINE.getBytes());
+            } catch (IOException e) {
+                ioException = e;
+            }
         }
     }
 

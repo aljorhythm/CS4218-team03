@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static sg.edu.nus.comp.cs4218.exception.ShellException.INVALID_INPUT_STREAM;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHARSET_UTF8;
+import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
 class SequenceCmdTest {
 
@@ -41,13 +42,8 @@ class SequenceCmdTest {
                 buffer = MockCommand.input.getBytes(CHARSET_UTF8);
                 stdout.write(buffer);
             } catch (IOException e) {
-                throw new ShellException(INVALID_INPUT_STREAM);
+                throw new ShellException(INVALID_INPUT_STREAM);//NOPMD
             }
-        }
-
-        @Override
-        public void terminate() {
-
         }
     }
 
@@ -55,7 +51,7 @@ class SequenceCmdTest {
      * Tests sequence of two commands ABC first.
      */
     @Test
-    void evaluate_twoCommandsAFDL() throws Exception {
+    void evaluateTwoCommandsAFDL() throws Exception {
         mock(CallCommand.class);
         InputStream inputStream = new ByteArrayInputStream("test data ".getBytes());
         OutputStream outputStream = new ByteArrayOutputStream();
@@ -66,7 +62,7 @@ class SequenceCmdTest {
 
         SequenceCommand sequenceCommand = new SequenceCommand(Arrays.asList(commands));
         sequenceCommand.evaluate(inputStream, outputStream);
-        String expected = "test data ABC\nDEF\n";
+        String expected = "test data ABC" + STRING_NEWLINE + "DEF" + STRING_NEWLINE;
         String actual = ((ByteArrayOutputStream) outputStream).toString("UTF-8");
         assertEquals(actual, expected);
     }
@@ -75,7 +71,7 @@ class SequenceCmdTest {
      * Tests sequence of two commands DEF first.
      */
     @Test
-    void evaluate_twoCommandsDFAL() throws Exception {
+    void evaluateTwoCommandsDFAL() throws Exception {
         mock(CallCommand.class);
         InputStream inputStream = new ByteArrayInputStream("test data ".getBytes());
         OutputStream outputStream = new ByteArrayOutputStream();
@@ -86,7 +82,7 @@ class SequenceCmdTest {
 
         SequenceCommand sequenceCommand = new SequenceCommand(Arrays.asList(commands));
         sequenceCommand.evaluate(inputStream, outputStream);
-        String expected = "test data DEF\nABC\n";
+        String expected = "test data DEF" + STRING_NEWLINE + "ABC" + STRING_NEWLINE;
         String actual = ((ByteArrayOutputStream) outputStream).toString("UTF-8");
         assertEquals(actual, expected);
     }

@@ -1,7 +1,9 @@
-package sg.edu.nus.comp.cs4218.impl.cmd;
+package sg.edu.nus.comp.cs4218m1.impl.cmd;
 
 import org.junit.jupiter.api.Test;
 import sg.edu.nus.comp.cs4218.exception.ShellException;
+import sg.edu.nus.comp.cs4218.impl.cmd.CallCommand;
+import sg.edu.nus.comp.cs4218.impl.cmd.PipeCommand;
 
 import java.io.*;
 import java.util.Arrays;
@@ -36,13 +38,13 @@ class PipeCommandTest {
                 buffer = "abc".getBytes(CHARSET_UTF8);
                 stdout.write(buffer);
             } catch (IOException e) {
-                throw new ShellException(INVALID_INPUT_STREAM);
+                throw new ShellException(INVALID_INPUT_STREAM);//NOPMD
             }
         }
 
         @Override
         public void terminate() {
-
+            //override, useless here
         }
     }
 
@@ -50,7 +52,7 @@ class PipeCommandTest {
      * Tests piping of two commands
      */
     @Test
-    void evaluate_twoCommands() throws Exception {
+    void evaluateTwoCommands() throws Exception {
         CallCommand command1 = mock(CallCommand.class);
         InputStream inputStream = new ByteArrayInputStream("test data ".getBytes());
         OutputStream outputStream = new ByteArrayOutputStream();
@@ -70,7 +72,7 @@ class PipeCommandTest {
      * Tests piping of three commands
      */
     @Test
-    void evaluate_threeCommands() throws Exception {
+    void evaluateThreeCommands() throws Exception {
         CallCommand command1 = mock(CallCommand.class);
         InputStream inputStream = new ByteArrayInputStream("test data ".getBytes());
         OutputStream outputStream = new ByteArrayOutputStream();

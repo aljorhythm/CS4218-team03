@@ -17,23 +17,23 @@ public class ShellImpl implements Shell {
     public static final String ERR_INVALID_APP = "Invalid app.";
     public static final String ERR_NOT_SUPPORTED = "Not supported yet.";
     public static final String ERR_SYNTAX = "Invalid syntax.";
-    private InputStream inputStream;
-    private OutputStream outputStream;
+    private InputStream inputStream = System.in;
+    private OutputStream outputStream = System.out;
 
     /**
      * Initializes shell with stdin
      */
     public ShellImpl() {
-        inputStream = System.in;
-        outputStream = System.out;
+        // Default function
+        // System.in & out
     }
 
     /**
      * Initializes shell with specified streams
      */
-    public ShellImpl(InputStream in, OutputStream out) {
-        inputStream = in;
-        outputStream = out;
+    public ShellImpl(InputStream inputStream, OutputStream outputStream) {
+        this.inputStream = inputStream;
+        this.outputStream = outputStream;
     }
 
     /**
@@ -45,11 +45,19 @@ public class ShellImpl implements Shell {
         ShellImpl shell = new ShellImpl();
         try {
             shell.run();
-        } catch (ShellException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ShellException | IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Does nothing if output stream is null
+     */
+    private void writeToOutputStream(byte[] bytes) throws IOException {
+        if(outputStream == null){
+            return;
+        }
+        outputStream.write(bytes);
     }
 
     /**
@@ -60,7 +68,7 @@ public class ShellImpl implements Shell {
         while (true) {
             try {
                 String currentDirectory = Environment.currentDirectory;
-                outputStream.write((currentDirectory + ">").getBytes());
+                writeToOutputStream((currentDirectory + ">").getBytes());
 
                 String commandString = reader.readLine();
                 if (!StringUtils.isBlank(commandString)) {
@@ -71,7 +79,7 @@ public class ShellImpl implements Shell {
                 IOUtils.closeOutputStream(outputStream);
                 break;
             } catch (Exception e) {
-                outputStream.write(e.getMessage().getBytes());
+                writeToOutputStream((e.getMessage() + StringUtils.STRING_NEWLINE).getBytes());
             }
         }
     }

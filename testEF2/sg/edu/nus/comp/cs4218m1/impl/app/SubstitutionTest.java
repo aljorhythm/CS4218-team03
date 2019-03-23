@@ -27,7 +27,7 @@ class SubstitutionTest {
      * shell should show the date(with no arguments)
      */
     @Test
-    void date_noArg_substitution_echo() throws IOException, ShellException, DateException {
+    void dateNoArgSubstitutionEcho() throws IOException, ShellException, DateException {
         InputStream inputStream = IOUtils.stringToInputStream("echo `date`" + STRING_NEWLINE);
         ShellImpl shell = new ShellImpl(inputStream,outputStream);
         shell.run();
@@ -42,7 +42,7 @@ class SubstitutionTest {
      * shell should show the date(with one arguments)
      */
     @Test
-    void date_withOneArg_substitution_echo() throws IOException, ShellException, DateException {
+    void dateWithOneArgSubstitutionEcho() throws IOException, ShellException, DateException {
         InputStream inputStream = IOUtils.stringToInputStream("echo `date +\"%m-%d-%y\"`" + STRING_NEWLINE);
         ShellImpl shell = new ShellImpl(inputStream,outputStream);
         shell.run();
@@ -57,7 +57,7 @@ class SubstitutionTest {
      * shell echo substitute the date. provide format to the date
      */
     @Test
-    void echo_withOneArg_substitution_date() throws IOException, ShellException, DateException {
+    void echoWithOneArgSubstitutionDate() throws IOException, ShellException, DateException {
         InputStream inputStream = IOUtils.stringToInputStream("date `echo +\"%m-%d-%y\"`" + STRING_NEWLINE);
         ShellImpl shell = new ShellImpl(inputStream,outputStream);
         shell.run();
@@ -72,7 +72,7 @@ class SubstitutionTest {
      * shell should exit
      */
     @Test
-    void exit_substitution() throws IOException, ShellException, DateException {
+    void exitSubstitution() throws IOException, ShellException, DateException {
         InputStream inputStream = IOUtils.stringToInputStream("echo `exit`" + STRING_NEWLINE);
         ShellImpl shell = new ShellImpl(inputStream,outputStream);
         assertTimeout(ofSeconds(2), () -> {

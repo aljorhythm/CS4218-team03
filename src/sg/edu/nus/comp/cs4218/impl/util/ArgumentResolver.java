@@ -68,7 +68,6 @@ public final class ArgumentResolver {
                         unmatchedQuotes.add(chr);
                         unmatchedQuotes.add(CHAR_DOUBLE_QUOTE);
                     }
-
                     if (!parsedArg.isEmpty()) {
                         appendParsedArgIntoSegment(parsedArgsSegment, parsedArg);
                         parsedArg = new RegexArgument();

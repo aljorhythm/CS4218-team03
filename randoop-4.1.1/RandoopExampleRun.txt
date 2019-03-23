@@ -1,0 +1,1 @@
+C:\Users\boman\CS4218-team03-project\randoop-4.1.1>java -classpath C:\Users\boman\CS4218-team03-project\randoop-4.1.1\randoop-all-4.1.1.jar;C:\Users\boman\CS4218-team03-project\out\production\CS4218-Shell-2019\ randoop.main.Main gentests --classlist=myclasses.txt --time-limit=60 --flaky-test-behavior=DISCARD
