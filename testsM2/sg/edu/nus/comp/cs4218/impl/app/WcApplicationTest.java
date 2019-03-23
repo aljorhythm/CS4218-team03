@@ -21,14 +21,14 @@ class WcApplicationTest {
             "A B C Y Z 1 2 3 0 9";
     // WS = White Space
     public static final String FILE_ALPHA_WS = "This file will have a few whitespaces with alphabets." +
-            "\n\tTab here.\n     Random spaces             here.";
+            StringUtils.STRING_NEWLINE + "\tTab here." + StringUtils.STRING_NEWLINE + "     Random spaces             here.";
     public static final String FILE_ALPHA_OTHERS = "This file will have the other characters with alphabets." +
             " . / , [ ] { }; ().   \"   \"   ";
-    public static final String FILE_NUM_WS = "1   2\n   345   66   6 \t78 60    \n\n\t\n5";
+    public static final String FILE_NUM_WS = "1   2" + StringUtils.STRING_NEWLINE + "   345   66   6 \t78 60    " + StringUtils.STRING_NEWLINE + "" + StringUtils.STRING_NEWLINE + "\t" + StringUtils.STRING_NEWLINE + "5";
     public static final String FILE_NUM_OTHERS = "1 2 < 3 > <3> 44<55>66 44 < 55 > 66";
-    public static final String FILE_WS_OTHERS = "   ()\n\t&*543\n\n    \n   \n\n    :./ ' >?<";
-    public static final String FILE_ALL_CHAR = "This will be the file that will contain everything.\n" +
-            "This will be a long space     .\n <34>\nHere come a few Other characters: .;'/,[\"[ ] &&   &\n" +
+    public static final String FILE_WS_OTHERS = "   ()" + StringUtils.STRING_NEWLINE + "\t&*543" + StringUtils.STRING_NEWLINE + "" + StringUtils.STRING_NEWLINE + "    " + StringUtils.STRING_NEWLINE + "   " + StringUtils.STRING_NEWLINE + "" + StringUtils.STRING_NEWLINE + "    :./ ' >?<";
+    public static final String FILE_ALL_CHAR = "This will be the file that will contain everything." + StringUtils.STRING_NEWLINE + "" +
+            "This will be a long space     ." + StringUtils.STRING_NEWLINE + " <34>" + StringUtils.STRING_NEWLINE + "Here come a few Other characters: .;'/,[\"[ ] &&   &" + StringUtils.STRING_NEWLINE + "" +
             "Here comes a line with no newline at the end.";
 
     public static final String ALPHA_NUM_NAME = "wcUnitTest1.txt";
@@ -95,7 +95,7 @@ class WcApplicationTest {
     public static final String SPACE_CHARACTER = " ";
     // NSFOD = No Such File Or Directory
     public static final String WC_NSFOD_FORMAT = "wc: %s: No such file or directory.";
-    public static final String WC_ILLEGAL_OPTION = "illegal option -- %s\nusage: wcApplication [-clw] [file ...]";
+    public static final String WC_ILLEGAL_OPTION = "illegal option -- %s" + StringUtils.STRING_NEWLINE + "usage: wcApplication [-clw] [file ...]";
     public static final String OPTION_MATCH = "-.*";
     // DTRY = Directory
     public static final String IS_A_DTRY_FORMAT = "%s: Is a directory.";
