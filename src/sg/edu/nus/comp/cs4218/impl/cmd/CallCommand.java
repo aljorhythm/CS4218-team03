@@ -13,7 +13,6 @@ import java.io.OutputStream;
 import java.util.List;
 
 import static sg.edu.nus.comp.cs4218.impl.ShellImpl.ERR_SYNTAX;
-import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
 /**
  * A Call Command is a sub-command consisting of at least one non-keyword or quoted.
@@ -44,7 +43,7 @@ public class CallCommand implements Command {
         // Handle IO redirection
         IORedirectionHandler redirHandler = new IORedirectionHandler(argsList, stdin, stdout);
         try{
-            redirHandler.extractRedirOptions();
+            redirHandler.extractRedirOptions(appRunner);
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -53,16 +52,11 @@ public class CallCommand implements Command {
         OutputStream outputStream = redirHandler.getOutputStream();
 
         // Handle quoting + globing + command substitution
-        List<String> parsedArgsList = ArgumentResolver.parseArguments(noRedirArgsList);
+        List<String> parsedArgsList = ArgumentResolver.parseArguments(noRedirArgsList, appRunner);
         if (!parsedArgsList.isEmpty()) {
             String app = argsList.get(0);
 //            String app = parsedArgsList.remove(0);
             appRunner.runApp(app, parsedArgsList.toArray(new String[]{}), inputStream, outputStream);
-        }
-        try {
-            outputStream.write(STRING_NEWLINE.getBytes());
-        } catch (IOException e) {
-            ioException = e;
         }
     }
 
