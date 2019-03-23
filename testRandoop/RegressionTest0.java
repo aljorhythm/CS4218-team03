@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.Test;
+import sg.edu.nus.comp.cs4218.exception.SortException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -344,8 +345,8 @@ public class RegressionTest0 {
         java.lang.String[] strArray6 = new java.lang.String[] { "hi!", "Could not read stream" };
         try {
             java.lang.String str7 = sortApplication0.sortFromFiles((java.lang.Boolean) false, (java.lang.Boolean) false, (java.lang.Boolean) false, strArray6);
-            fail("Expected exception of type java.io.FileNotFoundException; message: hi! (Det går inte att hitta filen)");
-        } catch (java.io.FileNotFoundException e) {
+            fail("Expected exception of type SortException; message: hi! (Det går inte att hitta filen)");
+        } catch (SortException e) {
         }
         assertNotNull(strArray6);
     }
@@ -1154,8 +1155,8 @@ public class RegressionTest0 {
         sortApplication44.run(strArray50, inputStream55, outputStream56);
         try {
             java.lang.String str58 = sortApplication0.sortFromFiles((java.lang.Boolean) true, (java.lang.Boolean) true, (java.lang.Boolean) true, strArray50);
-            fail("Expected exception of type java.io.FileNotFoundException; message: null output stream provided (Åtkomst nekad)");
-        } catch (java.io.FileNotFoundException e) {
+            fail("Expected exception of type SortException; message: null output stream provided (Åtkomst nekad)");
+        } catch (SortException e) {
         }
         assertNotNull(strArray6);
         assertTrue(str10.equals(""));
@@ -1968,7 +1969,7 @@ public class RegressionTest0 {
             fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
-// flaky:         assertTrue(str2.equals("03-23-2019 17:44:57"));
+// flaky:         assertTrue(str2.equals("03-23-2019 19:25:12"));
     }
 
     @Test
@@ -1989,7 +1990,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test114");
         sg.edu.nus.comp.cs4218.impl.app.GrepApplication grepApplication0 = new sg.edu.nus.comp.cs4218.impl.app.GrepApplication();
-        java.lang.String[] strArray7 = new java.lang.String[] { "null output stream provided:\r\n\r\n\r\nfail_echo_write:", "fail_echo_empty_params", "03-23-2019 17:44:56" };
+        java.lang.String[] strArray7 = new java.lang.String[] { "null output stream provided:\r\n\r\n\r\nfail_echo_write:", "fail_echo_empty_params", "03-23-2019 19:25:11" };
         try {
             java.lang.String str8 = grepApplication0.grepFromFiles("null output stream provided:\r\n\r\n\r\nfail_echo_write:", (java.lang.Boolean) false, (java.lang.Boolean) true, strArray7);
             fail("Expected exception of type java.nio.file.InvalidPathException; message: Illegal char <:> at index 27: null output stream provided:\r\n\r\n\r\nfail_echo_write:");
@@ -2078,7 +2079,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.SedApplication sedApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SedApplication();
         java.io.InputStream inputStream4 = null;
         try {
-            java.lang.String str5 = sedApplication0.replaceSubstringInStdin("Could not write to output stream", "03-23-2019 17:44:56", (int) (byte) -1, inputStream4);
+            java.lang.String str5 = sedApplication0.replaceSubstringInStdin("Could not write to output stream", "03-23-2019 19:25:11", (int) (byte) -1, inputStream4);
             fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
@@ -2676,8 +2677,8 @@ public class RegressionTest0 {
         java.lang.String str11 = findApplication4.findFolderContent("", strArray9);
         try {
             java.lang.String str12 = sortApplication0.sortFromFiles((java.lang.Boolean) false, (java.lang.Boolean) true, (java.lang.Boolean) false, strArray9);
-            fail("Expected exception of type java.io.FileNotFoundException; message: fail_echo_write (Åtkomst nekad)");
-        } catch (java.io.FileNotFoundException e) {
+            fail("Expected exception of type SortException; message: fail_echo_write (Åtkomst nekad)");
+        } catch (SortException e) {
         }
         assertNotNull(strArray9);
         assertTrue(str11.equals(""));
@@ -2798,8 +2799,8 @@ public class RegressionTest0 {
         java.lang.String str72 = findApplication17.findFolderContent("", strArray61);
         try {
             java.lang.String str73 = sortApplication0.sortFromFiles((java.lang.Boolean) false, (java.lang.Boolean) true, (java.lang.Boolean) false, strArray61);
-            fail("Expected exception of type java.io.FileNotFoundException; message: null output stream provided (Åtkomst nekad)");
-        } catch (java.io.FileNotFoundException e) {
+            fail("Expected exception of type SortException; message: null output stream provided (Åtkomst nekad)");
+        } catch (SortException e) {
         }
         assertNotNull(strArray6);
         assertTrue(str10.equals(""));
@@ -2983,8 +2984,8 @@ public class RegressionTest0 {
         mkdirApplication17.run(strArray76, inputStream87, outputStream88);
         try {
             java.lang.String str90 = sortApplication0.sortFromFiles((java.lang.Boolean) false, (java.lang.Boolean) true, (java.lang.Boolean) false, strArray76);
-            fail("Expected exception of type java.io.FileNotFoundException; message: null output stream provided (Åtkomst nekad)");
-        } catch (java.io.FileNotFoundException e) {
+            fail("Expected exception of type SortException; message: null output stream provided (Åtkomst nekad)");
+        } catch (SortException e) {
         }
         assertNotNull(strArray6);
         assertTrue(str10.equals(""));
@@ -3004,7 +3005,7 @@ public class RegressionTest0 {
             System.out.format("%n%s%n", "RegressionTest0.test143");
         sg.edu.nus.comp.cs4218.impl.app.SedApplication sedApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SedApplication();
         try {
-            java.lang.String str5 = sedApplication0.replaceSubstringInFile("Terminate process.", "null output stream provided fail_echo_write", (int) (short) 100, "03-23-2019 17:44:56");
+            java.lang.String str5 = sedApplication0.replaceSubstringInFile("Terminate process.", "null output stream provided fail_echo_write", (int) (short) 100, "03-23-2019 19:25:11");
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
@@ -3207,7 +3208,7 @@ public class RegressionTest0 {
     public void test149() throws Throwable {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test149");
-        boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isSpecialSymbol("03-23-2019 17:44:56");
+        boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isSpecialSymbol("03-23-2019 19:25:11");
         assertTrue(boolean1 == true);
     }
 
@@ -3325,7 +3326,7 @@ public class RegressionTest0 {
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
-// flaky:         assertTrue(str2.equals("03-23-2019 17:45:01"));
+// flaky:         assertTrue(str2.equals("03-23-2019 19:25:15"));
         assertNotNull(wildcardClass4);
         assertNotNull(strArray11);
         assertTrue(str15.equals(""));
@@ -3734,8 +3735,8 @@ public class RegressionTest0 {
         sortApplication4.run(strArray35, inputStream46, outputStream47);
         try {
             java.lang.String str49 = sortApplication0.sortFromFiles((java.lang.Boolean) false, (java.lang.Boolean) true, (java.lang.Boolean) false, strArray35);
-            fail("Expected exception of type java.io.FileNotFoundException; message: null output stream provided (Åtkomst nekad)");
-        } catch (java.io.FileNotFoundException e) {
+            fail("Expected exception of type SortException; message: null output stream provided (Åtkomst nekad)");
+        } catch (SortException e) {
         }
         assertNotNull(strArray11);
         assertTrue(str15.equals(""));
@@ -3967,7 +3968,7 @@ public class RegressionTest0 {
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
-// flaky:         assertTrue(str2.equals("03-23-2019 17:45:02"));
+// flaky:         assertTrue(str2.equals("03-23-2019 19:25:16"));
     }
 
     @Test
@@ -4000,8 +4001,8 @@ public class RegressionTest0 {
         sortApplication14.run(strArray31, inputStream35, outputStream36);
         try {
             java.lang.String str38 = sortApplication0.sortFromFiles((java.lang.Boolean) false, (java.lang.Boolean) false, (java.lang.Boolean) false, strArray31);
-            fail("Expected exception of type java.io.FileNotFoundException; message: null output stream provided (Åtkomst nekad)");
-        } catch (java.io.FileNotFoundException e) {
+            fail("Expected exception of type SortException; message: null output stream provided (Åtkomst nekad)");
+        } catch (SortException e) {
         }
         assertNotNull(strArray7);
         assertNotNull(strArray20);
@@ -4474,8 +4475,8 @@ public class RegressionTest0 {
         java.lang.Class<?> wildcardClass68 = strArray57.getClass();
         try {
             java.lang.String str69 = sortApplication0.sortFromFiles((java.lang.Boolean) false, (java.lang.Boolean) false, (java.lang.Boolean) true, strArray57);
-            fail("Expected exception of type java.io.FileNotFoundException; message: null output stream provided (Åtkomst nekad)");
-        } catch (java.io.FileNotFoundException e) {
+            fail("Expected exception of type SortException; message: null output stream provided (Åtkomst nekad)");
+        } catch (SortException e) {
         }
         assertNotNull(strArray6);
         assertTrue(str10.equals(""));
@@ -4587,8 +4588,8 @@ public class RegressionTest0 {
         java.lang.Class<?> wildcardClass43 = strArray41.getClass();
         try {
             java.lang.String str44 = sortApplication0.sortFromFiles((java.lang.Boolean) true, (java.lang.Boolean) false, (java.lang.Boolean) true, strArray41);
-            fail("Expected exception of type java.io.FileNotFoundException; message: fail_echo_write (Åtkomst nekad)");
-        } catch (java.io.FileNotFoundException e) {
+            fail("Expected exception of type SortException; message: fail_echo_write (Åtkomst nekad)");
+        } catch (SortException e) {
         }
         assertNotNull(strArray6);
         assertTrue(str10.equals(""));
@@ -4609,7 +4610,7 @@ public class RegressionTest0 {
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
-// flaky:         assertTrue(str2.equals("03-23-2019 17:45:03"));
+// flaky:         assertTrue(str2.equals("03-23-2019 19:25:17"));
     }
 
     @Test
@@ -4701,7 +4702,7 @@ public class RegressionTest0 {
             System.out.format("%n%s%n", "RegressionTest0.test189");
         sg.edu.nus.comp.cs4218.impl.app.SedApplication sedApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SedApplication();
         try {
-            java.lang.String str5 = sedApplication0.replaceSubstringInFile("Could not write to output stream", "03-23-2019 17:44:56", (int) (short) 10, "null arguments");
+            java.lang.String str5 = sedApplication0.replaceSubstringInFile("Could not write to output stream", "03-23-2019 19:25:11", (int) (short) 10, "null arguments");
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
@@ -4912,8 +4913,8 @@ public class RegressionTest0 {
         java.lang.String str61 = lsApplication48.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray56);
         try {
             java.lang.String str62 = sortApplication0.sortFromFiles((java.lang.Boolean) true, (java.lang.Boolean) true, (java.lang.Boolean) false, strArray56);
-            fail("Expected exception of type java.io.FileNotFoundException; message: null output stream provided (Åtkomst nekad)");
-        } catch (java.io.FileNotFoundException e) {
+            fail("Expected exception of type SortException; message: null output stream provided (Åtkomst nekad)");
+        } catch (SortException e) {
         }
         assertNotNull(strArray7);
         assertTrue(str11.equals(""));
@@ -5264,7 +5265,7 @@ public class RegressionTest0 {
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
-// flaky:         assertTrue(str2.equals("03-23-2019 17:45:04"));
+// flaky:         assertTrue(str2.equals("03-23-2019 19:25:18"));
     }
 
     @Test
@@ -5338,8 +5339,8 @@ public class RegressionTest0 {
         java.lang.String str83 = echoApplication28.constructResult(strArray72);
         try {
             java.lang.String str84 = sortApplication0.sortFromFiles((java.lang.Boolean) false, (java.lang.Boolean) false, (java.lang.Boolean) false, strArray72);
-            fail("Expected exception of type java.io.FileNotFoundException; message: null output stream provided (Åtkomst nekad)");
-        } catch (java.io.FileNotFoundException e) {
+            fail("Expected exception of type SortException; message: null output stream provided (Åtkomst nekad)");
+        } catch (SortException e) {
         }
         assertNotNull(strArray6);
         assertTrue(str10.equals(""));
@@ -5937,8 +5938,8 @@ public class RegressionTest0 {
         echoApplication4.run(strArray27, inputStream33, outputStream34);
         try {
             java.lang.String str36 = sortApplication0.sortFromFiles((java.lang.Boolean) false, (java.lang.Boolean) true, (java.lang.Boolean) true, strArray27);
-            fail("Expected exception of type java.io.FileNotFoundException; message: null output stream provided (Åtkomst nekad)");
-        } catch (java.io.FileNotFoundException e) {
+            fail("Expected exception of type SortException; message: null output stream provided (Åtkomst nekad)");
+        } catch (SortException e) {
         }
         assertNotNull(strArray12);
         assertNotNull(strArray27);
@@ -7567,8 +7568,8 @@ public class RegressionTest0 {
         java.lang.String str69 = echoApplication4.constructResult(strArray62);
         try {
             java.lang.String str70 = sortApplication0.sortFromFiles((java.lang.Boolean) false, (java.lang.Boolean) false, (java.lang.Boolean) false, strArray62);
-            fail("Expected exception of type java.io.FileNotFoundException; message: null output stream provided (Åtkomst nekad)");
-        } catch (java.io.FileNotFoundException e) {
+            fail("Expected exception of type SortException; message: null output stream provided (Åtkomst nekad)");
+        } catch (SortException e) {
         }
         assertNotNull(strArray12);
         assertNotNull(strArray27);
@@ -7672,8 +7673,8 @@ public class RegressionTest0 {
         java.lang.String str81 = echoApplication28.constructResult(strArray77);
         try {
             java.lang.String str82 = sortApplication0.sortFromFiles((java.lang.Boolean) false, (java.lang.Boolean) false, (java.lang.Boolean) true, strArray77);
-            fail("Expected exception of type java.io.FileNotFoundException; message: hi! (Åtkomst nekad)");
-        } catch (java.io.FileNotFoundException e) {
+            fail("Expected exception of type SortException; message: hi! (Åtkomst nekad)");
+        } catch (SortException e) {
         }
         assertNotNull(strArray6);
         assertTrue(str10.equals(""));
@@ -7696,7 +7697,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.GrepApplication grepApplication0 = new sg.edu.nus.comp.cs4218.impl.app.GrepApplication();
         java.io.InputStream inputStream4 = null;
         try {
-            java.lang.String str5 = grepApplication0.grepFromStdin("03-23-2019 17:45:08", (java.lang.Boolean) false, (java.lang.Boolean) false, inputStream4);
+            java.lang.String str5 = grepApplication0.grepFromStdin("03-23-2019 19:25:22", (java.lang.Boolean) false, (java.lang.Boolean) false, inputStream4);
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
@@ -7949,8 +7950,8 @@ public class RegressionTest0 {
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
-// flaky:         assertTrue(str2.equals("03-23-2019 17:45:08"));
-// flaky:         assertTrue(str4.equals("03-23-2019 17:45:08"));
+// flaky:         assertTrue(str2.equals("03-23-2019 19:25:23"));
+// flaky:         assertTrue(str4.equals("03-23-2019 19:25:23"));
         assertNotNull(strArray12);
         assertNotNull(wildcardClass16);
         assertNotNull(strArray24);
@@ -8200,7 +8201,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.SedApplication sedApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SedApplication();
         java.io.InputStream inputStream4 = null;
         try {
-            java.lang.String str5 = sedApplication0.replaceSubstringInStdin("null output stream provided", "03-23-2019 17:45:08", (int) (short) 10, inputStream4);
+            java.lang.String str5 = sedApplication0.replaceSubstringInStdin("null output stream provided", "03-23-2019 19:25:22", (int) (short) 10, inputStream4);
             fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
@@ -8257,8 +8258,8 @@ public class RegressionTest0 {
         mkdirApplication4.createFolder(strArray20);
         try {
             java.lang.String str32 = sortApplication0.sortFromFiles((java.lang.Boolean) true, (java.lang.Boolean) true, (java.lang.Boolean) false, strArray20);
-            fail("Expected exception of type java.io.FileNotFoundException; message: null output stream provided (Åtkomst nekad)");
-        } catch (java.io.FileNotFoundException e) {
+            fail("Expected exception of type SortException; message: null output stream provided (Åtkomst nekad)");
+        } catch (SortException e) {
         }
         assertNotNull(strArray8);
         assertNotNull(strArray20);
@@ -9300,7 +9301,7 @@ public class RegressionTest0 {
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
-// flaky:         assertTrue(str2.equals("03-23-2019 17:45:10"));
+// flaky:         assertTrue(str2.equals("03-23-2019 19:25:25"));
     }
 
     @Test
@@ -9324,8 +9325,8 @@ public class RegressionTest0 {
             fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
-// flaky:         assertTrue(str2.equals("03-23-2019 17:45:10"));
-// flaky:         assertTrue(str4.equals("03-23-2019 17:45:10"));
+// flaky:         assertTrue(str2.equals("03-23-2019 19:25:25"));
+// flaky:         assertTrue(str4.equals("03-23-2019 19:25:25"));
     }
 
     @Test
@@ -9407,7 +9408,7 @@ public class RegressionTest0 {
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
-// flaky:         assertTrue(str2.equals("03-23-2019 17:45:11"));
+// flaky:         assertTrue(str2.equals("03-23-2019 19:25:25"));
         assertNotNull(strArray9);
         assertTrue(str13.equals(""));
         assertNotNull(strArray23);
@@ -9873,7 +9874,7 @@ public class RegressionTest0 {
             System.out.format("%n%s%n", "RegressionTest0.test316");
         sg.edu.nus.comp.cs4218.impl.app.SedApplication sedApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SedApplication();
         try {
-            java.lang.String str5 = sedApplication0.replaceSubstringInFile("Could not read stream", "03-23-2019 17:45:08", 0, "null output stream provided");
+            java.lang.String str5 = sedApplication0.replaceSubstringInFile("Could not read stream", "03-23-2019 19:25:22", 0, "null output stream provided");
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
@@ -9891,8 +9892,8 @@ public class RegressionTest0 {
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
-// flaky:         assertTrue(str2.equals("03-23-2019 17:45:11"));
-// flaky:         assertTrue(str4.equals("03-23-2019 17:45:11"));
+// flaky:         assertTrue(str2.equals("03-23-2019 19:25:26"));
+// flaky:         assertTrue(str4.equals("03-23-2019 19:25:26"));
     }
 
     @Test
@@ -11183,7 +11184,7 @@ public class RegressionTest0 {
             System.out.format("%n%s%n", "RegressionTest0.test349");
         java.io.InputStream inputStream0 = null;
         try {
-            java.util.List<java.lang.String> strList4 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.replace(inputStream0, "", "03-23-2019 17:44:56", (int) (short) 1);
+            java.util.List<java.lang.String> strList4 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.replace(inputStream0, "", "03-23-2019 19:25:11", (int) (short) 1);
             fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
@@ -11378,11 +11379,11 @@ public class RegressionTest0 {
         java.io.InputStream inputStream59 = null;
         java.io.OutputStream outputStream60 = null;
         sortApplication0.run(strArray52, inputStream59, outputStream60);
-        java.lang.String[] strArray70 = new java.lang.String[] { "Terminate process.", "Terminate process.", "This is a directory", "fail_echo", "03-23-2019 17:45:08" };
+        java.lang.String[] strArray70 = new java.lang.String[] { "Terminate process.", "Terminate process.", "This is a directory", "fail_echo", "03-23-2019 19:25:22" };
         try {
             java.lang.String str71 = sortApplication0.sortFromFiles((java.lang.Boolean) false, (java.lang.Boolean) true, (java.lang.Boolean) false, strArray70);
-            fail("Expected exception of type java.io.FileNotFoundException; message: Terminate process. (Åtkomst nekad)");
-        } catch (java.io.FileNotFoundException e) {
+            fail("Expected exception of type SortException; message: Terminate process. (Åtkomst nekad)");
+        } catch (SortException e) {
         }
         assertNotNull(strArray6);
         assertTrue(str10.equals(""));
@@ -11782,7 +11783,7 @@ public class RegressionTest0 {
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
-// flaky:         assertTrue(str2.equals("03-23-2019 17:45:13"));
+// flaky:         assertTrue(str2.equals("03-23-2019 19:25:28"));
         assertNotNull(strArray10);
         assertTrue(str14.equals(""));
         assertNotNull(strArray24);
@@ -12448,8 +12449,8 @@ public class RegressionTest0 {
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
-// flaky:         assertTrue(str2.equals("03-23-2019 17:45:14"));
-// flaky:         assertTrue(str4.equals("03-23-2019 17:45:14"));
+// flaky:         assertTrue(str2.equals("03-23-2019 19:25:28"));
+// flaky:         assertTrue(str4.equals("03-23-2019 19:25:28"));
     }
 
     @Test
@@ -12624,8 +12625,8 @@ public class RegressionTest0 {
         java.lang.String str62 = findApplication4.findFolderContent("Exception Caught", strArray50);
         try {
             java.lang.String str63 = sortApplication0.sortFromFiles((java.lang.Boolean) true, (java.lang.Boolean) false, (java.lang.Boolean) false, strArray50);
-            fail("Expected exception of type java.io.FileNotFoundException; message: null output stream provided (Åtkomst nekad)");
-        } catch (java.io.FileNotFoundException e) {
+            fail("Expected exception of type SortException; message: null output stream provided (Åtkomst nekad)");
+        } catch (SortException e) {
         }
         assertNotNull(strArray12);
         assertTrue(str16.equals(""));
@@ -12718,7 +12719,7 @@ public class RegressionTest0 {
             System.out.format("%n%s%n", "RegressionTest0.test378");
         sg.edu.nus.comp.cs4218.impl.app.SedApplication sedApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SedApplication();
         try {
-            java.lang.String str5 = sedApplication0.replaceSubstringInFile("03-23-2019 17:44:56", "03-23-2019 17:44:56", (-1), "03-23-2019 17:44:56");
+            java.lang.String str5 = sedApplication0.replaceSubstringInFile("03-23-2019 19:25:11", "03-23-2019 19:25:11", (-1), "03-23-2019 19:25:11");
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
@@ -13373,8 +13374,8 @@ public class RegressionTest0 {
         mkdirApplication17.createFolder(strArray73);
         try {
             java.lang.String str80 = sortApplication0.sortFromFiles((java.lang.Boolean) false, (java.lang.Boolean) true, (java.lang.Boolean) false, strArray73);
-            fail("Expected exception of type java.io.FileNotFoundException; message: fail_echo_write (Åtkomst nekad)");
-        } catch (java.io.FileNotFoundException e) {
+            fail("Expected exception of type SortException; message: fail_echo_write (Åtkomst nekad)");
+        } catch (SortException e) {
         }
         assertNotNull(strArray6);
         assertTrue(str10.equals(""));
@@ -14202,7 +14203,7 @@ public class RegressionTest0 {
             System.out.format("%n%s%n", "RegressionTest0.test405");
         java.io.InputStream inputStream0 = null;
         try {
-            java.util.List<java.lang.String> strList4 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.replace(inputStream0, "03-23-2019 17:44:56", "", 100);
+            java.util.List<java.lang.String> strList4 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.replace(inputStream0, "03-23-2019 19:25:11", "", 100);
             fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
@@ -14222,7 +14223,7 @@ public class RegressionTest0 {
             System.out.format("%n%s%n", "RegressionTest0.test407");
         sg.edu.nus.comp.cs4218.impl.app.SedApplication sedApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SedApplication();
         try {
-            java.lang.String str5 = sedApplication0.replaceSubstringInFile("03-23-2019 17:44:56", "Null Pointer Exception", (int) (short) 0, "C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_empty_params");
+            java.lang.String str5 = sedApplication0.replaceSubstringInFile("03-23-2019 19:25:11", "Null Pointer Exception", (int) (short) 0, "C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_empty_params");
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
@@ -14448,7 +14449,7 @@ public class RegressionTest0 {
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
-// flaky:         assertTrue(str2.equals("03-23-2019 17:45:16"));
+// flaky:         assertTrue(str2.equals("03-23-2019 19:25:30"));
     }
 
     @Test
@@ -14708,7 +14709,7 @@ public class RegressionTest0 {
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
-// flaky:         assertTrue(str2.equals("03-23-2019 17:45:16"));
+// flaky:         assertTrue(str2.equals("03-23-2019 19:25:31"));
         assertNotNull(strArray6);
         assertNotNull(wildcardClass8);
         assertNotNull(strArray17);
@@ -14730,7 +14731,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.GrepApplication grepApplication0 = new sg.edu.nus.comp.cs4218.impl.app.GrepApplication();
         java.io.InputStream inputStream4 = null;
         try {
-            java.lang.String str5 = grepApplication0.grepFromStdin("03-23-2019 17:44:56", (java.lang.Boolean) false, (java.lang.Boolean) true, inputStream4);
+            java.lang.String str5 = grepApplication0.grepFromStdin("03-23-2019 19:25:11", (java.lang.Boolean) false, (java.lang.Boolean) true, inputStream4);
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
@@ -14910,8 +14911,8 @@ public class RegressionTest0 {
         java.lang.String str75 = findApplication66.findFolderContent("", strArray71);
         try {
             java.lang.String str76 = sortApplication0.sortFromFiles((java.lang.Boolean) true, (java.lang.Boolean) true, (java.lang.Boolean) false, strArray71);
-            fail("Expected exception of type java.io.FileNotFoundException; message: null output stream provided (Åtkomst nekad)");
-        } catch (java.io.FileNotFoundException e) {
+            fail("Expected exception of type SortException; message: null output stream provided (Åtkomst nekad)");
+        } catch (SortException e) {
         }
         assertNotNull(strArray9);
         assertTrue(str13.equals(""));
@@ -15859,8 +15860,8 @@ public class RegressionTest0 {
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
-// flaky:         assertTrue(str2.equals("03-23-2019 17:45:17"));
-// flaky:         assertTrue(str4.equals("03-23-2019 17:45:17"));
+// flaky:         assertTrue(str2.equals("03-23-2019 19:25:32"));
+// flaky:         assertTrue(str4.equals("03-23-2019 19:25:32"));
         assertNotNull(strArray13);
         assertTrue(str17.equals(""));
         assertTrue(str18.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
@@ -16144,8 +16145,8 @@ public class RegressionTest0 {
         java.lang.String str67 = lsApplication14.listFolderContent((java.lang.Boolean) true, (java.lang.Boolean) false, strArray59);
         try {
             java.lang.String str68 = sortApplication0.sortFromFiles((java.lang.Boolean) false, (java.lang.Boolean) false, (java.lang.Boolean) true, strArray59);
-            fail("Expected exception of type java.io.FileNotFoundException; message: null output stream provided (Åtkomst nekad)");
-        } catch (java.io.FileNotFoundException e) {
+            fail("Expected exception of type SortException; message: null output stream provided (Åtkomst nekad)");
+        } catch (SortException e) {
         }
         assertNotNull(strArray7);
         assertNotNull(strArray22);
@@ -16276,8 +16277,8 @@ public class RegressionTest0 {
         java.lang.Class<?> wildcardClass18 = strArray16.getClass();
         try {
             java.lang.String str19 = sortApplication0.sortFromFiles((java.lang.Boolean) false, (java.lang.Boolean) false, (java.lang.Boolean) true, strArray16);
-            fail("Expected exception of type java.io.FileNotFoundException; message: fail_echo_write (Åtkomst nekad)");
-        } catch (java.io.FileNotFoundException e) {
+            fail("Expected exception of type SortException; message: fail_echo_write (Åtkomst nekad)");
+        } catch (SortException e) {
         }
         assertNotNull(strArray4);
         assertNotNull(wildcardClass6);
@@ -16344,7 +16345,7 @@ public class RegressionTest0 {
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
-// flaky:         assertTrue(str2.equals("03-23-2019 17:45:18"));
+// flaky:         assertTrue(str2.equals("03-23-2019 19:25:32"));
         assertNotNull(strArray7);
         assertNotNull(wildcardClass9);
         assertNotNull(strArray22);
@@ -16811,7 +16812,7 @@ public class RegressionTest0 {
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
-// flaky:         assertTrue(str2.equals("03-23-2019 17:45:18"));
+// flaky:         assertTrue(str2.equals("03-23-2019 19:25:33"));
     }
 
     @Test
@@ -16880,8 +16881,8 @@ public class RegressionTest0 {
         mkdirApplication48.createFolder(strArray64);
         try {
             java.lang.String str76 = sortApplication0.sortFromFiles((java.lang.Boolean) true, (java.lang.Boolean) false, (java.lang.Boolean) true, strArray64);
-            fail("Expected exception of type java.io.FileNotFoundException; message: null output stream provided (Åtkomst nekad)");
-        } catch (java.io.FileNotFoundException e) {
+            fail("Expected exception of type SortException; message: null output stream provided (Åtkomst nekad)");
+        } catch (SortException e) {
         }
         assertNotNull(strArray7);
         assertTrue(str11.equals(""));
@@ -17122,7 +17123,7 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream64 = null;
         mkdirApplication4.run(strArray54, inputStream63, outputStream64);
         try {
-            java.lang.String str66 = grepApplication0.grepFromFiles("03-23-2019 17:45:08", (java.lang.Boolean) false, (java.lang.Boolean) false, strArray54);
+            java.lang.String str66 = grepApplication0.grepFromFiles("03-23-2019 19:25:22", (java.lang.Boolean) false, (java.lang.Boolean) false, strArray54);
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
@@ -17561,7 +17562,7 @@ public class RegressionTest0 {
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
-// flaky:         assertTrue(str2.equals("03-23-2019 17:45:19"));
+// flaky:         assertTrue(str2.equals("03-23-2019 19:25:34"));
         assertNotNull(strArray11);
         assertNotNull(strArray26);
         assertTrue(str30.equals(""));
@@ -18413,8 +18414,8 @@ public class RegressionTest0 {
         mkdirApplication44.run(strArray51, inputStream52, outputStream53);
         try {
             java.lang.String str55 = sortApplication0.sortFromFiles((java.lang.Boolean) true, (java.lang.Boolean) true, (java.lang.Boolean) false, strArray51);
-            fail("Expected exception of type java.io.FileNotFoundException; message: Terminate process. (Åtkomst nekad)");
-        } catch (java.io.FileNotFoundException e) {
+            fail("Expected exception of type SortException; message: Terminate process. (Åtkomst nekad)");
+        } catch (SortException e) {
         }
         assertNotNull(strArray6);
         assertTrue(str10.equals(""));
@@ -18515,6 +18516,6 @@ public class RegressionTest0 {
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
-// flaky:         assertTrue(str2.equals("03-23-2019 17:45:20"));
+// flaky:         assertTrue(str2.equals("03-23-2019 19:25:35"));
     }
 }

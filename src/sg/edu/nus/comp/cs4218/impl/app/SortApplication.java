@@ -20,26 +20,21 @@ public class SortApplication implements SortInterface{
      * @throws Exception
      */
     public String sortFromFiles(Boolean isFirstWordNumber, Boolean isReverseOrder, Boolean isCaseIndependent,
-                         String... fileName) throws SortException{
-        List<String> list = new ArrayList();
-        try {
-            for (String file: fileName){
-                FileReader fileReader = new FileReader(file);
-                BufferedReader bufferedReader = new BufferedReader(fileReader);
-                String string;
-                while ((string = bufferedReader.readLine()) != null){
-                    if (isFirstWordNumber && !StringUtils.isNumberic(string.split(" ")[0])){
-                        throw new SortException("");
-                    }
-                    list.add(string);
+                         String... fileName) throws Exception{
+        List<String> list = new ArrayList<String>();
+        for (String file: fileName){
+            FileReader fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String string;
+            while ((string = bufferedReader.readLine()) != null){
+                if (isFirstWordNumber && !StringUtils.isNumberic(string.split(" ")[0])){
+                    throw new SortException("");
                 }
-                bufferedReader.close();
-                fileReader.close();
+                list.add(string);
             }
-        } catch (IOException e) {
-            throw (SortException) new SortException("IO failure during sortFromFiles!").initCause(e);
+            bufferedReader.close();
+            fileReader.close();
         }
-
         sortList(list, isFirstWordNumber, isCaseIndependent);
         if (isReverseOrder){
             Collections.reverse(list);
@@ -58,19 +53,15 @@ public class SortApplication implements SortInterface{
      * @throws Exception
      */
     public String sortFromStdin(Boolean isFirstWordNumber, Boolean isReverseOrder, Boolean isCaseIndependent,
-                         InputStream stdin) throws SortException{
+                         InputStream stdin) throws IOException,SortException{
         List<String> list = new ArrayList<String>();
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(stdin));
         String temp;
-        try {
-            while ((temp = bufferedReader.readLine()) != null){
-                if (isFirstWordNumber && !StringUtils.isNumberic(temp.split(" ")[0])){
-                    throw new SortException("");
-                }
-                list.add(temp);
+        while ((temp = bufferedReader.readLine()) != null){
+            if (isFirstWordNumber && !StringUtils.isNumberic(temp.split(" ")[0])){
+                throw new SortException("");
             }
-        } catch (IOException e) {
-            throw (SortException) new SortException("IO failure during sortFromStdin").initCause(e);
+            list.add(temp);
         }
         sortList(list, isFirstWordNumber, isCaseIndependent);
         if (isReverseOrder){
@@ -79,7 +70,7 @@ public class SortApplication implements SortInterface{
         return String.join(StringUtils.STRING_NEWLINE,list.toArray(new String[0]));
     }
 
-    public void run(String[] args, InputStream stdin, OutputStream stdout) throws SortException {
+    public void run(String[] args, InputStream stdin, OutputStream stdout) throws AbstractApplicationException {
         boolean firstWord = false,reverseOrder = false, caseIndependent = false, useFile = false;
         ArrayList<String> files = new ArrayList<>();
         for (String arg : args){
@@ -100,14 +91,22 @@ public class SortApplication implements SortInterface{
             }
         }
         if (useFile){
-            String[] file = new String[files.size()];
-            for (int i = 0 ; i < file.length; i++){
-                file[i] = files.get(i);
+            try {
+                String[] file = new String[files.size()];
+                for (int i = 0 ; i < file.length; i++){
+                    file[i] = files.get(i);
+                }
+                sortFromFiles(firstWord,reverseOrder,caseIndependent,file);
+            }catch (Exception e){
+                e.printStackTrace();
             }
-            sortFromFiles(firstWord,reverseOrder,caseIndependent,file);
         }
         else {
-            sortFromStdin(firstWord,reverseOrder,caseIndependent,stdin);
+            try {
+                sortFromStdin(firstWord,reverseOrder,caseIndependent,stdin);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }
     public static void sortList(List list, boolean isFirstWordNumber, boolean isCaseIndependent){
