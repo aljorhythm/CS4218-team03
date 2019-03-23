@@ -59,10 +59,12 @@ public class CallCommand implements Command {
 //            String app = parsedArgsList.remove(0);
             appRunner.runApp(app, parsedArgsList.toArray(new String[]{}), inputStream, outputStream);
         }
-        try {
-            outputStream.write(STRING_NEWLINE.getBytes());
-        } catch (IOException e) {
-            ioException = e;
+        if (!(outputStream.toString().length() == 0)) {
+            try {
+                outputStream.write(STRING_NEWLINE.getBytes());
+            } catch (IOException e) {
+                ioException = e;
+            }
         }
     }
 

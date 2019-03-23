@@ -35,6 +35,7 @@ public final class StringUtils {
     public static final String STRING_ASTERISK = "*";
     public static final char CHAR_SHELL_ARROW = '>';
     public static final char CHAR_FLAG_PREFIX = '-';
+    public static final String REGEX_FILE_SEP = SystemUtil.isWindows() ? "\\\\" : "/";
     public static final String CHARSET_UTF8 = "UTF-8";
 
     private StringUtils() {
@@ -122,6 +123,23 @@ public final class StringUtils {
     }
 
     /**
+     * getCharacterType is to get the character type to compare
+     *
+     * @param  cha to be get type
+     * @return int num, special character would be 1, number would be 2, capital letter would be 3 and a smaller be 4
+     */
+    public static int getCharacterType(char cha) {
+        if (Character.isLowerCase(cha)) {
+            return 4;
+        } else if (Character.isUpperCase(cha)) {
+            return 3;
+        } else if (Character.isDigit(cha)) {
+            return 2;
+        } else {
+            return 1;
+        }
+    }
+    /**
      * Prepends string to all strings
      *
      * @param str
@@ -133,6 +151,5 @@ public final class StringUtils {
                 .of(strings)
                 .map(s -> str + s)
                 .toArray(String[]::new);
-
     }
 }

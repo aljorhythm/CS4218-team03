@@ -1,0 +1,14 @@
+c
+a
+b
+abc
+aba
+abb
+C
+A
+B
+ABC
+ABA
+ABB
+aBcDa
+aBcDA

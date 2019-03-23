@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHAR_FILE_SEP;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_ASTERISK;
 import static sg.edu.nus.comp.cs4218m1.TestUtils.NON_EXISTENT_DIR;
 
@@ -76,7 +77,7 @@ public class GlobUtilTest extends DirectoryStructureTest {
      */
     @Test
     void globTestSubdirectoriesNone() throws IOException {
-        List<String> res = GlobUtil.glob(Paths.get(testRootDir), "*/suubdir*");
+        List<String> res = GlobUtil.glob(Paths.get(testRootDir), "*" + CHAR_FILE_SEP + "suubdir*");
         Assertions.assertArrayEquals(new String[]{}, res.toArray(new String[]{}));
     }
 
@@ -87,7 +88,7 @@ public class GlobUtilTest extends DirectoryStructureTest {
      */
     @Test
     void globTestSubdirectoriesAll() throws IOException {
-        List<String> res = GlobUtil.glob(Paths.get(testRootDir), "*/*");
+        List<String> res = GlobUtil.glob(Paths.get(testRootDir), "*" + CHAR_FILE_SEP + "*");
         Assertions.assertArrayEquals(allSubDirFiles, res.toArray(new String[]{}));
     }
 
@@ -98,7 +99,7 @@ public class GlobUtilTest extends DirectoryStructureTest {
      */
     @Test
     void globTestSubdirectoriesPrefix() throws IOException {
-        List<String> res = GlobUtil.glob(Paths.get(testRootDir), "*/file*");
+        List<String> res = GlobUtil.glob(Paths.get(testRootDir), "*" + CHAR_FILE_SEP + "file*");
         Assertions.assertArrayEquals(new String[]{subDir_filesub}, res.toArray(new String[]{}));
     }
 
@@ -109,7 +110,7 @@ public class GlobUtilTest extends DirectoryStructureTest {
      */
     @Test
     void globTestSubdirectoriesAllTxt() throws IOException {
-        List<String> res = GlobUtil.glob(Paths.get(testRootDir), "*/*.txt");
+        List<String> res = GlobUtil.glob(Paths.get(testRootDir), "*" + CHAR_FILE_SEP +  "*.txt");
         String[] expected = Stream
                 .of(allSubDirFiles)
                 .filter(s -> s.endsWith(".txt"))
@@ -142,5 +143,4 @@ public class GlobUtilTest extends DirectoryStructureTest {
             }
         }
     }
-
 }
