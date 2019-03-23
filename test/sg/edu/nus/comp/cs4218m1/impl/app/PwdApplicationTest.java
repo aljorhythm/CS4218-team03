@@ -59,7 +59,7 @@ class PwdApplicationTest {
      */
     @Test
     void testRunClosedOutputStreamFailure() throws PwdException, IOException {
-        FileOutputStream fos = new FileOutputStream(TestUtils.pathToTestDataDir +
+        FileOutputStream fos = new FileOutputStream(TestUtils.TEST_DATA_DIR +
                 File.separator + "pwd.txt");
         fos.close();
         assertThrows(PwdException.class, () -> {pwdApplication.run(new String[0], null, fos);});

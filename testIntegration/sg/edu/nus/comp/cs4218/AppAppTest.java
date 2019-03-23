@@ -20,7 +20,7 @@ public class AppAppTest {
 
     MkdirApplication mkdirApplication;
     LsApplication lsApplication;
-    String pathToTestDir = TestUtils.pathToTestDataDir + File.separator + "appAppTestDir" + File.separator;
+    String pathToTestDir = TestUtils.TEST_DATA_DIR + File.separator + "appAppTestDir" + File.separator;
     String tempDir = pathToTestDir + "lsMkdirTest";
 
     @BeforeEach
