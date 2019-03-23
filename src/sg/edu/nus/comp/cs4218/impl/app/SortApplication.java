@@ -132,12 +132,14 @@ public class SortApplication implements SortInterface{
                     return -1;
                 }
                 if (isFirstWordNumber){
-                    string1 = string1.split(" ")[0];
-                    string2 = string2.split(" ")[0];
-                    if (StringUtils.isNumberic(string1) && StringUtils.isNumberic(string2)){
-                        Integer numForString1 = Integer.parseInt(string1);
-                        Integer numForString2 = Integer.parseInt(string2);
-                        return numForString1.compareTo(numForString2);
+                    String tempString1 = string1.split(" ")[0];
+                    String tempString2 = string2.split(" ")[0];
+                    if (StringUtils.isNumberic(tempString1) && StringUtils.isNumberic(tempString2)){
+                        Integer numForString1 = Integer.parseInt(tempString1);
+                        Integer numForString2 = Integer.parseInt(tempString2);
+                        if (numForString1.compareTo(numForString2) != 0){
+                            return numForString1.compareTo(numForString2);
+                        }
                     }
                 }
                 int wordLength = Math.min(string1.length(),string2.length());
