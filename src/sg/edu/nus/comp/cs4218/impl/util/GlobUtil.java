@@ -5,12 +5,16 @@ import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import static java.nio.file.FileVisitResult.CONTINUE;
+import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.REGEX_FILE_SEP;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_FILE_SEP;
 
 public final class GlobUtil {
+    private static String GLOB_SLASH = "/";
+
     /**
      *
      * Globs files in with respect to directory
@@ -23,6 +27,7 @@ public final class GlobUtil {
         ArrayList<String> files = new ArrayList<String>();
         String fileSep = dir.toAbsolutePath().toString().endsWith(STRING_FILE_SEP) ? "" : STRING_FILE_SEP;
         String fullGlobPattern = dir.toAbsolutePath() + fileSep + globPattern;
+        fullGlobPattern = fullGlobPattern.replace(STRING_FILE_SEP, REGEX_FILE_SEP);
         AbstractGlobFileVisitor visitor = new AbstractGlobFileVisitor(fullGlobPattern) {
             @Override
             void collect(Path file) {
@@ -30,7 +35,7 @@ public final class GlobUtil {
             }
         };
         Files.walkFileTree(dir, visitor);
-        Collections.sort(files);
+        Collections.sort(files, Comparator.<String>naturalOrder());
         return files;
     }
 
@@ -55,7 +60,7 @@ public final class GlobUtil {
             matcher = FileSystems
                     .getDefault()
                     .getPathMatcher("glob:" + pattern);
-            segments = pattern.split(STRING_FILE_SEP);
+            segments = pattern.split(REGEX_FILE_SEP);
             this.pattern = pattern;
         }
 
@@ -106,7 +111,7 @@ public final class GlobUtil {
          * @return true if dir is not at the end of pattern
          */
         private boolean toVisitDirDescendants(Path dir) {
-            String[] dirSegments = dir.toAbsolutePath().toString().split(STRING_FILE_SEP);
+            String[] dirSegments = dir.toAbsolutePath().toString().split(REGEX_FILE_SEP);
             return dirSegments.length < segments.length;
         }
 

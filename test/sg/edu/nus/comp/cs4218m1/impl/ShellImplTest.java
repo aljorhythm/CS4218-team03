@@ -22,7 +22,7 @@ class ShellImplTest {
     @Test
     void shell_run_Exit() throws IOException {
         InputStream inputStream = IOUtils.stringToInputStream("exit" + STRING_NEWLINE);
-        ShellImpl shell = new ShellImpl(inputStream, System.out);
+        ShellImpl shell = new ShellImpl(inputStream, null);
         assertTimeout(ofSeconds(2), () -> {
             shell.run();
         });
