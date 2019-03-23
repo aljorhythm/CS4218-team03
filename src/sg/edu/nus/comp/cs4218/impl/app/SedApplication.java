@@ -16,23 +16,36 @@ import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHARSET_UTF8;
 public class SedApplication implements SedInterface{
     public static final String FAIL_SED_WRITE = "fail_sed_write";
     public static final String FILE_NOT_EXIST = "File doesn't exist.";
+    public static final String FILE_NULL = "File is null.";
 
     @Override
     public String replaceSubstringInFile(String regexp, String replacement, int replacementIndex,
-                                  String fileName) throws Exception{
+                                  String fileName) throws SedException{
         File file = new File(fileName);
-        if(!file.exists()){
+        FileInputStream inputStream = null;
+        try {
+            inputStream = new FileInputStream(fileName);
+        } catch (FileNotFoundException e) {
             throw new SedException(FILE_NOT_EXIST);
         }
-        FileInputStream inputStream = new FileInputStream(fileName);
-        List<String> resList = replace(inputStream,regexp,replacement,replacementIndex);
+        List<String> resList = null;
+        try {
+            resList = replace(inputStream,regexp,replacement,replacementIndex);
+        } catch (IOException e) {
+            throw new SedException(FILE_NULL);
+        }
         return String.join(StringUtils.STRING_NEWLINE,resList);
     }
 
     @Override
     public String replaceSubstringInStdin(String regexp, String replacement, int replacementIndex,
-                                          InputStream stdin) throws Exception{
-        List<String> resList = replace(stdin,regexp,replacement,replacementIndex);
+                                          InputStream stdin) throws SedException{
+        List<String> resList = null;
+        try {
+            resList = replace(stdin,regexp,replacement,replacementIndex);
+        } catch (IOException e) {
+            throw new SedException(FILE_NULL);
+        }
         return String.join(StringUtils.STRING_NEWLINE,resList);
     }
 
@@ -85,21 +98,24 @@ public class SedApplication implements SedInterface{
         if(args.length < 1 || args.length > 3 || args[0].charAt(0) != 's'){
             throw new SedException("Invalid syntax.");
         }
-        int temp = 1;
-        while(args[0].charAt(temp) == StringUtils.CHAR_SPACE){
-            temp++;
+        String splitSymbol = args[0].substring(1,2);
+        if(isSpecialSymbol(splitSymbol)) {
+            splitSymbol = String.format("\\%s", splitSymbol);
         }
-        String split = String.format("\\%s", args[0].substring(temp, temp + 1));
-        String[] argsForRegex = args[0].split(split);
+        String[] argsForRegex = args[0].split(splitSymbol);
         if(argsForRegex.length < 3 || argsForRegex.length > 4){
             throw new SedException("Invalid syntax.");
         }
         int replacementIndex = 1;
         String regexp = argsForRegex[1];
+        if(regexp.isEmpty()){
+            throw new SedException("Missing args.");
+        }
         String replacement = argsForRegex[2];
         if(argsForRegex.length == 4){
-            if(isInteger(argsForRegex[3])) {
-                replacementIndex = Integer.parseInt(argsForRegex[3]);
+            String index = argsForRegex[3];
+            if(isInteger(index) && Integer.parseInt(index) > 0) {
+                replacementIndex = Integer.parseInt(index);
             }
             else{
                 throw new SedException("Invalid syntax.");
@@ -115,6 +131,9 @@ public class SedApplication implements SedInterface{
             }
         }
         else{
+            if(stdin == null){
+                throw new SedException("stdin is missing.");
+            }
             String res;
             try {
                 res = replaceSubstringInStdin(regexp,replacement,replacementIndex,stdin);
@@ -128,10 +147,22 @@ public class SedApplication implements SedInterface{
     /**
      * judge if a string could represent an integer.
      * @param str, argsForRegex[3]
-     * @return
+     * @return isInteger
      */
     public static boolean isInteger(String str) {
         Pattern pattern = Pattern.compile("^[-\\+]?[\\d]*$");
         return pattern.matcher(str).matches();
+    }
+
+    /**
+     * judge if a string has some special symbols.
+     * @param str, splitSymbol
+     * @return isSpecialSymbol
+     */
+    public static boolean isSpecialSymbol(String str){
+        String regEx = "[ _`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]|\n|\r|\t";
+        Pattern p = Pattern.compile(regEx);
+        Matcher m = p.matcher(str);
+        return m.find();
     }
 }
