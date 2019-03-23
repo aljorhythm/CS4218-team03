@@ -9,7 +9,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import sg.edu.nus.comp.cs4218.exception.FindException;
-import sg.edu.nus.comp.cs4218.impl.app.FindApplication;
 import sg.edu.nus.comp.cs4218.impl.util.StringUtils;
 import sg.edu.nus.comp.cs4218m1.TestUtils;
 
@@ -35,7 +34,7 @@ class FindApplicationTest {
     private static final String EMPTY_FOLDER = FOLDER_PATH + File.separator + "emptyFolder";
     private static final String NESTED_FOLDER = "nestedFolder";
     private static final String NUMERIC_FOLDER = "123";
-    private static final String INVALID_FOLDER = "NON_EXISTENT_DIR";
+    private static final String INVALID_FOLDER = "nonExistentFolder";
 
 
     private static final String BASIC_FILE_NAME = "test.txt";
