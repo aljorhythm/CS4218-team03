@@ -14,7 +14,7 @@ public class CatApplication implements CatInterface {
     public static final String ERR_RD_FILE = "Could not read file";
     public static final String ERR_RD_STREAM = "Could not read stream";
     public static final String ERR_WRITE_STREAM = "Could not write to output stream";
-    public static final String ERR_NULL_STREAMS = "null input stream provided";
+    public static final String ERR_NULL_STREAMS = "Null Pointer Exception";
     public static final String ERR_NULL_FILENAME = "null input file provided";
     public static final String ERR_NULL_OS = "null output stream provided";
     public static final String ERR_GENERAL = "Exception Caught";
@@ -33,10 +33,7 @@ public class CatApplication implements CatInterface {
     @Override
     public void run(String[] args, InputStream stdin, OutputStream stdout) throws CatException {
         String catString;
-        if(args == null) {
-            throw new CatException(ERR_NULL_ARGS);
-        }
-        if (args.length == 0) {
+        if (args == null || args.length == 0) {
             catString = catStdin(stdin);
         } else {
             catString = catFiles(args);
@@ -54,22 +51,22 @@ public class CatApplication implements CatInterface {
     @Override
     public String catFiles(String... fileNames) throws CatException {
         if (fileNames == null) {
-            throw new CatException(ERR_NULL_FILENAME);
+            throw new CatException(ERR_GENERAL);
         }
 
         InputStream[] fileInputStreams = new InputStream[fileNames.length];
-        Exception toThrow;
         for (int i = 0; i < fileNames.length; i++) {
             String fileName = fileNames[i];
+            if (new File(fileName).isDirectory()) {
+                throw new CatException(ERR_IS_DIR);
+            }
             try {
                 InputStream fileInputStream = IOUtils.openInputStream(fileName);
                 fileInputStreams[i] = fileInputStream;
             } catch (ShellException e) {
-                toThrow = e;
-                break;
+                throw (CatException) new CatException(ERR_RD_FILE).initCause(e);
             } catch (FileNotFoundException e) {
-                toThrow = e;
-                break;
+                throw (CatException) new CatException(ERR_RD_FILE).initCause(e);
             }
         }
 
@@ -87,7 +84,9 @@ public class CatApplication implements CatInterface {
             try {
                 IOUtils.closeInputStream(inputStream);
             } catch (ShellException e) {
+                throw (CatException) new CatException(ERR_RD_FILE).initCause(e);
             } catch (IOException e) {
+                throw (CatException) new CatException(ERR_RD_FILE).initCause(e);
             }
         }
         return String.join(STRING_NEWLINE, outputs);

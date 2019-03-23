@@ -34,15 +34,15 @@ public class EchoApplication implements EchoInterface {
      * @throws EchoException If the shell doesn't work.
      */
     @Override
-    public void run(String[] args, InputStream stdin, OutputStream stdout) throws AbstractApplicationException {
-        if(args.length == 0){
-            throw new EchoException("Invalid syntax.");
+    public void run(String[] args, InputStream stdin, OutputStream stdout) throws EchoException {
+        if(args == null || args.length == 0){
+            throw new EchoException("Empty arguments");
         }
         String result;
         try {
             result = this.constructResult(args);
         } catch (AbstractApplicationException e) {
-            throw new AbstractApplicationException(FAIL_ECHO){};//NOPMD
+            throw new EchoException(FAIL_ECHO){};//NOPMD
         }
 
         if(stdout == null) {
@@ -52,7 +52,7 @@ public class EchoApplication implements EchoInterface {
         try {
             stdout.write(result.getBytes(CHARSET_UTF8));
         } catch (IOException e) {
-            throw new AbstractApplicationException(FAIL_ECHO_WRITE){};//NOPMD
+            throw new EchoException(FAIL_ECHO_WRITE){};//NOPMD
         }
     }
 }

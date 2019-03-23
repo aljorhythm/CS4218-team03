@@ -158,10 +158,11 @@ public final class ArgumentResolver {
             }
         }
 
-
-
         if (!parsedArg.isEmpty()) {
             appendParsedArgIntoSegment(parsedArgsSegment, parsedArg);
+        }
+        if (subCommand.length() != 0){
+            appendParsedArgIntoSegment(parsedArgsSegment,new RegexArgument(subCommand.toString()));
         }
 
         // perform globing

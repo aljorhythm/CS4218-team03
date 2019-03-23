@@ -4,9 +4,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import sg.edu.nus.comp.cs4218.Environment;
-import sg.edu.nus.comp.cs4218m1.TestUtils;
 import sg.edu.nus.comp.cs4218.exception.ShellException;
 import sg.edu.nus.comp.cs4218.impl.util.IOUtils;
+import sg.edu.nus.comp.cs4218m1.TestUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,6 +22,16 @@ import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHAR_FILE_SEP;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
 class IOUtilsTest {
+    static final String CURRENT_DIR = Paths
+            .get(Environment.currentDirectory)
+            .toAbsolutePath()
+            .toString();
+
+    private static String testDataDir = TestUtils.pathToTestDataSubdir("ioTests");
+    private static String out1 = testDataDir + CHAR_FILE_SEP + "out1.out";
+    private static String in1 = testDataDir + CHAR_FILE_SEP + "abc.in";
+    private static final String STRING_ABCDE = "abcde";
+
     /**
      * Stream that can be closed. write(int) and read(int) throws exception when closed.
      */
@@ -29,7 +39,7 @@ class IOUtilsTest {
         boolean isClosed = false;
 
         @Override
-        public void write(int b) throws IOException {
+        public void write(int intVal) throws IOException {
             if (isClosed) {
                 throw new IOException();
             }
@@ -63,23 +73,10 @@ class IOUtilsTest {
         }
     }
 
-    String currentDir = Paths
-            .get(Environment.currentDirectory)
-            .toAbsolutePath()
-            .toString();
-
-    static String testDataDir = TestUtils.pathToTestDataSubdir("ioTests");
-    static String out1 = testDataDir + CHAR_FILE_SEP + "out1.out";
-    static String in1 = testDataDir + CHAR_FILE_SEP + "abc.in";
-
-    @BeforeAll
-    static void init() {
-        deleteOutputFiles();
-    }
-
     /**
      * Force deletes all output files
      */
+    @BeforeAll
     static void deleteOutputFiles() {
         String[] outputFiles = {
                 out1
@@ -92,6 +89,7 @@ class IOUtilsTest {
 
     /**
      * Deletes a file. Will not throw exceptions.
+     *
      * @param fileName
      */
     static void forceDelete(String fileName) {
@@ -99,15 +97,25 @@ class IOUtilsTest {
         file.delete();
     }
 
+    /**
+     * Open input stream
+     * @throws ShellException
+     * @throws IOException
+     */
     @Test
     void openInputStream() throws ShellException, IOException {
         InputStream inputStream = IOUtils.openInputStream(in1);
         byte[] bytes = new byte[5];
         inputStream.read(bytes);
         inputStream.close();
-        assertArrayEquals("abcde".getBytes(), bytes);
+        assertArrayEquals(STRING_ABCDE.getBytes(), bytes);
     }
 
+    /**
+     * Open output stream
+     * @throws ShellException
+     * @throws IOException
+     */
     @Test
     void openOutputStream() throws ShellException, IOException {
         OutputStream outputStream = IOUtils.openOutputStream(out1);
@@ -117,8 +125,13 @@ class IOUtilsTest {
         assertEquals("a", scanner.nextLine());
     }
 
+    /**
+     * Close output stream
+     * @throws ShellException
+     * @throws IOException
+     */
     @Test
-    void closeInputStream_close() throws ShellException, IOException {
+    void closeInputStream() throws ShellException, IOException {
         InputStream stream = new CloseableInputMockStream();
         IOUtils.closeInputStream(stream);
         assertThrows(IOException.class, () -> {
@@ -126,13 +139,23 @@ class IOUtilsTest {
         });
     }
 
+    /**
+     * Attempt to close null output stream does nothing
+     * @throws ShellException
+     * @throws IOException
+     */
     @Test
-    void closeOutputStream_null_doNothing() throws ShellException, IOException {
+    void closeOutputStreamNull() throws ShellException, IOException {
         IOUtils.closeOutputStream(null);
     }
 
+    /**
+     * Close output stream
+     * @throws ShellException
+     * @throws IOException
+     */
     @Test
-    void closeOutputStream_close() throws ShellException, IOException {
+    void closeOutputStream() throws ShellException, IOException {
         OutputStream stream = new CloseableOutputMockStream();
         IOUtils.closeOutputStream(stream);
         assertThrows(IOException.class, () -> {
@@ -143,7 +166,7 @@ class IOUtilsTest {
     @Test
     void resolveFilePath() {
         String fileName = "abc.txt";
-        String expected = currentDir + CHAR_FILE_SEP + fileName;
+        String expected = CURRENT_DIR + CHAR_FILE_SEP + fileName;
         String actual = IOUtils
                 .resolveFilePath(fileName)
                 .toString();
@@ -166,7 +189,7 @@ class IOUtilsTest {
      * Should fail converting null string
      */
     @Test
-    void stringToInputStream_null() throws IOException {
+    void stringToInputStreamNull() throws IOException {
         String stringData = null;
         assertThrows(IOException.class, () -> {
             InputStream inputStream = IOUtils.stringToInputStream(stringData);
@@ -177,7 +200,7 @@ class IOUtilsTest {
      * Tests conversion of string into InputStream
      */
     @Test
-    void stringToInputStream_empty() throws IOException {
+    void stringToInputStreamEmpty() throws IOException {
         String stringData = "";
         InputStream inputStream = IOUtils.stringToInputStream(stringData);
         String actual = IOUtils.stringFromInputStream(inputStream);
@@ -189,7 +212,7 @@ class IOUtilsTest {
      */
     @Test
     void stringsToInputStream() throws IOException {
-        String[] strings = {"abcde", "12345", "asdasd"};
+        String[] strings = {STRING_ABCDE, "12345", "asdasd"};
         String expected = String.join(STRING_NEWLINE, strings);
         InputStream inputStream = IOUtils.stringsToInputStream(strings);
         String actual = IOUtils.stringFromInputStream(inputStream);
@@ -203,7 +226,7 @@ class IOUtilsTest {
      */
     @Test
     void stringFromInputStream() throws IOException {
-        String[] strings = {"abcde", "12345", "asdasd"};
+        String[] strings = {STRING_ABCDE, "12345", "asdasd"};
         String inputString = String.join(STRING_NEWLINE, strings);
         InputStream inputStream = IOUtils.stringToInputStream(inputString);
         String actual = IOUtils.stringFromInputStream(inputStream);
@@ -217,7 +240,7 @@ class IOUtilsTest {
      * @throws IOException
      */
     @Test
-    void stringFromInputStream_empty() throws IOException {
+    void stringFromInputStreamEmpty() throws IOException {
         InputStream inputStream = mock(InputStream.class, Mockito.CALLS_REAL_METHODS);
         when(inputStream.read()).thenReturn(-1);
         String actual = IOUtils.stringFromInputStream(inputStream);
@@ -229,7 +252,7 @@ class IOUtilsTest {
      * Should fail attempt to convert null InputStream to String
      */
     @Test
-    void stringFromInputStream_null() {
+    void stringFromInputStreamNull() {
         InputStream inputStream = null;
         assertThrows(IOException.class, () -> {
             IOUtils.stringFromInputStream(null);
@@ -241,7 +264,7 @@ class IOUtilsTest {
      */
     @Test
     void stringsFromInputStream() throws IOException {
-        String[] strings = {"abcde", "12345", "asdasd"};
+        String[] strings = {STRING_ABCDE, "12345", "asdasd"};
         String inputString = String.join(STRING_NEWLINE, strings);
         InputStream inputStream = IOUtils.stringToInputStream(inputString);
         String[] actualArray = IOUtils.stringsFromInputStream(inputStream);
@@ -253,7 +276,7 @@ class IOUtilsTest {
      * Convert mocked InputStream into String
      */
     @Test
-    void stringsFromInputStream_empty() throws IOException {
+    void stringsFromInputStreamEmpty() throws IOException {
         InputStream inputStream = mock(InputStream.class, Mockito.CALLS_REAL_METHODS);
         when(inputStream.read()).thenReturn(-1);
         String[] actual = IOUtils.stringsFromInputStream(inputStream);
@@ -265,7 +288,7 @@ class IOUtilsTest {
      * Should fail converting null InputStream
      */
     @Test
-    void stringsFromInputStream_null() throws IOException {
+    void stringsFromInputStreamNull() throws IOException {
         InputStream inputStream = null;
         assertThrows(IOException.class, () -> {
             IOUtils.stringsFromInputStream(inputStream);

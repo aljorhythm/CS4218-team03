@@ -2,12 +2,26 @@ package sg.edu.nus.comp.cs4218.impl.util;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 public final class StringUtils {
+
+    /**
+     * System dependent new line
+     */
     public static final String STRING_NEWLINE = System.lineSeparator();
     public static final String STRING_CURR_DIR = ".";
     public static final String STRING_PARENT_DIR = "..";
+
+    /**
+     * Char representation of file separator
+     */
     public static final char CHAR_FILE_SEP = File.separatorChar;
+
+    /**
+     * String representation of file separator
+     */
+    public static final String STRING_FILE_SEP = new String(new char[]{File.separatorChar});
     public static final char CHAR_TAB = '\t';
     public static final char CHAR_SPACE = ' ';
     public static final char CHAR_DOUBLE_QUOTE = '"';
@@ -72,7 +86,9 @@ public final class StringUtils {
             return new String[0];
         }
 
-        return str.trim().split("\\s+");
+        return str
+                .trim()
+                .split("\\s+");
     }
 
     /**
@@ -81,9 +97,14 @@ public final class StringUtils {
      * @param str String to be judge
      * @return boolean
      */
-    public static boolean isNumberic(String str){
-        for (int i = 0; i < str.length(); i++){
-            if (!Character.isDigit(str.charAt(i))) return false;
+    public static boolean isNumberic(String str) {
+        if (isBlank(str)) {
+            return false;
+        }
+        for (int i = 0; i < str.length(); i++) {
+            if (!Character.isDigit(str.charAt(i))) {
+                return false;
+            }
         }
         return true;
     }
@@ -94,7 +115,22 @@ public final class StringUtils {
      * @param str String to be get
      * @return int num
      */
-    public static int getFirstNum(String str){
+    public static int getFirstNum(String str) {
         return Integer.parseInt(str.split(" ")[0]);
+    }
+
+    /**
+     * Prepends string to all strings
+     *
+     * @param str
+     * @param strings
+     * @return array where elements are strings prepended with str
+     */
+    public static String[] prependStringToStrings(String str, String... strings) {
+        return Stream
+                .of(strings)
+                .map(s -> str + s)
+                .toArray(String[]::new);
+
     }
 }

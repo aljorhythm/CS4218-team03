@@ -136,7 +136,7 @@ public class CatApplicationTest {
     public void testRunNullArgsFailure() {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         assertThrows(CatException.class, () -> {
-            catApplication.run(null, emptyIStream, baos);
+            catApplication.run(null, null, baos);
         });
     }
 
