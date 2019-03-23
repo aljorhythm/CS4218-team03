@@ -38,7 +38,7 @@ public class ApplicationRunner {
      * @throws ShellException               If an unsupported or invalid application command is
      *                                      detected.
      */
-    public void runApp(String app, String[] argsArray, InputStream inputStream,
+    public void runApp(String app, String[] argsArray, InputStream inputStream,//NOPMD
                        OutputStream outputStream)
             throws ShellException, AbstractApplicationException {
         Application application;
@@ -60,15 +60,15 @@ public class ApplicationRunner {
             case APP_EXIT:
                 application = new ExitApplication();
                 break;
-//            case APP_FIND:
-//                application = new FindApplication();
-//                break;
+            case APP_FIND:
+                application = new FindApplication();
+                break;
             case APP_GREP:
                 application = new GrepApplication();
                 break;
-//            case APP_LS:
-//                application = new LsApplication();
-//                break;
+            case APP_LS:
+                application = new LsApplication();
+                break;
             case APP_MKDIR:
                 application = new MkdirApplication();
                 break;
@@ -91,7 +91,7 @@ public class ApplicationRunner {
         application.run(argsT, inputStream, outputStream);
     }
 
-    private static String[] deleteDefaultArg(String[] argsArray){
+    private static String[] deleteDefaultArg(String... argsArray){
         String[] res = new String[argsArray.length-1];
         for(int i = 0;i<res.length;i++){
             res[i] = argsArray[i+1];

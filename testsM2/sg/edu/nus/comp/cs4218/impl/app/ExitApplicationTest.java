@@ -7,13 +7,12 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import sg.edu.nus.comp.cs4218.impl.app.ExitApplication;
+import sg.edu.nus.comp.cs4218.exception.ExitException;
 
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.security.Permission;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.spy;
 
@@ -23,7 +22,6 @@ class ExitApplicationTest {
     private static InputStream mockIs;
     private static OutputStream mockOs;
 
-    private static final String EXIT_CODE = "0";
 
     /**
      * Mock SecurityManager that prevents SecurityManager from calling System.exit()
@@ -62,57 +60,44 @@ class ExitApplicationTest {
 
     @Test
     void testTerminateExecution() {
-        Exception actualException = assertThrows(Exception.class, () -> application.terminateExecution());
-        assertEquals(EXIT_CODE, actualException.getMessage());
+        assertThrows(ExitException.class, () -> application.terminateExecution());
     }
 
     @Test
     void testRunExitWithoutArguments() {
         String[] args = new String[]{};
-
-        Exception actualException = assertThrows(SecurityException.class, () -> application.run(args, mockIs, mockOs));
-        assertEquals(EXIT_CODE, actualException.getMessage());
+        assertThrows(ExitException.class, () -> application.run(args, mockIs, mockOs));
     }
 
     @Test
     void testRunExitWithSingleWordArgument() {
         String[] args = new String[]{"exit"};
-
-        Exception actualException = assertThrows(SecurityException.class, () -> application.run(args, mockIs, mockOs));
-        assertEquals(EXIT_CODE, actualException.getMessage());
+        assertThrows(ExitException.class, () -> application.run(args, mockIs, mockOs));
     }
 
     @Test
     void testRunExitWithSingleNumericArgument() {
         String[] args = new String[]{"-1"};
-
-        Exception actualException = assertThrows(SecurityException.class, () -> application.run(args, mockIs, mockOs));
-        assertEquals(EXIT_CODE, actualException.getMessage());
+        assertThrows(ExitException.class, () -> application.run(args, mockIs, mockOs));
     }
 
     @Test
     void testRunExitWithMultipleArguments() {
         String[] args = new String[]{"1", "noExit", "exit123"};
-
-        Exception actualException = assertThrows(SecurityException.class, () -> application.run(args, mockIs, mockOs));
-        assertEquals(EXIT_CODE, actualException.getMessage());
+        assertThrows(ExitException.class, () -> application.run(args, mockIs, mockOs));
     }
 
     @Test
     void testRunExitWithNullStdIn() {
         String[] args = new String[]{};
-
-        Exception actualException = assertThrows(SecurityException.class, () ->
+        assertThrows(ExitException.class, () ->
                 application.run(args, null, mockOs));
-        assertEquals(EXIT_CODE, actualException.getMessage());
     }
 
     @Test
     void testRunExitWithNullStdOut() {
         String[] args = new String[]{};
-
-        Exception actualException = assertThrows(SecurityException.class, () ->
+        assertThrows(ExitException.class, () ->
                 application.run(args, mockIs, null));
-        assertEquals(EXIT_CODE, actualException.getMessage());
     }
 }

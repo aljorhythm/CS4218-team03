@@ -51,7 +51,7 @@ public final class CommandBuilder {
 
         List<Command> cmdsForSequence = new LinkedList<>();
         List<CallCommand> callCmdsForPipe = new LinkedList<>();
-        List<Command> cmdsForIORedirection = new LinkedList<>();
+        List<Command> cmdsForIORedirection = new LinkedList<>();//NOPMD
         List<String> tokens = new LinkedList<>();
 
         String commandSubstring = commandString;
@@ -113,12 +113,15 @@ public final class CommandBuilder {
                     }
                     break;
                 case CHAR_SPACE:
-                    if(tokens.isEmpty())
+                    if(tokens.isEmpty()) {
                         throw new ShellException(ERR_SYNTAX);
-                    if(commandSubstring.length() > 1)
+                    }
+                    if(commandSubstring.length() > 1) {
                         commandSubstring = commandSubstring.substring(0);
-                    else
+                    }
+                    else {
                         commandSubstring = null;
+                    }
                     break;
                 case CHAR_PIPE:
                     if (tokens.isEmpty()) {

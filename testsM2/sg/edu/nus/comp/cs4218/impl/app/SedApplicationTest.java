@@ -1,11 +1,14 @@
 /**
  * From Team 02
  */
-package sg.edu.nus.comp.cs4218.impl.app;import org.junit.jupiter.api.*;
+package sg.edu.nus.comp.cs4218.impl.app;
+
+import org.junit.jupiter.api.*;
 import org.mockito.Mockito;
 import sg.edu.nus.comp.cs4218.exception.SedException;
 import sg.edu.nus.comp.cs4218.impl.FileIOTestHelper;
 import sg.edu.nus.comp.cs4218.impl.StringsToArrayHelper;
+import sg.edu.nus.comp.cs4218.impl.util.StringUtils;
 
 import java.io.*;
 
@@ -30,11 +33,11 @@ class SedApplicationTest {
     public static final String UT_FILE_1_TEXT = "This file with single line for sed unit test. There is nothing special with this file actually.";
     public static final String UT_FILE_2_TEXT = "This file has a pattern < > we want to find.";
     public static final String UT_FILE_3_TEXT = "This file has a pattern < > we want to find < >, but need more< > of it.";
-    public static final String UT_FILE_4_TEXT = "First line has one occurrence of the pattern < >.\n" +
+    public static final String UT_FILE_4_TEXT = "First line has one occurrence of the pattern < >." + StringUtils.STRING_NEWLINE +
             "Second line has a pattern < > we want to find < >, but need more< > of it.";
     public static final String FILE_2_FORMAT = "This file has a pattern %s we want to find.";
     public static final String FILE_3_FORMAT = "This file has a pattern < > we want to find %s, but need more< > of it.";
-    public static final String FILE_4_FORMAT = "First line has one occurrence of the pattern < >.\n" +
+    public static final String FILE_4_FORMAT = "First line has one occurrence of the pattern < >." + StringUtils.STRING_NEWLINE +
             "Second line has a pattern < > we want to find < >, but need more%s of it.";
 
     public static final String STRING_ALPHA = "AllALPHAbets";
@@ -52,7 +55,7 @@ class SedApplicationTest {
     public static final String PATTERN_TO_FIND = "< >";
     public static final String EMPTY_STRING = "";
 
-    public static final int DEF_REPLACE_INDEX = -1;
+    public static final int DEF_REPLACE_INDEX = 1;
 
     public static SedApplication sedApplication;
 
@@ -119,7 +122,7 @@ class SedApplicationTest {
         FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
-                STRING_ALPHA, -1, UT_FILE_1_NAME);
+                STRING_ALPHA, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
     }
 
     @Test
@@ -131,7 +134,7 @@ class SedApplicationTest {
         FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
-                STRING_NUM, -1, UT_FILE_1_NAME);
+                STRING_NUM, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
     }
 
     @Test
@@ -143,7 +146,7 @@ class SedApplicationTest {
         FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
-                STRING_NON_ALPHA, -1, UT_FILE_1_NAME);
+                STRING_NON_ALPHA, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
     }
 
     @Test
@@ -155,7 +158,7 @@ class SedApplicationTest {
         FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
-                STRING_ALPHA_NUM, -1, UT_FILE_1_NAME);
+                STRING_ALPHA_NUM, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
     }
 
     @Test
@@ -167,7 +170,7 @@ class SedApplicationTest {
         FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
-                STRING_ALPNONALP, -1, UT_FILE_1_NAME);
+                STRING_ALPNONALP, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
     }
 
     @Test
@@ -179,7 +182,7 @@ class SedApplicationTest {
         FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
-                STRING_NUMNONALP, -1, UT_FILE_1_NAME);
+                STRING_NUMNONALP, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
     }
 
     @Test
@@ -191,7 +194,7 @@ class SedApplicationTest {
         FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
-                STRING_ALL_CHAR, -1, UT_FILE_1_NAME);
+                STRING_ALL_CHAR, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
     }
 
     @Test
@@ -203,7 +206,7 @@ class SedApplicationTest {
         FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
-                STRING_ALPHA, -1, UT_FILE_1_NAME);
+                STRING_ALPHA, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
     }
 
     @Test
@@ -215,7 +218,7 @@ class SedApplicationTest {
         FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
-                STRING_ALPHA, -1, UT_FILE_1_NAME);
+                STRING_ALPHA, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
     }
 
     @Test
@@ -227,7 +230,7 @@ class SedApplicationTest {
         FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
-                STRING_ALPHA, -1, UT_FILE_1_NAME);
+                STRING_ALPHA, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
     }
 
     @Test
@@ -239,7 +242,7 @@ class SedApplicationTest {
         FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
-                STRING_ALPHA, -1, UT_FILE_1_NAME);
+                STRING_ALPHA, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
     }
 
     @Test
@@ -251,7 +254,7 @@ class SedApplicationTest {
         FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
-                STRING_NUM, -1, UT_FILE_1_NAME);
+                STRING_NUM, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
     }
 
     @Test
@@ -263,7 +266,7 @@ class SedApplicationTest {
         FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
-                STRING_ALPHA, -1, UT_FILE_1_NAME);
+                STRING_ALPHA, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
     }
 
     @Test
@@ -275,7 +278,7 @@ class SedApplicationTest {
         FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
-                STRING_ALPHA, -1, UT_FILE_1_NAME);
+                STRING_ALPHA, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
     }
 
     @Test
@@ -287,7 +290,7 @@ class SedApplicationTest {
         FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
-                STRING_ALPHA, -1, UT_FILE_1_NAME);
+                STRING_ALPHA, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
     }
 
     @Test
@@ -299,7 +302,7 @@ class SedApplicationTest {
         FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
-                STRING_ALPHA, -1, UT_FILE_1_NAME);
+                STRING_ALPHA, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
     }
 
     @Test
@@ -311,7 +314,7 @@ class SedApplicationTest {
         FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
-                STRING_ALPHA, -1, UT_FILE_1_NAME);
+                STRING_ALPHA, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
     }
 
     @Test
@@ -323,7 +326,7 @@ class SedApplicationTest {
         FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
-                STRING_ALPHA, -1, UT_FILE_1_NAME);
+                STRING_ALPHA, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
     }
 
     @Test
@@ -407,18 +410,8 @@ class SedApplicationTest {
     }
 
     @Test
-    void runInsufficientDelimitersTest() throws Exception {
-        String[] args = StringsToArrayHelper.appendStringsToArray(R_STRING_PART + STRING_ALPHA,
-                UT_FILE_1_NAME);
-
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
-        assertThrows(SedException.class, () -> sedApplication.run(args, null, fos));
-    }
-
-    @Test
     void runExtraDelimitersTest() throws Exception {
-        String[] args = StringsToArrayHelper.appendStringsToArray(R_STRING_PART + STRING_ALPHA + "//",
+        String[] args = StringsToArrayHelper.appendStringsToArray(R_STRING_PART + STRING_ALPHA + "// ",
                 UT_FILE_1_NAME);
 
         // Create the file for run to write into
