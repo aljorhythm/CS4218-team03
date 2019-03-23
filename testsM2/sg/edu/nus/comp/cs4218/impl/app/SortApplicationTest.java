@@ -126,14 +126,14 @@ public class SortApplicationTest {
     }
 
     @AfterEach
-    void tearDown() {
+    void deleteFiles() {
         FileIOTestHelper.deleteMultipleFiles(ALL_CHAR_NAME, SLETTER_NUM_NAME,
                 SAC_LETTER_NAME, SL_OTHERS_NAME, CLETTER_NUM_NAME,
                 CL_OTHERS_NAME, NUM_OTHERS_NAME);
     }
 
     @AfterAll
-    static void tearDownAfterEachTest() {
+    static void deleteStdOutFile() {
         File file = new File(STDOUT_NAME);
         if (file.exists()) {
             file.delete();

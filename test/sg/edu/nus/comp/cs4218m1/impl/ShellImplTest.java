@@ -10,8 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import static java.time.Duration.ofSeconds;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTimeout;
+import static org.junit.jupiter.api.Assertions.*;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHARSET_UTF8;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
@@ -23,7 +22,7 @@ class ShellImplTest {
     void shell_run_Exit() throws IOException {
         InputStream inputStream = IOUtils.stringToInputStream("exit" + STRING_NEWLINE);
         ShellImpl shell = new ShellImpl(inputStream, null);
-        assertTimeout(ofSeconds(2), () -> {
+        assertTimeoutPreemptively(ofSeconds(2), () -> {
             shell.run();
         });
     }
