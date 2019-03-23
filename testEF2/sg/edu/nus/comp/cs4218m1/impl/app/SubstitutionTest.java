@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 import static sg.edu.nus.comp.cs4218.impl.util.IOUtils.stringToInputStream;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHARSET_UTF8;
+import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
 class SubstitutionTest {
     private ApplicationRunner mockAppRunner = new MockAppRunner();
@@ -92,7 +93,7 @@ class SubstitutionTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         command.evaluate(null, outputStream);
         String actual = outputStream.toString(CHARSET_UTF8);
-        String expected = "A A B B C C";
+        String expected = "A A B B C C" + STRING_NEWLINE;
         assertEquals(expected, actual);
     }
 

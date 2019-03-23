@@ -35,6 +35,7 @@ public final class StringUtils {
     public static final String STRING_ASTERISK = "*";
     public static final char CHAR_SHELL_ARROW = '>';
     public static final char CHAR_FLAG_PREFIX = '-';
+    public static final String REGEX_FILE_SEP = SystemUtil.isWindows() ? "\\\\" : "/";
     public static final String CHARSET_UTF8 = "UTF-8";
 
     private StringUtils() {
