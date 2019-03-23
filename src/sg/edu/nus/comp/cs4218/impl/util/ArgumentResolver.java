@@ -61,14 +61,13 @@ public final class ArgumentResolver {
             if (chr == CHAR_BACK_QUOTE) {
                 if (unmatchedQuotes.isEmpty() || unmatchedQuotes.peek() == CHAR_DOUBLE_QUOTE) {
                     // start of command substitution
-                    if (unmatchedQuotes.peek() == CHAR_DOUBLE_QUOTE){
+                    if (unmatchedQuotes.isEmpty()){
+                        unmatchedQuotes.add(chr);
+                    }else {
                         unmatchedQuotes.remove();
                         unmatchedQuotes.add(chr);
                         unmatchedQuotes.add(CHAR_DOUBLE_QUOTE);
-                    }else {
-                        unmatchedQuotes.add(chr);
                     }
-
                     if (!parsedArg.isEmpty()) {
                         appendParsedArgIntoSegment(parsedArgsSegment, parsedArg);
                         parsedArg = new RegexArgument();
@@ -84,6 +83,7 @@ public final class ArgumentResolver {
 //                    }
                     // evaluate subCommand and get the output
                     String subCommandOutput = evaluateSubCommand(subCommand.toString());
+                    subCommand = new StringBuilder();
 
                     // check if back quotes are nested
                     if (unmatchedQuotes.isEmpty()) {
