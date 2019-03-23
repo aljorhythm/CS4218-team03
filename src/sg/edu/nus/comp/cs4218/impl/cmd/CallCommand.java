@@ -57,7 +57,7 @@ public class CallCommand implements Command {
         if (!parsedArgsList.isEmpty()) {
             String app = argsList.get(0);
 //            String app = parsedArgsList.remove(0);
-            appRunner.runApp(app, parsedArgsList.toArray(new String[0]), inputStream, outputStream);
+            appRunner.runApp(app, parsedArgsList.toArray(new String[]{}), inputStream, outputStream);
         }
         try {
             outputStream.write(STRING_NEWLINE.getBytes());
