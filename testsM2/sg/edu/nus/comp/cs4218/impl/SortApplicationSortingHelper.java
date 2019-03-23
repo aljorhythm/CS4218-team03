@@ -80,6 +80,7 @@ public class SortApplicationSortingHelper {
 
         // To remove the trailing newline character
         result = result.deleteCharAt(result.length() - 1);
+        result = result.deleteCharAt(result.length() - 1);
 
         return result.toString();
     }

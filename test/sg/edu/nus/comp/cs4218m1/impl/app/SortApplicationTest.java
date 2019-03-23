@@ -96,12 +96,12 @@ class SortApplicationTest {
 
         void assertSortFromFiles() throws Exception {
             String actual = application.sortFromFiles(isFirstWordNumber, isReverseOrder, isCaseIndependent, fileNames);
-            assertEquals(actual, expected);
+            assertEquals(expected, actual);
         }
 
         void assertSortFromStdin() throws Exception {
             String actual = application.sortFromStdin(isFirstWordNumber, isReverseOrder, isCaseIndependent, stdIn);
-            assertEquals(actual, expected);
+            assertEquals(expected, actual);
         }
     }
 
@@ -155,14 +155,13 @@ class SortApplicationTest {
     }
 
     @Test
-    void sortFromStdin_test4() {
-        Assertions.assertThrows(SortException.class, () -> {
-            newCase()
-                    .input(string_2)
-                    .isFirstWordNumber(true)
-                    .expected(string_2_sorted_reverse)
-                    .run();
-        });
+    void sortFromStdin_test4() throws Exception {
+        newCase()
+                .input(string_2)
+                .isFirstWordNumber(true)
+                .isReverseOrder(true)
+                .expected(string_2_sorted_reverse)
+                .run();
     }
 
     @Test
