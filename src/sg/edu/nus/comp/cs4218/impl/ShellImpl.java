@@ -51,6 +51,16 @@ public class ShellImpl implements Shell {
     }
 
     /**
+     * Does nothing if output stream is null
+     */
+    private void writeToOutputStream(byte[] bytes) throws IOException {
+        if(outputStream == null){
+            return;
+        }
+        outputStream.write(bytes);
+    }
+
+    /**
      * Starts shell, will stop on "exit" command
      */
     public void run() throws ShellException, IOException {
@@ -58,7 +68,7 @@ public class ShellImpl implements Shell {
         while (true) {
             try {
                 String currentDirectory = Environment.currentDirectory;
-                outputStream.write((currentDirectory + ">").getBytes());
+                writeToOutputStream((currentDirectory + ">").getBytes());
 
                 String commandString = reader.readLine();
                 if (!StringUtils.isBlank(commandString)) {
@@ -69,7 +79,7 @@ public class ShellImpl implements Shell {
                 IOUtils.closeOutputStream(outputStream);
                 break;
             } catch (Exception e) {
-                outputStream.write((e.getMessage() + StringUtils.STRING_NEWLINE).getBytes());
+                writeToOutputStream((e.getMessage() + StringUtils.STRING_NEWLINE).getBytes());
             }
         }
     }
