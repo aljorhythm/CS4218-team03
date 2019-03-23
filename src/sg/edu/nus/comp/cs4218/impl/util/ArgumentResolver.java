@@ -23,15 +23,16 @@ public final class ArgumentResolver {
      * Handle quoting + globing + command substitution for a list of arguments.
      *
      * @param argsList The original list of arguments.
+     * @param appRunner
      * @return The list of parsed arguments.
      * @throws ShellException If any of the arguments have an invalid syntax.
      */
-    public static List<String> parseArguments(List<String> argsList) throws ShellException {
+    public static List<String> parseArguments(List<String> argsList, ApplicationRunner appRunner) throws ShellException {
         List<String> parsedArgsList = new LinkedList<>();
 
         List<String> parsedArgsSegment = new LinkedList<>();
         for (String arg : argsList) {
-            parsedArgsSegment.addAll(resolveOneArgument(arg));
+            parsedArgsSegment.addAll(resolveOneArgument(arg, appRunner));
         }
         parsedArgsList.addAll(parsedArgsSegment);
         return parsedArgsList;
@@ -46,10 +47,11 @@ public final class ArgumentResolver {
      * Double quotes disable the interpretation of all special characters, except for back quotes.
      *
      * @param arg String containing one argument.
+     * @param appRunner
      * @return A list containing one or more parsed args, depending on the outcome of the parsing.
      * @throws ShellException If there are any mismatched quotes.
      */
-    public static List<String> resolveOneArgument(String arg) throws ShellException {
+    public static List<String> resolveOneArgument(String arg, ApplicationRunner appRunner) throws ShellException {
         Queue<Character> unmatchedQuotes = new LinkedList<>();
         LinkedList<RegexArgument> parsedArgsSegment = new LinkedList<>();
         RegexArgument parsedArg = new RegexArgument();
@@ -82,7 +84,7 @@ public final class ArgumentResolver {
 //                        unmatchedQuotes.remove();
 //                    }
                     // evaluate subCommand and get the output
-                    String subCommandOutput = evaluateSubCommand(subCommand.toString());
+                    String subCommandOutput = evaluateSubCommand(subCommand.toString(), appRunner);
                     subCommand = new StringBuilder();
 
                     // check if back quotes are nested
@@ -172,7 +174,7 @@ public final class ArgumentResolver {
                 .collect(Collectors.toList());
     }
 
-    private static String evaluateSubCommand(String commandString) {
+    private static String evaluateSubCommand(String commandString, ApplicationRunner appRunner) {
         if (StringUtils.isBlank(commandString)) {
             return "";
         }
@@ -181,7 +183,7 @@ public final class ArgumentResolver {
         String output = null;
 
         try {
-            Command command = CommandBuilder.parseCommand(commandString, new ApplicationRunner());
+            Command command = CommandBuilder.parseCommand(commandString, appRunner);
             command.evaluate(System.in, outputStream);
             output = outputStream.toString();
         } catch (AbstractApplicationException | ShellException e) {
