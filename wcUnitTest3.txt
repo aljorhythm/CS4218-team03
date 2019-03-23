@@ -1,1 +1,0 @@
-This file will have the other characters with alphabets. . / , [ ] { }; ().   "   "   
