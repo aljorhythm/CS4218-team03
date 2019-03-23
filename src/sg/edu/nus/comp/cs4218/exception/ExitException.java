@@ -10,6 +10,6 @@ public class ExitException extends AbstractApplicationException {
      * @param message exit code
      */
     public ExitException(String message) {
-        super("exit: " + message + "\n");
+        super("exit: " + message);
     }
 }

@@ -5,6 +5,6 @@ public class MkdirException extends AbstractApplicationException {
     private static final long serialVersionUID = -7005801205007805286L;
 
     public MkdirException(String message) {
-        super("mkdir: " + message + "\n");
+        super("mkdir: " + message);
     }
 }

@@ -69,7 +69,7 @@ public class ShellImpl implements Shell {
                 IOUtils.closeOutputStream(outputStream);
                 break;
             } catch (Exception e) {
-                outputStream.write(e.getMessage().getBytes());
+                outputStream.write(e.getMessage().getBytes() + StringUtils.STRING_NEWLINE);
             }
         }
     }
