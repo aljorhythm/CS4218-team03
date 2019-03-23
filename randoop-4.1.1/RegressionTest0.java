@@ -1,7 +1,8 @@
-import org.junit.jupiter.api.Test;
+import org.junit.FixMethodOrder;
+import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class RegressionTest0 {
 
     public static boolean debug = false;
@@ -11,7 +12,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test001");
         java.lang.String str0 = sg.edu.nus.comp.cs4218.impl.app.ExitApplication.EXIT_REMINDER;
-        assertTrue(str0.equals("Terminate process."));
+        org.junit.Assert.assertTrue("'" + str0 + "' != '" + "Terminate process." + "'", str0.equals("Terminate process."));
     }
 
     @Test
@@ -19,7 +20,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test002");
         java.lang.String str0 = sg.edu.nus.comp.cs4218.impl.app.CatApplication.ERR_NULL_OS;
-        assertTrue(str0.equals("null output stream provided"));
+        org.junit.Assert.assertTrue("'" + str0 + "' != '" + "null output stream provided" + "'", str0.equals("null output stream provided"));
     }
 
     @Test
@@ -27,7 +28,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test003");
         java.lang.String str0 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.FILE_NULL;
-        assertTrue(str0.equals("File is null."));
+        org.junit.Assert.assertTrue("'" + str0 + "' != '" + "File is null." + "'", str0.equals("File is null."));
     }
 
     @Test
@@ -35,7 +36,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test004");
         java.lang.String str0 = sg.edu.nus.comp.cs4218.impl.app.EchoApplication.FAIL_ECHO;
-        assertTrue(str0.equals("fail_echo"));
+        org.junit.Assert.assertTrue("'" + str0 + "' != '" + "fail_echo" + "'", str0.equals("fail_echo"));
     }
 
     @Test
@@ -43,7 +44,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test005");
         java.lang.String str0 = sg.edu.nus.comp.cs4218.impl.app.EchoApplication.FAIL_ECHO_WRITE;
-        assertTrue(str0.equals("fail_echo_write"));
+        org.junit.Assert.assertTrue("'" + str0 + "' != '" + "fail_echo_write" + "'", str0.equals("fail_echo_write"));
     }
 
     @Test
@@ -51,7 +52,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test006");
         boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isInteger("");
-        assertTrue(boolean1 == true);
+        org.junit.Assert.assertTrue("'" + boolean1 + "' != '" + true + "'", boolean1 == true);
     }
 
     @Test
@@ -59,7 +60,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test007");
         java.lang.String str0 = sg.edu.nus.comp.cs4218.impl.app.CatApplication.ERR_IS_DIR;
-        assertTrue(str0.equals("This is a directory"));
+        org.junit.Assert.assertTrue("'" + str0 + "' != '" + "This is a directory" + "'", str0.equals("This is a directory"));
     }
 
     @Test
@@ -67,7 +68,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test008");
         java.lang.String str0 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.FILE_NOT_EXIST;
-        assertTrue(str0.equals("File doesn't exist."));
+        org.junit.Assert.assertTrue("'" + str0 + "' != '" + "File doesn't exist." + "'", str0.equals("File doesn't exist."));
     }
 
     @Test
@@ -77,7 +78,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.SedApplication sedApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SedApplication();
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInFile("", "Terminate process.", 100, "Terminate process.");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
     }
@@ -89,7 +90,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream0 = null;
         try {
             java.util.List<java.lang.String> strList4 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.replace(inputStream0, "hi!", "", (int) 'a');
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -99,7 +100,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test011");
         java.lang.String str0 = sg.edu.nus.comp.cs4218.impl.app.CatApplication.ERR_RD_STREAM;
-        assertTrue(str0.equals("Could not read stream"));
+        org.junit.Assert.assertTrue("'" + str0 + "' != '" + "Could not read stream" + "'", str0.equals("Could not read stream"));
     }
 
     @Test
@@ -107,7 +108,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test012");
         java.lang.String str0 = sg.edu.nus.comp.cs4218.impl.app.CatApplication.ERR_RD_FILE;
-        assertTrue(str0.equals("Could not read file"));
+        org.junit.Assert.assertTrue("'" + str0 + "' != '" + "Could not read file" + "'", str0.equals("Could not read file"));
     }
 
     @Test
@@ -122,10 +123,10 @@ public class RegressionTest0 {
         mkdirApplication4.run(strArray7, inputStream8, outputStream9);
         try {
             java.lang.String str11 = grepApplication0.grepFromFiles("This is a directory", (java.lang.Boolean) true, (java.lang.Boolean) false, strArray7);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray7);
+        org.junit.Assert.assertNotNull(strArray7);
     }
 
     @Test
@@ -133,7 +134,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test014");
         java.lang.String str0 = sg.edu.nus.comp.cs4218.impl.app.CatApplication.ERR_NULL_STREAMS;
-        assertTrue(str0.equals("Null Pointer Exception"));
+        org.junit.Assert.assertTrue("'" + str0 + "' != '" + "Null Pointer Exception" + "'", str0.equals("Null Pointer Exception"));
     }
 
     @Test
@@ -150,10 +151,10 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream13 = null;
         try {
             findApplication0.run(strArray8, inputStream12, outputStream13);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: output stream is null");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: output stream is null");
         } catch (sg.edu.nus.comp.cs4218.exception.FindException e) {
         }
-        assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(strArray8);
     }
 
     @Test
@@ -161,7 +162,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test016");
         boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isSpecialSymbol("Terminate process.");
-        assertTrue(boolean1 == true);
+        org.junit.Assert.assertTrue("'" + boolean1 + "' != '" + true + "'", boolean1 == true);
     }
 
     @Test
@@ -178,10 +179,10 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream13 = null;
         try {
             sortApplication0.run(strArray8, inputStream12, outputStream13);
-            fail("Expected exception of type java.lang.StringIndexOutOfBoundsException; message: String index out of range: 0");
+            org.junit.Assert.fail("Expected exception of type java.lang.StringIndexOutOfBoundsException; message: String index out of range: 0");
         } catch (java.lang.StringIndexOutOfBoundsException e) {
         }
-        assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(strArray8);
     }
 
     @Test
@@ -198,10 +199,10 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream13 = null;
         try {
             sedApplication0.run(strArray8, inputStream12, outputStream13);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
-        assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(strArray8);
     }
 
     @Test
@@ -211,7 +212,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.SedApplication sedApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SedApplication();
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInFile("fail_echo", "File is null.", 10, "");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
     }
@@ -221,7 +222,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test020");
         java.lang.String str0 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.FAIL_SED_WRITE;
-        assertTrue(str0.equals("fail_sed_write"));
+        org.junit.Assert.assertTrue("'" + str0 + "' != '" + "fail_sed_write" + "'", str0.equals("fail_sed_write"));
     }
 
     @Test
@@ -231,7 +232,7 @@ public class RegressionTest0 {
         java.util.List list0 = null;
         try {
             sg.edu.nus.comp.cs4218.impl.app.SortApplication.sortList(list0, false, false);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -244,7 +245,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInStdin("Null Pointer Exception", "Null Pointer Exception", 0, inputStream4);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -261,10 +262,10 @@ public class RegressionTest0 {
         mkdirApplication4.run(strArray7, inputStream8, outputStream9);
         try {
             java.lang.String str11 = grepApplication0.grepFromFiles("fail_sed_write", (java.lang.Boolean) false, (java.lang.Boolean) false, strArray7);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray7);
+        org.junit.Assert.assertNotNull(strArray7);
     }
 
     @Test
@@ -281,11 +282,11 @@ public class RegressionTest0 {
         java.lang.String str13 = findApplication4.findFolderContent("", strArray9);
         try {
             java.lang.String str14 = grepApplication0.grepFromFiles("File is null.", (java.lang.Boolean) true, (java.lang.Boolean) false, strArray9);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray9);
-        assertTrue(str13.equals(""));
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertTrue("'" + str13 + "' != '" + "" + "'", str13.equals(""));
     }
 
     @Test
@@ -304,11 +305,11 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream12 = null;
         try {
             findApplication0.run(strArray6, inputStream11, outputStream12);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: output stream is null");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: output stream is null");
         } catch (sg.edu.nus.comp.cs4218.exception.FindException e) {
         }
-        assertNotNull(strArray6);
-        assertTrue(str10.equals(""));
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertTrue("'" + str10 + "' != '" + "" + "'", str10.equals(""));
     }
 
     @Test
@@ -318,7 +319,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream0 = null;
         try {
             java.util.List<java.lang.String> strList4 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.replace(inputStream0, "Terminate process.", "Terminate process.", 0);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -331,7 +332,7 @@ public class RegressionTest0 {
         java.util.HashMap<java.lang.String, java.lang.String> strMap1 = null;
         try {
             dateApplication0.initMap(strMap1);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -344,10 +345,10 @@ public class RegressionTest0 {
         java.lang.String[] strArray6 = new java.lang.String[] { "hi!", "Could not read stream" };
         try {
             java.lang.String str7 = sortApplication0.sortFromFiles((java.lang.Boolean) false, (java.lang.Boolean) false, (java.lang.Boolean) false, strArray6);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(strArray6);
+        org.junit.Assert.assertNotNull(strArray6);
     }
 
     @Test
@@ -357,7 +358,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.SedApplication sedApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SedApplication();
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInFile("File is null.", "This is a directory", (int) ' ', "File doesn't exist.");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
     }
@@ -370,7 +371,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = sortApplication0.sortFromStdin((java.lang.Boolean) true, (java.lang.Boolean) false, (java.lang.Boolean) false, inputStream4);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -380,7 +381,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test031");
         java.lang.String str0 = sg.edu.nus.comp.cs4218.impl.app.EchoApplication.FAIL_ECHO_EMPTY;
-        assertTrue(str0.equals("fail_echo_empty_params"));
+        org.junit.Assert.assertTrue("'" + str0 + "' != '" + "fail_echo_empty_params" + "'", str0.equals("fail_echo_empty_params"));
     }
 
     @Test
@@ -403,12 +404,12 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream18 = null;
         try {
             findApplication0.run(strArray13, inputStream17, outputStream18);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: output stream is null");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: output stream is null");
         } catch (sg.edu.nus.comp.cs4218.exception.FindException e) {
         }
-        assertNotNull(strArray5);
-        assertTrue(str9.equals(""));
-        assertNotNull(strArray13);
+        org.junit.Assert.assertNotNull(strArray5);
+        org.junit.Assert.assertTrue("'" + str9 + "' != '" + "" + "'", str9.equals(""));
+        org.junit.Assert.assertNotNull(strArray13);
     }
 
     @Test
@@ -416,7 +417,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test033");
         java.lang.String str0 = sg.edu.nus.comp.cs4218.impl.app.CatApplication.ERR_GENERAL;
-        assertTrue(str0.equals("Exception Caught"));
+        org.junit.Assert.assertTrue("'" + str0 + "' != '" + "Exception Caught" + "'", str0.equals("Exception Caught"));
     }
 
     @Test
@@ -433,10 +434,10 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream13 = null;
         try {
             grepApplication0.run(strArray8, inputStream12, outputStream13);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: output stream is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: output stream is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(strArray8);
     }
 
     @Test
@@ -453,10 +454,10 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream13 = null;
         try {
             dateApplication0.run(strArray8, inputStream12, outputStream13);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
-        assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(strArray8);
     }
 
     @Test
@@ -464,7 +465,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test036");
         java.lang.String str0 = sg.edu.nus.comp.cs4218.impl.app.CatApplication.ERR_NULL_ARGS;
-        assertTrue(str0.equals("null arguments"));
+        org.junit.Assert.assertTrue("'" + str0 + "' != '" + "null arguments" + "'", str0.equals("null arguments"));
     }
 
     @Test
@@ -474,7 +475,7 @@ public class RegressionTest0 {
         java.util.List list0 = null;
         try {
             sg.edu.nus.comp.cs4218.impl.app.SortApplication.sortList(list0, true, true);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -487,7 +488,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = grepApplication0.grepFromStdin("", (java.lang.Boolean) false, (java.lang.Boolean) true, inputStream4);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
     }
@@ -499,7 +500,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream0 = null;
         try {
             java.util.List<java.lang.String> strList4 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.replace(inputStream0, "fail_sed_write", "", (int) ' ');
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -514,10 +515,10 @@ public class RegressionTest0 {
         mkdirApplication1.createFolder(strArray4);
         try {
             java.lang.String str6 = catApplication0.catFiles(strArray4);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(strArray4);
+        org.junit.Assert.assertNotNull(strArray4);
     }
 
     @Test
@@ -528,7 +529,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = grepApplication0.grepFromStdin("Could not read stream", (java.lang.Boolean) false, (java.lang.Boolean) false, inputStream4);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
     }
@@ -541,7 +542,7 @@ public class RegressionTest0 {
         java.lang.String[] strArray4 = null;
         try {
             java.lang.String str5 = grepApplication0.grepFromFiles("File doesn't exist.", (java.lang.Boolean) true, (java.lang.Boolean) true, strArray4);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: filesNames is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: filesNames is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
     }
@@ -558,10 +559,10 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream7 = null;
         try {
             dateApplication0.run(strArray4, inputStream6, outputStream7);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
-        assertNotNull(strArray4);
+        org.junit.Assert.assertNotNull(strArray4);
     }
 
     @Test
@@ -576,10 +577,10 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream7 = null;
         try {
             findApplication0.run(strArray4, inputStream6, outputStream7);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: output stream is null");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: output stream is null");
         } catch (sg.edu.nus.comp.cs4218.exception.FindException e) {
         }
-        assertNotNull(strArray4);
+        org.junit.Assert.assertNotNull(strArray4);
     }
 
     @Test
@@ -598,11 +599,11 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream12 = null;
         try {
             sortApplication0.run(strArray6, inputStream11, outputStream12);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(strArray6);
-        assertTrue(str10.equals(""));
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertTrue("'" + str10 + "' != '" + "" + "'", str10.equals(""));
     }
 
     @Test
@@ -612,7 +613,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.DateApplication dateApplication0 = new sg.edu.nus.comp.cs4218.impl.app.DateApplication();
         try {
             java.lang.String str2 = dateApplication0.getDate("fail_echo");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
     }
@@ -622,7 +623,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test047");
         boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isSpecialSymbol("");
-        assertTrue(boolean1 == false);
+        org.junit.Assert.assertTrue("'" + boolean1 + "' != '" + false + "'", boolean1 == false);
     }
 
     @Test
@@ -643,12 +644,12 @@ public class RegressionTest0 {
         mkdirApplication11.run(strArray18, inputStream19, outputStream20);
         try {
             java.lang.String str22 = findApplication0.findFolderContent("File doesn't exist.", strArray18);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: nonExistentFolder: No such file or directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: nonExistentFolder: No such file or directory");
         } catch (sg.edu.nus.comp.cs4218.exception.FindException e) {
         }
-        assertNotNull(strArray5);
-        assertTrue(str9.equals(""));
-        assertNotNull(strArray18);
+        org.junit.Assert.assertNotNull(strArray5);
+        org.junit.Assert.assertTrue("'" + str9 + "' != '" + "" + "'", str9.equals(""));
+        org.junit.Assert.assertNotNull(strArray18);
     }
 
     @Test
@@ -663,10 +664,10 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream7 = null;
         try {
             sortApplication0.run(strArray4, inputStream6, outputStream7);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(strArray4);
+        org.junit.Assert.assertNotNull(strArray4);
     }
 
     @Test
@@ -685,12 +686,12 @@ public class RegressionTest0 {
         java.lang.String str17 = lsApplication4.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray12);
         try {
             java.lang.String str18 = sortApplication0.sortFromFiles((java.lang.Boolean) false, (java.lang.Boolean) false, (java.lang.Boolean) false, strArray12);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(strArray12);
-        assertTrue(str16.equals(""));
-        assertTrue(str17.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray12);
+        org.junit.Assert.assertTrue("'" + str16 + "' != '" + "" + "'", str16.equals(""));
+        org.junit.Assert.assertTrue("'" + str17 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str17.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -698,7 +699,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test051");
         java.lang.String str0 = sg.edu.nus.comp.cs4218.impl.app.CatApplication.ERR_WRITE_STREAM;
-        assertTrue(str0.equals("Could not write to output stream"));
+        org.junit.Assert.assertTrue("'" + str0 + "' != '" + "Could not write to output stream" + "'", str0.equals("Could not write to output stream"));
     }
 
     @Test
@@ -713,10 +714,10 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream7 = null;
         try {
             catApplication0.run(strArray4, inputStream6, outputStream7);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(strArray4);
+        org.junit.Assert.assertNotNull(strArray4);
     }
 
     @Test
@@ -727,7 +728,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInStdin("Terminate process.", "hi!", (int) (short) 100, inputStream4);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -744,10 +745,10 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream7 = null;
         try {
             lsApplication0.run(strArray4, inputStream6, outputStream7);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
-        assertNotNull(strArray4);
+        org.junit.Assert.assertNotNull(strArray4);
     }
 
     @Test
@@ -760,7 +761,7 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream3 = null;
         try {
             grepApplication0.run(strArray1, inputStream2, outputStream3);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: args is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: args is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
     }
@@ -779,10 +780,10 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream9 = null;
         try {
             findApplication0.run(strArray4, inputStream8, outputStream9);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: output stream is null");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: output stream is null");
         } catch (sg.edu.nus.comp.cs4218.exception.FindException e) {
         }
-        assertNotNull(strArray4);
+        org.junit.Assert.assertNotNull(strArray4);
     }
 
     @Test
@@ -797,10 +798,10 @@ public class RegressionTest0 {
         mkdirApplication4.run(strArray11, inputStream12, outputStream13);
         try {
             java.lang.String str15 = sortApplication0.sortFromFiles((java.lang.Boolean) false, (java.lang.Boolean) true, (java.lang.Boolean) true, strArray11);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(strArray11);
+        org.junit.Assert.assertNotNull(strArray11);
     }
 
     @Test
@@ -823,13 +824,13 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream20 = null;
         try {
             lsApplication0.run(strArray17, inputStream19, outputStream20);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
-        assertNotNull(strArray8);
-        assertTrue(str12.equals(""));
-        assertTrue(str13.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray17);
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertTrue("'" + str12 + "' != '" + "" + "'", str12.equals(""));
+        org.junit.Assert.assertTrue("'" + str13 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str13.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray17);
     }
 
     @Test
@@ -837,7 +838,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test059");
         boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isSpecialSymbol("Could not read stream");
-        assertTrue(boolean1 == true);
+        org.junit.Assert.assertTrue("'" + boolean1 + "' != '" + true + "'", boolean1 == true);
     }
 
     @Test
@@ -858,12 +859,12 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream16 = null;
         try {
             catApplication0.run(strArray9, inputStream15, outputStream16);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(strArray9);
-        assertTrue(str13.equals(""));
-        assertTrue(str14.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertTrue("'" + str13 + "' != '" + "" + "'", str13.equals(""));
+        org.junit.Assert.assertTrue("'" + str14 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str14.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -878,10 +879,10 @@ public class RegressionTest0 {
         mkdirApplication4.run(strArray7, inputStream8, outputStream9);
         try {
             java.lang.String str11 = grepApplication0.grepFromFiles("fail_echo_write", (java.lang.Boolean) false, (java.lang.Boolean) false, strArray7);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray7);
+        org.junit.Assert.assertNotNull(strArray7);
     }
 
     @Test
@@ -891,7 +892,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.DateApplication dateApplication0 = new sg.edu.nus.comp.cs4218.impl.app.DateApplication();
         try {
             java.lang.String str2 = dateApplication0.getDate("Could not read stream");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
     }
@@ -904,7 +905,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInStdin("Could not read file", "", (int) '4', inputStream4);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -917,7 +918,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = wcApplication0.countFromStdin((java.lang.Boolean) false, (java.lang.Boolean) false, (java.lang.Boolean) true, inputStream4);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: stdin is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: stdin is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
     }
@@ -936,11 +937,11 @@ public class RegressionTest0 {
         java.lang.String str11 = lsApplication1.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray7);
         try {
             java.lang.String str12 = catApplication0.catFiles(strArray7);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(strArray7);
-        assertTrue(str11.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray7);
+        org.junit.Assert.assertTrue("'" + str11 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str11.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -950,7 +951,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.SedApplication sedApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SedApplication();
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInFile("This is a directory", "null output stream provided:\r\n\r\n\r\nfail_echo_write:", (int) (short) 1, "Could not write to output stream");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
     }
@@ -979,13 +980,13 @@ public class RegressionTest0 {
         mkdirApplication1.run(strArray20, inputStream26, outputStream27);
         try {
             java.lang.String str29 = catApplication0.catFiles(strArray20);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(strArray8);
-        assertNotNull(strArray20);
-        assertTrue(str24.equals(""));
-        assertTrue(str25.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(strArray20);
+        org.junit.Assert.assertTrue("'" + str24 + "' != '" + "" + "'", str24.equals(""));
+        org.junit.Assert.assertTrue("'" + str25 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str25.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -1002,10 +1003,10 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream9 = null;
         try {
             sedApplication0.run(strArray4, inputStream8, outputStream9);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
-        assertNotNull(strArray4);
+        org.junit.Assert.assertNotNull(strArray4);
     }
 
     @Test
@@ -1018,10 +1019,10 @@ public class RegressionTest0 {
         mkdirApplication4.createFolder(strArray7);
         try {
             java.lang.String str9 = grepApplication0.grepFromFiles("", (java.lang.Boolean) false, (java.lang.Boolean) true, strArray7);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray7);
+        org.junit.Assert.assertNotNull(strArray7);
     }
 
     @Test
@@ -1029,7 +1030,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test070");
         boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isInteger("Could not read stream");
-        assertTrue(boolean1 == false);
+        org.junit.Assert.assertTrue("'" + boolean1 + "' != '" + false + "'", boolean1 == false);
     }
 
     @Test
@@ -1044,10 +1045,10 @@ public class RegressionTest0 {
         mkdirApplication4.run(strArray7, inputStream8, outputStream9);
         try {
             java.lang.String str11 = grepApplication0.grepFromFiles("This is a directory", (java.lang.Boolean) false, (java.lang.Boolean) false, strArray7);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray7);
+        org.junit.Assert.assertNotNull(strArray7);
     }
 
     @Test
@@ -1061,11 +1062,11 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream8 = null;
         try {
             pwdApplication0.run(strArray6, inputStream7, outputStream8);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.PwdException; message: pwd: Null Pointer Exception");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.PwdException; message: pwd: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.PwdException e) {
         }
-// flaky:         assertTrue(str1.equals("C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write"));
-        assertNotNull(strArray6);
+// flaky:         org.junit.Assert.assertTrue("'" + str1 + "' != '" + "C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write" + "'", str1.equals("C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray6);
     }
 
     @Test
@@ -1076,7 +1077,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = wcApplication0.countFromStdin((java.lang.Boolean) true, (java.lang.Boolean) false, (java.lang.Boolean) true, inputStream4);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: stdin is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: stdin is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
     }
@@ -1099,12 +1100,12 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream16 = null;
         try {
             dateApplication0.run(strArray9, inputStream15, outputStream16);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
-        assertNotNull(strArray9);
-        assertTrue(str13.equals(""));
-        assertTrue(str14.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertTrue("'" + str13 + "' != '" + "" + "'", str13.equals(""));
+        org.junit.Assert.assertTrue("'" + str14 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str14.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -1123,11 +1124,11 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream13 = null;
         try {
             exitApplication0.run(strArray7, inputStream12, outputStream13);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.ExitException; message: exit: Terminate process.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.ExitException; message: exit: Terminate process.");
         } catch (sg.edu.nus.comp.cs4218.exception.ExitException e) {
         }
-        assertNotNull(strArray7);
-        assertTrue(str11.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray7);
+        org.junit.Assert.assertTrue("'" + str11 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str11.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -1135,7 +1136,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test076");
         boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isSpecialSymbol("hi!");
-        assertTrue(boolean1 == true);
+        org.junit.Assert.assertTrue("'" + boolean1 + "' != '" + true + "'", boolean1 == true);
     }
 
     @Test
@@ -1166,14 +1167,14 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream32 = null;
         try {
             wcApplication0.run(strArray21, inputStream31, outputStream32);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
-        assertNotNull(strArray9);
-        assertNotNull(strArray21);
-        assertTrue(str25.equals(""));
-        assertTrue(str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str30.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertNotNull(strArray21);
+        org.junit.Assert.assertTrue("'" + str25 + "' != '" + "" + "'", str25.equals(""));
+        org.junit.Assert.assertTrue("'" + str26 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str30 + "' != '" + "null output stream provided fail_echo_write" + "'", str30.equals("null output stream provided fail_echo_write"));
     }
 
     @Test
@@ -1216,17 +1217,17 @@ public class RegressionTest0 {
         mkdirApplication4.run(strArray41, inputStream51, outputStream52);
         try {
             java.lang.String str54 = grepApplication0.grepFromFiles("Could not read file", (java.lang.Boolean) true, (java.lang.Boolean) true, strArray41);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray7);
-        assertNotNull(strArray16);
-        assertTrue(str20.equals(""));
-        assertNotNull(strArray29);
-        assertNotNull(strArray41);
-        assertTrue(str45.equals(""));
-        assertTrue(str46.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str50.equals(""));
+        org.junit.Assert.assertNotNull(strArray7);
+        org.junit.Assert.assertNotNull(strArray16);
+        org.junit.Assert.assertTrue("'" + str20 + "' != '" + "" + "'", str20.equals(""));
+        org.junit.Assert.assertNotNull(strArray29);
+        org.junit.Assert.assertNotNull(strArray41);
+        org.junit.Assert.assertTrue("'" + str45 + "' != '" + "" + "'", str45.equals(""));
+        org.junit.Assert.assertTrue("'" + str46 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str46.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str50 + "' != '" + "" + "'", str50.equals(""));
     }
 
     @Test
@@ -1247,12 +1248,12 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream16 = null;
         try {
             cdApplication0.run(strArray9, inputStream15, outputStream16);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
         } catch (sg.edu.nus.comp.cs4218.exception.CdException e) {
         }
-        assertNotNull(strArray9);
-        assertTrue(str13.equals(""));
-        assertTrue(str14.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertTrue("'" + str13 + "' != '" + "" + "'", str13.equals(""));
+        org.junit.Assert.assertTrue("'" + str14 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str14.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -1262,7 +1263,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.SedApplication sedApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SedApplication();
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInFile("hi!", "null output stream provided:\r\n\r\n\r\nfail_echo_write:", 100, "File is null.");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
     }
@@ -1295,14 +1296,14 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream32 = null;
         try {
             grepApplication0.run(strArray21, inputStream31, outputStream32);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: output stream is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: output stream is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray9);
-        assertNotNull(strArray21);
-        assertTrue(str25.equals(""));
-        assertTrue(str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str30.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertNotNull(strArray21);
+        org.junit.Assert.assertTrue("'" + str25 + "' != '" + "" + "'", str25.equals(""));
+        org.junit.Assert.assertTrue("'" + str26 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str30 + "' != '" + "null output stream provided fail_echo_write" + "'", str30.equals("null output stream provided fail_echo_write"));
     }
 
     @Test
@@ -1312,7 +1313,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.SedApplication sedApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SedApplication();
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInFile("Terminate process.", "Could not write to output stream", (int) (short) 0, "fail_echo_empty_params");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
     }
@@ -1324,7 +1325,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.DateApplication dateApplication0 = new sg.edu.nus.comp.cs4218.impl.app.DateApplication();
         try {
             java.lang.String str2 = dateApplication0.getDate("Null Pointer Exception");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
     }
@@ -1341,10 +1342,10 @@ public class RegressionTest0 {
         mkdirApplication4.run(strArray7, inputStream8, outputStream9);
         try {
             java.lang.String str11 = grepApplication0.grepFromFiles("", (java.lang.Boolean) false, (java.lang.Boolean) false, strArray7);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray7);
+        org.junit.Assert.assertNotNull(strArray7);
     }
 
     @Test
@@ -1371,14 +1372,14 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream25 = null;
         try {
             lsApplication0.run(strArray19, inputStream24, outputStream25);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
-        assertNotNull(strArray8);
-        assertTrue(str12.equals(""));
-        assertTrue(str13.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray19);
-        assertTrue(str23.equals(""));
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertTrue("'" + str12 + "' != '" + "" + "'", str12.equals(""));
+        org.junit.Assert.assertTrue("'" + str13 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str13.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray19);
+        org.junit.Assert.assertTrue("'" + str23 + "' != '" + "" + "'", str23.equals(""));
     }
 
     @Test
@@ -1393,11 +1394,11 @@ public class RegressionTest0 {
         java.lang.String str11 = findApplication4.findFolderContent("fail_sed_write", strArray9);
         try {
             java.lang.String str12 = wcApplication0.countFromFiles((java.lang.Boolean) false, (java.lang.Boolean) false, (java.lang.Boolean) false, strArray9);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
-        assertNotNull(strArray9);
-        assertTrue(str11.equals(""));
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertTrue("'" + str11 + "' != '" + "" + "'", str11.equals(""));
     }
 
     @Test
@@ -1428,14 +1429,14 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream32 = null;
         try {
             exitApplication0.run(strArray21, inputStream31, outputStream32);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.ExitException; message: exit: Terminate process.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.ExitException; message: exit: Terminate process.");
         } catch (sg.edu.nus.comp.cs4218.exception.ExitException e) {
         }
-        assertNotNull(strArray9);
-        assertNotNull(strArray21);
-        assertTrue(str25.equals(""));
-        assertTrue(str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str30.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertNotNull(strArray21);
+        org.junit.Assert.assertTrue("'" + str25 + "' != '" + "" + "'", str25.equals(""));
+        org.junit.Assert.assertTrue("'" + str26 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str30 + "' != '" + "null output stream provided fail_echo_write" + "'", str30.equals("null output stream provided fail_echo_write"));
     }
 
     @Test
@@ -1487,19 +1488,19 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream61 = null;
         try {
             catApplication0.run(strArray44, inputStream60, outputStream61);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray5);
-        assertNotNull(strArray10);
-        assertNotNull(strArray19);
-        assertTrue(str23.equals(""));
-        assertNotNull(strArray32);
-        assertNotNull(strArray44);
-        assertTrue(str48.equals(""));
-        assertTrue(str49.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str53.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray5);
+        org.junit.Assert.assertNotNull(strArray10);
+        org.junit.Assert.assertNotNull(strArray19);
+        org.junit.Assert.assertTrue("'" + str23 + "' != '" + "" + "'", str23.equals(""));
+        org.junit.Assert.assertNotNull(strArray32);
+        org.junit.Assert.assertNotNull(strArray44);
+        org.junit.Assert.assertTrue("'" + str48 + "' != '" + "" + "'", str48.equals(""));
+        org.junit.Assert.assertTrue("'" + str49 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str49.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str53 + "' != '" + "" + "'", str53.equals(""));
     }
 
     @Test
@@ -1510,7 +1511,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = grepApplication0.grepFromStdin("Null Pointer Exception", (java.lang.Boolean) false, (java.lang.Boolean) false, inputStream4);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
     }
@@ -1527,10 +1528,10 @@ public class RegressionTest0 {
         mkdirApplication4.run(strArray7, inputStream8, outputStream9);
         try {
             java.lang.String str11 = grepApplication0.grepFromFiles("null arguments", (java.lang.Boolean) true, (java.lang.Boolean) true, strArray7);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray7);
+        org.junit.Assert.assertNotNull(strArray7);
     }
 
     @Test
@@ -1541,10 +1542,10 @@ public class RegressionTest0 {
         java.lang.String[] strArray9 = new java.lang.String[] { "Could not read stream", "Exception Caught", "fail_echo_write", "null output stream provided fail_echo_write", "null arguments", "fail_echo_empty_params" };
         try {
             java.lang.String str10 = lsApplication0.listFolderContent((java.lang.Boolean) true, (java.lang.Boolean) true, strArray9);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.LsException; message: ls: File does not exist, make sure the path is correct!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.LsException; message: ls: File does not exist, make sure the path is correct!");
         } catch (sg.edu.nus.comp.cs4218.exception.LsException e) {
         }
-        assertNotNull(strArray9);
+        org.junit.Assert.assertNotNull(strArray9);
     }
 
     @Test
@@ -1554,7 +1555,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.ExitApplication exitApplication0 = new sg.edu.nus.comp.cs4218.impl.app.ExitApplication();
         try {
             exitApplication0.terminateExecution();
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.ExitException; message: exit: Terminate process.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.ExitException; message: exit: Terminate process.");
         } catch (sg.edu.nus.comp.cs4218.exception.ExitException e) {
         }
     }
@@ -1569,10 +1570,10 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream7 = null;
         try {
             grepApplication0.run(strArray5, inputStream6, outputStream7);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: output stream is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: output stream is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray5);
+        org.junit.Assert.assertNotNull(strArray5);
     }
 
     @Test
@@ -1583,7 +1584,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = grepApplication0.grepFromStdin("Terminate process.", (java.lang.Boolean) true, (java.lang.Boolean) false, inputStream4);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
     }
@@ -1596,7 +1597,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = grepApplication0.grepFromStdin("fail_echo", (java.lang.Boolean) false, (java.lang.Boolean) true, inputStream4);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
     }
@@ -1608,7 +1609,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.CdApplication cdApplication0 = new sg.edu.nus.comp.cs4218.impl.app.CdApplication();
         try {
             cdApplication0.changeToDirectory("null output stream provided:\r\n\r\n\r\nfail_echo_write:");
-            fail("Expected exception of type java.nio.file.InvalidPathException; message: Illegal char <:> at index 27: null output stream provided:\r\n\r\n\r\nfail_echo_write:\\");
+            org.junit.Assert.fail("Expected exception of type java.nio.file.InvalidPathException; message: Illegal char <:> at index 27: null output stream provided:\r\n\r\n\r\nfail_echo_write:\\");
         } catch (java.nio.file.InvalidPathException e) {
         }
     }
@@ -1632,12 +1633,12 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream22 = null;
         try {
             lsApplication0.run(strArray17, inputStream21, outputStream22);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
-        assertNotNull(strArray8);
-        assertNotNull(wildcardClass12);
-        assertNotNull(strArray17);
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(wildcardClass12);
+        org.junit.Assert.assertNotNull(strArray17);
     }
 
     @Test
@@ -1657,12 +1658,12 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream13 = null;
         try {
             catApplication0.run(strArray7, inputStream12, outputStream13);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray7);
-        assertTrue(str11.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray7);
+        org.junit.Assert.assertTrue("'" + str11 + "' != '" + "" + "'", str11.equals(""));
     }
 
     @Test
@@ -1707,19 +1708,19 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream55 = null;
         try {
             lsApplication0.run(strArray44, inputStream54, outputStream55);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
-        assertNotNull(strArray8);
-        assertTrue(str12.equals(""));
-        assertTrue(str13.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray19);
-        assertTrue(str23.equals(""));
-        assertNotNull(strArray32);
-        assertNotNull(strArray44);
-        assertTrue(str48.equals(""));
-        assertTrue(str49.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str53.equals(""));
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertTrue("'" + str12 + "' != '" + "" + "'", str12.equals(""));
+        org.junit.Assert.assertTrue("'" + str13 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str13.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray19);
+        org.junit.Assert.assertTrue("'" + str23 + "' != '" + "" + "'", str23.equals(""));
+        org.junit.Assert.assertNotNull(strArray32);
+        org.junit.Assert.assertNotNull(strArray44);
+        org.junit.Assert.assertTrue("'" + str48 + "' != '" + "" + "'", str48.equals(""));
+        org.junit.Assert.assertTrue("'" + str49 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str49.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str53 + "' != '" + "" + "'", str53.equals(""));
     }
 
     @Test
@@ -1732,7 +1733,7 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream3 = null;
         try {
             echoApplication0.run(strArray1, inputStream2, outputStream3);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.EchoException; message: echo: Empty arguments");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.EchoException; message: echo: Empty arguments");
         } catch (sg.edu.nus.comp.cs4218.exception.EchoException e) {
         }
     }
@@ -1753,11 +1754,11 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream12 = null;
         try {
             sedApplication0.run(strArray6, inputStream11, outputStream12);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
-        assertNotNull(strArray6);
-        assertTrue(str10.equals(""));
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertTrue("'" + str10 + "' != '" + "" + "'", str10.equals(""));
     }
 
     @Test
@@ -1772,10 +1773,10 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream7 = null;
         try {
             sedApplication0.run(strArray4, inputStream6, outputStream7);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
-        assertNotNull(strArray4);
+        org.junit.Assert.assertNotNull(strArray4);
     }
 
     @Test
@@ -1786,7 +1787,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInStdin("Null Pointer Exception", "Null Pointer Exception", (int) '4', inputStream4);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -1796,7 +1797,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test104");
         java.lang.String str0 = sg.edu.nus.comp.cs4218.impl.app.CatApplication.ERR_NULL_FILENAME;
-        assertTrue(str0.equals("null input file provided"));
+        org.junit.Assert.assertTrue("'" + str0 + "' != '" + "null input file provided" + "'", str0.equals("null input file provided"));
     }
 
     @Test
@@ -1811,10 +1812,10 @@ public class RegressionTest0 {
         mkdirApplication4.run(strArray11, inputStream12, outputStream13);
         try {
             java.lang.String str15 = grepApplication0.grepFromFiles("null arguments", (java.lang.Boolean) false, (java.lang.Boolean) true, strArray11);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray11);
+        org.junit.Assert.assertNotNull(strArray11);
     }
 
     @Test
@@ -1863,18 +1864,18 @@ public class RegressionTest0 {
         mkdirApplication4.run(strArray46, inputStream59, outputStream60);
         try {
             java.lang.String str62 = sortApplication0.sortFromFiles((java.lang.Boolean) true, (java.lang.Boolean) false, (java.lang.Boolean) true, strArray46);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(strArray7);
-        assertNotNull(strArray12);
-        assertNotNull(strArray21);
-        assertTrue(str25.equals(""));
-        assertNotNull(strArray34);
-        assertNotNull(strArray46);
-        assertTrue(str50.equals(""));
-        assertTrue(str51.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str55.equals(""));
+        org.junit.Assert.assertNotNull(strArray7);
+        org.junit.Assert.assertNotNull(strArray12);
+        org.junit.Assert.assertNotNull(strArray21);
+        org.junit.Assert.assertTrue("'" + str25 + "' != '" + "" + "'", str25.equals(""));
+        org.junit.Assert.assertNotNull(strArray34);
+        org.junit.Assert.assertNotNull(strArray46);
+        org.junit.Assert.assertTrue("'" + str50 + "' != '" + "" + "'", str50.equals(""));
+        org.junit.Assert.assertTrue("'" + str51 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str51.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str55 + "' != '" + "" + "'", str55.equals(""));
     }
 
     @Test
@@ -1882,7 +1883,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test107");
         boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isSpecialSymbol("null arguments");
-        assertTrue(boolean1 == true);
+        org.junit.Assert.assertTrue("'" + boolean1 + "' != '" + true + "'", boolean1 == true);
     }
 
     @Test
@@ -1897,10 +1898,10 @@ public class RegressionTest0 {
         mkdirApplication2.run(strArray9, inputStream10, outputStream11);
         try {
             java.lang.String str13 = findApplication0.findFolderContent("", strArray9);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: nonExistentFolder: No such file or directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: nonExistentFolder: No such file or directory");
         } catch (sg.edu.nus.comp.cs4218.exception.FindException e) {
         }
-        assertNotNull(strArray9);
+        org.junit.Assert.assertNotNull(strArray9);
     }
 
     @Test
@@ -1918,11 +1919,11 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream14 = null;
         try {
             pwdApplication0.run(strArray9, inputStream13, outputStream14);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.PwdException; message: pwd: Null Pointer Exception");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.PwdException; message: pwd: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.PwdException e) {
         }
-// flaky:         assertTrue(str1.equals("C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write"));
-        assertNotNull(strArray9);
+// flaky:         org.junit.Assert.assertTrue("'" + str1 + "' != '" + "C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write" + "'", str1.equals("C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray9);
     }
 
     @Test
@@ -1967,17 +1968,17 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream56 = null;
         try {
             lsApplication0.run(strArray48, inputStream55, outputStream56);
-            fail("Expected exception of type java.lang.StringIndexOutOfBoundsException; message: String index out of range: 0");
+            org.junit.Assert.fail("Expected exception of type java.lang.StringIndexOutOfBoundsException; message: String index out of range: 0");
         } catch (java.lang.StringIndexOutOfBoundsException e) {
         }
-        assertNotNull(strArray6);
-        assertTrue(str10.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray19);
-        assertNotNull(strArray31);
-        assertTrue(str35.equals(""));
-        assertTrue(str36.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str40.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray48);
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertTrue("'" + str10 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str10.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray19);
+        org.junit.Assert.assertNotNull(strArray31);
+        org.junit.Assert.assertTrue("'" + str35 + "' != '" + "" + "'", str35.equals(""));
+        org.junit.Assert.assertTrue("'" + str36 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str36.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str40 + "' != '" + "null output stream provided fail_echo_write" + "'", str40.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray48);
     }
 
     @Test
@@ -1994,11 +1995,11 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream10 = null;
         try {
             wcApplication0.run(strArray6, inputStream9, outputStream10);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
-        assertNotNull(strArray6);
-        assertTrue(str8.equals(""));
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertTrue("'" + str8 + "' != '" + "" + "'", str8.equals(""));
     }
 
     @Test
@@ -2009,10 +2010,10 @@ public class RegressionTest0 {
         java.lang.String[] strArray10 = new java.lang.String[] { "", "This is a directory", "fail_echo_write", "hi!", "null output stream provided", "File is null." };
         try {
             java.lang.String str11 = wcApplication0.countFromFiles((java.lang.Boolean) true, (java.lang.Boolean) false, (java.lang.Boolean) true, strArray10);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
-        assertNotNull(strArray10);
+        org.junit.Assert.assertNotNull(strArray10);
     }
 
     @Test
@@ -2070,21 +2071,21 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream71 = null;
         try {
             lsApplication0.run(strArray53, inputStream70, outputStream71);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
-        assertNotNull(strArray6);
-        assertTrue(str10.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray14);
-        assertNotNull(strArray19);
-        assertNotNull(strArray28);
-        assertTrue(str32.equals(""));
-        assertNotNull(strArray41);
-        assertNotNull(strArray53);
-        assertTrue(str57.equals(""));
-        assertTrue(str58.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str62.equals(""));
-        assertNotNull(wildcardClass69);
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertTrue("'" + str10 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str10.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray14);
+        org.junit.Assert.assertNotNull(strArray19);
+        org.junit.Assert.assertNotNull(strArray28);
+        org.junit.Assert.assertTrue("'" + str32 + "' != '" + "" + "'", str32.equals(""));
+        org.junit.Assert.assertNotNull(strArray41);
+        org.junit.Assert.assertNotNull(strArray53);
+        org.junit.Assert.assertTrue("'" + str57 + "' != '" + "" + "'", str57.equals(""));
+        org.junit.Assert.assertTrue("'" + str58 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str58.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str62 + "' != '" + "" + "'", str62.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass69);
     }
 
     @Test
@@ -2113,13 +2114,13 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream30 = null;
         try {
             sedApplication0.run(strArray20, inputStream29, outputStream30);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
-        assertNotNull(strArray8);
-        assertNotNull(strArray20);
-        assertTrue(str24.equals(""));
-        assertTrue(str25.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(strArray20);
+        org.junit.Assert.assertTrue("'" + str24 + "' != '" + "" + "'", str24.equals(""));
+        org.junit.Assert.assertTrue("'" + str25 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str25.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -2130,7 +2131,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = grepApplication0.grepFromStdin("null output stream provided fail_echo_write", (java.lang.Boolean) false, (java.lang.Boolean) true, inputStream4);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
     }
@@ -2169,15 +2170,15 @@ public class RegressionTest0 {
         java.lang.String[] strArray44 = null;
         try {
             java.lang.String str45 = echoApplication0.constructResult(strArray44);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.EchoException; message: echo: fail_echo_empty_params");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.EchoException; message: echo: fail_echo_empty_params");
         } catch (sg.edu.nus.comp.cs4218.exception.EchoException e) {
         }
-        assertNotNull(strArray8);
-        assertNotNull(strArray20);
-        assertTrue(str24.equals(""));
-        assertTrue(str25.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str29.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray37);
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(strArray20);
+        org.junit.Assert.assertTrue("'" + str24 + "' != '" + "" + "'", str24.equals(""));
+        org.junit.Assert.assertTrue("'" + str25 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str25.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str29 + "' != '" + "null output stream provided fail_echo_write" + "'", str29.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray37);
     }
 
     @Test
@@ -2220,16 +2221,16 @@ public class RegressionTest0 {
         mkdirApplication4.createFolder(strArray48);
         try {
             java.lang.String str56 = grepApplication0.grepFromFiles("Could not write to output stream", (java.lang.Boolean) false, (java.lang.Boolean) true, strArray48);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray7);
-        assertNotNull(strArray19);
-        assertNotNull(strArray31);
-        assertTrue(str35.equals(""));
-        assertTrue(str36.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str40.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray48);
+        org.junit.Assert.assertNotNull(strArray7);
+        org.junit.Assert.assertNotNull(strArray19);
+        org.junit.Assert.assertNotNull(strArray31);
+        org.junit.Assert.assertTrue("'" + str35 + "' != '" + "" + "'", str35.equals(""));
+        org.junit.Assert.assertTrue("'" + str36 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str36.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str40 + "' != '" + "null output stream provided fail_echo_write" + "'", str40.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray48);
     }
 
     @Test
@@ -2242,7 +2243,7 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream3 = null;
         try {
             sortApplication0.run(strArray1, inputStream2, outputStream3);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -2277,15 +2278,15 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream34 = null;
         try {
             lsApplication0.run(strArray27, inputStream33, outputStream34);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
-        assertNotNull(strArray8);
-        assertTrue(str12.equals(""));
-        assertTrue(str13.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray17);
-        assertNotNull(strArray27);
-        assertTrue(str31.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertTrue("'" + str12 + "' != '" + "" + "'", str12.equals(""));
+        org.junit.Assert.assertTrue("'" + str13 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str13.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray17);
+        org.junit.Assert.assertNotNull(strArray27);
+        org.junit.Assert.assertTrue("'" + str31 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str31.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -2312,13 +2313,13 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream24 = null;
         try {
             exitApplication0.run(strArray16, inputStream23, outputStream24);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.ExitException; message: exit: Terminate process.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.ExitException; message: exit: Terminate process.");
         } catch (sg.edu.nus.comp.cs4218.exception.ExitException e) {
         }
-        assertNotNull(strArray6);
-        assertNotNull(strArray16);
-        assertTrue(str20.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str22.equals(""));
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertNotNull(strArray16);
+        org.junit.Assert.assertTrue("'" + str20 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str20.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str22 + "' != '" + "" + "'", str22.equals(""));
     }
 
     @Test
@@ -2329,7 +2330,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInStdin("This is a directory", "Terminate process.", (int) (byte) -1, inputStream4);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -2376,16 +2377,16 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream54 = null;
         try {
             exitApplication0.run(strArray45, inputStream53, outputStream54);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.ExitException; message: exit: Terminate process.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.ExitException; message: exit: Terminate process.");
         } catch (sg.edu.nus.comp.cs4218.exception.ExitException e) {
         }
-        assertNotNull(strArray4);
-        assertNotNull(strArray16);
-        assertNotNull(strArray28);
-        assertTrue(str32.equals(""));
-        assertTrue(str33.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str37.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray45);
+        org.junit.Assert.assertNotNull(strArray4);
+        org.junit.Assert.assertNotNull(strArray16);
+        org.junit.Assert.assertNotNull(strArray28);
+        org.junit.Assert.assertTrue("'" + str32 + "' != '" + "" + "'", str32.equals(""));
+        org.junit.Assert.assertTrue("'" + str33 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str33.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str37 + "' != '" + "null output stream provided fail_echo_write" + "'", str37.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray45);
     }
 
     @Test
@@ -2396,7 +2397,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream1 = null;
         try {
             java.lang.String str2 = catApplication0.catStdin(inputStream1);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: Null Pointer Exception");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
     }
@@ -2449,18 +2450,18 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream60 = null;
         try {
             wcApplication0.run(strArray43, inputStream59, outputStream60);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
-        assertNotNull(strArray4);
-        assertNotNull(strArray9);
-        assertNotNull(strArray18);
-        assertTrue(str22.equals(""));
-        assertNotNull(strArray31);
-        assertNotNull(strArray43);
-        assertTrue(str47.equals(""));
-        assertTrue(str48.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str52.equals(""));
+        org.junit.Assert.assertNotNull(strArray4);
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertNotNull(strArray18);
+        org.junit.Assert.assertTrue("'" + str22 + "' != '" + "" + "'", str22.equals(""));
+        org.junit.Assert.assertNotNull(strArray31);
+        org.junit.Assert.assertNotNull(strArray43);
+        org.junit.Assert.assertTrue("'" + str47 + "' != '" + "" + "'", str47.equals(""));
+        org.junit.Assert.assertTrue("'" + str48 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str48.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str52 + "' != '" + "" + "'", str52.equals(""));
     }
 
     @Test
@@ -2470,7 +2471,7 @@ public class RegressionTest0 {
         java.util.List list0 = null;
         try {
             sg.edu.nus.comp.cs4218.impl.app.SortApplication.sortList(list0, true, false);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -2483,7 +2484,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = wcApplication0.countFromStdin((java.lang.Boolean) false, (java.lang.Boolean) false, (java.lang.Boolean) false, inputStream4);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: stdin is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: stdin is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
     }
@@ -2496,7 +2497,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = wcApplication0.countFromStdin((java.lang.Boolean) true, (java.lang.Boolean) true, (java.lang.Boolean) false, inputStream4);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: stdin is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: stdin is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
     }
@@ -2528,15 +2529,15 @@ public class RegressionTest0 {
         java.lang.String str31 = echoApplication2.constructResult(strArray22);
         try {
             java.lang.String str32 = catApplication0.catFiles(strArray22);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray10);
-        assertNotNull(strArray22);
-        assertTrue(str26.equals(""));
-        assertTrue(str27.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str31.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray10);
+        org.junit.Assert.assertNotNull(strArray22);
+        org.junit.Assert.assertTrue("'" + str26 + "' != '" + "" + "'", str26.equals(""));
+        org.junit.Assert.assertTrue("'" + str27 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str27.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str31 + "' != '" + "null output stream provided fail_echo_write" + "'", str31.equals("null output stream provided fail_echo_write"));
     }
 
     @Test
@@ -2555,11 +2556,11 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream13 = null;
         try {
             grepApplication0.run(strArray7, inputStream12, outputStream13);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: output stream is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: output stream is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray7);
-        assertTrue(str11.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray7);
+        org.junit.Assert.assertTrue("'" + str11 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str11.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -2596,16 +2597,16 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream42 = null;
         try {
             exitApplication0.run(strArray31, inputStream41, outputStream42);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.ExitException; message: exit: Terminate process.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.ExitException; message: exit: Terminate process.");
         } catch (sg.edu.nus.comp.cs4218.exception.ExitException e) {
         }
-        assertNotNull(strArray6);
-        assertTrue(str10.equals(""));
-        assertNotNull(strArray19);
-        assertNotNull(strArray31);
-        assertTrue(str35.equals(""));
-        assertTrue(str36.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str40.equals(""));
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertTrue("'" + str10 + "' != '" + "" + "'", str10.equals(""));
+        org.junit.Assert.assertNotNull(strArray19);
+        org.junit.Assert.assertNotNull(strArray31);
+        org.junit.Assert.assertTrue("'" + str35 + "' != '" + "" + "'", str35.equals(""));
+        org.junit.Assert.assertTrue("'" + str36 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str36.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str40 + "' != '" + "" + "'", str40.equals(""));
     }
 
     @Test
@@ -2613,7 +2614,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test131");
         boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isInteger("File is null.");
-        assertTrue(boolean1 == false);
+        org.junit.Assert.assertTrue("'" + boolean1 + "' != '" + false + "'", boolean1 == false);
     }
 
     @Test
@@ -2623,7 +2624,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream0 = null;
         try {
             java.util.List<java.lang.String> strList4 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.replace(inputStream0, "File is null.", "Null Pointer Exception", (int) (short) -1);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -2676,18 +2677,18 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream60 = null;
         try {
             sedApplication0.run(strArray43, inputStream59, outputStream60);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
-        assertNotNull(strArray4);
-        assertNotNull(strArray9);
-        assertNotNull(strArray18);
-        assertTrue(str22.equals(""));
-        assertNotNull(strArray31);
-        assertNotNull(strArray43);
-        assertTrue(str47.equals(""));
-        assertTrue(str48.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str52.equals(""));
+        org.junit.Assert.assertNotNull(strArray4);
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertNotNull(strArray18);
+        org.junit.Assert.assertTrue("'" + str22 + "' != '" + "" + "'", str22.equals(""));
+        org.junit.Assert.assertNotNull(strArray31);
+        org.junit.Assert.assertNotNull(strArray43);
+        org.junit.Assert.assertTrue("'" + str47 + "' != '" + "" + "'", str47.equals(""));
+        org.junit.Assert.assertTrue("'" + str48 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str48.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str52 + "' != '" + "" + "'", str52.equals(""));
     }
 
     @Test
@@ -2704,10 +2705,10 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream9 = null;
         try {
             cdApplication0.run(strArray4, inputStream8, outputStream9);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
         } catch (sg.edu.nus.comp.cs4218.exception.CdException e) {
         }
-        assertNotNull(strArray4);
+        org.junit.Assert.assertNotNull(strArray4);
     }
 
     @Test
@@ -2718,7 +2719,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInStdin("File doesn't exist.", "hi!", (-1), inputStream4);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -2743,12 +2744,12 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream23 = null;
         try {
             lsApplication0.run(strArray18, inputStream22, outputStream23);
-            fail("Expected exception of type java.lang.StringIndexOutOfBoundsException; message: String index out of range: 0");
+            org.junit.Assert.fail("Expected exception of type java.lang.StringIndexOutOfBoundsException; message: String index out of range: 0");
         } catch (java.lang.StringIndexOutOfBoundsException e) {
         }
-        assertNotNull(strArray6);
-        assertTrue(str10.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray18);
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertTrue("'" + str10 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str10.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray18);
     }
 
     @Test
@@ -2800,19 +2801,19 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream61 = null;
         try {
             sortApplication0.run(strArray43, inputStream60, outputStream61);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(strArray4);
-        assertNotNull(strArray9);
-        assertNotNull(strArray18);
-        assertTrue(str22.equals(""));
-        assertNotNull(strArray31);
-        assertNotNull(strArray43);
-        assertTrue(str47.equals(""));
-        assertTrue(str48.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str52.equals(""));
-        assertNotNull(wildcardClass59);
+        org.junit.Assert.assertNotNull(strArray4);
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertNotNull(strArray18);
+        org.junit.Assert.assertTrue("'" + str22 + "' != '" + "" + "'", str22.equals(""));
+        org.junit.Assert.assertNotNull(strArray31);
+        org.junit.Assert.assertNotNull(strArray43);
+        org.junit.Assert.assertTrue("'" + str47 + "' != '" + "" + "'", str47.equals(""));
+        org.junit.Assert.assertTrue("'" + str48 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str48.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str52 + "' != '" + "" + "'", str52.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass59);
     }
 
     @Test
@@ -2822,7 +2823,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.DateApplication dateApplication0 = new sg.edu.nus.comp.cs4218.impl.app.DateApplication();
         try {
             java.lang.String str2 = dateApplication0.getDate("C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
     }
@@ -2861,15 +2862,15 @@ public class RegressionTest0 {
         echoApplication4.run(strArray41, inputStream45, outputStream46);
         try {
             java.lang.String str48 = wcApplication0.countFromFiles((java.lang.Boolean) false, (java.lang.Boolean) false, (java.lang.Boolean) true, strArray41);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
-        assertNotNull(strArray12);
-        assertNotNull(strArray24);
-        assertTrue(str28.equals(""));
-        assertTrue(str29.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str33.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray41);
+        org.junit.Assert.assertNotNull(strArray12);
+        org.junit.Assert.assertNotNull(strArray24);
+        org.junit.Assert.assertTrue("'" + str28 + "' != '" + "" + "'", str28.equals(""));
+        org.junit.Assert.assertTrue("'" + str29 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str29.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str33 + "' != '" + "null output stream provided fail_echo_write" + "'", str33.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray41);
     }
 
     @Test
@@ -2877,7 +2878,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test140");
         boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isInteger("This is a directory");
-        assertTrue(boolean1 == false);
+        org.junit.Assert.assertTrue("'" + boolean1 + "' != '" + false + "'", boolean1 == false);
     }
 
     @Test
@@ -2888,7 +2889,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = sortApplication0.sortFromStdin((java.lang.Boolean) true, (java.lang.Boolean) true, (java.lang.Boolean) false, inputStream4);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -2948,22 +2949,22 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream71 = null;
         try {
             grepApplication0.run(strArray52, inputStream70, outputStream71);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: output stream is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: output stream is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray6);
-        assertTrue(str8.equals(""));
-        assertNotNull(strArray13);
-        assertNotNull(strArray18);
-        assertNotNull(strArray27);
-        assertTrue(str31.equals(""));
-        assertNotNull(strArray40);
-        assertNotNull(strArray52);
-        assertTrue(str56.equals(""));
-        assertTrue(str57.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str61.equals(""));
-        assertNotNull(wildcardClass68);
-        assertTrue(str69.equals(""));
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertTrue("'" + str8 + "' != '" + "" + "'", str8.equals(""));
+        org.junit.Assert.assertNotNull(strArray13);
+        org.junit.Assert.assertNotNull(strArray18);
+        org.junit.Assert.assertNotNull(strArray27);
+        org.junit.Assert.assertTrue("'" + str31 + "' != '" + "" + "'", str31.equals(""));
+        org.junit.Assert.assertNotNull(strArray40);
+        org.junit.Assert.assertNotNull(strArray52);
+        org.junit.Assert.assertTrue("'" + str56 + "' != '" + "" + "'", str56.equals(""));
+        org.junit.Assert.assertTrue("'" + str57 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str57.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str61 + "' != '" + "" + "'", str61.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass68);
+        org.junit.Assert.assertTrue("'" + str69 + "' != '" + "" + "'", str69.equals(""));
     }
 
     @Test
@@ -2995,15 +2996,15 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream33 = null;
         try {
             pwdApplication0.run(strArray22, inputStream32, outputStream33);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.PwdException; message: pwd: Null Pointer Exception");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.PwdException; message: pwd: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.PwdException e) {
         }
-// flaky:         assertTrue(str1.equals("C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write"));
-        assertNotNull(strArray10);
-        assertNotNull(strArray22);
-        assertTrue(str26.equals(""));
-        assertTrue(str27.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str31.equals("null output stream provided fail_echo_write"));
+// flaky:         org.junit.Assert.assertTrue("'" + str1 + "' != '" + "C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write" + "'", str1.equals("C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray10);
+        org.junit.Assert.assertNotNull(strArray22);
+        org.junit.Assert.assertTrue("'" + str26 + "' != '" + "" + "'", str26.equals(""));
+        org.junit.Assert.assertTrue("'" + str27 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str27.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str31 + "' != '" + "null output stream provided fail_echo_write" + "'", str31.equals("null output stream provided fail_echo_write"));
     }
 
     @Test
@@ -3014,7 +3015,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = grepApplication0.grepFromStdin("This is a directory", (java.lang.Boolean) false, (java.lang.Boolean) false, inputStream4);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
     }
@@ -3060,18 +3061,18 @@ public class RegressionTest0 {
         mkdirApplication2.run(strArray39, inputStream49, outputStream50);
         try {
             java.lang.String str52 = catApplication0.catFiles(strArray39);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray5);
-        assertNotNull(strArray14);
-        assertTrue(str18.equals(""));
-        assertNotNull(strArray27);
-        assertNotNull(strArray39);
-        assertTrue(str43.equals(""));
-        assertTrue(str44.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str48.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray5);
+        org.junit.Assert.assertNotNull(strArray14);
+        org.junit.Assert.assertTrue("'" + str18 + "' != '" + "" + "'", str18.equals(""));
+        org.junit.Assert.assertNotNull(strArray27);
+        org.junit.Assert.assertNotNull(strArray39);
+        org.junit.Assert.assertTrue("'" + str43 + "' != '" + "" + "'", str43.equals(""));
+        org.junit.Assert.assertTrue("'" + str44 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str44.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str48 + "' != '" + "" + "'", str48.equals(""));
     }
 
     @Test
@@ -3083,10 +3084,10 @@ public class RegressionTest0 {
         java.io.InputStream inputStream2 = null;
         try {
             java.lang.String str3 = catApplication0.catStdin(inputStream2);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: Null Pointer Exception");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(wildcardClass1);
     }
 
     @Test
@@ -3142,22 +3143,22 @@ public class RegressionTest0 {
         java.lang.String str72 = findApplication4.findFolderContent("", strArray55);
         try {
             java.lang.String str73 = grepApplication0.grepFromFiles("hi!", (java.lang.Boolean) true, (java.lang.Boolean) true, strArray55);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray9);
-        assertTrue(str11.equals(""));
-        assertNotNull(strArray16);
-        assertNotNull(strArray21);
-        assertNotNull(strArray30);
-        assertTrue(str34.equals(""));
-        assertNotNull(strArray43);
-        assertNotNull(strArray55);
-        assertTrue(str59.equals(""));
-        assertTrue(str60.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str64.equals(""));
-        assertNotNull(wildcardClass71);
-        assertTrue(str72.equals(""));
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertTrue("'" + str11 + "' != '" + "" + "'", str11.equals(""));
+        org.junit.Assert.assertNotNull(strArray16);
+        org.junit.Assert.assertNotNull(strArray21);
+        org.junit.Assert.assertNotNull(strArray30);
+        org.junit.Assert.assertTrue("'" + str34 + "' != '" + "" + "'", str34.equals(""));
+        org.junit.Assert.assertNotNull(strArray43);
+        org.junit.Assert.assertNotNull(strArray55);
+        org.junit.Assert.assertTrue("'" + str59 + "' != '" + "" + "'", str59.equals(""));
+        org.junit.Assert.assertTrue("'" + str60 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str60.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str64 + "' != '" + "" + "'", str64.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass71);
+        org.junit.Assert.assertTrue("'" + str72 + "' != '" + "" + "'", str72.equals(""));
     }
 
     @Test
@@ -3167,7 +3168,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream0 = null;
         try {
             java.util.List<java.lang.String> strList4 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.replace(inputStream0, "This is a directory", "Null Pointer Exception", 0);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -3179,7 +3180,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream0 = null;
         try {
             java.util.List<java.lang.String> strList4 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.replace(inputStream0, "File is null.", "", (int) '#');
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -3196,10 +3197,10 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream7 = null;
         try {
             wcApplication0.run(strArray4, inputStream6, outputStream7);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
-        assertNotNull(strArray4);
+        org.junit.Assert.assertNotNull(strArray4);
     }
 
     @Test
@@ -3207,7 +3208,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test151");
         boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isSpecialSymbol("null output stream provided fail_echo_write");
-        assertTrue(boolean1 == true);
+        org.junit.Assert.assertTrue("'" + boolean1 + "' != '" + true + "'", boolean1 == true);
     }
 
     @Test
@@ -3215,7 +3216,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test152");
         boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isInteger("null arguments");
-        assertTrue(boolean1 == false);
+        org.junit.Assert.assertTrue("'" + boolean1 + "' != '" + false + "'", boolean1 == false);
     }
 
     @Test
@@ -3234,11 +3235,11 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream13 = null;
         try {
             cdApplication0.run(strArray7, inputStream12, outputStream13);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
         } catch (sg.edu.nus.comp.cs4218.exception.CdException e) {
         }
-        assertNotNull(strArray7);
-        assertTrue(str11.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray7);
+        org.junit.Assert.assertTrue("'" + str11 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str11.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -3291,20 +3292,20 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream65 = null;
         try {
             dateApplication0.run(strArray58, inputStream64, outputStream65);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
-        assertNotNull(strArray9);
-        assertNotNull(strArray21);
-        assertTrue(str25.equals(""));
-        assertTrue(str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str30.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray38);
-        assertNotNull(strArray48);
-        assertTrue(str52.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray58);
-        assertTrue(str62.equals(""));
-        assertTrue(str63.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertNotNull(strArray21);
+        org.junit.Assert.assertTrue("'" + str25 + "' != '" + "" + "'", str25.equals(""));
+        org.junit.Assert.assertTrue("'" + str26 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str30 + "' != '" + "null output stream provided fail_echo_write" + "'", str30.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray38);
+        org.junit.Assert.assertNotNull(strArray48);
+        org.junit.Assert.assertTrue("'" + str52 + "' != '" + "null output stream provided fail_echo_write" + "'", str52.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray58);
+        org.junit.Assert.assertTrue("'" + str62 + "' != '" + "" + "'", str62.equals(""));
+        org.junit.Assert.assertTrue("'" + str63 + "' != '" + "null output stream provided fail_echo_write" + "'", str63.equals("null output stream provided fail_echo_write"));
     }
 
     @Test
@@ -3362,23 +3363,23 @@ public class RegressionTest0 {
         java.lang.String str75 = findApplication4.findFolderContent("", strArray57);
         try {
             java.lang.String str76 = grepApplication0.grepFromFiles("Null Pointer Exception", (java.lang.Boolean) false, (java.lang.Boolean) false, strArray57);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray11);
-        assertTrue(str13.equals(""));
-        assertNotNull(strArray18);
-        assertNotNull(strArray23);
-        assertNotNull(strArray32);
-        assertTrue(str36.equals(""));
-        assertNotNull(strArray45);
-        assertNotNull(strArray57);
-        assertTrue(str61.equals(""));
-        assertTrue(str62.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str66.equals(""));
-        assertNotNull(wildcardClass73);
-        assertTrue(str74.equals(""));
-        assertTrue(str75.equals(""));
+        org.junit.Assert.assertNotNull(strArray11);
+        org.junit.Assert.assertTrue("'" + str13 + "' != '" + "" + "'", str13.equals(""));
+        org.junit.Assert.assertNotNull(strArray18);
+        org.junit.Assert.assertNotNull(strArray23);
+        org.junit.Assert.assertNotNull(strArray32);
+        org.junit.Assert.assertTrue("'" + str36 + "' != '" + "" + "'", str36.equals(""));
+        org.junit.Assert.assertNotNull(strArray45);
+        org.junit.Assert.assertNotNull(strArray57);
+        org.junit.Assert.assertTrue("'" + str61 + "' != '" + "" + "'", str61.equals(""));
+        org.junit.Assert.assertTrue("'" + str62 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str62.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str66 + "' != '" + "" + "'", str66.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass73);
+        org.junit.Assert.assertTrue("'" + str74 + "' != '" + "" + "'", str74.equals(""));
+        org.junit.Assert.assertTrue("'" + str75 + "' != '" + "" + "'", str75.equals(""));
     }
 
     @Test
@@ -3386,7 +3387,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test156");
         boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isSpecialSymbol("This is a directory");
-        assertTrue(boolean1 == true);
+        org.junit.Assert.assertTrue("'" + boolean1 + "' != '" + true + "'", boolean1 == true);
     }
 
     @Test
@@ -3428,18 +3429,18 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream57 = null;
         try {
             lsApplication0.run(strArray53, inputStream56, outputStream57);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
-        assertNotNull(strArray6);
-        assertTrue(str10.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray20);
-        assertNotNull(strArray31);
-        assertNotNull(wildcardClass35);
-        assertNotNull(strArray40);
-        assertTrue(str47.equals("This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught"));
-        assertNotNull(strArray53);
-        assertTrue(str55.equals(""));
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertTrue("'" + str10 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str10.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray20);
+        org.junit.Assert.assertNotNull(strArray31);
+        org.junit.Assert.assertNotNull(wildcardClass35);
+        org.junit.Assert.assertNotNull(strArray40);
+        org.junit.Assert.assertTrue("'" + str47 + "' != '" + "This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught" + "'", str47.equals("This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught"));
+        org.junit.Assert.assertNotNull(strArray53);
+        org.junit.Assert.assertTrue("'" + str55 + "' != '" + "" + "'", str55.equals(""));
     }
 
     @Test
@@ -3447,7 +3448,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test158");
         boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isSpecialSymbol("fail_sed_write");
-        assertTrue(boolean1 == true);
+        org.junit.Assert.assertTrue("'" + boolean1 + "' != '" + true + "'", boolean1 == true);
     }
 
     @Test
@@ -3458,7 +3459,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = wcApplication0.countFromStdin((java.lang.Boolean) true, (java.lang.Boolean) false, (java.lang.Boolean) false, inputStream4);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: stdin is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: stdin is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
     }
@@ -3524,24 +3525,24 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream81 = null;
         try {
             lsApplication0.run(strArray62, inputStream80, outputStream81);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
-        assertNotNull(strArray6);
-        assertTrue(str10.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray16);
-        assertTrue(str18.equals(""));
-        assertNotNull(strArray23);
-        assertNotNull(strArray28);
-        assertNotNull(strArray37);
-        assertTrue(str41.equals(""));
-        assertNotNull(strArray50);
-        assertNotNull(strArray62);
-        assertTrue(str66.equals(""));
-        assertTrue(str67.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str71.equals(""));
-        assertNotNull(wildcardClass78);
-        assertTrue(str79.equals(""));
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertTrue("'" + str10 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str10.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray16);
+        org.junit.Assert.assertTrue("'" + str18 + "' != '" + "" + "'", str18.equals(""));
+        org.junit.Assert.assertNotNull(strArray23);
+        org.junit.Assert.assertNotNull(strArray28);
+        org.junit.Assert.assertNotNull(strArray37);
+        org.junit.Assert.assertTrue("'" + str41 + "' != '" + "" + "'", str41.equals(""));
+        org.junit.Assert.assertNotNull(strArray50);
+        org.junit.Assert.assertNotNull(strArray62);
+        org.junit.Assert.assertTrue("'" + str66 + "' != '" + "" + "'", str66.equals(""));
+        org.junit.Assert.assertTrue("'" + str67 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str67.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str71 + "' != '" + "" + "'", str71.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass78);
+        org.junit.Assert.assertTrue("'" + str79 + "' != '" + "" + "'", str79.equals(""));
     }
 
     @Test
@@ -3570,13 +3571,13 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream30 = null;
         try {
             sortApplication0.run(strArray20, inputStream29, outputStream30);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(strArray8);
-        assertNotNull(strArray20);
-        assertTrue(str24.equals(""));
-        assertTrue(str25.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(strArray20);
+        org.junit.Assert.assertTrue("'" + str24 + "' != '" + "" + "'", str24.equals(""));
+        org.junit.Assert.assertTrue("'" + str25 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str25.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -3596,12 +3597,12 @@ public class RegressionTest0 {
         mkdirApplication4.run(strArray20, inputStream21, outputStream22);
         try {
             java.lang.String str24 = sortApplication0.sortFromFiles((java.lang.Boolean) true, (java.lang.Boolean) true, (java.lang.Boolean) false, strArray20);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(strArray11);
-        assertNotNull(wildcardClass15);
-        assertNotNull(strArray20);
+        org.junit.Assert.assertNotNull(strArray11);
+        org.junit.Assert.assertNotNull(wildcardClass15);
+        org.junit.Assert.assertNotNull(strArray20);
     }
 
     @Test
@@ -3612,7 +3613,7 @@ public class RegressionTest0 {
         java.lang.String[] strArray1 = null;
         try {
             java.lang.String str2 = echoApplication0.constructResult(strArray1);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.EchoException; message: echo: fail_echo_empty_params");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.EchoException; message: echo: fail_echo_empty_params");
         } catch (sg.edu.nus.comp.cs4218.exception.EchoException e) {
         }
     }
@@ -3625,7 +3626,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = grepApplication0.grepFromStdin("Could not read stream", (java.lang.Boolean) true, (java.lang.Boolean) true, inputStream4);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
     }
@@ -3672,17 +3673,17 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream52 = null;
         try {
             dateApplication0.run(strArray38, inputStream51, outputStream52);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
-        assertNotNull(strArray4);
-        assertNotNull(strArray13);
-        assertTrue(str17.equals(""));
-        assertNotNull(strArray26);
-        assertNotNull(strArray38);
-        assertTrue(str42.equals(""));
-        assertTrue(str43.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str47.equals(""));
+        org.junit.Assert.assertNotNull(strArray4);
+        org.junit.Assert.assertNotNull(strArray13);
+        org.junit.Assert.assertTrue("'" + str17 + "' != '" + "" + "'", str17.equals(""));
+        org.junit.Assert.assertNotNull(strArray26);
+        org.junit.Assert.assertNotNull(strArray38);
+        org.junit.Assert.assertTrue("'" + str42 + "' != '" + "" + "'", str42.equals(""));
+        org.junit.Assert.assertTrue("'" + str43 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str43.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str47 + "' != '" + "" + "'", str47.equals(""));
     }
 
     @Test
@@ -3731,18 +3732,18 @@ public class RegressionTest0 {
         mkdirApplication4.run(strArray46, inputStream59, outputStream60);
         try {
             java.lang.String str62 = wcApplication0.countFromFiles((java.lang.Boolean) true, (java.lang.Boolean) true, (java.lang.Boolean) false, strArray46);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
-        assertNotNull(strArray7);
-        assertNotNull(strArray12);
-        assertNotNull(strArray21);
-        assertTrue(str25.equals(""));
-        assertNotNull(strArray34);
-        assertNotNull(strArray46);
-        assertTrue(str50.equals(""));
-        assertTrue(str51.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str55.equals(""));
+        org.junit.Assert.assertNotNull(strArray7);
+        org.junit.Assert.assertNotNull(strArray12);
+        org.junit.Assert.assertNotNull(strArray21);
+        org.junit.Assert.assertTrue("'" + str25 + "' != '" + "" + "'", str25.equals(""));
+        org.junit.Assert.assertNotNull(strArray34);
+        org.junit.Assert.assertNotNull(strArray46);
+        org.junit.Assert.assertTrue("'" + str50 + "' != '" + "" + "'", str50.equals(""));
+        org.junit.Assert.assertTrue("'" + str51 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str51.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str55 + "' != '" + "" + "'", str55.equals(""));
     }
 
     @Test
@@ -3759,11 +3760,11 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream10 = null;
         try {
             cdApplication0.run(strArray6, inputStream9, outputStream10);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
         } catch (sg.edu.nus.comp.cs4218.exception.CdException e) {
         }
-        assertNotNull(strArray6);
-        assertTrue(str8.equals(""));
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertTrue("'" + str8 + "' != '" + "" + "'", str8.equals(""));
     }
 
     @Test
@@ -3804,17 +3805,17 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream48 = null;
         try {
             catApplication0.run(strArray34, inputStream47, outputStream48);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray9);
-        assertNotNull(wildcardClass13);
-        assertNotNull(strArray22);
-        assertNotNull(strArray34);
-        assertTrue(str38.equals(""));
-        assertTrue(str39.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str43.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertNotNull(wildcardClass13);
+        org.junit.Assert.assertNotNull(strArray22);
+        org.junit.Assert.assertNotNull(strArray34);
+        org.junit.Assert.assertTrue("'" + str38 + "' != '" + "" + "'", str38.equals(""));
+        org.junit.Assert.assertTrue("'" + str39 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str39.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str43 + "' != '" + "null output stream provided fail_echo_write" + "'", str43.equals("null output stream provided fail_echo_write"));
     }
 
     @Test
@@ -3829,10 +3830,10 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream7 = null;
         try {
             grepApplication0.run(strArray4, inputStream6, outputStream7);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: output stream is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: output stream is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray4);
+        org.junit.Assert.assertNotNull(strArray4);
     }
 
     @Test
@@ -3871,17 +3872,17 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream46 = null;
         try {
             findApplication0.run(strArray43, inputStream45, outputStream46);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: output stream is null");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: output stream is null");
         } catch (sg.edu.nus.comp.cs4218.exception.FindException e) {
         }
-        assertNotNull(strArray5);
-        assertTrue(str9.equals(""));
-        assertNotNull(strArray18);
-        assertNotNull(strArray30);
-        assertTrue(str34.equals(""));
-        assertTrue(str35.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str39.equals(""));
-        assertNotNull(strArray43);
+        org.junit.Assert.assertNotNull(strArray5);
+        org.junit.Assert.assertTrue("'" + str9 + "' != '" + "" + "'", str9.equals(""));
+        org.junit.Assert.assertNotNull(strArray18);
+        org.junit.Assert.assertNotNull(strArray30);
+        org.junit.Assert.assertTrue("'" + str34 + "' != '" + "" + "'", str34.equals(""));
+        org.junit.Assert.assertTrue("'" + str35 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str35.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str39 + "' != '" + "" + "'", str39.equals(""));
+        org.junit.Assert.assertNotNull(strArray43);
     }
 
     @Test
@@ -3894,7 +3895,7 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream3 = null;
         try {
             sedApplication0.run(strArray1, inputStream2, outputStream3);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -3923,13 +3924,13 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream25 = null;
         try {
             wcApplication0.run(strArray17, inputStream24, outputStream25);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
-        assertNotNull(strArray7);
-        assertNotNull(strArray17);
-        assertTrue(str21.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str23.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray7);
+        org.junit.Assert.assertNotNull(strArray17);
+        org.junit.Assert.assertTrue("'" + str21 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str21.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str23 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str23.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -3946,11 +3947,11 @@ public class RegressionTest0 {
         java.lang.String[] strArray13 = null;
         try {
             java.lang.String str14 = lsApplication0.listFolderContent((java.lang.Boolean) true, (java.lang.Boolean) false, strArray13);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.LsException; message: ls: Input arguments cannot be null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.LsException; message: ls: Input arguments cannot be null!");
         } catch (sg.edu.nus.comp.cs4218.exception.LsException e) {
         }
-        assertNotNull(strArray6);
-        assertTrue(str10.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertTrue("'" + str10 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str10.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -3963,7 +3964,7 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream3 = null;
         try {
             exitApplication0.run(strArray1, inputStream2, outputStream3);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.ExitException; message: exit: Terminate process.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.ExitException; message: exit: Terminate process.");
         } catch (sg.edu.nus.comp.cs4218.exception.ExitException e) {
         }
     }
@@ -3975,7 +3976,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.DateApplication dateApplication0 = new sg.edu.nus.comp.cs4218.impl.app.DateApplication();
         try {
             java.lang.String str2 = dateApplication0.getDate("null arguments");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
     }
@@ -4001,13 +4002,13 @@ public class RegressionTest0 {
         mkdirApplication5.createFolder(strArray18);
         try {
             java.lang.String str24 = sortApplication0.sortFromFiles((java.lang.Boolean) false, (java.lang.Boolean) false, (java.lang.Boolean) false, strArray18);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray8);
-        assertNotNull(strArray18);
-        assertTrue(str22.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(strArray18);
+        org.junit.Assert.assertTrue("'" + str22 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str22.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -4018,7 +4019,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInStdin("Terminate process.", "Could not read stream", (int) (byte) -1, inputStream4);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -4048,13 +4049,13 @@ public class RegressionTest0 {
         mkdirApplication4.run(strArray31, inputStream35, outputStream36);
         try {
             java.lang.String str38 = grepApplication0.grepFromFiles("", (java.lang.Boolean) false, (java.lang.Boolean) false, strArray31);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray11);
-        assertNotNull(strArray22);
-        assertNotNull(wildcardClass26);
-        assertNotNull(strArray31);
+        org.junit.Assert.assertNotNull(strArray11);
+        org.junit.Assert.assertNotNull(strArray22);
+        org.junit.Assert.assertNotNull(wildcardClass26);
+        org.junit.Assert.assertNotNull(strArray31);
     }
 
     @Test
@@ -4117,22 +4118,22 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream85 = null;
         try {
             findApplication0.run(strArray77, inputStream84, outputStream85);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: output stream is null");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: output stream is null");
         } catch (sg.edu.nus.comp.cs4218.exception.FindException e) {
         }
-        assertNotNull(strArray5);
-        assertTrue(str9.equals(""));
-        assertNotNull(strArray18);
-        assertNotNull(strArray30);
-        assertTrue(str34.equals(""));
-        assertTrue(str35.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str39.equals(""));
-        assertNotNull(strArray48);
-        assertNotNull(strArray60);
-        assertTrue(str64.equals(""));
-        assertTrue(str65.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str69.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray77);
+        org.junit.Assert.assertNotNull(strArray5);
+        org.junit.Assert.assertTrue("'" + str9 + "' != '" + "" + "'", str9.equals(""));
+        org.junit.Assert.assertNotNull(strArray18);
+        org.junit.Assert.assertNotNull(strArray30);
+        org.junit.Assert.assertTrue("'" + str34 + "' != '" + "" + "'", str34.equals(""));
+        org.junit.Assert.assertTrue("'" + str35 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str35.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str39 + "' != '" + "" + "'", str39.equals(""));
+        org.junit.Assert.assertNotNull(strArray48);
+        org.junit.Assert.assertNotNull(strArray60);
+        org.junit.Assert.assertTrue("'" + str64 + "' != '" + "" + "'", str64.equals(""));
+        org.junit.Assert.assertTrue("'" + str65 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str65.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str69 + "' != '" + "null output stream provided fail_echo_write" + "'", str69.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray77);
     }
 
     @Test
@@ -4159,15 +4160,15 @@ public class RegressionTest0 {
         java.lang.Class<?> wildcardClass24 = strArray17.getClass();
         try {
             java.lang.String str25 = catApplication0.catFiles(strArray17);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray7);
-        assertNotNull(strArray17);
-        assertTrue(str21.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str23.equals(""));
-        assertNotNull(wildcardClass24);
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray7);
+        org.junit.Assert.assertNotNull(strArray17);
+        org.junit.Assert.assertTrue("'" + str21 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str21.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str23 + "' != '" + "" + "'", str23.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass24);
     }
 
     @Test
@@ -4192,12 +4193,12 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream21 = null;
         try {
             sortApplication0.run(strArray14, inputStream20, outputStream21);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(strArray4);
-        assertNotNull(strArray14);
-        assertTrue(str18.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray4);
+        org.junit.Assert.assertNotNull(strArray14);
+        org.junit.Assert.assertTrue("'" + str18 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str18.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -4209,10 +4210,10 @@ public class RegressionTest0 {
         java.io.InputStream inputStream5 = null;
         try {
             java.lang.String str6 = sortApplication0.sortFromStdin((java.lang.Boolean) true, (java.lang.Boolean) true, (java.lang.Boolean) true, inputStream5);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
-        assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(wildcardClass1);
     }
 
     @Test
@@ -4223,7 +4224,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = sortApplication0.sortFromStdin((java.lang.Boolean) false, (java.lang.Boolean) true, (java.lang.Boolean) false, inputStream4);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -4236,7 +4237,7 @@ public class RegressionTest0 {
         cdApplication0.changeToDirectory("");
         try {
             cdApplication0.changeToDirectory("fail_echo");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: C:\\fail_echo: No such file or directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: C:\\fail_echo: No such file or directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CdException e) {
         }
     }
@@ -4248,7 +4249,7 @@ public class RegressionTest0 {
         java.util.List list0 = null;
         try {
             sg.edu.nus.comp.cs4218.impl.app.SortApplication.sortList(list0, false, true);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -4260,7 +4261,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream0 = null;
         try {
             java.util.List<java.lang.String> strList4 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.replace(inputStream0, "File is null.", "", 100);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -4270,7 +4271,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test187");
         boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isSpecialSymbol("fail_echo");
-        assertTrue(boolean1 == true);
+        org.junit.Assert.assertTrue("'" + boolean1 + "' != '" + true + "'", boolean1 == true);
     }
 
     @Test
@@ -4306,17 +4307,17 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream37 = null;
         try {
             pwdApplication0.run(strArray27, inputStream36, outputStream37);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.PwdException; message: pwd: Null Pointer Exception");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.PwdException; message: pwd: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.PwdException e) {
         }
-        assertNotNull(strArray6);
-        assertTrue(str10.equals(""));
-        assertNotNull(strArray17);
-        assertNotNull(strArray27);
-        assertTrue(str31.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str33.equals(""));
-        assertNotNull(wildcardClass34);
-        assertTrue(str35.equals(""));
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertTrue("'" + str10 + "' != '" + "" + "'", str10.equals(""));
+        org.junit.Assert.assertNotNull(strArray17);
+        org.junit.Assert.assertNotNull(strArray27);
+        org.junit.Assert.assertTrue("'" + str31 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str31.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str33 + "' != '" + "" + "'", str33.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass34);
+        org.junit.Assert.assertTrue("'" + str35 + "' != '" + "" + "'", str35.equals(""));
     }
 
     @Test
@@ -4341,13 +4342,13 @@ public class RegressionTest0 {
         java.lang.String str25 = findApplication4.findFolderContent("null output stream provided fail_echo_write", strArray19);
         try {
             java.lang.String str26 = grepApplication0.grepFromFiles("This is a directory", (java.lang.Boolean) true, (java.lang.Boolean) false, strArray19);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray9);
-        assertNotNull(strArray19);
-        assertTrue(str23.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str25.equals(""));
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertNotNull(strArray19);
+        org.junit.Assert.assertTrue("'" + str23 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str23.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str25 + "' != '" + "" + "'", str25.equals(""));
     }
 
     @Test
@@ -4381,17 +4382,17 @@ public class RegressionTest0 {
         java.lang.String str38 = findApplication4.findFolderContent("null output stream provided fail_echo_write", strArray30);
         try {
             java.lang.String str39 = sortApplication0.sortFromFiles((java.lang.Boolean) false, (java.lang.Boolean) false, (java.lang.Boolean) true, strArray30);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(strArray9);
-        assertTrue(str13.equals(""));
-        assertNotNull(strArray20);
-        assertNotNull(strArray30);
-        assertTrue(str34.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str36.equals(""));
-        assertNotNull(wildcardClass37);
-        assertTrue(str38.equals(""));
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertTrue("'" + str13 + "' != '" + "" + "'", str13.equals(""));
+        org.junit.Assert.assertNotNull(strArray20);
+        org.junit.Assert.assertNotNull(strArray30);
+        org.junit.Assert.assertTrue("'" + str34 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str34.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str36 + "' != '" + "" + "'", str36.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass37);
+        org.junit.Assert.assertTrue("'" + str38 + "' != '" + "" + "'", str38.equals(""));
     }
 
     @Test
@@ -4418,13 +4419,13 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream25 = null;
         try {
             grepApplication0.run(strArray17, inputStream24, outputStream25);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: output stream is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: output stream is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray7);
-        assertNotNull(strArray17);
-        assertTrue(str21.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str23.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray7);
+        org.junit.Assert.assertNotNull(strArray17);
+        org.junit.Assert.assertTrue("'" + str21 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str21.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str23 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str23.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -4435,7 +4436,7 @@ public class RegressionTest0 {
         cdApplication0.changeToDirectory("");
         try {
             cdApplication0.changeToDirectory("fail_sed_write");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: C:\\fail_sed_write: No such file or directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: C:\\fail_sed_write: No such file or directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CdException e) {
         }
     }
@@ -4487,19 +4488,19 @@ public class RegressionTest0 {
         mkdirApplication5.run(strArray47, inputStream60, outputStream61);
         try {
             java.lang.String str63 = sortApplication0.sortFromFiles((java.lang.Boolean) true, (java.lang.Boolean) false, (java.lang.Boolean) true, strArray47);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray8);
-        assertNotNull(strArray13);
-        assertNotNull(strArray22);
-        assertTrue(str26.equals(""));
-        assertNotNull(strArray35);
-        assertNotNull(strArray47);
-        assertTrue(str51.equals(""));
-        assertTrue(str52.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str56.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(strArray13);
+        org.junit.Assert.assertNotNull(strArray22);
+        org.junit.Assert.assertTrue("'" + str26 + "' != '" + "" + "'", str26.equals(""));
+        org.junit.Assert.assertNotNull(strArray35);
+        org.junit.Assert.assertNotNull(strArray47);
+        org.junit.Assert.assertTrue("'" + str51 + "' != '" + "" + "'", str51.equals(""));
+        org.junit.Assert.assertTrue("'" + str52 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str52.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str56 + "' != '" + "" + "'", str56.equals(""));
     }
 
     @Test
@@ -4539,19 +4540,19 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream44 = null;
         try {
             findApplication0.run(strArray40, inputStream43, outputStream44);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: output stream is null");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: output stream is null");
         } catch (sg.edu.nus.comp.cs4218.exception.FindException e) {
         }
-        assertNotNull(strArray5);
-        assertTrue(str9.equals(""));
-        assertNotNull(strArray16);
-        assertNotNull(strArray26);
-        assertTrue(str30.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str32.equals(""));
-        assertNotNull(wildcardClass33);
-        assertTrue(str34.equals(""));
-        assertNotNull(strArray40);
-        assertTrue(str42.equals(""));
+        org.junit.Assert.assertNotNull(strArray5);
+        org.junit.Assert.assertTrue("'" + str9 + "' != '" + "" + "'", str9.equals(""));
+        org.junit.Assert.assertNotNull(strArray16);
+        org.junit.Assert.assertNotNull(strArray26);
+        org.junit.Assert.assertTrue("'" + str30 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str30.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str32 + "' != '" + "" + "'", str32.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass33);
+        org.junit.Assert.assertTrue("'" + str34 + "' != '" + "" + "'", str34.equals(""));
+        org.junit.Assert.assertNotNull(strArray40);
+        org.junit.Assert.assertTrue("'" + str42 + "' != '" + "" + "'", str42.equals(""));
     }
 
     @Test
@@ -4604,20 +4605,20 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream65 = null;
         try {
             grepApplication0.run(strArray58, inputStream64, outputStream65);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: output stream is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: output stream is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray9);
-        assertNotNull(strArray21);
-        assertTrue(str25.equals(""));
-        assertTrue(str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str30.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray38);
-        assertNotNull(strArray48);
-        assertTrue(str52.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray58);
-        assertTrue(str62.equals(""));
-        assertTrue(str63.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertNotNull(strArray21);
+        org.junit.Assert.assertTrue("'" + str25 + "' != '" + "" + "'", str25.equals(""));
+        org.junit.Assert.assertTrue("'" + str26 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str30 + "' != '" + "null output stream provided fail_echo_write" + "'", str30.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray38);
+        org.junit.Assert.assertNotNull(strArray48);
+        org.junit.Assert.assertTrue("'" + str52 + "' != '" + "null output stream provided fail_echo_write" + "'", str52.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray58);
+        org.junit.Assert.assertTrue("'" + str62 + "' != '" + "" + "'", str62.equals(""));
+        org.junit.Assert.assertTrue("'" + str63 + "' != '" + "null output stream provided fail_echo_write" + "'", str63.equals("null output stream provided fail_echo_write"));
     }
 
     @Test
@@ -4630,10 +4631,10 @@ public class RegressionTest0 {
         mkdirApplication4.createFolder(strArray7);
         try {
             java.lang.String str9 = grepApplication0.grepFromFiles("", (java.lang.Boolean) false, (java.lang.Boolean) false, strArray7);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray7);
+        org.junit.Assert.assertNotNull(strArray7);
     }
 
     @Test
@@ -4643,7 +4644,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.SedApplication sedApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SedApplication();
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInFile("C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write", "null output stream provided fail_echo_write", (int) (short) 10, "null arguments");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
     }
@@ -4669,14 +4670,14 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream24 = null;
         try {
             pwdApplication0.run(strArray19, inputStream23, outputStream24);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.PwdException; message: pwd: Null Pointer Exception");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.PwdException; message: pwd: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.PwdException e) {
         }
-        assertTrue(str1.equals("C:\\"));
-        assertTrue(str2.equals("C:\\"));
-        assertNotNull(strArray10);
-        assertNotNull(wildcardClass14);
-        assertNotNull(strArray19);
+        org.junit.Assert.assertTrue("'" + str1 + "' != '" + "C:\\" + "'", str1.equals("C:\\"));
+        org.junit.Assert.assertTrue("'" + str2 + "' != '" + "C:\\" + "'", str2.equals("C:\\"));
+        org.junit.Assert.assertNotNull(strArray10);
+        org.junit.Assert.assertNotNull(wildcardClass14);
+        org.junit.Assert.assertNotNull(strArray19);
     }
 
     @Test
@@ -4712,17 +4713,17 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream37 = null;
         try {
             sedApplication0.run(strArray27, inputStream36, outputStream37);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
-        assertNotNull(strArray6);
-        assertTrue(str10.equals(""));
-        assertNotNull(strArray17);
-        assertNotNull(strArray27);
-        assertTrue(str31.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str33.equals(""));
-        assertNotNull(wildcardClass34);
-        assertTrue(str35.equals(""));
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertTrue("'" + str10 + "' != '" + "" + "'", str10.equals(""));
+        org.junit.Assert.assertNotNull(strArray17);
+        org.junit.Assert.assertNotNull(strArray27);
+        org.junit.Assert.assertTrue("'" + str31 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str31.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str33 + "' != '" + "" + "'", str33.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass34);
+        org.junit.Assert.assertTrue("'" + str35 + "' != '" + "" + "'", str35.equals(""));
     }
 
     @Test
@@ -4730,7 +4731,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test200");
         boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isSpecialSymbol("File is null.");
-        assertTrue(boolean1 == true);
+        org.junit.Assert.assertTrue("'" + boolean1 + "' != '" + true + "'", boolean1 == true);
     }
 
     @Test
@@ -4773,16 +4774,16 @@ public class RegressionTest0 {
         java.lang.String[] strArray52 = null;
         try {
             mkdirApplication0.createFolder(strArray52);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.MkdirException; message: mkdir: Please check the filename.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.MkdirException; message: mkdir: Please check the filename.");
         } catch (sg.edu.nus.comp.cs4218.exception.MkdirException e) {
         }
-        assertNotNull(strArray3);
-        assertNotNull(strArray13);
-        assertNotNull(strArray25);
-        assertTrue(str29.equals(""));
-        assertTrue(str30.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str34.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray42);
+        org.junit.Assert.assertNotNull(strArray3);
+        org.junit.Assert.assertNotNull(strArray13);
+        org.junit.Assert.assertNotNull(strArray25);
+        org.junit.Assert.assertTrue("'" + str29 + "' != '" + "" + "'", str29.equals(""));
+        org.junit.Assert.assertTrue("'" + str30 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str30.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str34 + "' != '" + "null output stream provided fail_echo_write" + "'", str34.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray42);
     }
 
     @Test
@@ -4813,14 +4814,14 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream32 = null;
         try {
             dateApplication0.run(strArray21, inputStream31, outputStream32);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
-        assertNotNull(strArray9);
-        assertNotNull(strArray21);
-        assertTrue(str25.equals(""));
-        assertTrue(str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str30.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertNotNull(strArray21);
+        org.junit.Assert.assertTrue("'" + str25 + "' != '" + "" + "'", str25.equals(""));
+        org.junit.Assert.assertTrue("'" + str26 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str30 + "' != '" + "null output stream provided fail_echo_write" + "'", str30.equals("null output stream provided fail_echo_write"));
     }
 
     @Test
@@ -4836,11 +4837,11 @@ public class RegressionTest0 {
         mkdirApplication5.run(strArray12, inputStream13, outputStream14);
         try {
             java.lang.String str16 = sortApplication0.sortFromFiles((java.lang.Boolean) true, (java.lang.Boolean) true, (java.lang.Boolean) false, strArray12);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray12);
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray12);
     }
 
     @Test
@@ -4851,7 +4852,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = sortApplication0.sortFromStdin((java.lang.Boolean) false, (java.lang.Boolean) false, (java.lang.Boolean) false, inputStream4);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -4863,7 +4864,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.DateApplication dateApplication0 = new sg.edu.nus.comp.cs4218.impl.app.DateApplication();
         try {
             java.lang.String str2 = dateApplication0.getDate("null output stream provided");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
     }
@@ -4876,7 +4877,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInStdin("fail_sed_write", "Null Pointer Exception", 1, inputStream4);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -4900,12 +4901,12 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream22 = null;
         try {
             catApplication0.run(strArray17, inputStream21, outputStream22);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(strArray8);
-        assertNotNull(wildcardClass12);
-        assertNotNull(strArray17);
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(wildcardClass12);
+        org.junit.Assert.assertNotNull(strArray17);
     }
 
     @Test
@@ -4952,16 +4953,16 @@ public class RegressionTest0 {
         echoApplication4.run(strArray49, inputStream57, outputStream58);
         try {
             java.lang.String str60 = wcApplication0.countFromFiles((java.lang.Boolean) true, (java.lang.Boolean) true, (java.lang.Boolean) true, strArray49);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
-        assertNotNull(strArray8);
-        assertNotNull(strArray20);
-        assertNotNull(strArray32);
-        assertTrue(str36.equals(""));
-        assertTrue(str37.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str41.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray49);
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(strArray20);
+        org.junit.Assert.assertNotNull(strArray32);
+        org.junit.Assert.assertTrue("'" + str36 + "' != '" + "" + "'", str36.equals(""));
+        org.junit.Assert.assertTrue("'" + str37 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str37.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str41 + "' != '" + "null output stream provided fail_echo_write" + "'", str41.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray49);
     }
 
     @Test
@@ -4998,15 +4999,15 @@ public class RegressionTest0 {
         echoApplication4.run(strArray41, inputStream45, outputStream46);
         try {
             java.lang.String str48 = grepApplication0.grepFromFiles("Could not read stream", (java.lang.Boolean) true, (java.lang.Boolean) true, strArray41);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray12);
-        assertNotNull(strArray24);
-        assertTrue(str28.equals(""));
-        assertTrue(str29.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str33.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray41);
+        org.junit.Assert.assertNotNull(strArray12);
+        org.junit.Assert.assertNotNull(strArray24);
+        org.junit.Assert.assertTrue("'" + str28 + "' != '" + "" + "'", str28.equals(""));
+        org.junit.Assert.assertTrue("'" + str29 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str29.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str33 + "' != '" + "null output stream provided fail_echo_write" + "'", str33.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray41);
     }
 
     @Test
@@ -5074,24 +5075,24 @@ public class RegressionTest0 {
         mkdirApplication4.createFolder(strArray73);
         try {
             java.lang.String str93 = sortApplication0.sortFromFiles((java.lang.Boolean) false, (java.lang.Boolean) false, (java.lang.Boolean) false, strArray73);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(strArray11);
-        assertNotNull(strArray18);
-        assertNotNull(strArray27);
-        assertTrue(str29.equals(""));
-        assertNotNull(strArray34);
-        assertNotNull(strArray39);
-        assertNotNull(strArray48);
-        assertTrue(str52.equals(""));
-        assertNotNull(strArray61);
-        assertNotNull(strArray73);
-        assertTrue(str77.equals(""));
-        assertTrue(str78.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str82.equals(""));
-        assertNotNull(wildcardClass89);
-        assertTrue(str90.equals(""));
+        org.junit.Assert.assertNotNull(strArray11);
+        org.junit.Assert.assertNotNull(strArray18);
+        org.junit.Assert.assertNotNull(strArray27);
+        org.junit.Assert.assertTrue("'" + str29 + "' != '" + "" + "'", str29.equals(""));
+        org.junit.Assert.assertNotNull(strArray34);
+        org.junit.Assert.assertNotNull(strArray39);
+        org.junit.Assert.assertNotNull(strArray48);
+        org.junit.Assert.assertTrue("'" + str52 + "' != '" + "" + "'", str52.equals(""));
+        org.junit.Assert.assertNotNull(strArray61);
+        org.junit.Assert.assertNotNull(strArray73);
+        org.junit.Assert.assertTrue("'" + str77 + "' != '" + "" + "'", str77.equals(""));
+        org.junit.Assert.assertTrue("'" + str78 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str78.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str82 + "' != '" + "" + "'", str82.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass89);
+        org.junit.Assert.assertTrue("'" + str90 + "' != '" + "" + "'", str90.equals(""));
     }
 
     @Test
@@ -5103,10 +5104,10 @@ public class RegressionTest0 {
         java.io.InputStream inputStream5 = null;
         try {
             java.lang.String str6 = sortApplication0.sortFromStdin((java.lang.Boolean) true, (java.lang.Boolean) true, (java.lang.Boolean) false, inputStream5);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
-        assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(wildcardClass1);
     }
 
     @Test
@@ -5118,10 +5119,10 @@ public class RegressionTest0 {
         java.io.InputStream inputStream5 = null;
         try {
             java.lang.String str6 = sortApplication0.sortFromStdin((java.lang.Boolean) true, (java.lang.Boolean) false, (java.lang.Boolean) false, inputStream5);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
-        assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(wildcardClass1);
     }
 
     @Test
@@ -5181,23 +5182,23 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream74 = null;
         try {
             exitApplication0.run(strArray54, inputStream73, outputStream74);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.ExitException; message: exit: Terminate process.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.ExitException; message: exit: Terminate process.");
         } catch (sg.edu.nus.comp.cs4218.exception.ExitException e) {
         }
-        assertNotNull(strArray8);
-        assertTrue(str10.equals(""));
-        assertNotNull(strArray15);
-        assertNotNull(strArray20);
-        assertNotNull(strArray29);
-        assertTrue(str33.equals(""));
-        assertNotNull(strArray42);
-        assertNotNull(strArray54);
-        assertTrue(str58.equals(""));
-        assertTrue(str59.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str63.equals(""));
-        assertNotNull(wildcardClass70);
-        assertTrue(str71.equals(""));
-        assertTrue(str72.equals(""));
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertTrue("'" + str10 + "' != '" + "" + "'", str10.equals(""));
+        org.junit.Assert.assertNotNull(strArray15);
+        org.junit.Assert.assertNotNull(strArray20);
+        org.junit.Assert.assertNotNull(strArray29);
+        org.junit.Assert.assertTrue("'" + str33 + "' != '" + "" + "'", str33.equals(""));
+        org.junit.Assert.assertNotNull(strArray42);
+        org.junit.Assert.assertNotNull(strArray54);
+        org.junit.Assert.assertTrue("'" + str58 + "' != '" + "" + "'", str58.equals(""));
+        org.junit.Assert.assertTrue("'" + str59 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str59.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str63 + "' != '" + "" + "'", str63.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass70);
+        org.junit.Assert.assertTrue("'" + str71 + "' != '" + "" + "'", str71.equals(""));
+        org.junit.Assert.assertTrue("'" + str72 + "' != '" + "" + "'", str72.equals(""));
     }
 
     @Test
@@ -5243,18 +5244,18 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream53 = null;
         try {
             catApplication0.run(strArray39, inputStream52, outputStream53);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray5);
-        assertNotNull(strArray14);
-        assertTrue(str18.equals(""));
-        assertNotNull(strArray27);
-        assertNotNull(strArray39);
-        assertTrue(str43.equals(""));
-        assertTrue(str44.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str48.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray5);
+        org.junit.Assert.assertNotNull(strArray14);
+        org.junit.Assert.assertTrue("'" + str18 + "' != '" + "" + "'", str18.equals(""));
+        org.junit.Assert.assertNotNull(strArray27);
+        org.junit.Assert.assertNotNull(strArray39);
+        org.junit.Assert.assertTrue("'" + str43 + "' != '" + "" + "'", str43.equals(""));
+        org.junit.Assert.assertTrue("'" + str44 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str44.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str48 + "' != '" + "" + "'", str48.equals(""));
     }
 
     @Test
@@ -5305,20 +5306,20 @@ public class RegressionTest0 {
         java.lang.Class<?> wildcardClass63 = strArray47.getClass();
         try {
             java.lang.String str64 = sortApplication0.sortFromFiles((java.lang.Boolean) true, (java.lang.Boolean) true, (java.lang.Boolean) false, strArray47);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray8);
-        assertNotNull(strArray13);
-        assertNotNull(strArray22);
-        assertTrue(str26.equals(""));
-        assertNotNull(strArray35);
-        assertNotNull(strArray47);
-        assertTrue(str51.equals(""));
-        assertTrue(str52.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str56.equals(""));
-        assertNotNull(wildcardClass63);
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(strArray13);
+        org.junit.Assert.assertNotNull(strArray22);
+        org.junit.Assert.assertTrue("'" + str26 + "' != '" + "" + "'", str26.equals(""));
+        org.junit.Assert.assertNotNull(strArray35);
+        org.junit.Assert.assertNotNull(strArray47);
+        org.junit.Assert.assertTrue("'" + str51 + "' != '" + "" + "'", str51.equals(""));
+        org.junit.Assert.assertTrue("'" + str52 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str52.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str56 + "' != '" + "" + "'", str56.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass63);
     }
 
     @Test
@@ -5351,15 +5352,15 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream33 = null;
         try {
             grepApplication0.run(strArray25, inputStream32, outputStream33);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: output stream is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: output stream is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray6);
-        assertTrue(str10.equals(""));
-        assertNotNull(strArray15);
-        assertNotNull(strArray25);
-        assertTrue(str29.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str31.equals(""));
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertTrue("'" + str10 + "' != '" + "" + "'", str10.equals(""));
+        org.junit.Assert.assertNotNull(strArray15);
+        org.junit.Assert.assertNotNull(strArray25);
+        org.junit.Assert.assertTrue("'" + str29 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str29.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str31 + "' != '" + "" + "'", str31.equals(""));
     }
 
     @Test
@@ -5395,17 +5396,17 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream37 = null;
         try {
             dateApplication0.run(strArray27, inputStream36, outputStream37);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
-        assertNotNull(strArray6);
-        assertTrue(str10.equals(""));
-        assertNotNull(strArray17);
-        assertNotNull(strArray27);
-        assertTrue(str31.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str33.equals(""));
-        assertNotNull(wildcardClass34);
-        assertTrue(str35.equals(""));
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertTrue("'" + str10 + "' != '" + "" + "'", str10.equals(""));
+        org.junit.Assert.assertNotNull(strArray17);
+        org.junit.Assert.assertNotNull(strArray27);
+        org.junit.Assert.assertTrue("'" + str31 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str31.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str33 + "' != '" + "" + "'", str33.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass34);
+        org.junit.Assert.assertTrue("'" + str35 + "' != '" + "" + "'", str35.equals(""));
     }
 
     @Test
@@ -5415,7 +5416,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.SedApplication sedApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SedApplication();
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInFile("This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught", "This is a directory", 0, "Could not read file");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
     }
@@ -5450,15 +5451,15 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream33 = null;
         try {
             findApplication0.run(strArray31, inputStream32, outputStream33);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: Args cannot be null for find!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: Args cannot be null for find!");
         } catch (sg.edu.nus.comp.cs4218.exception.FindException e) {
         }
-        assertNotNull(strArray5);
-        assertTrue(str9.equals(""));
-        assertNotNull(strArray14);
-        assertNotNull(strArray24);
-        assertTrue(str28.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str30.equals(""));
+        org.junit.Assert.assertNotNull(strArray5);
+        org.junit.Assert.assertTrue("'" + str9 + "' != '" + "" + "'", str9.equals(""));
+        org.junit.Assert.assertNotNull(strArray14);
+        org.junit.Assert.assertNotNull(strArray24);
+        org.junit.Assert.assertTrue("'" + str28 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str28.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str30 + "' != '" + "" + "'", str30.equals(""));
     }
 
     @Test
@@ -5468,7 +5469,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.SedApplication sedApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SedApplication();
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInFile("C:\\", "null arguments", (int) (short) 100, "This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
     }
@@ -5519,16 +5520,16 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream58 = null;
         try {
             wcApplication0.run(strArray46, inputStream57, outputStream58);
-            fail("Expected exception of type java.lang.StringIndexOutOfBoundsException; message: String index out of range: 0");
+            org.junit.Assert.fail("Expected exception of type java.lang.StringIndexOutOfBoundsException; message: String index out of range: 0");
         } catch (java.lang.StringIndexOutOfBoundsException e) {
         }
-        assertNotNull(strArray5);
-        assertNotNull(strArray17);
-        assertNotNull(strArray29);
-        assertTrue(str33.equals(""));
-        assertTrue(str34.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str38.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray46);
+        org.junit.Assert.assertNotNull(strArray5);
+        org.junit.Assert.assertNotNull(strArray17);
+        org.junit.Assert.assertNotNull(strArray29);
+        org.junit.Assert.assertTrue("'" + str33 + "' != '" + "" + "'", str33.equals(""));
+        org.junit.Assert.assertTrue("'" + str34 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str34.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str38 + "' != '" + "null output stream provided fail_echo_write" + "'", str38.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray46);
     }
 
     @Test
@@ -5553,13 +5554,13 @@ public class RegressionTest0 {
         java.lang.String str26 = lsApplication4.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray20);
         try {
             java.lang.String str27 = grepApplication0.grepFromFiles("null arguments", (java.lang.Boolean) false, (java.lang.Boolean) false, strArray20);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray10);
-        assertNotNull(strArray20);
-        assertTrue(str24.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray10);
+        org.junit.Assert.assertNotNull(strArray20);
+        org.junit.Assert.assertTrue("'" + str24 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str24.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str26 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -5592,15 +5593,15 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream33 = null;
         try {
             catApplication0.run(strArray25, inputStream32, outputStream33);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(strArray6);
-        assertTrue(str10.equals(""));
-        assertNotNull(strArray15);
-        assertNotNull(strArray25);
-        assertTrue(str29.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str31.equals(""));
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertTrue("'" + str10 + "' != '" + "" + "'", str10.equals(""));
+        org.junit.Assert.assertNotNull(strArray15);
+        org.junit.Assert.assertNotNull(strArray25);
+        org.junit.Assert.assertTrue("'" + str29 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str29.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str31 + "' != '" + "" + "'", str31.equals(""));
     }
 
     @Test
@@ -5619,13 +5620,13 @@ public class RegressionTest0 {
         java.lang.String[] strArray22 = new java.lang.String[] { "null arguments", "null arguments", "null output stream provided:\r\n\r\n\r\nfail_echo_write:", "C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write", "null arguments", "C:\\" };
         try {
             java.lang.String str23 = lsApplication0.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) true, strArray22);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.LsException; message: ls: File does not exist, make sure the path is correct!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.LsException; message: ls: File does not exist, make sure the path is correct!");
         } catch (sg.edu.nus.comp.cs4218.exception.LsException e) {
         }
-        assertNotNull(strArray8);
-        assertTrue(str12.equals(""));
-        assertTrue(str13.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray22);
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertTrue("'" + str12 + "' != '" + "" + "'", str12.equals(""));
+        org.junit.Assert.assertTrue("'" + str13 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str13.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray22);
     }
 
     @Test
@@ -5635,7 +5636,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream0 = null;
         try {
             java.util.List<java.lang.String> strList4 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.replace(inputStream0, "Could not read file", "File is null.", 1);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -5682,16 +5683,16 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream54 = null;
         try {
             wcApplication0.run(strArray45, inputStream53, outputStream54);
-            fail("Expected exception of type java.lang.StringIndexOutOfBoundsException; message: String index out of range: 0");
+            org.junit.Assert.fail("Expected exception of type java.lang.StringIndexOutOfBoundsException; message: String index out of range: 0");
         } catch (java.lang.StringIndexOutOfBoundsException e) {
         }
-        assertNotNull(strArray4);
-        assertNotNull(strArray16);
-        assertNotNull(strArray28);
-        assertTrue(str32.equals(""));
-        assertTrue(str33.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str37.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray45);
+        org.junit.Assert.assertNotNull(strArray4);
+        org.junit.Assert.assertNotNull(strArray16);
+        org.junit.Assert.assertNotNull(strArray28);
+        org.junit.Assert.assertTrue("'" + str32 + "' != '" + "" + "'", str32.equals(""));
+        org.junit.Assert.assertTrue("'" + str33 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str33.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str37 + "' != '" + "null output stream provided fail_echo_write" + "'", str37.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray45);
     }
 
     @Test
@@ -5710,11 +5711,11 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream13 = null;
         try {
             wcApplication0.run(strArray7, inputStream12, outputStream13);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
-        assertNotNull(strArray7);
-        assertTrue(str11.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray7);
+        org.junit.Assert.assertTrue("'" + str11 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str11.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -5743,14 +5744,14 @@ public class RegressionTest0 {
         java.lang.String str33 = echoApplication4.constructResult(strArray24);
         try {
             java.lang.String str34 = grepApplication0.grepFromFiles("fail_sed_write", (java.lang.Boolean) false, (java.lang.Boolean) false, strArray24);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray12);
-        assertNotNull(strArray24);
-        assertTrue(str28.equals(""));
-        assertTrue(str29.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str33.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray12);
+        org.junit.Assert.assertNotNull(strArray24);
+        org.junit.Assert.assertTrue("'" + str28 + "' != '" + "" + "'", str28.equals(""));
+        org.junit.Assert.assertTrue("'" + str29 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str29.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str33 + "' != '" + "null output stream provided fail_echo_write" + "'", str33.equals("null output stream provided fail_echo_write"));
     }
 
     @Test
@@ -5775,13 +5776,13 @@ public class RegressionTest0 {
         java.lang.String[] strArray25 = null;
         try {
             java.lang.String str26 = lsApplication0.listFolderContent((java.lang.Boolean) true, (java.lang.Boolean) false, strArray25);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.LsException; message: ls: Input arguments cannot be null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.LsException; message: ls: Input arguments cannot be null!");
         } catch (sg.edu.nus.comp.cs4218.exception.LsException e) {
         }
-        assertNotNull(strArray6);
-        assertNotNull(strArray16);
-        assertTrue(str20.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str22.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertNotNull(strArray16);
+        org.junit.Assert.assertTrue("'" + str20 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str20.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str22 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str22.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -5827,16 +5828,16 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream56 = null;
         try {
             cdApplication0.run(strArray47, inputStream55, outputStream56);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
         } catch (sg.edu.nus.comp.cs4218.exception.CdException e) {
         }
-        assertNotNull(strArray6);
-        assertNotNull(strArray18);
-        assertNotNull(strArray30);
-        assertTrue(str34.equals(""));
-        assertTrue(str35.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str39.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray47);
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertNotNull(strArray18);
+        org.junit.Assert.assertNotNull(strArray30);
+        org.junit.Assert.assertTrue("'" + str34 + "' != '" + "" + "'", str34.equals(""));
+        org.junit.Assert.assertTrue("'" + str35 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str35.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str39 + "' != '" + "null output stream provided fail_echo_write" + "'", str39.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray47);
     }
 
     @Test
@@ -5844,7 +5845,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test231");
         boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isInteger("null input file provided");
-        assertTrue(boolean1 == false);
+        org.junit.Assert.assertTrue("'" + boolean1 + "' != '" + false + "'", boolean1 == false);
     }
 
     @Test
@@ -5863,11 +5864,11 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream12 = null;
         try {
             catApplication0.run(strArray6, inputStream11, outputStream12);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(strArray6);
-        assertTrue(str10.equals(""));
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertTrue("'" + str10 + "' != '" + "" + "'", str10.equals(""));
     }
 
     @Test
@@ -5917,19 +5918,19 @@ public class RegressionTest0 {
         java.lang.Class<?> wildcardClass62 = strArray46.getClass();
         try {
             java.lang.String str63 = wcApplication0.countFromFiles((java.lang.Boolean) false, (java.lang.Boolean) false, (java.lang.Boolean) true, strArray46);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
-        assertNotNull(strArray7);
-        assertNotNull(strArray12);
-        assertNotNull(strArray21);
-        assertTrue(str25.equals(""));
-        assertNotNull(strArray34);
-        assertNotNull(strArray46);
-        assertTrue(str50.equals(""));
-        assertTrue(str51.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str55.equals(""));
-        assertNotNull(wildcardClass62);
+        org.junit.Assert.assertNotNull(strArray7);
+        org.junit.Assert.assertNotNull(strArray12);
+        org.junit.Assert.assertNotNull(strArray21);
+        org.junit.Assert.assertTrue("'" + str25 + "' != '" + "" + "'", str25.equals(""));
+        org.junit.Assert.assertNotNull(strArray34);
+        org.junit.Assert.assertNotNull(strArray46);
+        org.junit.Assert.assertTrue("'" + str50 + "' != '" + "" + "'", str50.equals(""));
+        org.junit.Assert.assertTrue("'" + str51 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str51.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str55 + "' != '" + "" + "'", str55.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass62);
     }
 
     @Test
@@ -5940,7 +5941,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInStdin("null input file provided", "Null Pointer Exception", (int) (byte) 1, inputStream4);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -5950,7 +5951,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test235");
         boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isInteger("fail_echo_write");
-        assertTrue(boolean1 == false);
+        org.junit.Assert.assertTrue("'" + boolean1 + "' != '" + false + "'", boolean1 == false);
     }
 
     @Test
@@ -5999,18 +6000,18 @@ public class RegressionTest0 {
         mkdirApplication4.run(strArray46, inputStream59, outputStream60);
         try {
             java.lang.String str62 = grepApplication0.grepFromFiles("fail_echo_write", (java.lang.Boolean) false, (java.lang.Boolean) false, strArray46);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray7);
-        assertNotNull(strArray12);
-        assertNotNull(strArray21);
-        assertTrue(str25.equals(""));
-        assertNotNull(strArray34);
-        assertNotNull(strArray46);
-        assertTrue(str50.equals(""));
-        assertTrue(str51.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str55.equals(""));
+        org.junit.Assert.assertNotNull(strArray7);
+        org.junit.Assert.assertNotNull(strArray12);
+        org.junit.Assert.assertNotNull(strArray21);
+        org.junit.Assert.assertTrue("'" + str25 + "' != '" + "" + "'", str25.equals(""));
+        org.junit.Assert.assertNotNull(strArray34);
+        org.junit.Assert.assertNotNull(strArray46);
+        org.junit.Assert.assertTrue("'" + str50 + "' != '" + "" + "'", str50.equals(""));
+        org.junit.Assert.assertTrue("'" + str51 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str51.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str55 + "' != '" + "" + "'", str55.equals(""));
     }
 
     @Test
@@ -6025,11 +6026,11 @@ public class RegressionTest0 {
         java.lang.String str11 = findApplication4.findFolderContent("fail_sed_write", strArray9);
         try {
             java.lang.String str12 = wcApplication0.countFromFiles((java.lang.Boolean) false, (java.lang.Boolean) true, (java.lang.Boolean) true, strArray9);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
-        assertNotNull(strArray9);
-        assertTrue(str11.equals(""));
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertTrue("'" + str11 + "' != '" + "" + "'", str11.equals(""));
     }
 
     @Test
@@ -6090,21 +6091,21 @@ public class RegressionTest0 {
         mkdirApplication1.run(strArray66, inputStream73, outputStream74);
         try {
             java.lang.String str76 = catApplication0.catFiles(strArray66);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(strArray4);
-        assertNotNull(strArray13);
-        assertTrue(str17.equals(""));
-        assertNotNull(strArray26);
-        assertNotNull(strArray38);
-        assertTrue(str42.equals(""));
-        assertTrue(str43.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str47.equals(""));
-        assertNotNull(strArray56);
-        assertNotNull(strArray66);
-        assertTrue(str70.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str72.equals(""));
+        org.junit.Assert.assertNotNull(strArray4);
+        org.junit.Assert.assertNotNull(strArray13);
+        org.junit.Assert.assertTrue("'" + str17 + "' != '" + "" + "'", str17.equals(""));
+        org.junit.Assert.assertNotNull(strArray26);
+        org.junit.Assert.assertNotNull(strArray38);
+        org.junit.Assert.assertTrue("'" + str42 + "' != '" + "" + "'", str42.equals(""));
+        org.junit.Assert.assertTrue("'" + str43 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str43.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str47 + "' != '" + "" + "'", str47.equals(""));
+        org.junit.Assert.assertNotNull(strArray56);
+        org.junit.Assert.assertNotNull(strArray66);
+        org.junit.Assert.assertTrue("'" + str70 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str70.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str72 + "' != '" + "" + "'", str72.equals(""));
     }
 
     @Test
@@ -6114,7 +6115,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream0 = null;
         try {
             java.util.List<java.lang.String> strList4 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.replace(inputStream0, "C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write", "", (int) (short) -1);
-            fail("Expected exception of type java.util.regex.PatternSyntaxException; message: Illegal/unsupported escape sequence near index 3\r\nC:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write\r\n   ^");
+            org.junit.Assert.fail("Expected exception of type java.util.regex.PatternSyntaxException; message: Illegal/unsupported escape sequence near index 3\r\nC:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write\r\n   ^");
         } catch (java.util.regex.PatternSyntaxException e) {
         }
     }
@@ -6126,7 +6127,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.SedApplication sedApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SedApplication();
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInFile("C:\\", "File doesn't exist.", (int) (short) 1, "This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
     }
@@ -6165,16 +6166,16 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream42 = null;
         try {
             dateApplication0.run(strArray31, inputStream41, outputStream42);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
-        assertNotNull(strArray6);
-        assertTrue(str10.equals(""));
-        assertNotNull(strArray19);
-        assertNotNull(strArray31);
-        assertTrue(str35.equals(""));
-        assertTrue(str36.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str40.equals(""));
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertTrue("'" + str10 + "' != '" + "" + "'", str10.equals(""));
+        org.junit.Assert.assertNotNull(strArray19);
+        org.junit.Assert.assertNotNull(strArray31);
+        org.junit.Assert.assertTrue("'" + str35 + "' != '" + "" + "'", str35.equals(""));
+        org.junit.Assert.assertTrue("'" + str36 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str36.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str40 + "' != '" + "" + "'", str40.equals(""));
     }
 
     @Test
@@ -6240,22 +6241,22 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream91 = null;
         try {
             lsApplication0.run(strArray80, inputStream90, outputStream91);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
-        assertNotNull(strArray6);
-        assertNotNull(strArray16);
-        assertTrue(str20.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str22.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray31);
-        assertNotNull(strArray43);
-        assertTrue(str47.equals(""));
-        assertTrue(str48.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str52.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray60);
-        assertNotNull(strArray71);
-        assertNotNull(wildcardClass75);
-        assertNotNull(strArray80);
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertNotNull(strArray16);
+        org.junit.Assert.assertTrue("'" + str20 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str20.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str22 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str22.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray31);
+        org.junit.Assert.assertNotNull(strArray43);
+        org.junit.Assert.assertTrue("'" + str47 + "' != '" + "" + "'", str47.equals(""));
+        org.junit.Assert.assertTrue("'" + str48 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str48.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str52 + "' != '" + "null output stream provided fail_echo_write" + "'", str52.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray60);
+        org.junit.Assert.assertNotNull(strArray71);
+        org.junit.Assert.assertNotNull(wildcardClass75);
+        org.junit.Assert.assertNotNull(strArray80);
     }
 
     @Test
@@ -6276,12 +6277,12 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream16 = null;
         try {
             sedApplication0.run(strArray9, inputStream15, outputStream16);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
-        assertNotNull(strArray9);
-        assertTrue(str13.equals(""));
-        assertTrue(str14.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertTrue("'" + str13 + "' != '" + "" + "'", str13.equals(""));
+        org.junit.Assert.assertTrue("'" + str14 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str14.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -6316,16 +6317,16 @@ public class RegressionTest0 {
         java.lang.String str40 = findApplication1.findFolderContent("Could not read stream", strArray31);
         try {
             java.lang.String str41 = catApplication0.catFiles(strArray31);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(strArray6);
-        assertTrue(str10.equals(""));
-        assertNotNull(strArray19);
-        assertNotNull(strArray31);
-        assertTrue(str35.equals(""));
-        assertTrue(str36.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str40.equals(""));
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertTrue("'" + str10 + "' != '" + "" + "'", str10.equals(""));
+        org.junit.Assert.assertNotNull(strArray19);
+        org.junit.Assert.assertNotNull(strArray31);
+        org.junit.Assert.assertTrue("'" + str35 + "' != '" + "" + "'", str35.equals(""));
+        org.junit.Assert.assertTrue("'" + str36 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str36.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str40 + "' != '" + "" + "'", str40.equals(""));
     }
 
     @Test
@@ -6336,7 +6337,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInStdin("null input file provided", "Exception Caught", (int) 'a', inputStream4);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -6349,7 +6350,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = grepApplication0.grepFromStdin("Could not read stream", (java.lang.Boolean) false, (java.lang.Boolean) true, inputStream4);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
     }
@@ -6396,17 +6397,17 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream52 = null;
         try {
             exitApplication0.run(strArray38, inputStream51, outputStream52);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.ExitException; message: exit: Terminate process.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.ExitException; message: exit: Terminate process.");
         } catch (sg.edu.nus.comp.cs4218.exception.ExitException e) {
         }
-        assertNotNull(strArray4);
-        assertNotNull(strArray13);
-        assertTrue(str17.equals(""));
-        assertNotNull(strArray26);
-        assertNotNull(strArray38);
-        assertTrue(str42.equals(""));
-        assertTrue(str43.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str47.equals(""));
+        org.junit.Assert.assertNotNull(strArray4);
+        org.junit.Assert.assertNotNull(strArray13);
+        org.junit.Assert.assertTrue("'" + str17 + "' != '" + "" + "'", str17.equals(""));
+        org.junit.Assert.assertNotNull(strArray26);
+        org.junit.Assert.assertNotNull(strArray38);
+        org.junit.Assert.assertTrue("'" + str42 + "' != '" + "" + "'", str42.equals(""));
+        org.junit.Assert.assertTrue("'" + str43 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str43.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str47 + "' != '" + "" + "'", str47.equals(""));
     }
 
     @Test
@@ -6417,7 +6418,7 @@ public class RegressionTest0 {
         cdApplication0.changeToDirectory("");
         try {
             cdApplication0.changeToDirectory("null output stream provided");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: C:\\null output stream provided: No such file or directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: C:\\null output stream provided: No such file or directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CdException e) {
         }
     }
@@ -6430,7 +6431,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = grepApplication0.grepFromStdin("", (java.lang.Boolean) true, (java.lang.Boolean) true, inputStream4);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
     }
@@ -6488,22 +6489,22 @@ public class RegressionTest0 {
         java.lang.String str72 = findApplication4.findFolderContent("", strArray55);
         try {
             java.lang.String str73 = wcApplication0.countFromFiles((java.lang.Boolean) true, (java.lang.Boolean) false, (java.lang.Boolean) false, strArray55);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
-        assertNotNull(strArray9);
-        assertTrue(str11.equals(""));
-        assertNotNull(strArray16);
-        assertNotNull(strArray21);
-        assertNotNull(strArray30);
-        assertTrue(str34.equals(""));
-        assertNotNull(strArray43);
-        assertNotNull(strArray55);
-        assertTrue(str59.equals(""));
-        assertTrue(str60.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str64.equals(""));
-        assertNotNull(wildcardClass71);
-        assertTrue(str72.equals(""));
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertTrue("'" + str11 + "' != '" + "" + "'", str11.equals(""));
+        org.junit.Assert.assertNotNull(strArray16);
+        org.junit.Assert.assertNotNull(strArray21);
+        org.junit.Assert.assertNotNull(strArray30);
+        org.junit.Assert.assertTrue("'" + str34 + "' != '" + "" + "'", str34.equals(""));
+        org.junit.Assert.assertNotNull(strArray43);
+        org.junit.Assert.assertNotNull(strArray55);
+        org.junit.Assert.assertTrue("'" + str59 + "' != '" + "" + "'", str59.equals(""));
+        org.junit.Assert.assertTrue("'" + str60 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str60.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str64 + "' != '" + "" + "'", str64.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass71);
+        org.junit.Assert.assertTrue("'" + str72 + "' != '" + "" + "'", str72.equals(""));
     }
 
     @Test
@@ -6549,18 +6550,18 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream55 = null;
         try {
             sortApplication0.run(strArray49, inputStream54, outputStream55);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray10);
-        assertNotNull(strArray22);
-        assertTrue(str26.equals(""));
-        assertTrue(str27.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str31.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray39);
-        assertNotNull(strArray49);
-        assertTrue(str53.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray10);
+        org.junit.Assert.assertNotNull(strArray22);
+        org.junit.Assert.assertTrue("'" + str26 + "' != '" + "" + "'", str26.equals(""));
+        org.junit.Assert.assertTrue("'" + str27 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str27.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str31 + "' != '" + "null output stream provided fail_echo_write" + "'", str31.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray39);
+        org.junit.Assert.assertNotNull(strArray49);
+        org.junit.Assert.assertTrue("'" + str53 + "' != '" + "null output stream provided fail_echo_write" + "'", str53.equals("null output stream provided fail_echo_write"));
     }
 
     @Test
@@ -6615,19 +6616,19 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream70 = null;
         try {
             sortApplication0.run(strArray58, inputStream69, outputStream70);
-            fail("Expected exception of type java.lang.StringIndexOutOfBoundsException; message: String index out of range: 0");
+            org.junit.Assert.fail("Expected exception of type java.lang.StringIndexOutOfBoundsException; message: String index out of range: 0");
         } catch (java.lang.StringIndexOutOfBoundsException e) {
         }
-        assertNotNull(strArray8);
-        assertNotNull(wildcardClass12);
-        assertNotNull(wildcardClass13);
-        assertNotNull(strArray17);
-        assertNotNull(strArray29);
-        assertNotNull(strArray41);
-        assertTrue(str45.equals(""));
-        assertTrue(str46.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str50.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray58);
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(wildcardClass12);
+        org.junit.Assert.assertNotNull(wildcardClass13);
+        org.junit.Assert.assertNotNull(strArray17);
+        org.junit.Assert.assertNotNull(strArray29);
+        org.junit.Assert.assertNotNull(strArray41);
+        org.junit.Assert.assertTrue("'" + str45 + "' != '" + "" + "'", str45.equals(""));
+        org.junit.Assert.assertTrue("'" + str46 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str46.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str50 + "' != '" + "null output stream provided fail_echo_write" + "'", str50.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray58);
     }
 
     @Test
@@ -6639,10 +6640,10 @@ public class RegressionTest0 {
         java.io.InputStream inputStream5 = null;
         try {
             java.lang.String str6 = sortApplication0.sortFromStdin((java.lang.Boolean) false, (java.lang.Boolean) true, (java.lang.Boolean) true, inputStream5);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
-        assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(wildcardClass1);
     }
 
     @Test
@@ -6714,25 +6715,25 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream94 = null;
         try {
             lsApplication0.run(strArray72, inputStream93, outputStream94);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
-        assertNotNull(strArray10);
-        assertNotNull(strArray17);
-        assertNotNull(strArray26);
-        assertTrue(str28.equals(""));
-        assertNotNull(strArray33);
-        assertNotNull(strArray38);
-        assertNotNull(strArray47);
-        assertTrue(str51.equals(""));
-        assertNotNull(strArray60);
-        assertNotNull(strArray72);
-        assertTrue(str76.equals(""));
-        assertTrue(str77.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str81.equals(""));
-        assertNotNull(wildcardClass88);
-        assertTrue(str89.equals(""));
-        assertTrue(str92.equals(""));
+        org.junit.Assert.assertNotNull(strArray10);
+        org.junit.Assert.assertNotNull(strArray17);
+        org.junit.Assert.assertNotNull(strArray26);
+        org.junit.Assert.assertTrue("'" + str28 + "' != '" + "" + "'", str28.equals(""));
+        org.junit.Assert.assertNotNull(strArray33);
+        org.junit.Assert.assertNotNull(strArray38);
+        org.junit.Assert.assertNotNull(strArray47);
+        org.junit.Assert.assertTrue("'" + str51 + "' != '" + "" + "'", str51.equals(""));
+        org.junit.Assert.assertNotNull(strArray60);
+        org.junit.Assert.assertNotNull(strArray72);
+        org.junit.Assert.assertTrue("'" + str76 + "' != '" + "" + "'", str76.equals(""));
+        org.junit.Assert.assertTrue("'" + str77 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str77.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str81 + "' != '" + "" + "'", str81.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass88);
+        org.junit.Assert.assertTrue("'" + str89 + "' != '" + "" + "'", str89.equals(""));
+        org.junit.Assert.assertTrue("'" + str92 + "' != '" + "" + "'", str92.equals(""));
     }
 
     @Test
@@ -6793,23 +6794,23 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream78 = null;
         try {
             lsApplication0.run(strArray71, inputStream77, outputStream78);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
-        assertNotNull(strArray8);
-        assertTrue(str12.equals(""));
-        assertTrue(str13.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray22);
-        assertNotNull(strArray34);
-        assertTrue(str38.equals(""));
-        assertTrue(str39.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str43.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray51);
-        assertNotNull(strArray61);
-        assertTrue(str65.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray71);
-        assertTrue(str75.equals(""));
-        assertTrue(str76.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertTrue("'" + str12 + "' != '" + "" + "'", str12.equals(""));
+        org.junit.Assert.assertTrue("'" + str13 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str13.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray22);
+        org.junit.Assert.assertNotNull(strArray34);
+        org.junit.Assert.assertTrue("'" + str38 + "' != '" + "" + "'", str38.equals(""));
+        org.junit.Assert.assertTrue("'" + str39 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str39.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str43 + "' != '" + "null output stream provided fail_echo_write" + "'", str43.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray51);
+        org.junit.Assert.assertNotNull(strArray61);
+        org.junit.Assert.assertTrue("'" + str65 + "' != '" + "null output stream provided fail_echo_write" + "'", str65.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray71);
+        org.junit.Assert.assertTrue("'" + str75 + "' != '" + "" + "'", str75.equals(""));
+        org.junit.Assert.assertTrue("'" + str76 + "' != '" + "null output stream provided fail_echo_write" + "'", str76.equals("null output stream provided fail_echo_write"));
     }
 
     @Test
@@ -6820,7 +6821,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInStdin("", "null input file provided", 100, inputStream4);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -6848,14 +6849,14 @@ public class RegressionTest0 {
         java.lang.String str23 = findApplication2.findFolderContent("null output stream provided fail_echo_write", strArray17);
         try {
             java.lang.String str24 = catApplication0.catFiles(strArray17);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray7);
-        assertNotNull(strArray17);
-        assertTrue(str21.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str23.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray7);
+        org.junit.Assert.assertNotNull(strArray17);
+        org.junit.Assert.assertTrue("'" + str21 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str21.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str23 + "' != '" + "" + "'", str23.equals(""));
     }
 
     @Test
@@ -6893,19 +6894,19 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream39 = null;
         try {
             pwdApplication0.run(strArray29, inputStream38, outputStream39);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.PwdException; message: pwd: Null Pointer Exception");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.PwdException; message: pwd: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.PwdException e) {
         }
-        assertTrue(str1.equals("C:\\"));
-        assertNotNull(wildcardClass2);
-        assertNotNull(strArray8);
-        assertTrue(str12.equals(""));
-        assertNotNull(strArray19);
-        assertNotNull(strArray29);
-        assertTrue(str33.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str35.equals(""));
-        assertNotNull(wildcardClass36);
-        assertTrue(str37.equals(""));
+        org.junit.Assert.assertTrue("'" + str1 + "' != '" + "C:\\" + "'", str1.equals("C:\\"));
+        org.junit.Assert.assertNotNull(wildcardClass2);
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertTrue("'" + str12 + "' != '" + "" + "'", str12.equals(""));
+        org.junit.Assert.assertNotNull(strArray19);
+        org.junit.Assert.assertNotNull(strArray29);
+        org.junit.Assert.assertTrue("'" + str33 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str33.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str35 + "' != '" + "" + "'", str35.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass36);
+        org.junit.Assert.assertTrue("'" + str37 + "' != '" + "" + "'", str37.equals(""));
     }
 
     @Test
@@ -6941,16 +6942,16 @@ public class RegressionTest0 {
         java.lang.String str51 = lsApplication4.listFolderContent((java.lang.Boolean) true, (java.lang.Boolean) true, strArray44);
         try {
             java.lang.String str52 = wcApplication0.countFromFiles((java.lang.Boolean) false, (java.lang.Boolean) false, (java.lang.Boolean) true, strArray44);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
-        assertNotNull(strArray10);
-        assertTrue(str14.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray24);
-        assertNotNull(strArray35);
-        assertNotNull(wildcardClass39);
-        assertNotNull(strArray44);
-        assertTrue(str51.equals("This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught"));
+        org.junit.Assert.assertNotNull(strArray10);
+        org.junit.Assert.assertTrue("'" + str14 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str14.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray24);
+        org.junit.Assert.assertNotNull(strArray35);
+        org.junit.Assert.assertNotNull(wildcardClass39);
+        org.junit.Assert.assertNotNull(strArray44);
+        org.junit.Assert.assertTrue("'" + str51 + "' != '" + "This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught" + "'", str51.equals("This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught"));
     }
 
     @Test
@@ -6989,15 +6990,15 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream46 = null;
         try {
             catApplication0.run(strArray38, inputStream45, outputStream46);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(strArray9);
-        assertNotNull(strArray21);
-        assertTrue(str25.equals(""));
-        assertTrue(str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str30.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray38);
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertNotNull(strArray21);
+        org.junit.Assert.assertTrue("'" + str25 + "' != '" + "" + "'", str25.equals(""));
+        org.junit.Assert.assertTrue("'" + str26 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str30 + "' != '" + "null output stream provided fail_echo_write" + "'", str30.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray38);
     }
 
     @Test
@@ -7050,21 +7051,21 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream70 = null;
         try {
             findApplication0.run(strArray62, inputStream69, outputStream70);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: output stream is null");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: output stream is null");
         } catch (sg.edu.nus.comp.cs4218.exception.FindException e) {
         }
-        assertNotNull(strArray5);
-        assertTrue(str9.equals(""));
-        assertNotNull(strArray16);
-        assertNotNull(strArray26);
-        assertTrue(str30.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str32.equals(""));
-        assertNotNull(wildcardClass33);
-        assertTrue(str34.equals(""));
-        assertNotNull(strArray42);
-        assertNotNull(strArray53);
-        assertNotNull(wildcardClass57);
-        assertNotNull(strArray62);
+        org.junit.Assert.assertNotNull(strArray5);
+        org.junit.Assert.assertTrue("'" + str9 + "' != '" + "" + "'", str9.equals(""));
+        org.junit.Assert.assertNotNull(strArray16);
+        org.junit.Assert.assertNotNull(strArray26);
+        org.junit.Assert.assertTrue("'" + str30 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str30.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str32 + "' != '" + "" + "'", str32.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass33);
+        org.junit.Assert.assertTrue("'" + str34 + "' != '" + "" + "'", str34.equals(""));
+        org.junit.Assert.assertNotNull(strArray42);
+        org.junit.Assert.assertNotNull(strArray53);
+        org.junit.Assert.assertNotNull(wildcardClass57);
+        org.junit.Assert.assertNotNull(strArray62);
     }
 
     @Test
@@ -7090,14 +7091,14 @@ public class RegressionTest0 {
         java.lang.Class<?> wildcardClass23 = strArray16.getClass();
         try {
             java.lang.String str24 = catApplication0.catFiles(strArray16);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(strArray6);
-        assertNotNull(strArray16);
-        assertTrue(str20.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str22.equals(""));
-        assertNotNull(wildcardClass23);
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertNotNull(strArray16);
+        org.junit.Assert.assertTrue("'" + str20 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str20.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str22 + "' != '" + "" + "'", str22.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass23);
     }
 
     @Test
@@ -7143,17 +7144,17 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream55 = null;
         try {
             sortApplication0.run(strArray44, inputStream54, outputStream55);
-            fail("Expected exception of type java.lang.StringIndexOutOfBoundsException; message: String index out of range: 0");
+            org.junit.Assert.fail("Expected exception of type java.lang.StringIndexOutOfBoundsException; message: String index out of range: 0");
         } catch (java.lang.StringIndexOutOfBoundsException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray5);
-        assertNotNull(strArray15);
-        assertNotNull(strArray27);
-        assertTrue(str31.equals(""));
-        assertTrue(str32.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str36.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray44);
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray5);
+        org.junit.Assert.assertNotNull(strArray15);
+        org.junit.Assert.assertNotNull(strArray27);
+        org.junit.Assert.assertTrue("'" + str31 + "' != '" + "" + "'", str31.equals(""));
+        org.junit.Assert.assertTrue("'" + str32 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str32.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str36 + "' != '" + "null output stream provided fail_echo_write" + "'", str36.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray44);
     }
 
     @Test
@@ -7206,20 +7207,20 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream65 = null;
         try {
             echoApplication0.run(strArray63, inputStream64, outputStream65);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.EchoException; message: echo: Empty arguments");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.EchoException; message: echo: Empty arguments");
         } catch (sg.edu.nus.comp.cs4218.exception.EchoException e) {
         }
-        assertNotNull(strArray8);
-        assertNotNull(strArray20);
-        assertTrue(str24.equals(""));
-        assertTrue(str25.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str29.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray37);
-        assertNotNull(strArray47);
-        assertTrue(str51.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray57);
-        assertTrue(str61.equals(""));
-        assertTrue(str62.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(strArray20);
+        org.junit.Assert.assertTrue("'" + str24 + "' != '" + "" + "'", str24.equals(""));
+        org.junit.Assert.assertTrue("'" + str25 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str25.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str29 + "' != '" + "null output stream provided fail_echo_write" + "'", str29.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray37);
+        org.junit.Assert.assertNotNull(strArray47);
+        org.junit.Assert.assertTrue("'" + str51 + "' != '" + "null output stream provided fail_echo_write" + "'", str51.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray57);
+        org.junit.Assert.assertTrue("'" + str61 + "' != '" + "" + "'", str61.equals(""));
+        org.junit.Assert.assertTrue("'" + str62 + "' != '" + "null output stream provided fail_echo_write" + "'", str62.equals("null output stream provided fail_echo_write"));
     }
 
     @Test
@@ -7230,7 +7231,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = wcApplication0.countFromStdin((java.lang.Boolean) true, (java.lang.Boolean) true, (java.lang.Boolean) true, inputStream4);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: stdin is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: stdin is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
     }
@@ -7254,12 +7255,12 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream22 = null;
         try {
             sedApplication0.run(strArray17, inputStream21, outputStream22);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
-        assertNotNull(strArray8);
-        assertNotNull(wildcardClass12);
-        assertNotNull(strArray17);
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(wildcardClass12);
+        org.junit.Assert.assertNotNull(strArray17);
     }
 
     @Test
@@ -7320,23 +7321,23 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream76 = null;
         try {
             cdApplication0.run(strArray56, inputStream75, outputStream76);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
         } catch (sg.edu.nus.comp.cs4218.exception.CdException e) {
         }
-        assertNotNull(strArray10);
-        assertTrue(str12.equals(""));
-        assertNotNull(strArray17);
-        assertNotNull(strArray22);
-        assertNotNull(strArray31);
-        assertTrue(str35.equals(""));
-        assertNotNull(strArray44);
-        assertNotNull(strArray56);
-        assertTrue(str60.equals(""));
-        assertTrue(str61.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str65.equals(""));
-        assertNotNull(wildcardClass72);
-        assertTrue(str73.equals(""));
-        assertTrue(str74.equals(""));
+        org.junit.Assert.assertNotNull(strArray10);
+        org.junit.Assert.assertTrue("'" + str12 + "' != '" + "" + "'", str12.equals(""));
+        org.junit.Assert.assertNotNull(strArray17);
+        org.junit.Assert.assertNotNull(strArray22);
+        org.junit.Assert.assertNotNull(strArray31);
+        org.junit.Assert.assertTrue("'" + str35 + "' != '" + "" + "'", str35.equals(""));
+        org.junit.Assert.assertNotNull(strArray44);
+        org.junit.Assert.assertNotNull(strArray56);
+        org.junit.Assert.assertTrue("'" + str60 + "' != '" + "" + "'", str60.equals(""));
+        org.junit.Assert.assertTrue("'" + str61 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str61.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str65 + "' != '" + "" + "'", str65.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass72);
+        org.junit.Assert.assertTrue("'" + str73 + "' != '" + "" + "'", str73.equals(""));
+        org.junit.Assert.assertTrue("'" + str74 + "' != '" + "" + "'", str74.equals(""));
     }
 
     @Test
@@ -7381,17 +7382,17 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream54 = null;
         try {
             catApplication0.run(strArray48, inputStream53, outputStream54);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(strArray9);
-        assertNotNull(strArray21);
-        assertTrue(str25.equals(""));
-        assertTrue(str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str30.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray38);
-        assertNotNull(strArray48);
-        assertTrue(str52.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertNotNull(strArray21);
+        org.junit.Assert.assertTrue("'" + str25 + "' != '" + "" + "'", str25.equals(""));
+        org.junit.Assert.assertTrue("'" + str26 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str30 + "' != '" + "null output stream provided fail_echo_write" + "'", str30.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray38);
+        org.junit.Assert.assertNotNull(strArray48);
+        org.junit.Assert.assertTrue("'" + str52 + "' != '" + "null output stream provided fail_echo_write" + "'", str52.equals("null output stream provided fail_echo_write"));
     }
 
     @Test
@@ -7461,25 +7462,25 @@ public class RegressionTest0 {
         java.lang.String str95 = findApplication4.findFolderContent("Exception Caught", strArray75);
         try {
             java.lang.String str96 = grepApplication0.grepFromFiles("fail_echo", (java.lang.Boolean) false, (java.lang.Boolean) false, strArray75);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray13);
-        assertNotNull(strArray20);
-        assertNotNull(strArray29);
-        assertTrue(str31.equals(""));
-        assertNotNull(strArray36);
-        assertNotNull(strArray41);
-        assertNotNull(strArray50);
-        assertTrue(str54.equals(""));
-        assertNotNull(strArray63);
-        assertNotNull(strArray75);
-        assertTrue(str79.equals(""));
-        assertTrue(str80.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str84.equals(""));
-        assertNotNull(wildcardClass91);
-        assertTrue(str92.equals(""));
-        assertTrue(str95.equals(""));
+        org.junit.Assert.assertNotNull(strArray13);
+        org.junit.Assert.assertNotNull(strArray20);
+        org.junit.Assert.assertNotNull(strArray29);
+        org.junit.Assert.assertTrue("'" + str31 + "' != '" + "" + "'", str31.equals(""));
+        org.junit.Assert.assertNotNull(strArray36);
+        org.junit.Assert.assertNotNull(strArray41);
+        org.junit.Assert.assertNotNull(strArray50);
+        org.junit.Assert.assertTrue("'" + str54 + "' != '" + "" + "'", str54.equals(""));
+        org.junit.Assert.assertNotNull(strArray63);
+        org.junit.Assert.assertNotNull(strArray75);
+        org.junit.Assert.assertTrue("'" + str79 + "' != '" + "" + "'", str79.equals(""));
+        org.junit.Assert.assertTrue("'" + str80 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str80.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str84 + "' != '" + "" + "'", str84.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass91);
+        org.junit.Assert.assertTrue("'" + str92 + "' != '" + "" + "'", str92.equals(""));
+        org.junit.Assert.assertTrue("'" + str95 + "' != '" + "" + "'", str95.equals(""));
     }
 
     @Test
@@ -7530,20 +7531,20 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream59 = null;
         try {
             pwdApplication0.run(strArray48, inputStream58, outputStream59);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.PwdException; message: pwd: Null Pointer Exception");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.PwdException; message: pwd: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.PwdException e) {
         }
-// flaky:         assertTrue(str1.equals("C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write"));
-        assertNotNull(wildcardClass2);
-        assertNotNull(strArray11);
-        assertNotNull(strArray23);
-        assertTrue(str27.equals(""));
-        assertTrue(str28.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str32.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray38);
-        assertNotNull(strArray48);
-        assertTrue(str52.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str54.equals(""));
+// flaky:         org.junit.Assert.assertTrue("'" + str1 + "' != '" + "C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write" + "'", str1.equals("C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write"));
+        org.junit.Assert.assertNotNull(wildcardClass2);
+        org.junit.Assert.assertNotNull(strArray11);
+        org.junit.Assert.assertNotNull(strArray23);
+        org.junit.Assert.assertTrue("'" + str27 + "' != '" + "" + "'", str27.equals(""));
+        org.junit.Assert.assertTrue("'" + str28 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str28.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str32 + "' != '" + "null output stream provided fail_echo_write" + "'", str32.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray38);
+        org.junit.Assert.assertNotNull(strArray48);
+        org.junit.Assert.assertTrue("'" + str52 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str52.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str54 + "' != '" + "" + "'", str54.equals(""));
     }
 
     @Test
@@ -7598,19 +7599,19 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream70 = null;
         try {
             catApplication0.run(strArray58, inputStream69, outputStream70);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(strArray8);
-        assertNotNull(wildcardClass12);
-        assertNotNull(wildcardClass13);
-        assertNotNull(strArray17);
-        assertNotNull(strArray29);
-        assertNotNull(strArray41);
-        assertTrue(str45.equals(""));
-        assertTrue(str46.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str50.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray58);
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(wildcardClass12);
+        org.junit.Assert.assertNotNull(wildcardClass13);
+        org.junit.Assert.assertNotNull(strArray17);
+        org.junit.Assert.assertNotNull(strArray29);
+        org.junit.Assert.assertNotNull(strArray41);
+        org.junit.Assert.assertTrue("'" + str45 + "' != '" + "" + "'", str45.equals(""));
+        org.junit.Assert.assertTrue("'" + str46 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str46.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str50 + "' != '" + "null output stream provided fail_echo_write" + "'", str50.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray58);
     }
 
     @Test
@@ -7621,7 +7622,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = grepApplication0.grepFromStdin("This is a directory Could not read stream Null Pointer Exception Exception Caught", (java.lang.Boolean) false, (java.lang.Boolean) true, inputStream4);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
     }
@@ -7684,21 +7685,21 @@ public class RegressionTest0 {
         mkdirApplication4.run(strArray69, inputStream76, outputStream77);
         try {
             java.lang.String str79 = sortApplication0.sortFromFiles((java.lang.Boolean) false, (java.lang.Boolean) false, (java.lang.Boolean) false, strArray69);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(strArray7);
-        assertNotNull(strArray16);
-        assertTrue(str20.equals(""));
-        assertNotNull(strArray29);
-        assertNotNull(strArray41);
-        assertTrue(str45.equals(""));
-        assertTrue(str46.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str50.equals(""));
-        assertNotNull(strArray59);
-        assertNotNull(strArray69);
-        assertTrue(str73.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str75.equals(""));
+        org.junit.Assert.assertNotNull(strArray7);
+        org.junit.Assert.assertNotNull(strArray16);
+        org.junit.Assert.assertTrue("'" + str20 + "' != '" + "" + "'", str20.equals(""));
+        org.junit.Assert.assertNotNull(strArray29);
+        org.junit.Assert.assertNotNull(strArray41);
+        org.junit.Assert.assertTrue("'" + str45 + "' != '" + "" + "'", str45.equals(""));
+        org.junit.Assert.assertTrue("'" + str46 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str46.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str50 + "' != '" + "" + "'", str50.equals(""));
+        org.junit.Assert.assertNotNull(strArray59);
+        org.junit.Assert.assertNotNull(strArray69);
+        org.junit.Assert.assertTrue("'" + str73 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str73.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str75 + "' != '" + "" + "'", str75.equals(""));
     }
 
     @Test
@@ -7709,7 +7710,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInStdin("Null Pointer Exception", "null input file provided", (int) '#', inputStream4);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -7748,15 +7749,15 @@ public class RegressionTest0 {
         echoApplication4.run(strArray41, inputStream45, outputStream46);
         try {
             java.lang.String str48 = sortApplication0.sortFromFiles((java.lang.Boolean) false, (java.lang.Boolean) false, (java.lang.Boolean) false, strArray41);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(strArray12);
-        assertNotNull(strArray24);
-        assertTrue(str28.equals(""));
-        assertTrue(str29.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str33.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray41);
+        org.junit.Assert.assertNotNull(strArray12);
+        org.junit.Assert.assertNotNull(strArray24);
+        org.junit.Assert.assertTrue("'" + str28 + "' != '" + "" + "'", str28.equals(""));
+        org.junit.Assert.assertTrue("'" + str29 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str29.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str33 + "' != '" + "null output stream provided fail_echo_write" + "'", str33.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray41);
     }
 
     @Test
@@ -7766,7 +7767,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream0 = null;
         try {
             java.util.List<java.lang.String> strList4 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.replace(inputStream0, "null output stream provided\r\nfail_echo_write", "C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write", (int) (byte) 10);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -7834,24 +7835,24 @@ public class RegressionTest0 {
         mkdirApplication4.run(strArray64, inputStream83, outputStream84);
         try {
             java.lang.String str86 = sortApplication0.sortFromFiles((java.lang.Boolean) false, (java.lang.Boolean) false, (java.lang.Boolean) true, strArray64);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(strArray7);
-        assertNotNull(strArray18);
-        assertTrue(str20.equals(""));
-        assertNotNull(strArray25);
-        assertNotNull(strArray30);
-        assertNotNull(strArray39);
-        assertTrue(str43.equals(""));
-        assertNotNull(strArray52);
-        assertNotNull(strArray64);
-        assertTrue(str68.equals(""));
-        assertTrue(str69.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str73.equals(""));
-        assertNotNull(wildcardClass80);
-        assertTrue(str81.equals(""));
-        assertTrue(str82.equals(""));
+        org.junit.Assert.assertNotNull(strArray7);
+        org.junit.Assert.assertNotNull(strArray18);
+        org.junit.Assert.assertTrue("'" + str20 + "' != '" + "" + "'", str20.equals(""));
+        org.junit.Assert.assertNotNull(strArray25);
+        org.junit.Assert.assertNotNull(strArray30);
+        org.junit.Assert.assertNotNull(strArray39);
+        org.junit.Assert.assertTrue("'" + str43 + "' != '" + "" + "'", str43.equals(""));
+        org.junit.Assert.assertNotNull(strArray52);
+        org.junit.Assert.assertNotNull(strArray64);
+        org.junit.Assert.assertTrue("'" + str68 + "' != '" + "" + "'", str68.equals(""));
+        org.junit.Assert.assertTrue("'" + str69 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str69.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str73 + "' != '" + "" + "'", str73.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass80);
+        org.junit.Assert.assertTrue("'" + str81 + "' != '" + "" + "'", str81.equals(""));
+        org.junit.Assert.assertTrue("'" + str82 + "' != '" + "" + "'", str82.equals(""));
     }
 
     @Test
@@ -7861,7 +7862,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.DateApplication dateApplication0 = new sg.edu.nus.comp.cs4218.impl.app.DateApplication();
         try {
             java.lang.String str2 = dateApplication0.getDate("This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
     }
@@ -7874,7 +7875,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = grepApplication0.grepFromStdin("null output stream provided\r\nfail_echo_write", (java.lang.Boolean) false, (java.lang.Boolean) false, inputStream4);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
     }
@@ -7906,14 +7907,14 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream29 = null;
         try {
             sortApplication0.run(strArray24, inputStream28, outputStream29);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray5);
-        assertNotNull(strArray15);
-        assertTrue(str19.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray24);
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray5);
+        org.junit.Assert.assertNotNull(strArray15);
+        org.junit.Assert.assertTrue("'" + str19 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str19.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray24);
     }
 
     @Test
@@ -7924,7 +7925,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = grepApplication0.grepFromStdin("Could not read file", (java.lang.Boolean) true, (java.lang.Boolean) false, inputStream4);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
     }
@@ -7937,7 +7938,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInStdin("fail_echo_empty_params", "null output stream provided", 10, inputStream4);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -7947,7 +7948,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test283");
         boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isSpecialSymbol("This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught");
-        assertTrue(boolean1 == true);
+        org.junit.Assert.assertTrue("'" + boolean1 + "' != '" + true + "'", boolean1 == true);
     }
 
     @Test
@@ -7988,17 +7989,17 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream47 = null;
         try {
             lsApplication0.run(strArray39, inputStream46, outputStream47);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
-        assertNotNull(strArray6);
-        assertNotNull(strArray16);
-        assertTrue(str20.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str22.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray29);
-        assertNotNull(strArray39);
-        assertTrue(str43.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str45.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertNotNull(strArray16);
+        org.junit.Assert.assertTrue("'" + str20 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str20.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str22 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str22.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray29);
+        org.junit.Assert.assertNotNull(strArray39);
+        org.junit.Assert.assertTrue("'" + str43 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str43.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str45 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str45.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -8008,7 +8009,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.SedApplication sedApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SedApplication();
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInFile("This is a directory Could not read stream Null Pointer Exception Exception Caught", "null output stream provided:\r\n\r\n\r\nfail_echo_write:", (int) ' ', "File doesn't exist.");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
     }
@@ -8035,13 +8036,13 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream22 = null;
         try {
             lsApplication0.run(strArray16, inputStream21, outputStream22);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
-        assertNotNull(strArray6);
-        assertTrue(str10.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray16);
-        assertTrue(str20.equals(""));
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertTrue("'" + str10 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str10.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray16);
+        org.junit.Assert.assertTrue("'" + str20 + "' != '" + "" + "'", str20.equals(""));
     }
 
     @Test
@@ -8049,7 +8050,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test287");
         boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isInteger("fail_echo_write hi!");
-        assertTrue(boolean1 == false);
+        org.junit.Assert.assertTrue("'" + boolean1 + "' != '" + false + "'", boolean1 == false);
     }
 
     @Test
@@ -8121,25 +8122,25 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream94 = null;
         try {
             dateApplication0.run(strArray72, inputStream93, outputStream94);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
-        assertNotNull(strArray10);
-        assertNotNull(strArray17);
-        assertNotNull(strArray26);
-        assertTrue(str28.equals(""));
-        assertNotNull(strArray33);
-        assertNotNull(strArray38);
-        assertNotNull(strArray47);
-        assertTrue(str51.equals(""));
-        assertNotNull(strArray60);
-        assertNotNull(strArray72);
-        assertTrue(str76.equals(""));
-        assertTrue(str77.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str81.equals(""));
-        assertNotNull(wildcardClass88);
-        assertTrue(str89.equals(""));
-        assertTrue(str92.equals(""));
+        org.junit.Assert.assertNotNull(strArray10);
+        org.junit.Assert.assertNotNull(strArray17);
+        org.junit.Assert.assertNotNull(strArray26);
+        org.junit.Assert.assertTrue("'" + str28 + "' != '" + "" + "'", str28.equals(""));
+        org.junit.Assert.assertNotNull(strArray33);
+        org.junit.Assert.assertNotNull(strArray38);
+        org.junit.Assert.assertNotNull(strArray47);
+        org.junit.Assert.assertTrue("'" + str51 + "' != '" + "" + "'", str51.equals(""));
+        org.junit.Assert.assertNotNull(strArray60);
+        org.junit.Assert.assertNotNull(strArray72);
+        org.junit.Assert.assertTrue("'" + str76 + "' != '" + "" + "'", str76.equals(""));
+        org.junit.Assert.assertTrue("'" + str77 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str77.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str81 + "' != '" + "" + "'", str81.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass88);
+        org.junit.Assert.assertTrue("'" + str89 + "' != '" + "" + "'", str89.equals(""));
+        org.junit.Assert.assertTrue("'" + str92 + "' != '" + "" + "'", str92.equals(""));
     }
 
     @Test
@@ -8150,7 +8151,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInStdin("null arguments", "Null Pointer Exception", 0, inputStream4);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -8162,7 +8163,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream0 = null;
         try {
             java.util.List<java.lang.String> strList4 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.replace(inputStream0, "Could not read stream", "Terminate process.", 1);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -8176,10 +8177,10 @@ public class RegressionTest0 {
         java.io.InputStream inputStream5 = null;
         try {
             java.lang.String str6 = sortApplication0.sortFromStdin((java.lang.Boolean) false, (java.lang.Boolean) false, (java.lang.Boolean) false, inputStream5);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
-        assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(wildcardClass1);
     }
 
     @Test
@@ -8226,16 +8227,16 @@ public class RegressionTest0 {
         echoApplication4.run(strArray49, inputStream57, outputStream58);
         try {
             java.lang.String str60 = wcApplication0.countFromFiles((java.lang.Boolean) true, (java.lang.Boolean) true, (java.lang.Boolean) false, strArray49);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
-        assertNotNull(strArray8);
-        assertNotNull(strArray20);
-        assertNotNull(strArray32);
-        assertTrue(str36.equals(""));
-        assertTrue(str37.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str41.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray49);
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(strArray20);
+        org.junit.Assert.assertNotNull(strArray32);
+        org.junit.Assert.assertTrue("'" + str36 + "' != '" + "" + "'", str36.equals(""));
+        org.junit.Assert.assertTrue("'" + str37 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str37.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str41 + "' != '" + "null output stream provided fail_echo_write" + "'", str41.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray49);
     }
 
     @Test
@@ -8260,12 +8261,12 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream21 = null;
         try {
             exitApplication0.run(strArray14, inputStream20, outputStream21);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.ExitException; message: exit: Terminate process.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.ExitException; message: exit: Terminate process.");
         } catch (sg.edu.nus.comp.cs4218.exception.ExitException e) {
         }
-        assertNotNull(strArray4);
-        assertNotNull(strArray14);
-        assertTrue(str18.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray4);
+        org.junit.Assert.assertNotNull(strArray14);
+        org.junit.Assert.assertTrue("'" + str18 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str18.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -8276,7 +8277,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInStdin("null output stream provided", "null output stream provided\r\nfail_echo_write", (int) (short) 10, inputStream4);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -8286,7 +8287,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test295");
         boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isSpecialSymbol("null output stream provided");
-        assertTrue(boolean1 == true);
+        org.junit.Assert.assertTrue("'" + boolean1 + "' != '" + true + "'", boolean1 == true);
     }
 
     @Test
@@ -8330,18 +8331,18 @@ public class RegressionTest0 {
         java.lang.String str56 = echoApplication5.constructResult(strArray52);
         try {
             java.lang.String str57 = sortApplication0.sortFromFiles((java.lang.Boolean) true, (java.lang.Boolean) true, (java.lang.Boolean) false, strArray52);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray13);
-        assertNotNull(strArray25);
-        assertTrue(str29.equals(""));
-        assertTrue(str30.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str34.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray42);
-        assertNotNull(strArray52);
-        assertTrue(str56.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray13);
+        org.junit.Assert.assertNotNull(strArray25);
+        org.junit.Assert.assertTrue("'" + str29 + "' != '" + "" + "'", str29.equals(""));
+        org.junit.Assert.assertTrue("'" + str30 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str30.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str34 + "' != '" + "null output stream provided fail_echo_write" + "'", str34.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray42);
+        org.junit.Assert.assertNotNull(strArray52);
+        org.junit.Assert.assertTrue("'" + str56 + "' != '" + "null output stream provided fail_echo_write" + "'", str56.equals("null output stream provided fail_echo_write"));
     }
 
     @Test
@@ -8369,14 +8370,14 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream25 = null;
         try {
             grepApplication0.run(strArray16, inputStream24, outputStream25);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: output stream is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: output stream is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray6);
-        assertNotNull(strArray16);
-        assertTrue(str20.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str22.equals(""));
-        assertNotNull(wildcardClass23);
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertNotNull(strArray16);
+        org.junit.Assert.assertTrue("'" + str20 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str20.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str22 + "' != '" + "" + "'", str22.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass23);
     }
 
     @Test
@@ -8388,10 +8389,10 @@ public class RegressionTest0 {
         java.io.InputStream inputStream5 = null;
         try {
             java.lang.String str6 = sortApplication0.sortFromStdin((java.lang.Boolean) true, (java.lang.Boolean) false, (java.lang.Boolean) true, inputStream5);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
-        assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(wildcardClass1);
     }
 
     @Test
@@ -8402,10 +8403,10 @@ public class RegressionTest0 {
         java.lang.String[] strArray3 = new java.lang.String[] { "fail_echo_write", "null output stream provided fail_echo_write" };
         try {
             java.lang.String str4 = catApplication0.catFiles(strArray3);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(strArray3);
+        org.junit.Assert.assertNotNull(strArray3);
     }
 
     @Test
@@ -8461,20 +8462,20 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream75 = null;
         try {
             dateApplication0.run(strArray71, inputStream74, outputStream75);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
-        assertNotNull(strArray9);
-        assertNotNull(strArray21);
-        assertTrue(str25.equals(""));
-        assertTrue(str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str30.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray38);
-        assertNotNull(strArray49);
-        assertNotNull(wildcardClass53);
-        assertNotNull(strArray58);
-        assertNotNull(strArray71);
-        assertTrue(str73.equals("fail_echo_write hi!"));
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertNotNull(strArray21);
+        org.junit.Assert.assertTrue("'" + str25 + "' != '" + "" + "'", str25.equals(""));
+        org.junit.Assert.assertTrue("'" + str26 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str30 + "' != '" + "null output stream provided fail_echo_write" + "'", str30.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray38);
+        org.junit.Assert.assertNotNull(strArray49);
+        org.junit.Assert.assertNotNull(wildcardClass53);
+        org.junit.Assert.assertNotNull(strArray58);
+        org.junit.Assert.assertNotNull(strArray71);
+        org.junit.Assert.assertTrue("'" + str73 + "' != '" + "fail_echo_write hi!" + "'", str73.equals("fail_echo_write hi!"));
     }
 
     @Test
@@ -8485,7 +8486,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = wcApplication0.countFromStdin((java.lang.Boolean) false, (java.lang.Boolean) true, (java.lang.Boolean) true, inputStream4);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: stdin is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: stdin is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
     }
@@ -8506,10 +8507,10 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream17 = null;
         try {
             cdApplication0.run(strArray12, inputStream16, outputStream17);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
         } catch (sg.edu.nus.comp.cs4218.exception.CdException e) {
         }
-        assertNotNull(strArray12);
+        org.junit.Assert.assertNotNull(strArray12);
     }
 
     @Test
@@ -8520,7 +8521,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInStdin("null output stream provided fail_echo_write", "", (int) (short) 10, inputStream4);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -8564,18 +8565,18 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream52 = null;
         try {
             findApplication0.run(strArray47, inputStream51, outputStream52);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: output stream is null");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: output stream is null");
         } catch (sg.edu.nus.comp.cs4218.exception.FindException e) {
         }
-        assertNotNull(strArray5);
-        assertTrue(str9.equals(""));
-        assertNotNull(strArray14);
-        assertNotNull(strArray24);
-        assertTrue(str28.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str30.equals(""));
-        assertNotNull(strArray38);
-        assertNotNull(wildcardClass42);
-        assertNotNull(strArray47);
+        org.junit.Assert.assertNotNull(strArray5);
+        org.junit.Assert.assertTrue("'" + str9 + "' != '" + "" + "'", str9.equals(""));
+        org.junit.Assert.assertNotNull(strArray14);
+        org.junit.Assert.assertNotNull(strArray24);
+        org.junit.Assert.assertTrue("'" + str28 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str28.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str30 + "' != '" + "" + "'", str30.equals(""));
+        org.junit.Assert.assertNotNull(strArray38);
+        org.junit.Assert.assertNotNull(wildcardClass42);
+        org.junit.Assert.assertNotNull(strArray47);
     }
 
     @Test
@@ -8633,20 +8634,20 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream79 = null;
         try {
             cdApplication0.run(strArray75, inputStream78, outputStream79);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
         } catch (sg.edu.nus.comp.cs4218.exception.CdException e) {
         }
-        assertNotNull(strArray13);
-        assertNotNull(strArray25);
-        assertTrue(str29.equals(""));
-        assertTrue(str30.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str34.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray42);
-        assertNotNull(strArray53);
-        assertNotNull(wildcardClass57);
-        assertNotNull(strArray62);
-        assertNotNull(strArray75);
-        assertTrue(str77.equals("fail_echo_write hi!"));
+        org.junit.Assert.assertNotNull(strArray13);
+        org.junit.Assert.assertNotNull(strArray25);
+        org.junit.Assert.assertTrue("'" + str29 + "' != '" + "" + "'", str29.equals(""));
+        org.junit.Assert.assertTrue("'" + str30 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str30.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str34 + "' != '" + "null output stream provided fail_echo_write" + "'", str34.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray42);
+        org.junit.Assert.assertNotNull(strArray53);
+        org.junit.Assert.assertNotNull(wildcardClass57);
+        org.junit.Assert.assertNotNull(strArray62);
+        org.junit.Assert.assertNotNull(strArray75);
+        org.junit.Assert.assertTrue("'" + str77 + "' != '" + "fail_echo_write hi!" + "'", str77.equals("fail_echo_write hi!"));
     }
 
     @Test
@@ -8714,23 +8715,23 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream85 = null;
         try {
             lsApplication0.run(strArray66, inputStream84, outputStream85);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
-        assertNotNull(strArray6);
-        assertNotNull(strArray16);
-        assertTrue(str20.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str22.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray27);
-        assertNotNull(strArray32);
-        assertNotNull(strArray41);
-        assertTrue(str45.equals(""));
-        assertNotNull(strArray54);
-        assertNotNull(strArray66);
-        assertTrue(str70.equals(""));
-        assertTrue(str71.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str75.equals(""));
-        assertNotNull(wildcardClass82);
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertNotNull(strArray16);
+        org.junit.Assert.assertTrue("'" + str20 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str20.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str22 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str22.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray27);
+        org.junit.Assert.assertNotNull(strArray32);
+        org.junit.Assert.assertNotNull(strArray41);
+        org.junit.Assert.assertTrue("'" + str45 + "' != '" + "" + "'", str45.equals(""));
+        org.junit.Assert.assertNotNull(strArray54);
+        org.junit.Assert.assertNotNull(strArray66);
+        org.junit.Assert.assertTrue("'" + str70 + "' != '" + "" + "'", str70.equals(""));
+        org.junit.Assert.assertTrue("'" + str71 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str71.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str75 + "' != '" + "" + "'", str75.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass82);
     }
 
     @Test
@@ -8741,7 +8742,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = grepApplication0.grepFromStdin("null arguments", (java.lang.Boolean) true, (java.lang.Boolean) true, inputStream4);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
     }
@@ -8790,20 +8791,20 @@ public class RegressionTest0 {
         java.lang.String str60 = lsApplication4.listFolderContent((java.lang.Boolean) true, (java.lang.Boolean) true, strArray53);
         try {
             java.lang.String str61 = sortApplication0.sortFromFiles((java.lang.Boolean) true, (java.lang.Boolean) false, (java.lang.Boolean) true, strArray53);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(strArray10);
-        assertNotNull(strArray20);
-        assertTrue(str24.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray34);
-        assertTrue(str38.equals(""));
-        assertNotNull(strArray43);
-        assertNotNull(strArray53);
-        assertTrue(str57.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str59.equals(""));
-        assertTrue(str60.equals("null output stream provided\r\nfail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray10);
+        org.junit.Assert.assertNotNull(strArray20);
+        org.junit.Assert.assertTrue("'" + str24 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str24.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str26 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray34);
+        org.junit.Assert.assertTrue("'" + str38 + "' != '" + "" + "'", str38.equals(""));
+        org.junit.Assert.assertNotNull(strArray43);
+        org.junit.Assert.assertNotNull(strArray53);
+        org.junit.Assert.assertTrue("'" + str57 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str57.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str59 + "' != '" + "" + "'", str59.equals(""));
+        org.junit.Assert.assertTrue("'" + str60 + "' != '" + "null output stream provided\r\nfail_echo_write" + "'", str60.equals("null output stream provided\r\nfail_echo_write"));
     }
 
     @Test
@@ -8820,11 +8821,11 @@ public class RegressionTest0 {
         java.lang.String str14 = lsApplication4.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray10);
         try {
             java.lang.String str15 = wcApplication0.countFromFiles((java.lang.Boolean) false, (java.lang.Boolean) true, (java.lang.Boolean) true, strArray10);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
-        assertNotNull(strArray10);
-        assertTrue(str14.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray10);
+        org.junit.Assert.assertTrue("'" + str14 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str14.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -8834,7 +8835,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.SedApplication sedApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SedApplication();
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInFile("fail_echo", "C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write", (int) '#', "This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
     }
@@ -8847,7 +8848,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInStdin("", "Null Pointer Exception", (int) '4', inputStream4);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -8896,18 +8897,18 @@ public class RegressionTest0 {
         echoApplication4.run(strArray49, inputStream56, outputStream57);
         try {
             java.lang.String str59 = wcApplication0.countFromFiles((java.lang.Boolean) true, (java.lang.Boolean) true, (java.lang.Boolean) false, strArray49);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
-        assertNotNull(strArray12);
-        assertNotNull(strArray24);
-        assertTrue(str28.equals(""));
-        assertTrue(str29.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str33.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray39);
-        assertNotNull(strArray49);
-        assertTrue(str53.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str55.equals(""));
+        org.junit.Assert.assertNotNull(strArray12);
+        org.junit.Assert.assertNotNull(strArray24);
+        org.junit.Assert.assertTrue("'" + str28 + "' != '" + "" + "'", str28.equals(""));
+        org.junit.Assert.assertTrue("'" + str29 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str29.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str33 + "' != '" + "null output stream provided fail_echo_write" + "'", str33.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray39);
+        org.junit.Assert.assertNotNull(strArray49);
+        org.junit.Assert.assertTrue("'" + str53 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str53.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str55 + "' != '" + "" + "'", str55.equals(""));
     }
 
     @Test
@@ -8979,25 +8980,25 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream94 = null;
         try {
             exitApplication0.run(strArray72, inputStream93, outputStream94);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.ExitException; message: exit: Terminate process.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.ExitException; message: exit: Terminate process.");
         } catch (sg.edu.nus.comp.cs4218.exception.ExitException e) {
         }
-        assertNotNull(strArray10);
-        assertNotNull(strArray17);
-        assertNotNull(strArray26);
-        assertTrue(str28.equals(""));
-        assertNotNull(strArray33);
-        assertNotNull(strArray38);
-        assertNotNull(strArray47);
-        assertTrue(str51.equals(""));
-        assertNotNull(strArray60);
-        assertNotNull(strArray72);
-        assertTrue(str76.equals(""));
-        assertTrue(str77.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str81.equals(""));
-        assertNotNull(wildcardClass88);
-        assertTrue(str89.equals(""));
-        assertTrue(str92.equals(""));
+        org.junit.Assert.assertNotNull(strArray10);
+        org.junit.Assert.assertNotNull(strArray17);
+        org.junit.Assert.assertNotNull(strArray26);
+        org.junit.Assert.assertTrue("'" + str28 + "' != '" + "" + "'", str28.equals(""));
+        org.junit.Assert.assertNotNull(strArray33);
+        org.junit.Assert.assertNotNull(strArray38);
+        org.junit.Assert.assertNotNull(strArray47);
+        org.junit.Assert.assertTrue("'" + str51 + "' != '" + "" + "'", str51.equals(""));
+        org.junit.Assert.assertNotNull(strArray60);
+        org.junit.Assert.assertNotNull(strArray72);
+        org.junit.Assert.assertTrue("'" + str76 + "' != '" + "" + "'", str76.equals(""));
+        org.junit.Assert.assertTrue("'" + str77 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str77.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str81 + "' != '" + "" + "'", str81.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass88);
+        org.junit.Assert.assertTrue("'" + str89 + "' != '" + "" + "'", str89.equals(""));
+        org.junit.Assert.assertTrue("'" + str92 + "' != '" + "" + "'", str92.equals(""));
     }
 
     @Test
@@ -9007,7 +9008,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream0 = null;
         try {
             java.util.List<java.lang.String> strList4 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.replace(inputStream0, "null output stream provided fail_echo_write", "fail_echo_write:\r\n\r\n\r\nhi!:", (int) (short) 1);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -9019,7 +9020,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.DateApplication dateApplication0 = new sg.edu.nus.comp.cs4218.impl.app.DateApplication();
         try {
             java.lang.String str2 = dateApplication0.getDate("C:\\");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
     }
@@ -9068,16 +9069,16 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream58 = null;
         try {
             cdApplication0.run(strArray47, inputStream57, outputStream58);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
         } catch (sg.edu.nus.comp.cs4218.exception.CdException e) {
         }
-        assertNotNull(strArray8);
-        assertNotNull(strArray18);
-        assertNotNull(strArray30);
-        assertTrue(str34.equals(""));
-        assertTrue(str35.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str39.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray47);
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(strArray18);
+        org.junit.Assert.assertNotNull(strArray30);
+        org.junit.Assert.assertTrue("'" + str34 + "' != '" + "" + "'", str34.equals(""));
+        org.junit.Assert.assertTrue("'" + str35 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str35.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str39 + "' != '" + "null output stream provided fail_echo_write" + "'", str39.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray47);
     }
 
     @Test
@@ -9085,7 +9086,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test317");
         boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isInteger("fail_echo");
-        assertTrue(boolean1 == false);
+        org.junit.Assert.assertTrue("'" + boolean1 + "' != '" + false + "'", boolean1 == false);
     }
 
     @Test
@@ -9124,15 +9125,15 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream46 = null;
         try {
             dateApplication0.run(strArray38, inputStream45, outputStream46);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
-        assertNotNull(strArray9);
-        assertNotNull(strArray21);
-        assertTrue(str25.equals(""));
-        assertTrue(str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str30.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray38);
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertNotNull(strArray21);
+        org.junit.Assert.assertTrue("'" + str25 + "' != '" + "" + "'", str25.equals(""));
+        org.junit.Assert.assertTrue("'" + str26 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str30 + "' != '" + "null output stream provided fail_echo_write" + "'", str30.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray38);
     }
 
     @Test
@@ -9143,7 +9144,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = grepApplication0.grepFromStdin("File doesn't exist.", (java.lang.Boolean) true, (java.lang.Boolean) true, inputStream4);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
     }
@@ -9211,27 +9212,27 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream86 = null;
         try {
             findApplication0.run(strArray81, inputStream85, outputStream86);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: output stream is null");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: output stream is null");
         } catch (sg.edu.nus.comp.cs4218.exception.FindException e) {
         }
-        assertNotNull(strArray5);
-        assertTrue(str9.equals(""));
-        assertNotNull(strArray18);
-        assertNotNull(strArray30);
-        assertTrue(str34.equals(""));
-        assertTrue(str35.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str39.equals(""));
-        assertNotNull(strArray45);
-        assertTrue(str49.equals(""));
-        assertNotNull(strArray56);
-        assertNotNull(strArray66);
-        assertTrue(str70.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str72.equals(""));
-        assertNotNull(wildcardClass73);
-        assertTrue(str74.equals(""));
-        assertNotNull(strArray81);
-        assertTrue(str83.equals(""));
-        assertTrue(str84.equals(""));
+        org.junit.Assert.assertNotNull(strArray5);
+        org.junit.Assert.assertTrue("'" + str9 + "' != '" + "" + "'", str9.equals(""));
+        org.junit.Assert.assertNotNull(strArray18);
+        org.junit.Assert.assertNotNull(strArray30);
+        org.junit.Assert.assertTrue("'" + str34 + "' != '" + "" + "'", str34.equals(""));
+        org.junit.Assert.assertTrue("'" + str35 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str35.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str39 + "' != '" + "" + "'", str39.equals(""));
+        org.junit.Assert.assertNotNull(strArray45);
+        org.junit.Assert.assertTrue("'" + str49 + "' != '" + "" + "'", str49.equals(""));
+        org.junit.Assert.assertNotNull(strArray56);
+        org.junit.Assert.assertNotNull(strArray66);
+        org.junit.Assert.assertTrue("'" + str70 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str70.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str72 + "' != '" + "" + "'", str72.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass73);
+        org.junit.Assert.assertTrue("'" + str74 + "' != '" + "" + "'", str74.equals(""));
+        org.junit.Assert.assertNotNull(strArray81);
+        org.junit.Assert.assertTrue("'" + str83 + "' != '" + "" + "'", str83.equals(""));
+        org.junit.Assert.assertTrue("'" + str84 + "' != '" + "" + "'", str84.equals(""));
     }
 
     @Test
@@ -9260,14 +9261,14 @@ public class RegressionTest0 {
         mkdirApplication2.run(strArray29, inputStream33, outputStream34);
         try {
             java.lang.String str36 = catApplication0.catFiles(strArray29);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray9);
-        assertNotNull(strArray20);
-        assertNotNull(wildcardClass24);
-        assertNotNull(strArray29);
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertNotNull(strArray20);
+        org.junit.Assert.assertNotNull(wildcardClass24);
+        org.junit.Assert.assertNotNull(strArray29);
     }
 
     @Test
@@ -9277,7 +9278,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.DateApplication dateApplication0 = new sg.edu.nus.comp.cs4218.impl.app.DateApplication();
         try {
             java.lang.String str2 = dateApplication0.getDate("fail_echo_write:\r\n\r\n\r\nhi!:");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
     }
@@ -9339,21 +9340,21 @@ public class RegressionTest0 {
         java.lang.String str75 = findApplication7.findFolderContent("", strArray58);
         mkdirApplication0.createFolder(strArray58);
         java.lang.Class<?> wildcardClass77 = mkdirApplication0.getClass();
-        assertNotNull(strArray3);
-        assertNotNull(strArray12);
-        assertTrue(str14.equals(""));
-        assertNotNull(strArray19);
-        assertNotNull(strArray24);
-        assertNotNull(strArray33);
-        assertTrue(str37.equals(""));
-        assertNotNull(strArray46);
-        assertNotNull(strArray58);
-        assertTrue(str62.equals(""));
-        assertTrue(str63.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str67.equals(""));
-        assertNotNull(wildcardClass74);
-        assertTrue(str75.equals(""));
-        assertNotNull(wildcardClass77);
+        org.junit.Assert.assertNotNull(strArray3);
+        org.junit.Assert.assertNotNull(strArray12);
+        org.junit.Assert.assertTrue("'" + str14 + "' != '" + "" + "'", str14.equals(""));
+        org.junit.Assert.assertNotNull(strArray19);
+        org.junit.Assert.assertNotNull(strArray24);
+        org.junit.Assert.assertNotNull(strArray33);
+        org.junit.Assert.assertTrue("'" + str37 + "' != '" + "" + "'", str37.equals(""));
+        org.junit.Assert.assertNotNull(strArray46);
+        org.junit.Assert.assertNotNull(strArray58);
+        org.junit.Assert.assertTrue("'" + str62 + "' != '" + "" + "'", str62.equals(""));
+        org.junit.Assert.assertTrue("'" + str63 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str63.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str67 + "' != '" + "" + "'", str67.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass74);
+        org.junit.Assert.assertTrue("'" + str75 + "' != '" + "" + "'", str75.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass77);
     }
 
     @Test
@@ -9364,7 +9365,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInStdin("fail_echo_write:\r\n\r\n\r\nhi!:", "Could not read stream", (int) (short) -1, inputStream4);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -9376,7 +9377,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.SedApplication sedApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SedApplication();
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInFile("null arguments", "null arguments", (int) (byte) 1, "Null Pointer Exception");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
     }
@@ -9421,16 +9422,16 @@ public class RegressionTest0 {
         mkdirApplication4.createFolder(strArray48);
         try {
             java.lang.String str56 = grepApplication0.grepFromFiles("Exception Caught", (java.lang.Boolean) true, (java.lang.Boolean) false, strArray48);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray7);
-        assertNotNull(strArray19);
-        assertNotNull(strArray31);
-        assertTrue(str35.equals(""));
-        assertTrue(str36.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str40.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray48);
+        org.junit.Assert.assertNotNull(strArray7);
+        org.junit.Assert.assertNotNull(strArray19);
+        org.junit.Assert.assertNotNull(strArray31);
+        org.junit.Assert.assertTrue("'" + str35 + "' != '" + "" + "'", str35.equals(""));
+        org.junit.Assert.assertTrue("'" + str36 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str36.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str40 + "' != '" + "null output stream provided fail_echo_write" + "'", str40.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray48);
     }
 
     @Test
@@ -9472,16 +9473,16 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream54 = null;
         try {
             cdApplication0.run(strArray42, inputStream53, outputStream54);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
         } catch (sg.edu.nus.comp.cs4218.exception.CdException e) {
         }
-        assertNotNull(strArray8);
-        assertTrue(str12.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray22);
-        assertNotNull(strArray33);
-        assertNotNull(wildcardClass37);
-        assertNotNull(strArray42);
-        assertTrue(str49.equals("This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught"));
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertTrue("'" + str12 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str12.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray22);
+        org.junit.Assert.assertNotNull(strArray33);
+        org.junit.Assert.assertNotNull(wildcardClass37);
+        org.junit.Assert.assertNotNull(strArray42);
+        org.junit.Assert.assertTrue("'" + str49 + "' != '" + "This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught" + "'", str49.equals("This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught"));
     }
 
     @Test
@@ -9521,20 +9522,20 @@ public class RegressionTest0 {
         java.lang.String[] strArray46 = null;
         try {
             java.lang.String str47 = findApplication0.findFolderContent("fail_echo_empty_params", strArray46);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: Arguments for findFolderContent are not allowed to be null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: Arguments for findFolderContent are not allowed to be null!");
         } catch (sg.edu.nus.comp.cs4218.exception.FindException e) {
         }
-        assertNotNull(strArray5);
-        assertTrue(str9.equals(""));
-        assertNotNull(strArray16);
-        assertNotNull(strArray26);
-        assertTrue(str30.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str32.equals(""));
-        assertNotNull(wildcardClass33);
-        assertTrue(str34.equals(""));
-        assertNotNull(strArray41);
-        assertTrue(str43.equals(""));
-        assertTrue(str44.equals(""));
+        org.junit.Assert.assertNotNull(strArray5);
+        org.junit.Assert.assertTrue("'" + str9 + "' != '" + "" + "'", str9.equals(""));
+        org.junit.Assert.assertNotNull(strArray16);
+        org.junit.Assert.assertNotNull(strArray26);
+        org.junit.Assert.assertTrue("'" + str30 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str30.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str32 + "' != '" + "" + "'", str32.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass33);
+        org.junit.Assert.assertTrue("'" + str34 + "' != '" + "" + "'", str34.equals(""));
+        org.junit.Assert.assertNotNull(strArray41);
+        org.junit.Assert.assertTrue("'" + str43 + "' != '" + "" + "'", str43.equals(""));
+        org.junit.Assert.assertTrue("'" + str44 + "' != '" + "" + "'", str44.equals(""));
     }
 
     @Test
@@ -9560,13 +9561,13 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream22 = null;
         try {
             catApplication0.run(strArray15, inputStream21, outputStream22);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray5);
-        assertNotNull(strArray15);
-        assertTrue(str19.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray5);
+        org.junit.Assert.assertNotNull(strArray15);
+        org.junit.Assert.assertTrue("'" + str19 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str19.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -9577,7 +9578,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInStdin("This is a directory", "", (int) (byte) -1, inputStream4);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -9619,16 +9620,16 @@ public class RegressionTest0 {
         echoApplication4.run(strArray45, inputStream53, outputStream54);
         try {
             java.lang.String str56 = wcApplication0.countFromFiles((java.lang.Boolean) false, (java.lang.Boolean) true, (java.lang.Boolean) false, strArray45);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
-        assertNotNull(strArray11);
-        assertTrue(str15.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray25);
-        assertNotNull(strArray36);
-        assertNotNull(wildcardClass40);
-        assertNotNull(strArray45);
-        assertTrue(str52.equals("This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught"));
+        org.junit.Assert.assertNotNull(strArray11);
+        org.junit.Assert.assertTrue("'" + str15 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str15.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray25);
+        org.junit.Assert.assertNotNull(strArray36);
+        org.junit.Assert.assertNotNull(wildcardClass40);
+        org.junit.Assert.assertNotNull(strArray45);
+        org.junit.Assert.assertTrue("'" + str52 + "' != '" + "This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught" + "'", str52.equals("This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught"));
     }
 
     @Test
@@ -9673,16 +9674,16 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream54 = null;
         try {
             lsApplication0.run(strArray45, inputStream53, outputStream54);
-            fail("Expected exception of type java.lang.StringIndexOutOfBoundsException; message: String index out of range: 0");
+            org.junit.Assert.fail("Expected exception of type java.lang.StringIndexOutOfBoundsException; message: String index out of range: 0");
         } catch (java.lang.StringIndexOutOfBoundsException e) {
         }
-        assertNotNull(strArray4);
-        assertNotNull(strArray16);
-        assertNotNull(strArray28);
-        assertTrue(str32.equals(""));
-        assertTrue(str33.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str37.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray45);
+        org.junit.Assert.assertNotNull(strArray4);
+        org.junit.Assert.assertNotNull(strArray16);
+        org.junit.Assert.assertNotNull(strArray28);
+        org.junit.Assert.assertTrue("'" + str32 + "' != '" + "" + "'", str32.equals(""));
+        org.junit.Assert.assertTrue("'" + str33 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str33.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str37 + "' != '" + "null output stream provided fail_echo_write" + "'", str37.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray45);
     }
 
     @Test
@@ -9693,7 +9694,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInStdin("null output stream provided\r\nfail_echo_write", "fail_echo_empty_params", 1, inputStream4);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -9737,20 +9738,20 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream47 = null;
         try {
             sortApplication0.run(strArray42, inputStream46, outputStream47);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(strArray6);
-        assertTrue(str10.equals(""));
-        assertNotNull(strArray17);
-        assertNotNull(strArray27);
-        assertTrue(str31.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str33.equals(""));
-        assertNotNull(wildcardClass34);
-        assertTrue(str35.equals(""));
-        assertNotNull(strArray42);
-        assertTrue(str44.equals(""));
-        assertTrue(str45.equals(""));
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertTrue("'" + str10 + "' != '" + "" + "'", str10.equals(""));
+        org.junit.Assert.assertNotNull(strArray17);
+        org.junit.Assert.assertNotNull(strArray27);
+        org.junit.Assert.assertTrue("'" + str31 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str31.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str33 + "' != '" + "" + "'", str33.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass34);
+        org.junit.Assert.assertTrue("'" + str35 + "' != '" + "" + "'", str35.equals(""));
+        org.junit.Assert.assertNotNull(strArray42);
+        org.junit.Assert.assertTrue("'" + str44 + "' != '" + "" + "'", str44.equals(""));
+        org.junit.Assert.assertTrue("'" + str45 + "' != '" + "" + "'", str45.equals(""));
     }
 
     @Test
@@ -9763,7 +9764,7 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream3 = null;
         try {
             wcApplication0.run(strArray1, inputStream2, outputStream3);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -9778,10 +9779,10 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream5 = null;
         try {
             dateApplication0.run(strArray3, inputStream4, outputStream5);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
-        assertNotNull(strArray3);
+        org.junit.Assert.assertNotNull(strArray3);
     }
 
     @Test
@@ -9791,7 +9792,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.SedApplication sedApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SedApplication();
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInFile("Exception Caught", "C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write", 0, "C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
     }
@@ -9801,7 +9802,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test338");
         boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isSpecialSymbol("null output stream provided:\r\n\r\n\r\nfail_echo_write:");
-        assertTrue(boolean1 == true);
+        org.junit.Assert.assertTrue("'" + boolean1 + "' != '" + true + "'", boolean1 == true);
     }
 
     @Test
@@ -9811,7 +9812,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.DateApplication dateApplication0 = new sg.edu.nus.comp.cs4218.impl.app.DateApplication();
         try {
             java.lang.String str2 = dateApplication0.getDate("Terminate process.");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
     }
@@ -9824,7 +9825,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInStdin("Terminate process.", "", (int) (byte) 10, inputStream4);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -9861,14 +9862,14 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream38 = null;
         try {
             exitApplication0.run(strArray32, inputStream37, outputStream38);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.ExitException; message: exit: Terminate process.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.ExitException; message: exit: Terminate process.");
         } catch (sg.edu.nus.comp.cs4218.exception.ExitException e) {
         }
-        assertNotNull(strArray8);
-        assertNotNull(strArray20);
-        assertTrue(str24.equals(""));
-        assertTrue(str25.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray32);
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(strArray20);
+        org.junit.Assert.assertTrue("'" + str24 + "' != '" + "" + "'", str24.equals(""));
+        org.junit.Assert.assertTrue("'" + str25 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str25.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray32);
     }
 
     @Test
@@ -9878,7 +9879,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.SedApplication sedApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SedApplication();
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInFile("File doesn't exist.", "fail_echo", (int) (short) -1, "File doesn't exist.");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
     }
@@ -9891,7 +9892,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = grepApplication0.grepFromStdin("null output stream provided:\r\n\r\n\r\nfail_echo_write:", (java.lang.Boolean) false, (java.lang.Boolean) false, inputStream4);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
     }
@@ -9926,14 +9927,14 @@ public class RegressionTest0 {
         mkdirApplication1.run(strArray32, inputStream34, outputStream35);
         try {
             java.lang.String str37 = catApplication0.catFiles(strArray32);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(strArray8);
-        assertNotNull(strArray20);
-        assertTrue(str24.equals(""));
-        assertTrue(str25.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray32);
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(strArray20);
+        org.junit.Assert.assertTrue("'" + str24 + "' != '" + "" + "'", str24.equals(""));
+        org.junit.Assert.assertTrue("'" + str25 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str25.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray32);
     }
 
     @Test
@@ -9961,14 +9962,14 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream25 = null;
         try {
             catApplication0.run(strArray17, inputStream24, outputStream25);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray7);
-        assertNotNull(strArray17);
-        assertTrue(str21.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str23.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray7);
+        org.junit.Assert.assertNotNull(strArray17);
+        org.junit.Assert.assertTrue("'" + str21 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str21.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str23 + "' != '" + "" + "'", str23.equals(""));
     }
 
     @Test
@@ -9978,7 +9979,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream0 = null;
         try {
             java.util.List<java.lang.String> strList4 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.replace(inputStream0, "", "Could not read stream", (int) (byte) 1);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -10005,12 +10006,12 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream25 = null;
         try {
             sedApplication0.run(strArray18, inputStream24, outputStream25);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
-        assertNotNull(strArray8);
-        assertNotNull(strArray18);
-        assertTrue(str22.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(strArray18);
+        org.junit.Assert.assertTrue("'" + str22 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str22.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -10068,23 +10069,23 @@ public class RegressionTest0 {
         java.lang.String str75 = findApplication4.findFolderContent("", strArray57);
         try {
             java.lang.String str76 = grepApplication0.grepFromFiles("Could not read stream", (java.lang.Boolean) false, (java.lang.Boolean) true, strArray57);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray11);
-        assertTrue(str13.equals(""));
-        assertNotNull(strArray18);
-        assertNotNull(strArray23);
-        assertNotNull(strArray32);
-        assertTrue(str36.equals(""));
-        assertNotNull(strArray45);
-        assertNotNull(strArray57);
-        assertTrue(str61.equals(""));
-        assertTrue(str62.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str66.equals(""));
-        assertNotNull(wildcardClass73);
-        assertTrue(str74.equals(""));
-        assertTrue(str75.equals(""));
+        org.junit.Assert.assertNotNull(strArray11);
+        org.junit.Assert.assertTrue("'" + str13 + "' != '" + "" + "'", str13.equals(""));
+        org.junit.Assert.assertNotNull(strArray18);
+        org.junit.Assert.assertNotNull(strArray23);
+        org.junit.Assert.assertNotNull(strArray32);
+        org.junit.Assert.assertTrue("'" + str36 + "' != '" + "" + "'", str36.equals(""));
+        org.junit.Assert.assertNotNull(strArray45);
+        org.junit.Assert.assertNotNull(strArray57);
+        org.junit.Assert.assertTrue("'" + str61 + "' != '" + "" + "'", str61.equals(""));
+        org.junit.Assert.assertTrue("'" + str62 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str62.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str66 + "' != '" + "" + "'", str66.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass73);
+        org.junit.Assert.assertTrue("'" + str74 + "' != '" + "" + "'", str74.equals(""));
+        org.junit.Assert.assertTrue("'" + str75 + "' != '" + "" + "'", str75.equals(""));
     }
 
     @Test
@@ -10092,7 +10093,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test349");
         boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isInteger("Could not write to output stream");
-        assertTrue(boolean1 == false);
+        org.junit.Assert.assertTrue("'" + boolean1 + "' != '" + false + "'", boolean1 == false);
     }
 
     @Test
@@ -10103,7 +10104,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInStdin("Null Pointer Exception", "fail_echo_write", (int) (short) 100, inputStream4);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -10116,7 +10117,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInStdin("Could not read file", "Could not write to output stream", (int) (short) -1, inputStream4);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -10141,12 +10142,12 @@ public class RegressionTest0 {
         mkdirApplication4.createFolder(strArray17);
         try {
             java.lang.String str23 = wcApplication0.countFromFiles((java.lang.Boolean) true, (java.lang.Boolean) true, (java.lang.Boolean) true, strArray17);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
-        assertNotNull(strArray7);
-        assertNotNull(strArray17);
-        assertTrue(str21.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray7);
+        org.junit.Assert.assertNotNull(strArray17);
+        org.junit.Assert.assertTrue("'" + str21 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str21.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -10156,7 +10157,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream0 = null;
         try {
             java.util.List<java.lang.String> strList4 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.replace(inputStream0, "", "", (int) (byte) -1);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -10200,20 +10201,20 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream47 = null;
         try {
             catApplication0.run(strArray42, inputStream46, outputStream47);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(strArray6);
-        assertTrue(str10.equals(""));
-        assertNotNull(strArray17);
-        assertNotNull(strArray27);
-        assertTrue(str31.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str33.equals(""));
-        assertNotNull(wildcardClass34);
-        assertTrue(str35.equals(""));
-        assertNotNull(strArray42);
-        assertTrue(str44.equals(""));
-        assertTrue(str45.equals(""));
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertTrue("'" + str10 + "' != '" + "" + "'", str10.equals(""));
+        org.junit.Assert.assertNotNull(strArray17);
+        org.junit.Assert.assertNotNull(strArray27);
+        org.junit.Assert.assertTrue("'" + str31 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str31.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str33 + "' != '" + "" + "'", str33.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass34);
+        org.junit.Assert.assertTrue("'" + str35 + "' != '" + "" + "'", str35.equals(""));
+        org.junit.Assert.assertNotNull(strArray42);
+        org.junit.Assert.assertTrue("'" + str44 + "' != '" + "" + "'", str44.equals(""));
+        org.junit.Assert.assertTrue("'" + str45 + "' != '" + "" + "'", str45.equals(""));
     }
 
     @Test
@@ -10250,17 +10251,17 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream39 = null;
         try {
             cdApplication0.run(strArray29, inputStream38, outputStream39);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
         } catch (sg.edu.nus.comp.cs4218.exception.CdException e) {
         }
-        assertNotNull(strArray8);
-        assertTrue(str12.equals(""));
-        assertNotNull(strArray19);
-        assertNotNull(strArray29);
-        assertTrue(str33.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str35.equals(""));
-        assertNotNull(wildcardClass36);
-        assertTrue(str37.equals(""));
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertTrue("'" + str12 + "' != '" + "" + "'", str12.equals(""));
+        org.junit.Assert.assertNotNull(strArray19);
+        org.junit.Assert.assertNotNull(strArray29);
+        org.junit.Assert.assertTrue("'" + str33 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str33.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str35 + "' != '" + "" + "'", str35.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass36);
+        org.junit.Assert.assertTrue("'" + str37 + "' != '" + "" + "'", str37.equals(""));
     }
 
     @Test
@@ -10285,14 +10286,14 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream24 = null;
         try {
             catApplication0.run(strArray20, inputStream23, outputStream24);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(strArray9);
-        assertTrue(str13.equals(""));
-        assertTrue(str14.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray20);
-        assertTrue(str22.equals("fail_echo_write:\r\n\r\n\r\nhi!:"));
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertTrue("'" + str13 + "' != '" + "" + "'", str13.equals(""));
+        org.junit.Assert.assertTrue("'" + str14 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str14.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray20);
+        org.junit.Assert.assertTrue("'" + str22 + "' != '" + "fail_echo_write:\r\n\r\n\r\nhi!:" + "'", str22.equals("fail_echo_write:\r\n\r\n\r\nhi!:"));
     }
 
     @Test
@@ -10343,20 +10344,20 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream64 = null;
         try {
             lsApplication0.run(strArray53, inputStream63, outputStream64);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
-        assertNotNull(strArray6);
-        assertNotNull(strArray16);
-        assertTrue(str20.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str22.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray28);
-        assertTrue(str32.equals(""));
-        assertNotNull(strArray41);
-        assertNotNull(strArray53);
-        assertTrue(str57.equals(""));
-        assertTrue(str58.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str62.equals(""));
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertNotNull(strArray16);
+        org.junit.Assert.assertTrue("'" + str20 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str20.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str22 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str22.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray28);
+        org.junit.Assert.assertTrue("'" + str32 + "' != '" + "" + "'", str32.equals(""));
+        org.junit.Assert.assertNotNull(strArray41);
+        org.junit.Assert.assertNotNull(strArray53);
+        org.junit.Assert.assertTrue("'" + str57 + "' != '" + "" + "'", str57.equals(""));
+        org.junit.Assert.assertTrue("'" + str58 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str58.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str62 + "' != '" + "" + "'", str62.equals(""));
     }
 
     @Test
@@ -10366,7 +10367,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.CdApplication cdApplication0 = new sg.edu.nus.comp.cs4218.impl.app.CdApplication();
         try {
             cdApplication0.changeToDirectory("This is a directory");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: C:\\This is a directory: No such file or directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: C:\\This is a directory: No such file or directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CdException e) {
         }
     }
@@ -10414,17 +10415,17 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream55 = null;
         try {
             sedApplication0.run(strArray43, inputStream54, outputStream55);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
-        assertNotNull(strArray4);
-        assertNotNull(strArray14);
-        assertNotNull(strArray26);
-        assertTrue(str30.equals(""));
-        assertTrue(str31.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str35.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray43);
-        assertNotNull(wildcardClass53);
+        org.junit.Assert.assertNotNull(strArray4);
+        org.junit.Assert.assertNotNull(strArray14);
+        org.junit.Assert.assertNotNull(strArray26);
+        org.junit.Assert.assertTrue("'" + str30 + "' != '" + "" + "'", str30.equals(""));
+        org.junit.Assert.assertTrue("'" + str31 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str31.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str35 + "' != '" + "null output stream provided fail_echo_write" + "'", str35.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray43);
+        org.junit.Assert.assertNotNull(wildcardClass53);
     }
 
     @Test
@@ -10434,7 +10435,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.DateApplication dateApplication0 = new sg.edu.nus.comp.cs4218.impl.app.DateApplication();
         try {
             java.lang.String str2 = dateApplication0.getDate("null output stream provided\r\nfail_echo_write");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
     }
@@ -10453,10 +10454,10 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream13 = null;
         try {
             lsApplication0.run(strArray8, inputStream12, outputStream13);
-            fail("Expected exception of type java.lang.StringIndexOutOfBoundsException; message: String index out of range: 0");
+            org.junit.Assert.fail("Expected exception of type java.lang.StringIndexOutOfBoundsException; message: String index out of range: 0");
         } catch (java.lang.StringIndexOutOfBoundsException e) {
         }
-        assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(strArray8);
     }
 
     @Test
@@ -10528,25 +10529,25 @@ public class RegressionTest0 {
         mkdirApplication93.createFolder(strArray96);
         java.lang.String str98 = echoApplication30.constructResult(strArray96);
         java.lang.String str99 = echoApplication0.constructResult(strArray96);
-        assertNotNull(strArray8);
-        assertNotNull(strArray20);
-        assertTrue(str24.equals(""));
-        assertTrue(str25.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str29.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray38);
-        assertNotNull(strArray50);
-        assertTrue(str54.equals(""));
-        assertTrue(str55.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str59.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray67);
-        assertNotNull(strArray77);
-        assertTrue(str81.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray87);
-        assertTrue(str91.equals(""));
-        assertTrue(str92.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray96);
-        assertTrue(str98.equals("fail_echo_write hi!"));
-        assertTrue(str99.equals("fail_echo_write hi!"));
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(strArray20);
+        org.junit.Assert.assertTrue("'" + str24 + "' != '" + "" + "'", str24.equals(""));
+        org.junit.Assert.assertTrue("'" + str25 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str25.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str29 + "' != '" + "null output stream provided fail_echo_write" + "'", str29.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray38);
+        org.junit.Assert.assertNotNull(strArray50);
+        org.junit.Assert.assertTrue("'" + str54 + "' != '" + "" + "'", str54.equals(""));
+        org.junit.Assert.assertTrue("'" + str55 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str55.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str59 + "' != '" + "null output stream provided fail_echo_write" + "'", str59.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray67);
+        org.junit.Assert.assertNotNull(strArray77);
+        org.junit.Assert.assertTrue("'" + str81 + "' != '" + "null output stream provided fail_echo_write" + "'", str81.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray87);
+        org.junit.Assert.assertTrue("'" + str91 + "' != '" + "" + "'", str91.equals(""));
+        org.junit.Assert.assertTrue("'" + str92 + "' != '" + "null output stream provided fail_echo_write" + "'", str92.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray96);
+        org.junit.Assert.assertTrue("'" + str98 + "' != '" + "fail_echo_write hi!" + "'", str98.equals("fail_echo_write hi!"));
+        org.junit.Assert.assertTrue("'" + str99 + "' != '" + "fail_echo_write hi!" + "'", str99.equals("fail_echo_write hi!"));
     }
 
     @Test
@@ -10608,22 +10609,22 @@ public class RegressionTest0 {
         echoApplication2.run(strArray70, inputStream77, outputStream78);
         try {
             java.lang.String str80 = catApplication0.catFiles(strArray70);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray10);
-        assertNotNull(strArray22);
-        assertTrue(str26.equals(""));
-        assertTrue(str27.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str31.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray39);
-        assertNotNull(strArray49);
-        assertTrue(str53.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray60);
-        assertNotNull(strArray70);
-        assertTrue(str74.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str76.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray10);
+        org.junit.Assert.assertNotNull(strArray22);
+        org.junit.Assert.assertTrue("'" + str26 + "' != '" + "" + "'", str26.equals(""));
+        org.junit.Assert.assertTrue("'" + str27 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str27.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str31 + "' != '" + "null output stream provided fail_echo_write" + "'", str31.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray39);
+        org.junit.Assert.assertNotNull(strArray49);
+        org.junit.Assert.assertTrue("'" + str53 + "' != '" + "null output stream provided fail_echo_write" + "'", str53.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray60);
+        org.junit.Assert.assertNotNull(strArray70);
+        org.junit.Assert.assertTrue("'" + str74 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str74.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str76 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str76.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -10633,7 +10634,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream0 = null;
         try {
             java.util.List<java.lang.String> strList4 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.replace(inputStream0, "null output stream provided\r\nfail_echo_write", "File is null.", (int) (byte) 1);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -10662,13 +10663,13 @@ public class RegressionTest0 {
         mkdirApplication1.run(strArray23, inputStream24, outputStream25);
         try {
             java.lang.String str27 = catApplication0.catFiles(strArray23);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(strArray4);
-        assertNotNull(strArray14);
-        assertTrue(str18.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray23);
+        org.junit.Assert.assertNotNull(strArray4);
+        org.junit.Assert.assertNotNull(strArray14);
+        org.junit.Assert.assertTrue("'" + str18 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str18.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray23);
     }
 
     @Test
@@ -10679,7 +10680,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = wcApplication0.countFromStdin((java.lang.Boolean) false, (java.lang.Boolean) true, (java.lang.Boolean) false, inputStream4);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: stdin is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: stdin is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
     }
@@ -10689,7 +10690,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test367");
         boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isSpecialSymbol("File doesn't exist.");
-        assertTrue(boolean1 == true);
+        org.junit.Assert.assertTrue("'" + boolean1 + "' != '" + true + "'", boolean1 == true);
     }
 
     @Test
@@ -10699,7 +10700,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream0 = null;
         try {
             java.util.List<java.lang.String> strList4 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.replace(inputStream0, "", "null output stream provided", (int) (short) 1);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -10748,16 +10749,16 @@ public class RegressionTest0 {
         echoApplication4.run(strArray49, inputStream57, outputStream58);
         try {
             java.lang.String str60 = wcApplication0.countFromFiles((java.lang.Boolean) false, (java.lang.Boolean) true, (java.lang.Boolean) true, strArray49);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
-        assertNotNull(strArray8);
-        assertNotNull(strArray20);
-        assertNotNull(strArray32);
-        assertTrue(str36.equals(""));
-        assertTrue(str37.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str41.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray49);
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(strArray20);
+        org.junit.Assert.assertNotNull(strArray32);
+        org.junit.Assert.assertTrue("'" + str36 + "' != '" + "" + "'", str36.equals(""));
+        org.junit.Assert.assertTrue("'" + str37 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str37.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str41 + "' != '" + "null output stream provided fail_echo_write" + "'", str41.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray49);
     }
 
     @Test
@@ -10765,7 +10766,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test370");
         boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isInteger("null output stream provided fail_echo_write");
-        assertTrue(boolean1 == false);
+        org.junit.Assert.assertTrue("'" + boolean1 + "' != '" + false + "'", boolean1 == false);
     }
 
     @Test
@@ -10835,25 +10836,25 @@ public class RegressionTest0 {
         java.lang.String[] strArray93 = null;
         try {
             java.lang.String str94 = findApplication0.findFolderContent("", strArray93);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: Arguments for findFolderContent are not allowed to be null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: Arguments for findFolderContent are not allowed to be null!");
         } catch (sg.edu.nus.comp.cs4218.exception.FindException e) {
         }
-        assertNotNull(strArray9);
-        assertNotNull(strArray16);
-        assertNotNull(strArray25);
-        assertTrue(str27.equals(""));
-        assertNotNull(strArray32);
-        assertNotNull(strArray37);
-        assertNotNull(strArray46);
-        assertTrue(str50.equals(""));
-        assertNotNull(strArray59);
-        assertNotNull(strArray71);
-        assertTrue(str75.equals(""));
-        assertTrue(str76.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str80.equals(""));
-        assertNotNull(wildcardClass87);
-        assertTrue(str88.equals(""));
-        assertTrue(str91.equals(""));
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertNotNull(strArray16);
+        org.junit.Assert.assertNotNull(strArray25);
+        org.junit.Assert.assertTrue("'" + str27 + "' != '" + "" + "'", str27.equals(""));
+        org.junit.Assert.assertNotNull(strArray32);
+        org.junit.Assert.assertNotNull(strArray37);
+        org.junit.Assert.assertNotNull(strArray46);
+        org.junit.Assert.assertTrue("'" + str50 + "' != '" + "" + "'", str50.equals(""));
+        org.junit.Assert.assertNotNull(strArray59);
+        org.junit.Assert.assertNotNull(strArray71);
+        org.junit.Assert.assertTrue("'" + str75 + "' != '" + "" + "'", str75.equals(""));
+        org.junit.Assert.assertTrue("'" + str76 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str76.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str80 + "' != '" + "" + "'", str80.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass87);
+        org.junit.Assert.assertTrue("'" + str88 + "' != '" + "" + "'", str88.equals(""));
+        org.junit.Assert.assertTrue("'" + str91 + "' != '" + "" + "'", str91.equals(""));
     }
 
     @Test
@@ -10893,16 +10894,16 @@ public class RegressionTest0 {
         echoApplication4.run(strArray45, inputStream53, outputStream54);
         try {
             java.lang.String str56 = grepApplication0.grepFromFiles("", (java.lang.Boolean) false, (java.lang.Boolean) false, strArray45);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray11);
-        assertTrue(str15.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray25);
-        assertNotNull(strArray36);
-        assertNotNull(wildcardClass40);
-        assertNotNull(strArray45);
-        assertTrue(str52.equals("This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught"));
+        org.junit.Assert.assertNotNull(strArray11);
+        org.junit.Assert.assertTrue("'" + str15 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str15.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray25);
+        org.junit.Assert.assertNotNull(strArray36);
+        org.junit.Assert.assertNotNull(wildcardClass40);
+        org.junit.Assert.assertNotNull(strArray45);
+        org.junit.Assert.assertTrue("'" + str52 + "' != '" + "This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught" + "'", str52.equals("This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught"));
     }
 
     @Test
@@ -10934,18 +10935,18 @@ public class RegressionTest0 {
         java.lang.String str38 = findApplication5.findFolderContent("hi!", strArray35);
         try {
             java.lang.String str39 = sortApplication0.sortFromFiles((java.lang.Boolean) false, (java.lang.Boolean) true, (java.lang.Boolean) false, strArray35);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray10);
-        assertTrue(str14.equals(""));
-        assertNotNull(strArray24);
-        assertTrue(str28.equals(""));
-        assertTrue(str29.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray35);
-        assertTrue(str37.equals("fail_echo_write:\r\n\r\n\r\nhi!:"));
-        assertTrue(str38.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray10);
+        org.junit.Assert.assertTrue("'" + str14 + "' != '" + "" + "'", str14.equals(""));
+        org.junit.Assert.assertNotNull(strArray24);
+        org.junit.Assert.assertTrue("'" + str28 + "' != '" + "" + "'", str28.equals(""));
+        org.junit.Assert.assertTrue("'" + str29 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str29.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray35);
+        org.junit.Assert.assertTrue("'" + str37 + "' != '" + "fail_echo_write:\r\n\r\n\r\nhi!:" + "'", str37.equals("fail_echo_write:\r\n\r\n\r\nhi!:"));
+        org.junit.Assert.assertTrue("'" + str38 + "' != '" + "" + "'", str38.equals(""));
     }
 
     @Test
@@ -10977,15 +10978,15 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream33 = null;
         try {
             sortApplication0.run(strArray22, inputStream32, outputStream33);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray10);
-        assertNotNull(strArray22);
-        assertTrue(str26.equals(""));
-        assertTrue(str27.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str31.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray10);
+        org.junit.Assert.assertNotNull(strArray22);
+        org.junit.Assert.assertTrue("'" + str26 + "' != '" + "" + "'", str26.equals(""));
+        org.junit.Assert.assertTrue("'" + str27 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str27.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str31 + "' != '" + "null output stream provided fail_echo_write" + "'", str31.equals("null output stream provided fail_echo_write"));
     }
 
     @Test
@@ -11044,23 +11045,23 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream72 = null;
         try {
             sortApplication0.run(strArray53, inputStream71, outputStream72);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray7);
-        assertTrue(str9.equals(""));
-        assertNotNull(strArray14);
-        assertNotNull(strArray19);
-        assertNotNull(strArray28);
-        assertTrue(str32.equals(""));
-        assertNotNull(strArray41);
-        assertNotNull(strArray53);
-        assertTrue(str57.equals(""));
-        assertTrue(str58.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str62.equals(""));
-        assertNotNull(wildcardClass69);
-        assertTrue(str70.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray7);
+        org.junit.Assert.assertTrue("'" + str9 + "' != '" + "" + "'", str9.equals(""));
+        org.junit.Assert.assertNotNull(strArray14);
+        org.junit.Assert.assertNotNull(strArray19);
+        org.junit.Assert.assertNotNull(strArray28);
+        org.junit.Assert.assertTrue("'" + str32 + "' != '" + "" + "'", str32.equals(""));
+        org.junit.Assert.assertNotNull(strArray41);
+        org.junit.Assert.assertNotNull(strArray53);
+        org.junit.Assert.assertTrue("'" + str57 + "' != '" + "" + "'", str57.equals(""));
+        org.junit.Assert.assertTrue("'" + str58 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str58.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str62 + "' != '" + "" + "'", str62.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass69);
+        org.junit.Assert.assertTrue("'" + str70 + "' != '" + "" + "'", str70.equals(""));
     }
 
     @Test
@@ -11107,20 +11108,20 @@ public class RegressionTest0 {
         java.lang.String str60 = lsApplication4.listFolderContent((java.lang.Boolean) true, (java.lang.Boolean) true, strArray53);
         try {
             java.lang.String str61 = grepApplication0.grepFromFiles("Could not read file", (java.lang.Boolean) false, (java.lang.Boolean) true, strArray53);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray10);
-        assertNotNull(strArray20);
-        assertTrue(str24.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray34);
-        assertTrue(str38.equals(""));
-        assertNotNull(strArray43);
-        assertNotNull(strArray53);
-        assertTrue(str57.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str59.equals(""));
-        assertTrue(str60.equals("null output stream provided\r\nfail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray10);
+        org.junit.Assert.assertNotNull(strArray20);
+        org.junit.Assert.assertTrue("'" + str24 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str24.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str26 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray34);
+        org.junit.Assert.assertTrue("'" + str38 + "' != '" + "" + "'", str38.equals(""));
+        org.junit.Assert.assertNotNull(strArray43);
+        org.junit.Assert.assertNotNull(strArray53);
+        org.junit.Assert.assertTrue("'" + str57 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str57.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str59 + "' != '" + "" + "'", str59.equals(""));
+        org.junit.Assert.assertTrue("'" + str60 + "' != '" + "null output stream provided\r\nfail_echo_write" + "'", str60.equals("null output stream provided\r\nfail_echo_write"));
     }
 
     @Test
@@ -11167,16 +11168,16 @@ public class RegressionTest0 {
         echoApplication1.run(strArray46, inputStream54, outputStream55);
         try {
             java.lang.String str57 = catApplication0.catFiles(strArray46);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(strArray5);
-        assertNotNull(strArray17);
-        assertNotNull(strArray29);
-        assertTrue(str33.equals(""));
-        assertTrue(str34.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str38.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray46);
+        org.junit.Assert.assertNotNull(strArray5);
+        org.junit.Assert.assertNotNull(strArray17);
+        org.junit.Assert.assertNotNull(strArray29);
+        org.junit.Assert.assertTrue("'" + str33 + "' != '" + "" + "'", str33.equals(""));
+        org.junit.Assert.assertTrue("'" + str34 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str34.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str38 + "' != '" + "null output stream provided fail_echo_write" + "'", str38.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray46);
     }
 
     @Test
@@ -11187,7 +11188,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = grepApplication0.grepFromStdin("null output stream provided\r\nfail_echo_write", (java.lang.Boolean) false, (java.lang.Boolean) true, inputStream4);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
     }
@@ -11199,7 +11200,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream0 = null;
         try {
             java.util.List<java.lang.String> strList4 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.replace(inputStream0, "fail_sed_write", "C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write", 1);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -11236,14 +11237,14 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream38 = null;
         try {
             dateApplication0.run(strArray32, inputStream37, outputStream38);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
-        assertNotNull(strArray8);
-        assertNotNull(strArray20);
-        assertTrue(str24.equals(""));
-        assertTrue(str25.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray32);
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(strArray20);
+        org.junit.Assert.assertTrue("'" + str24 + "' != '" + "" + "'", str24.equals(""));
+        org.junit.Assert.assertTrue("'" + str25 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str25.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray32);
     }
 
     @Test
@@ -11298,21 +11299,21 @@ public class RegressionTest0 {
         java.lang.String str77 = echoApplication5.constructResult(strArray75);
         try {
             java.lang.String str78 = sortApplication0.sortFromFiles((java.lang.Boolean) true, (java.lang.Boolean) false, (java.lang.Boolean) false, strArray75);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray13);
-        assertNotNull(strArray25);
-        assertTrue(str29.equals(""));
-        assertTrue(str30.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str34.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray42);
-        assertNotNull(strArray53);
-        assertNotNull(wildcardClass57);
-        assertNotNull(strArray62);
-        assertNotNull(strArray75);
-        assertTrue(str77.equals("fail_echo_write hi!"));
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray13);
+        org.junit.Assert.assertNotNull(strArray25);
+        org.junit.Assert.assertTrue("'" + str29 + "' != '" + "" + "'", str29.equals(""));
+        org.junit.Assert.assertTrue("'" + str30 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str30.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str34 + "' != '" + "null output stream provided fail_echo_write" + "'", str34.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray42);
+        org.junit.Assert.assertNotNull(strArray53);
+        org.junit.Assert.assertNotNull(wildcardClass57);
+        org.junit.Assert.assertNotNull(strArray62);
+        org.junit.Assert.assertNotNull(strArray75);
+        org.junit.Assert.assertTrue("'" + str77 + "' != '" + "fail_echo_write hi!" + "'", str77.equals("fail_echo_write hi!"));
     }
 
     @Test
@@ -11361,16 +11362,16 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream58 = null;
         try {
             dateApplication0.run(strArray46, inputStream57, outputStream58);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
-        assertNotNull(strArray5);
-        assertNotNull(strArray17);
-        assertNotNull(strArray29);
-        assertTrue(str33.equals(""));
-        assertTrue(str34.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str38.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray46);
+        org.junit.Assert.assertNotNull(strArray5);
+        org.junit.Assert.assertNotNull(strArray17);
+        org.junit.Assert.assertNotNull(strArray29);
+        org.junit.Assert.assertTrue("'" + str33 + "' != '" + "" + "'", str33.equals(""));
+        org.junit.Assert.assertTrue("'" + str34 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str34.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str38 + "' != '" + "null output stream provided fail_echo_write" + "'", str38.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray46);
     }
 
     @Test
@@ -11424,21 +11425,21 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream76 = null;
         try {
             sedApplication0.run(strArray67, inputStream75, outputStream76);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
-        assertNotNull(strArray7);
-        assertTrue(str11.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray21);
-        assertNotNull(strArray32);
-        assertNotNull(wildcardClass36);
-        assertNotNull(strArray41);
-        assertTrue(str48.equals("This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught"));
-        assertNotNull(strArray57);
-        assertNotNull(strArray67);
-        assertTrue(str71.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str73.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str74.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray7);
+        org.junit.Assert.assertTrue("'" + str11 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str11.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray21);
+        org.junit.Assert.assertNotNull(strArray32);
+        org.junit.Assert.assertNotNull(wildcardClass36);
+        org.junit.Assert.assertNotNull(strArray41);
+        org.junit.Assert.assertTrue("'" + str48 + "' != '" + "This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught" + "'", str48.equals("This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught"));
+        org.junit.Assert.assertNotNull(strArray57);
+        org.junit.Assert.assertNotNull(strArray67);
+        org.junit.Assert.assertTrue("'" + str71 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str71.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str73 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str73.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str74 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str74.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -11477,15 +11478,15 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream46 = null;
         try {
             lsApplication0.run(strArray38, inputStream45, outputStream46);
-            fail("Expected exception of type java.lang.StringIndexOutOfBoundsException; message: String index out of range: 0");
+            org.junit.Assert.fail("Expected exception of type java.lang.StringIndexOutOfBoundsException; message: String index out of range: 0");
         } catch (java.lang.StringIndexOutOfBoundsException e) {
         }
-        assertNotNull(strArray9);
-        assertNotNull(strArray21);
-        assertTrue(str25.equals(""));
-        assertTrue(str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str30.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray38);
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertNotNull(strArray21);
+        org.junit.Assert.assertTrue("'" + str25 + "' != '" + "" + "'", str25.equals(""));
+        org.junit.Assert.assertTrue("'" + str26 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str30 + "' != '" + "null output stream provided fail_echo_write" + "'", str30.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray38);
     }
 
     @Test
@@ -11511,15 +11512,15 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream25 = null;
         try {
             catApplication0.run(strArray21, inputStream24, outputStream25);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray10);
-        assertTrue(str14.equals(""));
-        assertTrue(str15.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray21);
-        assertTrue(str23.equals("fail_echo_write:\r\n\r\n\r\nhi!:"));
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray10);
+        org.junit.Assert.assertTrue("'" + str14 + "' != '" + "" + "'", str14.equals(""));
+        org.junit.Assert.assertTrue("'" + str15 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str15.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray21);
+        org.junit.Assert.assertTrue("'" + str23 + "' != '" + "fail_echo_write:\r\n\r\n\r\nhi!:" + "'", str23.equals("fail_echo_write:\r\n\r\n\r\nhi!:"));
     }
 
     @Test
@@ -11546,14 +11547,14 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream27 = null;
         try {
             pwdApplication0.run(strArray20, inputStream26, outputStream27);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.PwdException; message: pwd: Null Pointer Exception");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.PwdException; message: pwd: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.PwdException e) {
         }
-        assertTrue(str1.equals("C:\\"));
-        assertNotNull(wildcardClass2);
-        assertNotNull(strArray10);
-        assertNotNull(strArray20);
-        assertTrue(str24.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str1 + "' != '" + "C:\\" + "'", str1.equals("C:\\"));
+        org.junit.Assert.assertNotNull(wildcardClass2);
+        org.junit.Assert.assertNotNull(strArray10);
+        org.junit.Assert.assertNotNull(strArray20);
+        org.junit.Assert.assertTrue("'" + str24 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str24.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -11623,24 +11624,24 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream91 = null;
         try {
             sedApplication0.run(strArray70, inputStream90, outputStream91);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
-        assertNotNull(strArray8);
-        assertNotNull(strArray15);
-        assertNotNull(strArray24);
-        assertTrue(str26.equals(""));
-        assertNotNull(strArray31);
-        assertNotNull(strArray36);
-        assertNotNull(strArray45);
-        assertTrue(str49.equals(""));
-        assertNotNull(strArray58);
-        assertNotNull(strArray70);
-        assertTrue(str74.equals(""));
-        assertTrue(str75.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str79.equals(""));
-        assertNotNull(wildcardClass86);
-        assertTrue(str87.equals(""));
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(strArray15);
+        org.junit.Assert.assertNotNull(strArray24);
+        org.junit.Assert.assertTrue("'" + str26 + "' != '" + "" + "'", str26.equals(""));
+        org.junit.Assert.assertNotNull(strArray31);
+        org.junit.Assert.assertNotNull(strArray36);
+        org.junit.Assert.assertNotNull(strArray45);
+        org.junit.Assert.assertTrue("'" + str49 + "' != '" + "" + "'", str49.equals(""));
+        org.junit.Assert.assertNotNull(strArray58);
+        org.junit.Assert.assertNotNull(strArray70);
+        org.junit.Assert.assertTrue("'" + str74 + "' != '" + "" + "'", str74.equals(""));
+        org.junit.Assert.assertTrue("'" + str75 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str75.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str79 + "' != '" + "" + "'", str79.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass86);
+        org.junit.Assert.assertTrue("'" + str87 + "' != '" + "" + "'", str87.equals(""));
     }
 
     @Test
@@ -11708,24 +11709,24 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream84 = null;
         try {
             sedApplication0.run(strArray61, inputStream83, outputStream84);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
-        assertNotNull(strArray4);
-        assertNotNull(strArray15);
-        assertTrue(str17.equals(""));
-        assertNotNull(strArray22);
-        assertNotNull(strArray27);
-        assertNotNull(strArray36);
-        assertTrue(str40.equals(""));
-        assertNotNull(strArray49);
-        assertNotNull(strArray61);
-        assertTrue(str65.equals(""));
-        assertTrue(str66.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str70.equals(""));
-        assertNotNull(wildcardClass77);
-        assertTrue(str78.equals(""));
-        assertTrue(str79.equals(""));
+        org.junit.Assert.assertNotNull(strArray4);
+        org.junit.Assert.assertNotNull(strArray15);
+        org.junit.Assert.assertTrue("'" + str17 + "' != '" + "" + "'", str17.equals(""));
+        org.junit.Assert.assertNotNull(strArray22);
+        org.junit.Assert.assertNotNull(strArray27);
+        org.junit.Assert.assertNotNull(strArray36);
+        org.junit.Assert.assertTrue("'" + str40 + "' != '" + "" + "'", str40.equals(""));
+        org.junit.Assert.assertNotNull(strArray49);
+        org.junit.Assert.assertNotNull(strArray61);
+        org.junit.Assert.assertTrue("'" + str65 + "' != '" + "" + "'", str65.equals(""));
+        org.junit.Assert.assertTrue("'" + str66 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str66.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str70 + "' != '" + "" + "'", str70.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass77);
+        org.junit.Assert.assertTrue("'" + str78 + "' != '" + "" + "'", str78.equals(""));
+        org.junit.Assert.assertTrue("'" + str79 + "' != '" + "" + "'", str79.equals(""));
     }
 
     @Test
@@ -11735,7 +11736,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.DateApplication dateApplication0 = new sg.edu.nus.comp.cs4218.impl.app.DateApplication();
         try {
             java.lang.String str2 = dateApplication0.getDate("hi!");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
     }
@@ -11795,22 +11796,22 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream71 = null;
         try {
             sedApplication0.run(strArray52, inputStream70, outputStream71);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
-        assertNotNull(strArray6);
-        assertTrue(str8.equals(""));
-        assertNotNull(strArray13);
-        assertNotNull(strArray18);
-        assertNotNull(strArray27);
-        assertTrue(str31.equals(""));
-        assertNotNull(strArray40);
-        assertNotNull(strArray52);
-        assertTrue(str56.equals(""));
-        assertTrue(str57.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str61.equals(""));
-        assertNotNull(wildcardClass68);
-        assertTrue(str69.equals(""));
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertTrue("'" + str8 + "' != '" + "" + "'", str8.equals(""));
+        org.junit.Assert.assertNotNull(strArray13);
+        org.junit.Assert.assertNotNull(strArray18);
+        org.junit.Assert.assertNotNull(strArray27);
+        org.junit.Assert.assertTrue("'" + str31 + "' != '" + "" + "'", str31.equals(""));
+        org.junit.Assert.assertNotNull(strArray40);
+        org.junit.Assert.assertNotNull(strArray52);
+        org.junit.Assert.assertTrue("'" + str56 + "' != '" + "" + "'", str56.equals(""));
+        org.junit.Assert.assertTrue("'" + str57 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str57.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str61 + "' != '" + "" + "'", str61.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass68);
+        org.junit.Assert.assertTrue("'" + str69 + "' != '" + "" + "'", str69.equals(""));
     }
 
     @Test
@@ -11839,13 +11840,13 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream30 = null;
         try {
             exitApplication0.run(strArray20, inputStream29, outputStream30);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.ExitException; message: exit: Terminate process.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.ExitException; message: exit: Terminate process.");
         } catch (sg.edu.nus.comp.cs4218.exception.ExitException e) {
         }
-        assertNotNull(strArray8);
-        assertNotNull(strArray20);
-        assertTrue(str24.equals(""));
-        assertTrue(str25.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(strArray20);
+        org.junit.Assert.assertTrue("'" + str24 + "' != '" + "" + "'", str24.equals(""));
+        org.junit.Assert.assertTrue("'" + str25 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str25.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -11895,18 +11896,18 @@ public class RegressionTest0 {
         echoApplication4.run(strArray61, inputStream68, outputStream69);
         try {
             java.lang.String str71 = sortApplication0.sortFromFiles((java.lang.Boolean) true, (java.lang.Boolean) false, (java.lang.Boolean) false, strArray61);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(strArray12);
-        assertNotNull(strArray24);
-        assertTrue(str28.equals(""));
-        assertTrue(str29.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str33.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray41);
-        assertNotNull(strArray52);
-        assertNotNull(wildcardClass56);
-        assertNotNull(strArray61);
+        org.junit.Assert.assertNotNull(strArray12);
+        org.junit.Assert.assertNotNull(strArray24);
+        org.junit.Assert.assertTrue("'" + str28 + "' != '" + "" + "'", str28.equals(""));
+        org.junit.Assert.assertTrue("'" + str29 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str29.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str33 + "' != '" + "null output stream provided fail_echo_write" + "'", str33.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray41);
+        org.junit.Assert.assertNotNull(strArray52);
+        org.junit.Assert.assertNotNull(wildcardClass56);
+        org.junit.Assert.assertNotNull(strArray61);
     }
 
     @Test
@@ -11947,19 +11948,19 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream53 = null;
         try {
             pwdApplication0.run(strArray44, inputStream52, outputStream53);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.PwdException; message: pwd: Null Pointer Exception");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.PwdException; message: pwd: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.PwdException e) {
         }
-        assertTrue(str1.equals("C:\\"));
-        assertNotNull(wildcardClass2);
-        assertTrue(str3.equals("C:\\"));
-        assertNotNull(strArray10);
-        assertTrue(str14.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray24);
-        assertNotNull(strArray35);
-        assertNotNull(wildcardClass39);
-        assertNotNull(strArray44);
-        assertTrue(str51.equals("This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught"));
+        org.junit.Assert.assertTrue("'" + str1 + "' != '" + "C:\\" + "'", str1.equals("C:\\"));
+        org.junit.Assert.assertNotNull(wildcardClass2);
+        org.junit.Assert.assertTrue("'" + str3 + "' != '" + "C:\\" + "'", str3.equals("C:\\"));
+        org.junit.Assert.assertNotNull(strArray10);
+        org.junit.Assert.assertTrue("'" + str14 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str14.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray24);
+        org.junit.Assert.assertNotNull(strArray35);
+        org.junit.Assert.assertNotNull(wildcardClass39);
+        org.junit.Assert.assertNotNull(strArray44);
+        org.junit.Assert.assertTrue("'" + str51 + "' != '" + "This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught" + "'", str51.equals("This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught"));
     }
 
     @Test
@@ -11969,7 +11970,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.SedApplication sedApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SedApplication();
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInFile("Could not read file", "null output stream provided fail_echo_write", (-1), "Exception Caught");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
     }
@@ -11982,7 +11983,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = grepApplication0.grepFromStdin("Could not read file", (java.lang.Boolean) true, (java.lang.Boolean) true, inputStream4);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
     }
@@ -12025,17 +12026,17 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream48 = null;
         try {
             pwdApplication0.run(strArray34, inputStream47, outputStream48);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.PwdException; message: pwd: Null Pointer Exception");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.PwdException; message: pwd: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.PwdException e) {
         }
-        assertTrue(str1.equals("C:\\"));
-        assertNotNull(strArray9);
-        assertNotNull(wildcardClass13);
-        assertNotNull(strArray22);
-        assertNotNull(strArray34);
-        assertTrue(str38.equals(""));
-        assertTrue(str39.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str43.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertTrue("'" + str1 + "' != '" + "C:\\" + "'", str1.equals("C:\\"));
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertNotNull(wildcardClass13);
+        org.junit.Assert.assertNotNull(strArray22);
+        org.junit.Assert.assertNotNull(strArray34);
+        org.junit.Assert.assertTrue("'" + str38 + "' != '" + "" + "'", str38.equals(""));
+        org.junit.Assert.assertTrue("'" + str39 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str39.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str43 + "' != '" + "null output stream provided fail_echo_write" + "'", str43.equals("null output stream provided fail_echo_write"));
     }
 
     @Test
@@ -12089,21 +12090,21 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream76 = null;
         try {
             grepApplication0.run(strArray67, inputStream75, outputStream76);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: output stream is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: output stream is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray7);
-        assertTrue(str11.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray21);
-        assertNotNull(strArray32);
-        assertNotNull(wildcardClass36);
-        assertNotNull(strArray41);
-        assertTrue(str48.equals("This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught"));
-        assertNotNull(strArray57);
-        assertNotNull(strArray67);
-        assertTrue(str71.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str73.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str74.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray7);
+        org.junit.Assert.assertTrue("'" + str11 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str11.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray21);
+        org.junit.Assert.assertNotNull(strArray32);
+        org.junit.Assert.assertNotNull(wildcardClass36);
+        org.junit.Assert.assertNotNull(strArray41);
+        org.junit.Assert.assertTrue("'" + str48 + "' != '" + "This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught" + "'", str48.equals("This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught"));
+        org.junit.Assert.assertNotNull(strArray57);
+        org.junit.Assert.assertNotNull(strArray67);
+        org.junit.Assert.assertTrue("'" + str71 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str71.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str73 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str73.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str74 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str74.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -12116,10 +12117,10 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream4 = null;
         try {
             sortApplication0.run(strArray2, inputStream3, outputStream4);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(strArray2);
+        org.junit.Assert.assertNotNull(strArray2);
     }
 
     @Test
@@ -12130,7 +12131,7 @@ public class RegressionTest0 {
         java.lang.String[] strArray4 = null;
         try {
             java.lang.String str5 = wcApplication0.countFromFiles((java.lang.Boolean) true, (java.lang.Boolean) true, (java.lang.Boolean) false, strArray4);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: no argument can be null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: no argument can be null!");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
     }
@@ -12196,21 +12197,21 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream87 = null;
         try {
             wcApplication0.run(strArray72, inputStream86, outputStream87);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
-        assertNotNull(strArray8);
-        assertNotNull(strArray19);
-        assertNotNull(wildcardClass23);
-        assertNotNull(strArray28);
-        assertNotNull(strArray38);
-        assertNotNull(strArray47);
-        assertTrue(str51.equals(""));
-        assertNotNull(strArray60);
-        assertNotNull(strArray72);
-        assertTrue(str76.equals(""));
-        assertTrue(str77.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str81.equals(""));
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(strArray19);
+        org.junit.Assert.assertNotNull(wildcardClass23);
+        org.junit.Assert.assertNotNull(strArray28);
+        org.junit.Assert.assertNotNull(strArray38);
+        org.junit.Assert.assertNotNull(strArray47);
+        org.junit.Assert.assertTrue("'" + str51 + "' != '" + "" + "'", str51.equals(""));
+        org.junit.Assert.assertNotNull(strArray60);
+        org.junit.Assert.assertNotNull(strArray72);
+        org.junit.Assert.assertTrue("'" + str76 + "' != '" + "" + "'", str76.equals(""));
+        org.junit.Assert.assertTrue("'" + str77 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str77.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str81 + "' != '" + "" + "'", str81.equals(""));
     }
 
     @Test
@@ -12277,26 +12278,26 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream82 = null;
         try {
             pwdApplication0.run(strArray62, inputStream81, outputStream82);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.PwdException; message: pwd: Null Pointer Exception");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.PwdException; message: pwd: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.PwdException e) {
         }
-        assertTrue(str1.equals("C:\\"));
-        assertNotNull(wildcardClass2);
-        assertTrue(str3.equals("C:\\"));
-        assertNotNull(strArray7);
-        assertNotNull(strArray16);
-        assertTrue(str18.equals(""));
-        assertNotNull(strArray23);
-        assertNotNull(strArray28);
-        assertNotNull(strArray37);
-        assertTrue(str41.equals(""));
-        assertNotNull(strArray50);
-        assertNotNull(strArray62);
-        assertTrue(str66.equals(""));
-        assertTrue(str67.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str71.equals(""));
-        assertNotNull(wildcardClass78);
-        assertTrue(str79.equals(""));
+        org.junit.Assert.assertTrue("'" + str1 + "' != '" + "C:\\" + "'", str1.equals("C:\\"));
+        org.junit.Assert.assertNotNull(wildcardClass2);
+        org.junit.Assert.assertTrue("'" + str3 + "' != '" + "C:\\" + "'", str3.equals("C:\\"));
+        org.junit.Assert.assertNotNull(strArray7);
+        org.junit.Assert.assertNotNull(strArray16);
+        org.junit.Assert.assertTrue("'" + str18 + "' != '" + "" + "'", str18.equals(""));
+        org.junit.Assert.assertNotNull(strArray23);
+        org.junit.Assert.assertNotNull(strArray28);
+        org.junit.Assert.assertNotNull(strArray37);
+        org.junit.Assert.assertTrue("'" + str41 + "' != '" + "" + "'", str41.equals(""));
+        org.junit.Assert.assertNotNull(strArray50);
+        org.junit.Assert.assertNotNull(strArray62);
+        org.junit.Assert.assertTrue("'" + str66 + "' != '" + "" + "'", str66.equals(""));
+        org.junit.Assert.assertTrue("'" + str67 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str67.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str71 + "' != '" + "" + "'", str71.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass78);
+        org.junit.Assert.assertTrue("'" + str79 + "' != '" + "" + "'", str79.equals(""));
     }
 
     @Test
@@ -12330,16 +12331,16 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream34 = null;
         try {
             catApplication0.run(strArray26, inputStream33, outputStream34);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray7);
-        assertTrue(str11.equals(""));
-        assertNotNull(strArray16);
-        assertNotNull(strArray26);
-        assertTrue(str30.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str32.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray7);
+        org.junit.Assert.assertTrue("'" + str11 + "' != '" + "" + "'", str11.equals(""));
+        org.junit.Assert.assertNotNull(strArray16);
+        org.junit.Assert.assertNotNull(strArray26);
+        org.junit.Assert.assertTrue("'" + str30 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str30.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str32 + "' != '" + "" + "'", str32.equals(""));
     }
 
     @Test
@@ -12391,21 +12392,21 @@ public class RegressionTest0 {
         java.lang.String str77 = lsApplication4.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) true, strArray70);
         try {
             java.lang.String str78 = grepApplication0.grepFromFiles("", (java.lang.Boolean) true, (java.lang.Boolean) false, strArray70);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray10);
-        assertTrue(str14.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray24);
-        assertNotNull(strArray35);
-        assertNotNull(wildcardClass39);
-        assertNotNull(strArray44);
-        assertTrue(str51.equals("This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught"));
-        assertNotNull(strArray60);
-        assertNotNull(strArray70);
-        assertTrue(str74.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str76.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str77.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray10);
+        org.junit.Assert.assertTrue("'" + str14 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str14.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray24);
+        org.junit.Assert.assertNotNull(strArray35);
+        org.junit.Assert.assertNotNull(wildcardClass39);
+        org.junit.Assert.assertNotNull(strArray44);
+        org.junit.Assert.assertTrue("'" + str51 + "' != '" + "This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught" + "'", str51.equals("This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught"));
+        org.junit.Assert.assertNotNull(strArray60);
+        org.junit.Assert.assertNotNull(strArray70);
+        org.junit.Assert.assertTrue("'" + str74 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str74.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str76 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str76.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str77 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str77.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -12413,7 +12414,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test404");
         boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isSpecialSymbol("This is a directory Could not read stream Null Pointer Exception Exception Caught");
-        assertTrue(boolean1 == true);
+        org.junit.Assert.assertTrue("'" + boolean1 + "' != '" + true + "'", boolean1 == true);
     }
 
     @Test
@@ -12424,7 +12425,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInStdin("C:\\", "This is a directory Could not read stream Null Pointer Exception Exception Caught", 10, inputStream4);
-            fail("Expected exception of type java.util.regex.PatternSyntaxException; message: Unexpected internal error near index 3\r\nC:\\");
+            org.junit.Assert.fail("Expected exception of type java.util.regex.PatternSyntaxException; message: Unexpected internal error near index 3\r\nC:\\");
         } catch (java.util.regex.PatternSyntaxException e) {
         }
     }
@@ -12439,7 +12440,7 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream3 = null;
         try {
             cdApplication0.run(strArray1, inputStream2, outputStream3);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: Null arguments");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: Null arguments");
         } catch (sg.edu.nus.comp.cs4218.exception.CdException e) {
         }
     }
@@ -12463,12 +12464,12 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream22 = null;
         try {
             sortApplication0.run(strArray17, inputStream21, outputStream22);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(strArray8);
-        assertNotNull(wildcardClass12);
-        assertNotNull(strArray17);
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(wildcardClass12);
+        org.junit.Assert.assertNotNull(strArray17);
     }
 
     @Test
@@ -12491,12 +12492,12 @@ public class RegressionTest0 {
         mkdirApplication1.createFolder(strArray14);
         try {
             java.lang.String str20 = catApplication0.catFiles(strArray14);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(strArray4);
-        assertNotNull(strArray14);
-        assertTrue(str18.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray4);
+        org.junit.Assert.assertNotNull(strArray14);
+        org.junit.Assert.assertTrue("'" + str18 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str18.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -12506,7 +12507,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream0 = null;
         try {
             java.util.List<java.lang.String> strList4 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.replace(inputStream0, "C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write", "fail_sed_write", (int) (short) 100);
-            fail("Expected exception of type java.util.regex.PatternSyntaxException; message: Illegal/unsupported escape sequence near index 3\r\nC:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write\r\n   ^");
+            org.junit.Assert.fail("Expected exception of type java.util.regex.PatternSyntaxException; message: Illegal/unsupported escape sequence near index 3\r\nC:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write\r\n   ^");
         } catch (java.util.regex.PatternSyntaxException e) {
         }
     }
@@ -12569,21 +12570,21 @@ public class RegressionTest0 {
         echoApplication4.run(strArray72, inputStream79, outputStream80);
         try {
             java.lang.String str82 = sortApplication0.sortFromFiles((java.lang.Boolean) false, (java.lang.Boolean) true, (java.lang.Boolean) false, strArray72);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(strArray12);
-        assertNotNull(strArray24);
-        assertTrue(str28.equals(""));
-        assertTrue(str29.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str33.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray41);
-        assertNotNull(strArray51);
-        assertTrue(str55.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray62);
-        assertNotNull(strArray72);
-        assertTrue(str76.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str78.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray12);
+        org.junit.Assert.assertNotNull(strArray24);
+        org.junit.Assert.assertTrue("'" + str28 + "' != '" + "" + "'", str28.equals(""));
+        org.junit.Assert.assertTrue("'" + str29 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str29.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str33 + "' != '" + "null output stream provided fail_echo_write" + "'", str33.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray41);
+        org.junit.Assert.assertNotNull(strArray51);
+        org.junit.Assert.assertTrue("'" + str55 + "' != '" + "null output stream provided fail_echo_write" + "'", str55.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray62);
+        org.junit.Assert.assertNotNull(strArray72);
+        org.junit.Assert.assertTrue("'" + str76 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str76.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str78 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str78.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -12611,14 +12612,14 @@ public class RegressionTest0 {
         mkdirApplication2.run(strArray24, inputStream25, outputStream26);
         try {
             java.lang.String str28 = catApplication0.catFiles(strArray24);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray5);
-        assertNotNull(strArray15);
-        assertTrue(str19.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray24);
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray5);
+        org.junit.Assert.assertNotNull(strArray15);
+        org.junit.Assert.assertTrue("'" + str19 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str19.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray24);
     }
 
     @Test
@@ -12638,12 +12639,12 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream14 = null;
         try {
             lsApplication0.run(strArray8, inputStream13, outputStream14);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray8);
-        assertTrue(str12.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertTrue("'" + str12 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str12.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -12708,24 +12709,24 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream80 = null;
         try {
             sortApplication0.run(strArray60, inputStream79, outputStream80);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray5);
-        assertNotNull(strArray14);
-        assertTrue(str16.equals(""));
-        assertNotNull(strArray21);
-        assertNotNull(strArray26);
-        assertNotNull(strArray35);
-        assertTrue(str39.equals(""));
-        assertNotNull(strArray48);
-        assertNotNull(strArray60);
-        assertTrue(str64.equals(""));
-        assertTrue(str65.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str69.equals(""));
-        assertNotNull(wildcardClass76);
-        assertTrue(str77.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray5);
+        org.junit.Assert.assertNotNull(strArray14);
+        org.junit.Assert.assertTrue("'" + str16 + "' != '" + "" + "'", str16.equals(""));
+        org.junit.Assert.assertNotNull(strArray21);
+        org.junit.Assert.assertNotNull(strArray26);
+        org.junit.Assert.assertNotNull(strArray35);
+        org.junit.Assert.assertTrue("'" + str39 + "' != '" + "" + "'", str39.equals(""));
+        org.junit.Assert.assertNotNull(strArray48);
+        org.junit.Assert.assertNotNull(strArray60);
+        org.junit.Assert.assertTrue("'" + str64 + "' != '" + "" + "'", str64.equals(""));
+        org.junit.Assert.assertTrue("'" + str65 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str65.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str69 + "' != '" + "" + "'", str69.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass76);
+        org.junit.Assert.assertTrue("'" + str77 + "' != '" + "" + "'", str77.equals(""));
     }
 
     @Test
@@ -12795,25 +12796,25 @@ public class RegressionTest0 {
         java.lang.String[] strArray93 = null;
         try {
             java.lang.String str94 = findApplication0.findFolderContent("fail_echo_write hi!", strArray93);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: Arguments for findFolderContent are not allowed to be null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: Arguments for findFolderContent are not allowed to be null!");
         } catch (sg.edu.nus.comp.cs4218.exception.FindException e) {
         }
-        assertNotNull(strArray9);
-        assertNotNull(strArray16);
-        assertNotNull(strArray25);
-        assertTrue(str27.equals(""));
-        assertNotNull(strArray32);
-        assertNotNull(strArray37);
-        assertNotNull(strArray46);
-        assertTrue(str50.equals(""));
-        assertNotNull(strArray59);
-        assertNotNull(strArray71);
-        assertTrue(str75.equals(""));
-        assertTrue(str76.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str80.equals(""));
-        assertNotNull(wildcardClass87);
-        assertTrue(str88.equals(""));
-        assertTrue(str91.equals(""));
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertNotNull(strArray16);
+        org.junit.Assert.assertNotNull(strArray25);
+        org.junit.Assert.assertTrue("'" + str27 + "' != '" + "" + "'", str27.equals(""));
+        org.junit.Assert.assertNotNull(strArray32);
+        org.junit.Assert.assertNotNull(strArray37);
+        org.junit.Assert.assertNotNull(strArray46);
+        org.junit.Assert.assertTrue("'" + str50 + "' != '" + "" + "'", str50.equals(""));
+        org.junit.Assert.assertNotNull(strArray59);
+        org.junit.Assert.assertNotNull(strArray71);
+        org.junit.Assert.assertTrue("'" + str75 + "' != '" + "" + "'", str75.equals(""));
+        org.junit.Assert.assertTrue("'" + str76 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str76.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str80 + "' != '" + "" + "'", str80.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass87);
+        org.junit.Assert.assertTrue("'" + str88 + "' != '" + "" + "'", str88.equals(""));
+        org.junit.Assert.assertTrue("'" + str91 + "' != '" + "" + "'", str91.equals(""));
     }
 
     @Test
@@ -12866,19 +12867,19 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream67 = null;
         try {
             lsApplication0.run(strArray56, inputStream66, outputStream67);
-            fail("Expected exception of type java.lang.StringIndexOutOfBoundsException; message: String index out of range: 0");
+            org.junit.Assert.fail("Expected exception of type java.lang.StringIndexOutOfBoundsException; message: String index out of range: 0");
         } catch (java.lang.StringIndexOutOfBoundsException e) {
         }
-        assertNotNull(strArray8);
-        assertTrue(str12.equals(""));
-        assertTrue(str13.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray17);
-        assertNotNull(strArray27);
-        assertNotNull(strArray39);
-        assertTrue(str43.equals(""));
-        assertTrue(str44.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str48.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray56);
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertTrue("'" + str12 + "' != '" + "" + "'", str12.equals(""));
+        org.junit.Assert.assertTrue("'" + str13 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str13.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray17);
+        org.junit.Assert.assertNotNull(strArray27);
+        org.junit.Assert.assertNotNull(strArray39);
+        org.junit.Assert.assertTrue("'" + str43 + "' != '" + "" + "'", str43.equals(""));
+        org.junit.Assert.assertTrue("'" + str44 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str44.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str48 + "' != '" + "null output stream provided fail_echo_write" + "'", str48.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray56);
     }
 
     @Test
@@ -12886,7 +12887,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test416");
         boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isInteger("This is a directory Could not read stream Null Pointer Exception Exception Caught");
-        assertTrue(boolean1 == false);
+        org.junit.Assert.assertTrue("'" + boolean1 + "' != '" + false + "'", boolean1 == false);
     }
 
     @Test
@@ -12937,18 +12938,18 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream60 = null;
         try {
             cdApplication0.run(strArray43, inputStream59, outputStream60);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
         } catch (sg.edu.nus.comp.cs4218.exception.CdException e) {
         }
-        assertNotNull(strArray4);
-        assertNotNull(strArray9);
-        assertNotNull(strArray18);
-        assertTrue(str22.equals(""));
-        assertNotNull(strArray31);
-        assertNotNull(strArray43);
-        assertTrue(str47.equals(""));
-        assertTrue(str48.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str52.equals(""));
+        org.junit.Assert.assertNotNull(strArray4);
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertNotNull(strArray18);
+        org.junit.Assert.assertTrue("'" + str22 + "' != '" + "" + "'", str22.equals(""));
+        org.junit.Assert.assertNotNull(strArray31);
+        org.junit.Assert.assertNotNull(strArray43);
+        org.junit.Assert.assertTrue("'" + str47 + "' != '" + "" + "'", str47.equals(""));
+        org.junit.Assert.assertTrue("'" + str48 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str48.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str52 + "' != '" + "" + "'", str52.equals(""));
     }
 
     @Test
@@ -13011,21 +13012,21 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream77 = null;
         try {
             wcApplication0.run(strArray66, inputStream76, outputStream77);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
-        assertNotNull(strArray4);
-        assertNotNull(strArray13);
-        assertTrue(str17.equals(""));
-        assertNotNull(strArray26);
-        assertNotNull(strArray38);
-        assertTrue(str42.equals(""));
-        assertTrue(str43.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str47.equals(""));
-        assertNotNull(strArray56);
-        assertNotNull(strArray66);
-        assertTrue(str70.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str72.equals(""));
+        org.junit.Assert.assertNotNull(strArray4);
+        org.junit.Assert.assertNotNull(strArray13);
+        org.junit.Assert.assertTrue("'" + str17 + "' != '" + "" + "'", str17.equals(""));
+        org.junit.Assert.assertNotNull(strArray26);
+        org.junit.Assert.assertNotNull(strArray38);
+        org.junit.Assert.assertTrue("'" + str42 + "' != '" + "" + "'", str42.equals(""));
+        org.junit.Assert.assertTrue("'" + str43 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str43.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str47 + "' != '" + "" + "'", str47.equals(""));
+        org.junit.Assert.assertNotNull(strArray56);
+        org.junit.Assert.assertNotNull(strArray66);
+        org.junit.Assert.assertTrue("'" + str70 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str70.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str72 + "' != '" + "" + "'", str72.equals(""));
     }
 
     @Test
@@ -13076,19 +13077,19 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream62 = null;
         try {
             echoApplication0.run(strArray60, inputStream61, outputStream62);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.EchoException; message: echo: Empty arguments");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.EchoException; message: echo: Empty arguments");
         } catch (sg.edu.nus.comp.cs4218.exception.EchoException e) {
         }
-        assertNotNull(strArray8);
-        assertNotNull(strArray20);
-        assertTrue(str24.equals(""));
-        assertTrue(str25.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str29.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray37);
-        assertNotNull(strArray47);
-        assertTrue(str51.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray55);
-        assertTrue(str59.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(strArray20);
+        org.junit.Assert.assertTrue("'" + str24 + "' != '" + "" + "'", str24.equals(""));
+        org.junit.Assert.assertTrue("'" + str25 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str25.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str29 + "' != '" + "null output stream provided fail_echo_write" + "'", str29.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray37);
+        org.junit.Assert.assertNotNull(strArray47);
+        org.junit.Assert.assertTrue("'" + str51 + "' != '" + "null output stream provided fail_echo_write" + "'", str51.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray55);
+        org.junit.Assert.assertTrue("'" + str59 + "' != '" + "null output stream provided fail_echo_write" + "'", str59.equals("null output stream provided fail_echo_write"));
     }
 
     @Test
@@ -13142,19 +13143,19 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream72 = null;
         try {
             sedApplication0.run(strArray60, inputStream71, outputStream72);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
-        assertNotNull(strArray11);
-        assertNotNull(strArray23);
-        assertTrue(str27.equals(""));
-        assertTrue(str28.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str32.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray40);
-        assertNotNull(strArray51);
-        assertNotNull(wildcardClass55);
-        assertNotNull(strArray60);
-        assertTrue(str70.equals(""));
+        org.junit.Assert.assertNotNull(strArray11);
+        org.junit.Assert.assertNotNull(strArray23);
+        org.junit.Assert.assertTrue("'" + str27 + "' != '" + "" + "'", str27.equals(""));
+        org.junit.Assert.assertTrue("'" + str28 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str28.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str32 + "' != '" + "null output stream provided fail_echo_write" + "'", str32.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray40);
+        org.junit.Assert.assertNotNull(strArray51);
+        org.junit.Assert.assertNotNull(wildcardClass55);
+        org.junit.Assert.assertNotNull(strArray60);
+        org.junit.Assert.assertTrue("'" + str70 + "' != '" + "" + "'", str70.equals(""));
     }
 
     @Test
@@ -13164,7 +13165,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream0 = null;
         try {
             java.util.List<java.lang.String> strList4 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.replace(inputStream0, "null output stream provided", "", 100);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -13221,22 +13222,22 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream71 = null;
         try {
             findApplication0.run(strArray65, inputStream70, outputStream71);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: output stream is null");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: output stream is null");
         } catch (sg.edu.nus.comp.cs4218.exception.FindException e) {
         }
-        assertNotNull(strArray5);
-        assertTrue(str9.equals(""));
-        assertNotNull(strArray19);
-        assertTrue(str23.equals(""));
-        assertTrue(str24.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray30);
-        assertTrue(str32.equals("fail_echo_write:\r\n\r\n\r\nhi!:"));
-        assertTrue(str33.equals(""));
-        assertNotNull(strArray41);
-        assertNotNull(strArray53);
-        assertTrue(str57.equals(""));
-        assertTrue(str58.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray65);
+        org.junit.Assert.assertNotNull(strArray5);
+        org.junit.Assert.assertTrue("'" + str9 + "' != '" + "" + "'", str9.equals(""));
+        org.junit.Assert.assertNotNull(strArray19);
+        org.junit.Assert.assertTrue("'" + str23 + "' != '" + "" + "'", str23.equals(""));
+        org.junit.Assert.assertTrue("'" + str24 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str24.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray30);
+        org.junit.Assert.assertTrue("'" + str32 + "' != '" + "fail_echo_write:\r\n\r\n\r\nhi!:" + "'", str32.equals("fail_echo_write:\r\n\r\n\r\nhi!:"));
+        org.junit.Assert.assertTrue("'" + str33 + "' != '" + "" + "'", str33.equals(""));
+        org.junit.Assert.assertNotNull(strArray41);
+        org.junit.Assert.assertNotNull(strArray53);
+        org.junit.Assert.assertTrue("'" + str57 + "' != '" + "" + "'", str57.equals(""));
+        org.junit.Assert.assertTrue("'" + str58 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str58.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray65);
     }
 
     @Test
@@ -13244,7 +13245,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test423");
         boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isInteger("Could not read file");
-        assertTrue(boolean1 == false);
+        org.junit.Assert.assertTrue("'" + boolean1 + "' != '" + false + "'", boolean1 == false);
     }
 
     @Test
@@ -13254,7 +13255,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.SedApplication sedApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SedApplication();
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInFile("fail_echo_write", "hi!", (int) (short) 0, "File is null.");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
     }
@@ -13288,13 +13289,13 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream34 = null;
         try {
             cdApplication0.run(strArray29, inputStream33, outputStream34);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
         } catch (sg.edu.nus.comp.cs4218.exception.CdException e) {
         }
-        assertNotNull(strArray10);
-        assertNotNull(strArray20);
-        assertTrue(str24.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray29);
+        org.junit.Assert.assertNotNull(strArray10);
+        org.junit.Assert.assertNotNull(strArray20);
+        org.junit.Assert.assertTrue("'" + str24 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str24.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray29);
     }
 
     @Test
@@ -13305,7 +13306,7 @@ public class RegressionTest0 {
         java.lang.String[] strArray4 = null;
         try {
             java.lang.String str5 = wcApplication0.countFromFiles((java.lang.Boolean) false, (java.lang.Boolean) true, (java.lang.Boolean) true, strArray4);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: no argument can be null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: no argument can be null!");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
     }
@@ -13360,20 +13361,20 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream65 = null;
         try {
             wcApplication0.run(strArray58, inputStream64, outputStream65);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
-        assertNotNull(strArray9);
-        assertNotNull(strArray21);
-        assertTrue(str25.equals(""));
-        assertTrue(str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str30.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray38);
-        assertNotNull(strArray48);
-        assertTrue(str52.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray58);
-        assertTrue(str62.equals(""));
-        assertTrue(str63.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertNotNull(strArray21);
+        org.junit.Assert.assertTrue("'" + str25 + "' != '" + "" + "'", str25.equals(""));
+        org.junit.Assert.assertTrue("'" + str26 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str30 + "' != '" + "null output stream provided fail_echo_write" + "'", str30.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray38);
+        org.junit.Assert.assertNotNull(strArray48);
+        org.junit.Assert.assertTrue("'" + str52 + "' != '" + "null output stream provided fail_echo_write" + "'", str52.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray58);
+        org.junit.Assert.assertTrue("'" + str62 + "' != '" + "" + "'", str62.equals(""));
+        org.junit.Assert.assertTrue("'" + str63 + "' != '" + "null output stream provided fail_echo_write" + "'", str63.equals("null output stream provided fail_echo_write"));
     }
 
     @Test
@@ -13431,22 +13432,22 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream71 = null;
         try {
             wcApplication0.run(strArray52, inputStream70, outputStream71);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
-        assertNotNull(strArray6);
-        assertTrue(str8.equals(""));
-        assertNotNull(strArray13);
-        assertNotNull(strArray18);
-        assertNotNull(strArray27);
-        assertTrue(str31.equals(""));
-        assertNotNull(strArray40);
-        assertNotNull(strArray52);
-        assertTrue(str56.equals(""));
-        assertTrue(str57.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str61.equals(""));
-        assertNotNull(wildcardClass68);
-        assertTrue(str69.equals(""));
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertTrue("'" + str8 + "' != '" + "" + "'", str8.equals(""));
+        org.junit.Assert.assertNotNull(strArray13);
+        org.junit.Assert.assertNotNull(strArray18);
+        org.junit.Assert.assertNotNull(strArray27);
+        org.junit.Assert.assertTrue("'" + str31 + "' != '" + "" + "'", str31.equals(""));
+        org.junit.Assert.assertNotNull(strArray40);
+        org.junit.Assert.assertNotNull(strArray52);
+        org.junit.Assert.assertTrue("'" + str56 + "' != '" + "" + "'", str56.equals(""));
+        org.junit.Assert.assertTrue("'" + str57 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str57.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str61 + "' != '" + "" + "'", str61.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass68);
+        org.junit.Assert.assertTrue("'" + str69 + "' != '" + "" + "'", str69.equals(""));
     }
 
     @Test
@@ -13457,7 +13458,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInStdin("File doesn't exist.", "null output stream provided", (int) (short) -1, inputStream4);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -13519,22 +13520,22 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream75 = null;
         try {
             cdApplication0.run(strArray56, inputStream74, outputStream75);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
         } catch (sg.edu.nus.comp.cs4218.exception.CdException e) {
         }
-        assertNotNull(strArray10);
-        assertTrue(str12.equals(""));
-        assertNotNull(strArray17);
-        assertNotNull(strArray22);
-        assertNotNull(strArray31);
-        assertTrue(str35.equals(""));
-        assertNotNull(strArray44);
-        assertNotNull(strArray56);
-        assertTrue(str60.equals(""));
-        assertTrue(str61.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str65.equals(""));
-        assertNotNull(wildcardClass72);
-        assertTrue(str73.equals(""));
+        org.junit.Assert.assertNotNull(strArray10);
+        org.junit.Assert.assertTrue("'" + str12 + "' != '" + "" + "'", str12.equals(""));
+        org.junit.Assert.assertNotNull(strArray17);
+        org.junit.Assert.assertNotNull(strArray22);
+        org.junit.Assert.assertNotNull(strArray31);
+        org.junit.Assert.assertTrue("'" + str35 + "' != '" + "" + "'", str35.equals(""));
+        org.junit.Assert.assertNotNull(strArray44);
+        org.junit.Assert.assertNotNull(strArray56);
+        org.junit.Assert.assertTrue("'" + str60 + "' != '" + "" + "'", str60.equals(""));
+        org.junit.Assert.assertTrue("'" + str61 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str61.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str65 + "' != '" + "" + "'", str65.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass72);
+        org.junit.Assert.assertTrue("'" + str73 + "' != '" + "" + "'", str73.equals(""));
     }
 
     @Test
@@ -13542,7 +13543,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test431");
         boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isSpecialSymbol("fail_echo_write hi!");
-        assertTrue(boolean1 == true);
+        org.junit.Assert.assertTrue("'" + boolean1 + "' != '" + true + "'", boolean1 == true);
     }
 
     @Test
@@ -13555,7 +13556,7 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream3 = null;
         try {
             pwdApplication0.run(strArray1, inputStream2, outputStream3);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.PwdException; message: pwd: Null Pointer Exception");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.PwdException; message: pwd: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.PwdException e) {
         }
     }
@@ -13577,12 +13578,12 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream13 = null;
         try {
             sortApplication0.run(strArray6, inputStream12, outputStream13);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(strArray6);
-        assertTrue(str10.equals(""));
-        assertNotNull(wildcardClass11);
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertTrue("'" + str10 + "' != '" + "" + "'", str10.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass11);
     }
 
     @Test
@@ -13593,7 +13594,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInStdin("Terminate process.", "", 10, inputStream4);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -13644,18 +13645,18 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream57 = null;
         try {
             sedApplication0.run(strArray46, inputStream56, outputStream57);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
-        assertNotNull(strArray9);
-        assertNotNull(strArray21);
-        assertTrue(str25.equals(""));
-        assertTrue(str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str30.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray36);
-        assertNotNull(strArray46);
-        assertTrue(str50.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str52.equals(""));
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertNotNull(strArray21);
+        org.junit.Assert.assertTrue("'" + str25 + "' != '" + "" + "'", str25.equals(""));
+        org.junit.Assert.assertTrue("'" + str26 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str30 + "' != '" + "null output stream provided fail_echo_write" + "'", str30.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray36);
+        org.junit.Assert.assertNotNull(strArray46);
+        org.junit.Assert.assertTrue("'" + str50 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str50.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str52 + "' != '" + "" + "'", str52.equals(""));
     }
 
     @Test
@@ -13701,17 +13702,17 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream55 = null;
         try {
             dateApplication0.run(strArray43, inputStream54, outputStream55);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
-        assertNotNull(strArray4);
-        assertNotNull(strArray14);
-        assertNotNull(strArray26);
-        assertTrue(str30.equals(""));
-        assertTrue(str31.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str35.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray43);
-        assertNotNull(wildcardClass53);
+        org.junit.Assert.assertNotNull(strArray4);
+        org.junit.Assert.assertNotNull(strArray14);
+        org.junit.Assert.assertNotNull(strArray26);
+        org.junit.Assert.assertTrue("'" + str30 + "' != '" + "" + "'", str30.equals(""));
+        org.junit.Assert.assertTrue("'" + str31 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str31.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str35 + "' != '" + "null output stream provided fail_echo_write" + "'", str35.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray43);
+        org.junit.Assert.assertNotNull(wildcardClass53);
     }
 
     @Test
@@ -13736,12 +13737,12 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream21 = null;
         try {
             cdApplication0.run(strArray14, inputStream20, outputStream21);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
         } catch (sg.edu.nus.comp.cs4218.exception.CdException e) {
         }
-        assertNotNull(strArray4);
-        assertNotNull(strArray14);
-        assertTrue(str18.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray4);
+        org.junit.Assert.assertNotNull(strArray14);
+        org.junit.Assert.assertTrue("'" + str18 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str18.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -13751,7 +13752,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream0 = null;
         try {
             java.util.List<java.lang.String> strList4 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.replace(inputStream0, "C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write", "Null Pointer Exception", 10);
-            fail("Expected exception of type java.util.regex.PatternSyntaxException; message: Illegal/unsupported escape sequence near index 3\r\nC:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write\r\n   ^");
+            org.junit.Assert.fail("Expected exception of type java.util.regex.PatternSyntaxException; message: Illegal/unsupported escape sequence near index 3\r\nC:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write\r\n   ^");
         } catch (java.util.regex.PatternSyntaxException e) {
         }
     }
@@ -13797,17 +13798,17 @@ public class RegressionTest0 {
         mkdirApplication5.run(strArray47, inputStream54, outputStream55);
         try {
             java.lang.String str57 = sortApplication0.sortFromFiles((java.lang.Boolean) true, (java.lang.Boolean) true, (java.lang.Boolean) false, strArray47);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray8);
-        assertNotNull(strArray18);
-        assertNotNull(strArray30);
-        assertTrue(str34.equals(""));
-        assertTrue(str35.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str39.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray47);
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(strArray18);
+        org.junit.Assert.assertNotNull(strArray30);
+        org.junit.Assert.assertTrue("'" + str34 + "' != '" + "" + "'", str34.equals(""));
+        org.junit.Assert.assertTrue("'" + str35 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str35.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str39 + "' != '" + "null output stream provided fail_echo_write" + "'", str39.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray47);
     }
 
     @Test
@@ -13875,24 +13876,24 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream84 = null;
         try {
             exitApplication0.run(strArray61, inputStream83, outputStream84);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.ExitException; message: exit: Terminate process.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.ExitException; message: exit: Terminate process.");
         } catch (sg.edu.nus.comp.cs4218.exception.ExitException e) {
         }
-        assertNotNull(strArray4);
-        assertNotNull(strArray15);
-        assertTrue(str17.equals(""));
-        assertNotNull(strArray22);
-        assertNotNull(strArray27);
-        assertNotNull(strArray36);
-        assertTrue(str40.equals(""));
-        assertNotNull(strArray49);
-        assertNotNull(strArray61);
-        assertTrue(str65.equals(""));
-        assertTrue(str66.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str70.equals(""));
-        assertNotNull(wildcardClass77);
-        assertTrue(str78.equals(""));
-        assertTrue(str79.equals(""));
+        org.junit.Assert.assertNotNull(strArray4);
+        org.junit.Assert.assertNotNull(strArray15);
+        org.junit.Assert.assertTrue("'" + str17 + "' != '" + "" + "'", str17.equals(""));
+        org.junit.Assert.assertNotNull(strArray22);
+        org.junit.Assert.assertNotNull(strArray27);
+        org.junit.Assert.assertNotNull(strArray36);
+        org.junit.Assert.assertTrue("'" + str40 + "' != '" + "" + "'", str40.equals(""));
+        org.junit.Assert.assertNotNull(strArray49);
+        org.junit.Assert.assertNotNull(strArray61);
+        org.junit.Assert.assertTrue("'" + str65 + "' != '" + "" + "'", str65.equals(""));
+        org.junit.Assert.assertTrue("'" + str66 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str66.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str70 + "' != '" + "" + "'", str70.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass77);
+        org.junit.Assert.assertTrue("'" + str78 + "' != '" + "" + "'", str78.equals(""));
+        org.junit.Assert.assertTrue("'" + str79 + "' != '" + "" + "'", str79.equals(""));
     }
 
     @Test
@@ -13949,23 +13950,23 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream72 = null;
         try {
             catApplication0.run(strArray65, inputStream71, outputStream72);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(strArray7);
-        assertNotNull(strArray17);
-        assertTrue(str21.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str23.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray31);
-        assertTrue(str35.equals(""));
-        assertNotNull(strArray40);
-        assertNotNull(strArray50);
-        assertTrue(str54.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str56.equals(""));
-        assertTrue(str57.equals("null output stream provided\r\nfail_echo_write"));
-        assertNotNull(strArray65);
-        assertTrue(str69.equals(""));
-        assertTrue(str70.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray7);
+        org.junit.Assert.assertNotNull(strArray17);
+        org.junit.Assert.assertTrue("'" + str21 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str21.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str23 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str23.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray31);
+        org.junit.Assert.assertTrue("'" + str35 + "' != '" + "" + "'", str35.equals(""));
+        org.junit.Assert.assertNotNull(strArray40);
+        org.junit.Assert.assertNotNull(strArray50);
+        org.junit.Assert.assertTrue("'" + str54 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str54.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str56 + "' != '" + "" + "'", str56.equals(""));
+        org.junit.Assert.assertTrue("'" + str57 + "' != '" + "null output stream provided\r\nfail_echo_write" + "'", str57.equals("null output stream provided\r\nfail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray65);
+        org.junit.Assert.assertTrue("'" + str69 + "' != '" + "" + "'", str69.equals(""));
+        org.junit.Assert.assertTrue("'" + str70 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str70.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -14027,22 +14028,22 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream85 = null;
         try {
             lsApplication0.run(strArray73, inputStream84, outputStream85);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
-        assertNotNull(strArray8);
-        assertTrue(str12.equals(""));
-        assertTrue(str13.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray24);
-        assertNotNull(strArray36);
-        assertTrue(str40.equals(""));
-        assertTrue(str41.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str45.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray53);
-        assertNotNull(strArray64);
-        assertNotNull(wildcardClass68);
-        assertNotNull(strArray73);
-        assertTrue(str83.equals(""));
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertTrue("'" + str12 + "' != '" + "" + "'", str12.equals(""));
+        org.junit.Assert.assertTrue("'" + str13 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str13.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray24);
+        org.junit.Assert.assertNotNull(strArray36);
+        org.junit.Assert.assertTrue("'" + str40 + "' != '" + "" + "'", str40.equals(""));
+        org.junit.Assert.assertTrue("'" + str41 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str41.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str45 + "' != '" + "null output stream provided fail_echo_write" + "'", str45.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray53);
+        org.junit.Assert.assertNotNull(strArray64);
+        org.junit.Assert.assertNotNull(wildcardClass68);
+        org.junit.Assert.assertNotNull(strArray73);
+        org.junit.Assert.assertTrue("'" + str83 + "' != '" + "" + "'", str83.equals(""));
     }
 
     @Test
@@ -14057,10 +14058,10 @@ public class RegressionTest0 {
         mkdirApplication1.run(strArray8, inputStream9, outputStream10);
         try {
             java.lang.String str12 = catApplication0.catFiles(strArray8);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(strArray8);
     }
 
     @Test
@@ -14074,11 +14075,11 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream8 = null;
         try {
             catApplication0.run(strArray6, inputStream7, outputStream8);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray6);
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray6);
     }
 
     @Test
@@ -14133,20 +14134,20 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream73 = null;
         try {
             sortApplication0.run(strArray61, inputStream72, outputStream73);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray12);
-        assertNotNull(strArray24);
-        assertTrue(str28.equals(""));
-        assertTrue(str29.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str33.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray41);
-        assertNotNull(strArray52);
-        assertNotNull(wildcardClass56);
-        assertNotNull(strArray61);
-        assertTrue(str71.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray12);
+        org.junit.Assert.assertNotNull(strArray24);
+        org.junit.Assert.assertTrue("'" + str28 + "' != '" + "" + "'", str28.equals(""));
+        org.junit.Assert.assertTrue("'" + str29 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str29.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str33 + "' != '" + "null output stream provided fail_echo_write" + "'", str33.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray41);
+        org.junit.Assert.assertNotNull(strArray52);
+        org.junit.Assert.assertNotNull(wildcardClass56);
+        org.junit.Assert.assertNotNull(strArray61);
+        org.junit.Assert.assertTrue("'" + str71 + "' != '" + "" + "'", str71.equals(""));
     }
 
     @Test
@@ -14196,18 +14197,18 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream59 = null;
         try {
             cdApplication0.run(strArray48, inputStream58, outputStream59);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
         } catch (sg.edu.nus.comp.cs4218.exception.CdException e) {
         }
-        assertNotNull(strArray11);
-        assertNotNull(strArray23);
-        assertTrue(str27.equals(""));
-        assertTrue(str28.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str32.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray38);
-        assertNotNull(strArray48);
-        assertTrue(str52.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str54.equals(""));
+        org.junit.Assert.assertNotNull(strArray11);
+        org.junit.Assert.assertNotNull(strArray23);
+        org.junit.Assert.assertTrue("'" + str27 + "' != '" + "" + "'", str27.equals(""));
+        org.junit.Assert.assertTrue("'" + str28 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str28.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str32 + "' != '" + "null output stream provided fail_echo_write" + "'", str32.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray38);
+        org.junit.Assert.assertNotNull(strArray48);
+        org.junit.Assert.assertTrue("'" + str52 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str52.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str54 + "' != '" + "" + "'", str54.equals(""));
     }
 
     @Test
@@ -14217,7 +14218,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream0 = null;
         try {
             java.util.List<java.lang.String> strList4 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.replace(inputStream0, "Could not write to output stream", "fail_echo_write", 0);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -14231,10 +14232,10 @@ public class RegressionTest0 {
         java.io.InputStream inputStream5 = null;
         try {
             java.lang.String str6 = sortApplication0.sortFromStdin((java.lang.Boolean) false, (java.lang.Boolean) false, (java.lang.Boolean) true, inputStream5);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
-        assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(wildcardClass1);
     }
 
     @Test
@@ -14295,24 +14296,24 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream77 = null;
         try {
             catApplication0.run(strArray73, inputStream76, outputStream77);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(strArray9);
-        assertNotNull(strArray21);
-        assertTrue(str25.equals(""));
-        assertTrue(str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str30.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray38);
-        assertNotNull(strArray48);
-        assertTrue(str52.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray58);
-        assertTrue(str62.equals(""));
-        assertTrue(str63.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray67);
-        assertTrue(str69.equals("fail_echo_write hi!"));
-        assertNotNull(strArray73);
-        assertTrue(str75.equals("fail_echo_write hi!"));
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertNotNull(strArray21);
+        org.junit.Assert.assertTrue("'" + str25 + "' != '" + "" + "'", str25.equals(""));
+        org.junit.Assert.assertTrue("'" + str26 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str30 + "' != '" + "null output stream provided fail_echo_write" + "'", str30.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray38);
+        org.junit.Assert.assertNotNull(strArray48);
+        org.junit.Assert.assertTrue("'" + str52 + "' != '" + "null output stream provided fail_echo_write" + "'", str52.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray58);
+        org.junit.Assert.assertTrue("'" + str62 + "' != '" + "" + "'", str62.equals(""));
+        org.junit.Assert.assertTrue("'" + str63 + "' != '" + "null output stream provided fail_echo_write" + "'", str63.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray67);
+        org.junit.Assert.assertTrue("'" + str69 + "' != '" + "fail_echo_write hi!" + "'", str69.equals("fail_echo_write hi!"));
+        org.junit.Assert.assertNotNull(strArray73);
+        org.junit.Assert.assertTrue("'" + str75 + "' != '" + "fail_echo_write hi!" + "'", str75.equals("fail_echo_write hi!"));
     }
 
     @Test
@@ -14339,13 +14340,13 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream24 = null;
         try {
             sedApplication0.run(strArray16, inputStream23, outputStream24);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
-        assertNotNull(strArray6);
-        assertNotNull(strArray16);
-        assertTrue(str20.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str22.equals(""));
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertNotNull(strArray16);
+        org.junit.Assert.assertTrue("'" + str20 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str20.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str22 + "' != '" + "" + "'", str22.equals(""));
     }
 
     @Test
@@ -14366,14 +14367,14 @@ public class RegressionTest0 {
         java.lang.String str21 = findApplication4.findFolderContent("null input file provided", strArray18);
         try {
             java.lang.String str22 = wcApplication0.countFromFiles((java.lang.Boolean) true, (java.lang.Boolean) false, (java.lang.Boolean) true, strArray18);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
-        assertNotNull(strArray9);
-        assertTrue(str11.equals(""));
-        assertNotNull(strArray18);
-        assertTrue(str20.equals(""));
-        assertTrue(str21.equals(""));
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertTrue("'" + str11 + "' != '" + "" + "'", str11.equals(""));
+        org.junit.Assert.assertNotNull(strArray18);
+        org.junit.Assert.assertTrue("'" + str20 + "' != '" + "" + "'", str20.equals(""));
+        org.junit.Assert.assertTrue("'" + str21 + "' != '" + "" + "'", str21.equals(""));
     }
 
     @Test
@@ -14430,21 +14431,21 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream76 = null;
         try {
             sortApplication0.run(strArray72, inputStream75, outputStream76);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray10);
-        assertNotNull(strArray22);
-        assertTrue(str26.equals(""));
-        assertTrue(str27.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str31.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray39);
-        assertNotNull(strArray50);
-        assertNotNull(wildcardClass54);
-        assertNotNull(strArray59);
-        assertNotNull(strArray72);
-        assertTrue(str74.equals("fail_echo_write hi!"));
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray10);
+        org.junit.Assert.assertNotNull(strArray22);
+        org.junit.Assert.assertTrue("'" + str26 + "' != '" + "" + "'", str26.equals(""));
+        org.junit.Assert.assertTrue("'" + str27 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str27.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str31 + "' != '" + "null output stream provided fail_echo_write" + "'", str31.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray39);
+        org.junit.Assert.assertNotNull(strArray50);
+        org.junit.Assert.assertNotNull(wildcardClass54);
+        org.junit.Assert.assertNotNull(strArray59);
+        org.junit.Assert.assertNotNull(strArray72);
+        org.junit.Assert.assertTrue("'" + str74 + "' != '" + "fail_echo_write hi!" + "'", str74.equals("fail_echo_write hi!"));
     }
 
     @Test
@@ -14472,14 +14473,14 @@ public class RegressionTest0 {
         mkdirApplication5.run(strArray24, inputStream30, outputStream31);
         try {
             java.lang.String str33 = sortApplication0.sortFromFiles((java.lang.Boolean) true, (java.lang.Boolean) true, (java.lang.Boolean) true, strArray24);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray12);
-        assertNotNull(strArray24);
-        assertTrue(str28.equals(""));
-        assertTrue(str29.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray12);
+        org.junit.Assert.assertNotNull(strArray24);
+        org.junit.Assert.assertTrue("'" + str28 + "' != '" + "" + "'", str28.equals(""));
+        org.junit.Assert.assertTrue("'" + str29 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str29.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -14528,20 +14529,20 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream59 = null;
         try {
             wcApplication0.run(strArray50, inputStream58, outputStream59);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
-        assertNotNull(strArray7);
-        assertNotNull(strArray17);
-        assertTrue(str21.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str23.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray31);
-        assertTrue(str35.equals(""));
-        assertNotNull(strArray40);
-        assertNotNull(strArray50);
-        assertTrue(str54.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str56.equals(""));
-        assertTrue(str57.equals("null output stream provided\r\nfail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray7);
+        org.junit.Assert.assertNotNull(strArray17);
+        org.junit.Assert.assertTrue("'" + str21 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str21.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str23 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str23.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray31);
+        org.junit.Assert.assertTrue("'" + str35 + "' != '" + "" + "'", str35.equals(""));
+        org.junit.Assert.assertNotNull(strArray40);
+        org.junit.Assert.assertNotNull(strArray50);
+        org.junit.Assert.assertTrue("'" + str54 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str54.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str56 + "' != '" + "" + "'", str56.equals(""));
+        org.junit.Assert.assertTrue("'" + str57 + "' != '" + "null output stream provided\r\nfail_echo_write" + "'", str57.equals("null output stream provided\r\nfail_echo_write"));
     }
 
     @Test
@@ -14591,19 +14592,19 @@ public class RegressionTest0 {
         java.lang.Class<?> wildcardClass62 = strArray46.getClass();
         try {
             java.lang.String str63 = grepApplication0.grepFromFiles("fail_echo_empty_params", (java.lang.Boolean) false, (java.lang.Boolean) false, strArray46);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray7);
-        assertNotNull(strArray12);
-        assertNotNull(strArray21);
-        assertTrue(str25.equals(""));
-        assertNotNull(strArray34);
-        assertNotNull(strArray46);
-        assertTrue(str50.equals(""));
-        assertTrue(str51.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str55.equals(""));
-        assertNotNull(wildcardClass62);
+        org.junit.Assert.assertNotNull(strArray7);
+        org.junit.Assert.assertNotNull(strArray12);
+        org.junit.Assert.assertNotNull(strArray21);
+        org.junit.Assert.assertTrue("'" + str25 + "' != '" + "" + "'", str25.equals(""));
+        org.junit.Assert.assertNotNull(strArray34);
+        org.junit.Assert.assertNotNull(strArray46);
+        org.junit.Assert.assertTrue("'" + str50 + "' != '" + "" + "'", str50.equals(""));
+        org.junit.Assert.assertTrue("'" + str51 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str51.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str55 + "' != '" + "" + "'", str55.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass62);
     }
 
     @Test
@@ -14652,18 +14653,18 @@ public class RegressionTest0 {
         java.lang.Class<?> wildcardClass61 = strArray50.getClass();
         try {
             java.lang.String str62 = sortApplication0.sortFromFiles((java.lang.Boolean) false, (java.lang.Boolean) true, (java.lang.Boolean) false, strArray50);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray9);
-        assertNotNull(strArray21);
-        assertNotNull(strArray33);
-        assertTrue(str37.equals(""));
-        assertTrue(str38.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str42.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray50);
-        assertNotNull(wildcardClass61);
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertNotNull(strArray21);
+        org.junit.Assert.assertNotNull(strArray33);
+        org.junit.Assert.assertTrue("'" + str37 + "' != '" + "" + "'", str37.equals(""));
+        org.junit.Assert.assertTrue("'" + str38 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str38.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str42 + "' != '" + "null output stream provided fail_echo_write" + "'", str42.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray50);
+        org.junit.Assert.assertNotNull(wildcardClass61);
     }
 
     @Test
@@ -14686,14 +14687,14 @@ public class RegressionTest0 {
         java.lang.String str25 = lsApplication4.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) true, strArray23);
         try {
             java.lang.String str26 = grepApplication0.grepFromFiles("C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write", (java.lang.Boolean) false, (java.lang.Boolean) true, strArray23);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray12);
-        assertTrue(str16.equals(""));
-        assertTrue(str17.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray23);
-        assertTrue(str25.equals("fail_echo_write:\r\n\r\n\r\nhi!:"));
+        org.junit.Assert.assertNotNull(strArray12);
+        org.junit.Assert.assertTrue("'" + str16 + "' != '" + "" + "'", str16.equals(""));
+        org.junit.Assert.assertTrue("'" + str17 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str17.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray23);
+        org.junit.Assert.assertTrue("'" + str25 + "' != '" + "fail_echo_write:\r\n\r\n\r\nhi!:" + "'", str25.equals("fail_echo_write:\r\n\r\n\r\nhi!:"));
     }
 
     @Test
@@ -14759,21 +14760,21 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream87 = null;
         try {
             cdApplication0.run(strArray79, inputStream86, outputStream87);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
         } catch (sg.edu.nus.comp.cs4218.exception.CdException e) {
         }
-        assertNotNull(strArray8);
-        assertNotNull(strArray13);
-        assertNotNull(strArray22);
-        assertTrue(str26.equals(""));
-        assertNotNull(strArray35);
-        assertNotNull(strArray47);
-        assertTrue(str51.equals(""));
-        assertTrue(str52.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str56.equals(""));
-        assertNotNull(strArray70);
-        assertNotNull(wildcardClass74);
-        assertNotNull(strArray79);
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(strArray13);
+        org.junit.Assert.assertNotNull(strArray22);
+        org.junit.Assert.assertTrue("'" + str26 + "' != '" + "" + "'", str26.equals(""));
+        org.junit.Assert.assertNotNull(strArray35);
+        org.junit.Assert.assertNotNull(strArray47);
+        org.junit.Assert.assertTrue("'" + str51 + "' != '" + "" + "'", str51.equals(""));
+        org.junit.Assert.assertTrue("'" + str52 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str52.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str56 + "' != '" + "" + "'", str56.equals(""));
+        org.junit.Assert.assertNotNull(strArray70);
+        org.junit.Assert.assertNotNull(wildcardClass74);
+        org.junit.Assert.assertNotNull(strArray79);
     }
 
     @Test
@@ -14803,13 +14804,13 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream36 = null;
         try {
             dateApplication0.run(strArray28, inputStream35, outputStream36);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
-        assertNotNull(strArray8);
-        assertNotNull(strArray19);
-        assertNotNull(wildcardClass23);
-        assertNotNull(strArray28);
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(strArray19);
+        org.junit.Assert.assertNotNull(wildcardClass23);
+        org.junit.Assert.assertNotNull(strArray28);
     }
 
     @Test
@@ -14837,15 +14838,15 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream28 = null;
         try {
             pwdApplication0.run(strArray21, inputStream27, outputStream28);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.PwdException; message: pwd: Null Pointer Exception");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.PwdException; message: pwd: Null Pointer Exception");
         } catch (sg.edu.nus.comp.cs4218.exception.PwdException e) {
         }
-        assertTrue(str1.equals("C:\\"));
-        assertNotNull(wildcardClass2);
-        assertTrue(str3.equals("C:\\"));
-        assertNotNull(strArray11);
-        assertNotNull(strArray21);
-        assertTrue(str25.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str1 + "' != '" + "C:\\" + "'", str1.equals("C:\\"));
+        org.junit.Assert.assertNotNull(wildcardClass2);
+        org.junit.Assert.assertTrue("'" + str3 + "' != '" + "C:\\" + "'", str3.equals("C:\\"));
+        org.junit.Assert.assertNotNull(strArray11);
+        org.junit.Assert.assertNotNull(strArray21);
+        org.junit.Assert.assertTrue("'" + str25 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str25.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -14878,14 +14879,14 @@ public class RegressionTest0 {
         mkdirApplication4.run(strArray35, inputStream37, outputStream38);
         try {
             java.lang.String str40 = sortApplication0.sortFromFiles((java.lang.Boolean) true, (java.lang.Boolean) true, (java.lang.Boolean) false, strArray35);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(strArray11);
-        assertNotNull(strArray23);
-        assertTrue(str27.equals(""));
-        assertTrue(str28.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray35);
+        org.junit.Assert.assertNotNull(strArray11);
+        org.junit.Assert.assertNotNull(strArray23);
+        org.junit.Assert.assertTrue("'" + str27 + "' != '" + "" + "'", str27.equals(""));
+        org.junit.Assert.assertTrue("'" + str28 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str28.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray35);
     }
 
     @Test
@@ -14896,7 +14897,7 @@ public class RegressionTest0 {
         java.lang.String[] strArray4 = null;
         try {
             java.lang.String str5 = grepApplication0.grepFromFiles("This is a directory Could not read stream Null Pointer Exception Exception Caught", (java.lang.Boolean) true, (java.lang.Boolean) false, strArray4);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: filesNames is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: filesNames is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
     }
@@ -14941,17 +14942,17 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream55 = null;
         try {
             findApplication0.run(strArray43, inputStream54, outputStream55);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: output stream is null");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: output stream is null");
         } catch (sg.edu.nus.comp.cs4218.exception.FindException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray9);
-        assertTrue(str13.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray23);
-        assertNotNull(strArray34);
-        assertNotNull(wildcardClass38);
-        assertNotNull(strArray43);
-        assertTrue(str50.equals("This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught"));
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertTrue("'" + str13 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str13.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray23);
+        org.junit.Assert.assertNotNull(strArray34);
+        org.junit.Assert.assertNotNull(wildcardClass38);
+        org.junit.Assert.assertNotNull(strArray43);
+        org.junit.Assert.assertTrue("'" + str50 + "' != '" + "This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught" + "'", str50.equals("This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught"));
     }
 
     @Test
@@ -14962,7 +14963,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = grepApplication0.grepFromStdin("C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write", (java.lang.Boolean) false, (java.lang.Boolean) true, inputStream4);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
     }
@@ -14976,7 +14977,7 @@ public class RegressionTest0 {
         cdApplication0.changeToDirectory("C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write");
         try {
             cdApplication0.changeToDirectory("Null Pointer Exception");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write\\Null Pointer Exception: No such file or directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write\\Null Pointer Exception: No such file or directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CdException e) {
         }
     }
@@ -15027,16 +15028,16 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream58 = null;
         try {
             sedApplication0.run(strArray46, inputStream57, outputStream58);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
-        assertNotNull(strArray5);
-        assertNotNull(strArray17);
-        assertNotNull(strArray29);
-        assertTrue(str33.equals(""));
-        assertTrue(str34.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str38.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray46);
+        org.junit.Assert.assertNotNull(strArray5);
+        org.junit.Assert.assertNotNull(strArray17);
+        org.junit.Assert.assertNotNull(strArray29);
+        org.junit.Assert.assertTrue("'" + str33 + "' != '" + "" + "'", str33.equals(""));
+        org.junit.Assert.assertTrue("'" + str34 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str34.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str38 + "' != '" + "null output stream provided fail_echo_write" + "'", str38.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray46);
     }
 
     @Test
@@ -15068,15 +15069,15 @@ public class RegressionTest0 {
         mkdirApplication4.run(strArray34, inputStream35, outputStream36);
         try {
             java.lang.String str38 = sortApplication0.sortFromFiles((java.lang.Boolean) false, (java.lang.Boolean) false, (java.lang.Boolean) true, strArray34);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(strArray11);
-        assertNotNull(strArray23);
-        assertTrue(str27.equals(""));
-        assertTrue(str28.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(wildcardClass32);
-        assertNotNull(strArray34);
+        org.junit.Assert.assertNotNull(strArray11);
+        org.junit.Assert.assertNotNull(strArray23);
+        org.junit.Assert.assertTrue("'" + str27 + "' != '" + "" + "'", str27.equals(""));
+        org.junit.Assert.assertTrue("'" + str28 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str28.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(wildcardClass32);
+        org.junit.Assert.assertNotNull(strArray34);
     }
 
     @Test
@@ -15089,10 +15090,10 @@ public class RegressionTest0 {
         mkdirApplication4.createFolder(strArray7);
         try {
             java.lang.String str9 = grepApplication0.grepFromFiles("fail_echo_empty_params", (java.lang.Boolean) true, (java.lang.Boolean) false, strArray7);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray7);
+        org.junit.Assert.assertNotNull(strArray7);
     }
 
     @Test
@@ -15127,15 +15128,15 @@ public class RegressionTest0 {
         mkdirApplication4.createFolder(strArray45);
         try {
             java.lang.String str47 = sortApplication0.sortFromFiles((java.lang.Boolean) false, (java.lang.Boolean) false, (java.lang.Boolean) true, strArray45);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(strArray11);
-        assertNotNull(strArray23);
-        assertTrue(str27.equals(""));
-        assertTrue(str28.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray35);
-        assertNotNull(strArray45);
+        org.junit.Assert.assertNotNull(strArray11);
+        org.junit.Assert.assertNotNull(strArray23);
+        org.junit.Assert.assertTrue("'" + str27 + "' != '" + "" + "'", str27.equals(""));
+        org.junit.Assert.assertTrue("'" + str28 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str28.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray35);
+        org.junit.Assert.assertNotNull(strArray45);
     }
 
     @Test
@@ -15146,7 +15147,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = sortApplication0.sortFromStdin((java.lang.Boolean) false, (java.lang.Boolean) false, (java.lang.Boolean) true, inputStream4);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -15161,10 +15162,10 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream3 = null;
         try {
             grepApplication0.run(strArray1, inputStream2, outputStream3);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: output stream is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: output stream is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray1);
+        org.junit.Assert.assertNotNull(strArray1);
     }
 
     @Test
@@ -15186,13 +15187,13 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream17 = null;
         try {
             catApplication0.run(strArray10, inputStream16, outputStream17);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray10);
-        assertTrue(str14.equals(""));
-        assertTrue(str15.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray10);
+        org.junit.Assert.assertTrue("'" + str14 + "' != '" + "" + "'", str14.equals(""));
+        org.junit.Assert.assertTrue("'" + str15 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str15.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -15200,7 +15201,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test473");
         boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isSpecialSymbol("null input file provided");
-        assertTrue(boolean1 == true);
+        org.junit.Assert.assertTrue("'" + boolean1 + "' != '" + true + "'", boolean1 == true);
     }
 
     @Test
@@ -15253,20 +15254,20 @@ public class RegressionTest0 {
         java.lang.String str71 = findApplication2.findFolderContent("fail_echo_write hi!", strArray61);
         try {
             java.lang.String str72 = catApplication0.catFiles(strArray61);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray12);
-        assertNotNull(strArray24);
-        assertTrue(str28.equals(""));
-        assertTrue(str29.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str33.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray41);
-        assertNotNull(strArray52);
-        assertNotNull(wildcardClass56);
-        assertNotNull(strArray61);
-        assertTrue(str71.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray12);
+        org.junit.Assert.assertNotNull(strArray24);
+        org.junit.Assert.assertTrue("'" + str28 + "' != '" + "" + "'", str28.equals(""));
+        org.junit.Assert.assertTrue("'" + str29 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str29.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str33 + "' != '" + "null output stream provided fail_echo_write" + "'", str33.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray41);
+        org.junit.Assert.assertNotNull(strArray52);
+        org.junit.Assert.assertNotNull(wildcardClass56);
+        org.junit.Assert.assertNotNull(strArray61);
+        org.junit.Assert.assertTrue("'" + str71 + "' != '" + "" + "'", str71.equals(""));
     }
 
     @Test
@@ -15277,7 +15278,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInStdin("Exception Caught", "This is a directory Could not read stream Null Pointer Exception Exception Caught", (int) 'a', inputStream4);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -15315,17 +15316,17 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream37 = null;
         try {
             sortApplication0.run(strArray27, inputStream36, outputStream37);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(strArray6);
-        assertTrue(str10.equals(""));
-        assertNotNull(strArray17);
-        assertNotNull(strArray27);
-        assertTrue(str31.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str33.equals(""));
-        assertNotNull(wildcardClass34);
-        assertTrue(str35.equals(""));
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertTrue("'" + str10 + "' != '" + "" + "'", str10.equals(""));
+        org.junit.Assert.assertNotNull(strArray17);
+        org.junit.Assert.assertNotNull(strArray27);
+        org.junit.Assert.assertTrue("'" + str31 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str31.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str33 + "' != '" + "" + "'", str33.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass34);
+        org.junit.Assert.assertTrue("'" + str35 + "' != '" + "" + "'", str35.equals(""));
     }
 
     @Test
@@ -15335,7 +15336,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.SedApplication sedApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SedApplication();
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInFile("C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write", "fail_echo_write hi!", (int) (byte) 10, "File is null.");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
     }
@@ -15357,13 +15358,13 @@ public class RegressionTest0 {
         java.lang.String str15 = lsApplication2.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray10);
         try {
             java.lang.String str16 = catApplication0.catFiles(strArray10);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray10);
-        assertTrue(str14.equals(""));
-        assertTrue(str15.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray10);
+        org.junit.Assert.assertTrue("'" + str14 + "' != '" + "" + "'", str14.equals(""));
+        org.junit.Assert.assertTrue("'" + str15 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str15.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -15373,7 +15374,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.SedApplication sedApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SedApplication();
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInFile("fail_echo_write:\r\n\r\n\r\nhi!:", "This is a directory", (int) ' ', "This is a directory");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
     }
@@ -15409,15 +15410,15 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream36 = null;
         try {
             grepApplication0.run(strArray31, inputStream35, outputStream36);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: output stream is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: output stream is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray8);
-        assertNotNull(strArray20);
-        assertTrue(str24.equals(""));
-        assertTrue(str25.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(wildcardClass29);
-        assertNotNull(strArray31);
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(strArray20);
+        org.junit.Assert.assertTrue("'" + str24 + "' != '" + "" + "'", str24.equals(""));
+        org.junit.Assert.assertTrue("'" + str25 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str25.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(wildcardClass29);
+        org.junit.Assert.assertNotNull(strArray31);
     }
 
     @Test
@@ -15427,7 +15428,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.SedApplication sedApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SedApplication();
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInFile("null arguments", "fail_echo_empty_params", 1, "");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
     }
@@ -15437,7 +15438,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test482");
         boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isSpecialSymbol("C:\\");
-        assertTrue(boolean1 == true);
+        org.junit.Assert.assertTrue("'" + boolean1 + "' != '" + true + "'", boolean1 == true);
     }
 
     @Test
@@ -15489,19 +15490,19 @@ public class RegressionTest0 {
         mkdirApplication4.createFolder(strArray47);
         try {
             java.lang.String str65 = sortApplication0.sortFromFiles((java.lang.Boolean) true, (java.lang.Boolean) false, (java.lang.Boolean) true, strArray47);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(strArray8);
-        assertNotNull(strArray13);
-        assertNotNull(strArray22);
-        assertTrue(str26.equals(""));
-        assertNotNull(strArray35);
-        assertNotNull(strArray47);
-        assertTrue(str51.equals(""));
-        assertTrue(str52.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str56.equals(""));
-        assertNotNull(wildcardClass63);
+        org.junit.Assert.assertNotNull(strArray8);
+        org.junit.Assert.assertNotNull(strArray13);
+        org.junit.Assert.assertNotNull(strArray22);
+        org.junit.Assert.assertTrue("'" + str26 + "' != '" + "" + "'", str26.equals(""));
+        org.junit.Assert.assertNotNull(strArray35);
+        org.junit.Assert.assertNotNull(strArray47);
+        org.junit.Assert.assertTrue("'" + str51 + "' != '" + "" + "'", str51.equals(""));
+        org.junit.Assert.assertTrue("'" + str52 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str52.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str56 + "' != '" + "" + "'", str56.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass63);
     }
 
     @Test
@@ -15567,21 +15568,21 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream86 = null;
         try {
             cdApplication0.run(strArray75, inputStream85, outputStream86);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
         } catch (sg.edu.nus.comp.cs4218.exception.CdException e) {
         }
-        assertNotNull(strArray15);
-        assertNotNull(strArray27);
-        assertTrue(str31.equals(""));
-        assertTrue(str32.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str36.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray44);
-        assertNotNull(strArray54);
-        assertTrue(str58.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray65);
-        assertNotNull(strArray75);
-        assertTrue(str79.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str81.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray15);
+        org.junit.Assert.assertNotNull(strArray27);
+        org.junit.Assert.assertTrue("'" + str31 + "' != '" + "" + "'", str31.equals(""));
+        org.junit.Assert.assertTrue("'" + str32 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str32.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str36 + "' != '" + "null output stream provided fail_echo_write" + "'", str36.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray44);
+        org.junit.Assert.assertNotNull(strArray54);
+        org.junit.Assert.assertTrue("'" + str58 + "' != '" + "null output stream provided fail_echo_write" + "'", str58.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray65);
+        org.junit.Assert.assertNotNull(strArray75);
+        org.junit.Assert.assertTrue("'" + str79 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str79.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str81 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str81.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
     }
 
     @Test
@@ -15592,7 +15593,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = grepApplication0.grepFromStdin("null output stream provided", (java.lang.Boolean) false, (java.lang.Boolean) true, inputStream4);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
     }
@@ -15605,7 +15606,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInStdin("null output stream provided", "This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught", (int) 'a', inputStream4);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -15617,7 +15618,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.DateApplication dateApplication0 = new sg.edu.nus.comp.cs4218.impl.app.DateApplication();
         try {
             java.lang.String str2 = dateApplication0.getDate("Could not write to output stream");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
     }
@@ -15684,25 +15685,25 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream83 = null;
         try {
             exitApplication0.run(strArray73, inputStream82, outputStream83);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.ExitException; message: exit: Terminate process.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.ExitException; message: exit: Terminate process.");
         } catch (sg.edu.nus.comp.cs4218.exception.ExitException e) {
         }
-        assertNotNull(strArray6);
-        assertNotNull(strArray16);
-        assertTrue(str20.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str22.equals(""));
-        assertNotNull(strArray30);
-        assertNotNull(strArray40);
-        assertTrue(str44.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str46.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray54);
-        assertTrue(str58.equals(""));
-        assertNotNull(strArray63);
-        assertNotNull(strArray73);
-        assertTrue(str77.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str79.equals(""));
-        assertTrue(str80.equals("null output stream provided\r\nfail_echo_write"));
-        assertTrue(str81.equals(""));
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertNotNull(strArray16);
+        org.junit.Assert.assertTrue("'" + str20 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str20.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str22 + "' != '" + "" + "'", str22.equals(""));
+        org.junit.Assert.assertNotNull(strArray30);
+        org.junit.Assert.assertNotNull(strArray40);
+        org.junit.Assert.assertTrue("'" + str44 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str44.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str46 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str46.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray54);
+        org.junit.Assert.assertTrue("'" + str58 + "' != '" + "" + "'", str58.equals(""));
+        org.junit.Assert.assertNotNull(strArray63);
+        org.junit.Assert.assertNotNull(strArray73);
+        org.junit.Assert.assertTrue("'" + str77 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str77.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str79 + "' != '" + "" + "'", str79.equals(""));
+        org.junit.Assert.assertTrue("'" + str80 + "' != '" + "null output stream provided\r\nfail_echo_write" + "'", str80.equals("null output stream provided\r\nfail_echo_write"));
+        org.junit.Assert.assertTrue("'" + str81 + "' != '" + "" + "'", str81.equals(""));
     }
 
     @Test
@@ -15768,25 +15769,25 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream81 = null;
         try {
             sortApplication0.run(strArray60, inputStream80, outputStream81);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: ");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(wildcardClass1);
-        assertNotNull(strArray5);
-        assertNotNull(strArray14);
-        assertTrue(str16.equals(""));
-        assertNotNull(strArray21);
-        assertNotNull(strArray26);
-        assertNotNull(strArray35);
-        assertTrue(str39.equals(""));
-        assertNotNull(strArray48);
-        assertNotNull(strArray60);
-        assertTrue(str64.equals(""));
-        assertTrue(str65.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str69.equals(""));
-        assertNotNull(wildcardClass76);
-        assertTrue(str77.equals(""));
-        assertNotNull(wildcardClass79);
+        org.junit.Assert.assertNotNull(wildcardClass1);
+        org.junit.Assert.assertNotNull(strArray5);
+        org.junit.Assert.assertNotNull(strArray14);
+        org.junit.Assert.assertTrue("'" + str16 + "' != '" + "" + "'", str16.equals(""));
+        org.junit.Assert.assertNotNull(strArray21);
+        org.junit.Assert.assertNotNull(strArray26);
+        org.junit.Assert.assertNotNull(strArray35);
+        org.junit.Assert.assertTrue("'" + str39 + "' != '" + "" + "'", str39.equals(""));
+        org.junit.Assert.assertNotNull(strArray48);
+        org.junit.Assert.assertNotNull(strArray60);
+        org.junit.Assert.assertTrue("'" + str64 + "' != '" + "" + "'", str64.equals(""));
+        org.junit.Assert.assertTrue("'" + str65 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str65.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str69 + "' != '" + "" + "'", str69.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass76);
+        org.junit.Assert.assertTrue("'" + str77 + "' != '" + "" + "'", str77.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass79);
     }
 
     @Test
@@ -15829,16 +15830,16 @@ public class RegressionTest0 {
         mkdirApplication4.run(strArray46, inputStream53, outputStream54);
         try {
             java.lang.String str56 = wcApplication0.countFromFiles((java.lang.Boolean) false, (java.lang.Boolean) true, (java.lang.Boolean) true, strArray46);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
         }
-        assertNotNull(strArray7);
-        assertNotNull(strArray17);
-        assertNotNull(strArray29);
-        assertTrue(str33.equals(""));
-        assertTrue(str34.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str38.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray46);
+        org.junit.Assert.assertNotNull(strArray7);
+        org.junit.Assert.assertNotNull(strArray17);
+        org.junit.Assert.assertNotNull(strArray29);
+        org.junit.Assert.assertTrue("'" + str33 + "' != '" + "" + "'", str33.equals(""));
+        org.junit.Assert.assertTrue("'" + str34 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str34.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str38 + "' != '" + "null output stream provided fail_echo_write" + "'", str38.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray46);
     }
 
     @Test
@@ -15878,16 +15879,16 @@ public class RegressionTest0 {
         echoApplication4.run(strArray45, inputStream53, outputStream54);
         try {
             java.lang.String str56 = grepApplication0.grepFromFiles("null output stream provided\r\nfail_echo_write", (java.lang.Boolean) false, (java.lang.Boolean) false, strArray45);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-        assertNotNull(strArray11);
-        assertTrue(str15.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray25);
-        assertNotNull(strArray36);
-        assertNotNull(wildcardClass40);
-        assertNotNull(strArray45);
-        assertTrue(str52.equals("This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught"));
+        org.junit.Assert.assertNotNull(strArray11);
+        org.junit.Assert.assertTrue("'" + str15 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str15.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray25);
+        org.junit.Assert.assertNotNull(strArray36);
+        org.junit.Assert.assertNotNull(wildcardClass40);
+        org.junit.Assert.assertNotNull(strArray45);
+        org.junit.Assert.assertTrue("'" + str52 + "' != '" + "This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught" + "'", str52.equals("This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught"));
     }
 
     @Test
@@ -15907,11 +15908,11 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream16 = null;
         try {
             cdApplication0.run(strArray12, inputStream15, outputStream16);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
         } catch (sg.edu.nus.comp.cs4218.exception.CdException e) {
         }
-        assertNotNull(strArray12);
-        assertTrue(str14.equals(""));
+        org.junit.Assert.assertNotNull(strArray12);
+        org.junit.Assert.assertTrue("'" + str14 + "' != '" + "" + "'", str14.equals(""));
     }
 
     @Test
@@ -15942,17 +15943,17 @@ public class RegressionTest0 {
         java.lang.String str37 = findApplication4.findFolderContent("hi!", strArray34);
         try {
             java.lang.String str38 = sortApplication0.sortFromFiles((java.lang.Boolean) false, (java.lang.Boolean) false, (java.lang.Boolean) false, strArray34);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
         } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
-        assertNotNull(strArray9);
-        assertTrue(str13.equals(""));
-        assertNotNull(strArray23);
-        assertTrue(str27.equals(""));
-        assertTrue(str28.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray34);
-        assertTrue(str36.equals("fail_echo_write:\r\n\r\n\r\nhi!:"));
-        assertTrue(str37.equals(""));
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertTrue("'" + str13 + "' != '" + "" + "'", str13.equals(""));
+        org.junit.Assert.assertNotNull(strArray23);
+        org.junit.Assert.assertTrue("'" + str27 + "' != '" + "" + "'", str27.equals(""));
+        org.junit.Assert.assertTrue("'" + str28 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str28.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray34);
+        org.junit.Assert.assertTrue("'" + str36 + "' != '" + "fail_echo_write:\r\n\r\n\r\nhi!:" + "'", str36.equals("fail_echo_write:\r\n\r\n\r\nhi!:"));
+        org.junit.Assert.assertTrue("'" + str37 + "' != '" + "" + "'", str37.equals(""));
     }
 
     @Test
@@ -15963,7 +15964,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream4 = null;
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInStdin("null output stream provided", "File is null.", 10, inputStream4);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
+            org.junit.Assert.fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
     }
@@ -15973,7 +15974,7 @@ public class RegressionTest0 {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test495");
         boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isInteger("C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write");
-        assertTrue(boolean1 == false);
+        org.junit.Assert.assertTrue("'" + boolean1 + "' != '" + false + "'", boolean1 == false);
     }
 
     @Test
@@ -15993,12 +15994,12 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream13 = null;
         try {
             sedApplication0.run(strArray6, inputStream12, outputStream13);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: Invalid syntax.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
-        assertNotNull(strArray6);
-        assertTrue(str10.equals(""));
-        assertNotNull(wildcardClass11);
+        org.junit.Assert.assertNotNull(strArray6);
+        org.junit.Assert.assertTrue("'" + str10 + "' != '" + "" + "'", str10.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass11);
     }
 
     @Test
@@ -16029,14 +16030,14 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream32 = null;
         try {
             catApplication0.run(strArray21, inputStream31, outputStream32);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
         } catch (sg.edu.nus.comp.cs4218.exception.CatException e) {
         }
-        assertNotNull(strArray9);
-        assertNotNull(strArray21);
-        assertTrue(str25.equals(""));
-        assertTrue(str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str30.equals("null output stream provided fail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray9);
+        org.junit.Assert.assertNotNull(strArray21);
+        org.junit.Assert.assertTrue("'" + str25 + "' != '" + "" + "'", str25.equals(""));
+        org.junit.Assert.assertTrue("'" + str26 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str26.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str30 + "' != '" + "null output stream provided fail_echo_write" + "'", str30.equals("null output stream provided fail_echo_write"));
     }
 
     @Test
@@ -16092,23 +16093,23 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream69 = null;
         try {
             findApplication0.run(strArray60, inputStream68, outputStream69);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: output stream is null");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: output stream is null");
         } catch (sg.edu.nus.comp.cs4218.exception.FindException e) {
         }
-        assertNotNull(strArray5);
-        assertTrue(str9.equals(""));
-        assertNotNull(wildcardClass10);
-        assertNotNull(strArray17);
-        assertNotNull(strArray27);
-        assertTrue(str31.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str33.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray41);
-        assertTrue(str45.equals(""));
-        assertNotNull(strArray50);
-        assertNotNull(strArray60);
-        assertTrue(str64.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str66.equals(""));
-        assertTrue(str67.equals("null output stream provided\r\nfail_echo_write"));
+        org.junit.Assert.assertNotNull(strArray5);
+        org.junit.Assert.assertTrue("'" + str9 + "' != '" + "" + "'", str9.equals(""));
+        org.junit.Assert.assertNotNull(wildcardClass10);
+        org.junit.Assert.assertNotNull(strArray17);
+        org.junit.Assert.assertNotNull(strArray27);
+        org.junit.Assert.assertTrue("'" + str31 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str31.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str33 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str33.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertNotNull(strArray41);
+        org.junit.Assert.assertTrue("'" + str45 + "' != '" + "" + "'", str45.equals(""));
+        org.junit.Assert.assertNotNull(strArray50);
+        org.junit.Assert.assertNotNull(strArray60);
+        org.junit.Assert.assertTrue("'" + str64 + "' != '" + "null output stream provided:\r\n\r\n\r\nfail_echo_write:" + "'", str64.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
+        org.junit.Assert.assertTrue("'" + str66 + "' != '" + "" + "'", str66.equals(""));
+        org.junit.Assert.assertTrue("'" + str67 + "' != '" + "null output stream provided\r\nfail_echo_write" + "'", str67.equals("null output stream provided\r\nfail_echo_write"));
     }
 
     @Test
@@ -16118,7 +16119,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.SedApplication sedApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SedApplication();
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInFile("Could not read stream", "This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught", (int) (short) 1, "fail_echo_empty_params");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
     }
@@ -16130,7 +16131,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.SedApplication sedApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SedApplication();
         try {
             java.lang.String str5 = sedApplication0.replaceSubstringInFile("", "null input file provided", (int) '#', "Terminate process.");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
+            org.junit.Assert.fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SedException; message: sed: File doesn't exist.");
         } catch (sg.edu.nus.comp.cs4218.exception.SedException e) {
         }
     }

@@ -1,7 +1,6 @@
 package sg.edu.nus.comp.cs4218.impl.app;
 
 import sg.edu.nus.comp.cs4218.app.SortInterface;
-import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
 import sg.edu.nus.comp.cs4218.exception.SortException;
 import sg.edu.nus.comp.cs4218.impl.util.StringUtils;
 
@@ -20,24 +19,27 @@ public class SortApplication implements SortInterface{
      * @throws Exception
      */
     public String sortFromFiles(Boolean isFirstWordNumber, Boolean isReverseOrder, Boolean isCaseIndependent,
-                         String... fileName) throws Exception{
-        List<String> list = new ArrayList<String>();
+                         String... fileName) throws SortException {
+        List<String> list = new ArrayList<>();
         for (String file_string: fileName){
             File file = new File(file_string);
             if (!file.exists()){
                 throw new SortException("File not exist");
             }
-            FileReader fileReader = new FileReader(file_string);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            String string;
-            while ((string = bufferedReader.readLine()) != null){
-//                if (isFirstWordNumber && !StringUtils.isNumberic(string.split(" ")[0])){
-//                    throw new SortException("");
-//                }
-               list.add(string);
+            try {
+                FileReader fileReader = new FileReader(file_string);
+                BufferedReader bufferedReader = new BufferedReader(fileReader);
+                String string;
+                while ((string = bufferedReader.readLine()) != null) {
+                    list.add(string);
+                }
+                bufferedReader.close();
+                fileReader.close();
+            } catch (FileNotFoundException e) {
+                throw (SortException) new SortException("File not found!").initCause(e);
+            } catch (IOException e) {
+                throw (SortException) new SortException("IO not working!").initCause(e);
             }
-            bufferedReader.close();
-            fileReader.close();
         }
         sortList(list, isFirstWordNumber, isCaseIndependent);
         if (isReverseOrder){
