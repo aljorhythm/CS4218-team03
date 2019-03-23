@@ -23,7 +23,7 @@ public class WcApplication implements WcInterface {
         for (int i = 0; i < fileName.length; i++) {
             try {
                 InputStream inputStream = IOUtils.openInputStream(fileName[i]);
-                result.append(countFromStdin(isBytes, isLines, isWords, inputStream)).append(" " + fileName[i]).append(StringUtils.STRING_NEWLINE);
+                result.append(countFromStdin(isBytes, isLines, isWords, inputStream)).append(' ').append(fileName[i]).append(StringUtils.STRING_NEWLINE);
                 if (i == fileName.length - 1 && fileName.length > 1) {
                     result.append(getTotalWc(isBytes, isLines, isWords, result.toString().trim()));
                 }
@@ -53,7 +53,7 @@ public class WcApplication implements WcInterface {
                 numberOfBytes += line.getBytes().length;
                 String[] words = line.split(" ");
                 for (String w : words) {
-                    if (!w.equals("") && !w.equals("\t")) {
+                    if (!"".equals(w) && !"\t".equals(w)) {
                         numberOfWords += 1;
                     }
                 }
@@ -118,7 +118,6 @@ public class WcApplication implements WcInterface {
         }
 
         try {
-            int i = 0;
             stdout.write(result.getBytes(CHARSET_UTF8));
         } catch (IOException e) {
             throw (WcException) new WcException("wc failed to write!").initCause(e);
@@ -134,7 +133,9 @@ public class WcApplication implements WcInterface {
         while(true)
         {
             try {
-                if ((line=bufReader.readLine()) != null) {
+                if ((line = bufReader.readLine()) == null) {
+                    break;
+                } else {
                     String[] items = line.split(" ");
                     int item = 0;
                     if (isLines) {
@@ -149,8 +150,6 @@ public class WcApplication implements WcInterface {
                         totalBytes += Integer.parseInt(items[item]);
                         item++;
                     }
-                } else {
-                    break;
                 }
             } catch (IOException e) {
                 throw (WcException) new WcException("IO not working").initCause(e);
