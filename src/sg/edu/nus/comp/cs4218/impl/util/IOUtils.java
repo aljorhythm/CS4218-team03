@@ -14,8 +14,8 @@ import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHARSET_UTF8;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
 public final class IOUtils {
-    public static String NULL_STREAM = "null_stream";
-    public static String NULL_STRING= "null_string";
+    public static final String NULL_STREAM = "null_stream";
+    public static final String NULL_STRING= "null_string";
 
     private IOUtils() {
     }
@@ -81,6 +81,11 @@ public final class IOUtils {
         outputStream.close();
     }
 
+    /**
+     * Resolves relative file path with respect to working directory
+     * @param fileName
+     * @return resolved file path
+     */
     public static Path resolveFilePath(String fileName) {
         Path currentDirectory = Paths.get(Environment.currentDirectory);
         return currentDirectory.resolve(fileName);
@@ -136,16 +141,16 @@ public final class IOUtils {
     /**
      * Converts input from stream into list of String representing lines
      *
-     * @param in input stream
+     * @param inputStream input stream
      * @return String from input stream
      * @throws IOException
      */
-    public static String[] stringsFromInputStream(InputStream in) throws IOException {
-        if (in == null) {
+    public static String[] stringsFromInputStream(InputStream inputStream) throws IOException {
+        if (inputStream == null) {
             throw new IOException(NULL_STREAM);
         }
 
-        String string = stringFromInputStream(in);
+        String string = stringFromInputStream(inputStream);
         if(string.isEmpty()) {
             return new String[]{};
         }
