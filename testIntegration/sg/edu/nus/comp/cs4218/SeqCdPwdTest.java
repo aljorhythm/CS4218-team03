@@ -67,7 +67,7 @@ public class SeqCdPwdTest {
     void testSequenceCmdCdPwd() throws UnsupportedEncodingException {
         String expected = tempDir + StringUtils.STRING_NEWLINE;
         InputStream inputStream = new ByteArrayInputStream("test data ".getBytes());
-        OutputStream outputStream = new ByteArrayOutputStream();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         List<Command> commands = new ArrayList<>();
         List<String> argForCd = new ArrayList<>();
         List<String> argForPwd = new ArrayList<>();
@@ -84,7 +84,7 @@ public class SeqCdPwdTest {
         } catch (AbstractApplicationException | ShellException e) {
             e.printStackTrace();
         }
-        String actual = ((ByteArrayOutputStream) outputStream).toString(StandardCharsets.UTF_8);
+        String actual = outputStream.toString(CHARSET_UTF8);
         assertEquals(actual, expected);
     }
 }
