@@ -34,10 +34,10 @@ public class QuotingCatTest {
     String emptyFile = testDir + CHAR_FILE_SEP + "empty.txt";
     String testFileName1 = testDir + CHAR_FILE_SEP + "testFile1.txt";
     String testFileName2 = testDir + CHAR_FILE_SEP + "testFile2.txt";
-    String testFile1Content = String.join(StringUtils.STRING_NEWLINE, new String[]{"test1 For Cat Quoting",
-    "easy","for characters","4 lines"})+STRING_NEWLINE ;
-    String testFile2Content = String.join(StringUtils.STRING_NEWLINE, new String[]{"test2 For Cat Quoting test",
-    "!@#$%^&*()","for number and symbols","1324567890"})+STRING_NEWLINE;
+    String testFile1Content = String.join("\n", new String[]{"test1 For Cat Quoting",
+    "easy","for characters","4 lines"})+"\n";
+    String testFile2Content = String.join("\n", new String[]{"test2 For Cat Quoting test",
+    "!@#$%^&*()","for number and symbols","1324567890"})+"\n";
     String testFileTogether = testFile1Content + STRING_NEWLINE +testFile2Content + STRING_NEWLINE;
     String catStringEmpty = "cat `echo "+emptyFile+"`";
     String catSthWrong = "cat `echo "+"wrong"+"`";
@@ -146,7 +146,7 @@ public class QuotingCatTest {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         Command command = CommandBuilder.parseCommand(catString1,new ApplicationRunner());
         command.evaluate(null,byteArrayOutputStream);
-        assertEquals(testFile1Content,new String(byteArrayOutputStream.toByteArray()));
+        assertEquals(testFile1Content + STRING_NEWLINE, new String(byteArrayOutputStream.toByteArray()));
     }
 
     /**
@@ -159,7 +159,7 @@ public class QuotingCatTest {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         Command command = CommandBuilder.parseCommand(catString2,new ApplicationRunner());
         command.evaluate(null,byteArrayOutputStream);
-        assertEquals(testFile2Content,new String(byteArrayOutputStream.toByteArray()));
+        assertEquals(testFile2Content + STRING_NEWLINE, new String(byteArrayOutputStream.toByteArray()));
     }
 
     /**
