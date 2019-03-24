@@ -16,7 +16,16 @@ import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.*;
 
 @SuppressWarnings("PMD.ExcessiveMethodLength")
 public final class ArgumentResolver {
-    private ArgumentResolver() {
+    public ArgumentResolver() {
+        // made class a dependency ie. not static
+    }
+
+    public List<String> parseArguments(List<String> argsList, ApplicationRunner appRunner) throws ShellException {
+        return parseArg(argsList, appRunner);
+    }
+
+    public List<String> resolveOneArgument(String arg, ApplicationRunner appRunner) throws ShellException {
+        return resolveOneArg( arg,  appRunner);
     }
 
     /**
@@ -27,12 +36,12 @@ public final class ArgumentResolver {
      * @return The list of parsed arguments.
      * @throws ShellException If any of the arguments have an invalid syntax.
      */
-    public static List<String> parseArguments(List<String> argsList, ApplicationRunner appRunner) throws ShellException {
+    private static List<String> parseArg(List<String> argsList, ApplicationRunner appRunner) throws ShellException {
         List<String> parsedArgsList = new LinkedList<>();
 
         List<String> parsedArgsSegment = new LinkedList<>();
         for (String arg : argsList) {
-            parsedArgsSegment.addAll(resolveOneArgument(arg, appRunner));
+            parsedArgsSegment.addAll(resolveOneArg(arg, appRunner));
         }
         parsedArgsList.addAll(parsedArgsSegment);
         return parsedArgsList;
@@ -51,7 +60,7 @@ public final class ArgumentResolver {
      * @return A list containing one or more parsed args, depending on the outcome of the parsing.
      * @throws ShellException If there are any mismatched quotes.
      */
-    public static List<String> resolveOneArgument(String arg, ApplicationRunner appRunner) throws ShellException {
+    private static List<String> resolveOneArg(String arg, ApplicationRunner appRunner) throws ShellException {
         Queue<Character> unmatchedQuotes = new LinkedList<>();
         LinkedList<RegexArgument> parsedArgsSegment = new LinkedList<>();
         RegexArgument parsedArg = new RegexArgument();
