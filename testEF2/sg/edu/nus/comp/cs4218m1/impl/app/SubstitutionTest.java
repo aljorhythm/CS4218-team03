@@ -1,83 +1,100 @@
 package sg.edu.nus.comp.cs4218m1.impl.app;
 
 import org.junit.jupiter.api.Test;
-import sg.edu.nus.comp.cs4218.Environment;
-import sg.edu.nus.comp.cs4218.exception.DateException;
+import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
 import sg.edu.nus.comp.cs4218.exception.ShellException;
-import sg.edu.nus.comp.cs4218.impl.ShellImpl;
-import sg.edu.nus.comp.cs4218.impl.app.DateApplication;
-import sg.edu.nus.comp.cs4218.impl.util.IOUtils;
+import sg.edu.nus.comp.cs4218.impl.cmd.CallCommand;
+import sg.edu.nus.comp.cs4218.impl.util.ApplicationRunner;
+import sg.edu.nus.comp.cs4218.impl.util.CommandBuilder;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 
-import static java.time.Duration.ofSeconds;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTimeout;
+import static org.junit.jupiter.api.Assertions.fail;
+import static sg.edu.nus.comp.cs4218.impl.util.IOUtils.stringToInputStream;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHARSET_UTF8;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
 class SubstitutionTest {
-    
-    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-    String currentDirectory = Environment.currentDirectory;
+    private final ApplicationRunner mockAppRunner = new MockAppRunner();
 
     /**
-     * shell should show the date(with no arguments)
+     * Mock application runner that does straightforward stuff without any commands
      */
-    @Test
-    void dateNoArgSubstitutionEcho() throws IOException, ShellException, DateException {
-        InputStream inputStream = IOUtils.stringToInputStream("echo `date`" + STRING_NEWLINE);
-        ShellImpl shell = new ShellImpl(inputStream,outputStream);
-        shell.run();
-        DateApplication dateApplication = new DateApplication();
-        String date = dateApplication.getDate(null);
-        String expect = currentDirectory + ">" + date + STRING_NEWLINE + ">";
-        String actual = outputStream.toString(CHARSET_UTF8);
-        assertEquals(expect,actual);
+    static class MockAppRunner extends ApplicationRunner {
+
+        @Override
+        public void runApp(String app, String[] argsArray, InputStream inputStream, OutputStream outputStream) throws ShellException, AbstractApplicationException {
+            String output = "";
+            String[] filteredArgsArr = deleteDefaultArg(argsArray);
+            if ("expandABC".equals(app)) {
+                output = "A B C";
+            } else if ("repeat".equals(app) && filteredArgsArr != null) {//NOPMD
+                String[] outputArr = new String[filteredArgsArr.length * 2];
+                for(int i = 0; i < filteredArgsArr.length; i++) {
+                    String str = filteredArgsArr[i];
+                    outputArr[i * 2] = str;
+                    outputArr[i * 2 +  1] = str;
+                }
+                output = String.join(" ", outputArr);
+            }
+
+            try {
+                outputStream.write(output.getBytes(CHARSET_UTF8));
+            } catch (IOException e) {
+                fail("Should not fail writing to output stream for tests");
+            }
+        }
     }
 
     /**
-     * shell should show the date(with one arguments)
+     * Helper method to assert app
      */
-    @Test
-    void dateWithOneArgSubstitutionEcho() throws IOException, ShellException, DateException {
-        InputStream inputStream = IOUtils.stringToInputStream("echo `date +\"%m-%d-%y\"`" + STRING_NEWLINE);
-        ShellImpl shell = new ShellImpl(inputStream,outputStream);
-        shell.run();
-        DateApplication dateApplication = new DateApplication();
-        String date = dateApplication.getDate("%m-%d-%y");
-        String expect = currentDirectory + ">" + date + STRING_NEWLINE + ">";
-        String actual = outputStream.toString(CHARSET_UTF8);
-        assertEquals(expect,actual);
+    void assertMockRunner(String app, String[] args, String expected) {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        InputStream input = null;
+        try {
+            input = stringToInputStream(app);
+        } catch (IOException e) {
+            fail("Test method should not fail");
+        }
+        try {
+            mockAppRunner.runApp(app, args, input, outputStream);
+        } catch (ShellException e) {
+            fail("Test method should not fail");
+        } catch (AbstractApplicationException e) {
+            fail("Test method should not fail");
+        }
+        assertEquals(expected, outputStream.toString());
     }
 
     /**
-     * shell echo substitute the date. provide format to the date
+     * Tests mock app working as expected
+     * @throws IOException
+     * @throws ShellException
+     * @throws AbstractApplicationException
      */
     @Test
-    void echoWithOneArgSubstitutionDate() throws IOException, ShellException, DateException {
-        InputStream inputStream = IOUtils.stringToInputStream("date `echo +\"%m-%d-%y\"`" + STRING_NEWLINE);
-        ShellImpl shell = new ShellImpl(inputStream,outputStream);
-        shell.run();
-        DateApplication dateApplication = new DateApplication();
-        String date = dateApplication.getDate("%m-%d-%y");
-        String expect = currentDirectory + ">" + date + STRING_NEWLINE + ">";
-        String actual = outputStream.toString(CHARSET_UTF8);
-        assertEquals(expect,actual);
+    void runMockApp() throws IOException, ShellException, AbstractApplicationException {
+        assertMockRunner("expandABC", null, "A B C");
+        assertMockRunner("repeat", null,"");
+        assertMockRunner("repeat", new String[]{"repeat", "abc"}, "abc abc");
+        assertMockRunner("repeat", new String[]{"repeat", "abc", "123"}, "abc abc 123 123");
     }
 
     /**
-     * shell should exit
+     * Substitute simple command
+     * @throws ShellException
+     * @throws AbstractApplicationException
      */
     @Test
-    void exitSubstitution() throws IOException, ShellException, DateException {
-        InputStream inputStream = IOUtils.stringToInputStream("echo `exit`" + STRING_NEWLINE);
-        ShellImpl shell = new ShellImpl(inputStream,outputStream);
-        assertTimeout(ofSeconds(2), () -> {
-            shell.run();
-        });
+    void substitute() throws ShellException, AbstractApplicationException, UnsupportedEncodingException {
+        CallCommand command = (CallCommand) CommandBuilder.parseCommand("repeat `expandABC`", mockAppRunner);
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        command.evaluate(null, outputStream);
+        String actual = outputStream.toString(CHARSET_UTF8);
+        String expected = "A A B B C C" + STRING_NEWLINE;
+        assertEquals(expected, actual);
     }
 
 }

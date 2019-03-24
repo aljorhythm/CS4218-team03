@@ -118,6 +118,7 @@ public class SortApplication implements SortInterface{
         }
     }
 
+    @SuppressWarnings("PMD.ExcessiveMethodLength")
     public static void sortList(List list, boolean isFirstWordNumber, boolean isCaseIndependent){
         Collections.sort(list, new Comparator<String>() {
             @Override

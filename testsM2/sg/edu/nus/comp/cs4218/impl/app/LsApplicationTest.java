@@ -30,7 +30,7 @@ public class LsApplicationTest {
 
     private static ArrayList<String> testFilePath;
 
-    private static String FOLDER_PATH = TestUtils.pathToTestDataSubdir("lsTestDirTDD");
+    private static final String FOLDER_PATH = TestUtils.pathToTestDataSubdir("lsTestDirTDD");
     private static final String FOLDER1 = FOLDER_PATH + File.separator + "folder1";
     private static final String FOLDER2 = FOLDER_PATH + File.separator + "folder2";
     private static final String FOLDER3 = FOLDER_PATH + File.separator + "folder3";

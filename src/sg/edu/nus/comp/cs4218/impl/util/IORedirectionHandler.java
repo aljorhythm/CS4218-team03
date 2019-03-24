@@ -28,7 +28,7 @@ public class IORedirectionHandler {
         this.outputStream = origOutputStream;
     }
 
-    public void extractRedirOptions() throws ShellException, IOException {
+    public void extractRedirOptions(ApplicationRunner appRunner) throws ShellException, IOException {
         if (argsList == null || argsList.isEmpty()) {
             throw new ShellException(ERR_SYNTAX);
         }
@@ -55,7 +55,7 @@ public class IORedirectionHandler {
             }
 
             // handle quoting + globing + command substitution in file arg
-            List<String> fileSegment = ArgumentResolver.resolveOneArgument(file);
+            List<String> fileSegment = ArgumentResolver.resolveOneArgument(file, appRunner);
             if (fileSegment.size() > 1) {
                 // ambiguous redirect if file resolves to more than one parsed arg
                 throw new ShellException(ERR_SYNTAX);

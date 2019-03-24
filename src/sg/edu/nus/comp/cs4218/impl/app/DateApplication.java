@@ -1,5 +1,6 @@
 package sg.edu.nus.comp.cs4218.impl.app;
 
+import sg.edu.nus.comp.cs4218.Environment;
 import sg.edu.nus.comp.cs4218.app.DateInterface;
 import sg.edu.nus.comp.cs4218.exception.DateException;
 
@@ -27,6 +28,12 @@ public class DateApplication implements DateInterface {
         dateStr.put("%S",formatDate.substring(17));
     }
 
+    /**
+     *
+     * @param format String of user-defined format
+     * @return
+     * @throws DateException
+     */
     @Override
     public String getDate(String format) throws DateException {
         String formatStr = format;
@@ -37,7 +44,7 @@ public class DateApplication implements DateInterface {
         initMap(dateStr);
         String formatDate = null;
         Date date = new Date();
-        DateFormat sdf = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss", Locale.CHINA);
+        DateFormat sdf = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss", Environment.LOCALE);
         //This is the default version.
         if(formatStr.length() == 0){
             formatDate = sdf.format(date);

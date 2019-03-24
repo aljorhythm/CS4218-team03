@@ -1,6 +1,6 @@
 package sg.edu.nus.comp.cs4218.exception;
 
-public class CdException extends AbstractApplicationException {
+public class CdException extends AbstractApplicationException {//NOPMD
 
     public static final String ERR_IS_NOT_DIR = "Not a directory: %s";
     public static final String ERR_NO_SUCH_DIR = "%s: No such file or directory";
