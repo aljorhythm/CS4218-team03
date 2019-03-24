@@ -1,0 +1,4 @@
+sort test1
+sor test2
+sort test3
+so test4
