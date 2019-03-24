@@ -19,7 +19,7 @@ public class IORedirectionHandler {
     private List<String> noRedirArgsList;
     private InputStream inputStream;
     private OutputStream outputStream;
-    private ArgumentResolver argumentResolver;
+    private final ArgumentResolver argumentResolver;
 
     public IORedirectionHandler(List<String> argsList, InputStream origInputStream,
                                 OutputStream origOutputStream, ArgumentResolver argumentResolver) {
