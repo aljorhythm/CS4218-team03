@@ -1,5 +1,6 @@
 package sg.edu.nus.comp.cs4218.impl.util;
 
+import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
 import sg.edu.nus.comp.cs4218.exception.ShellException;
 
 import java.io.IOException;
@@ -27,7 +28,7 @@ public class IORedirectionHandler {
         this.outputStream = origOutputStream;
     }
 
-    public void extractRedirOptions(ApplicationRunner appRunner) throws ShellException, IOException {
+    public void extractRedirOptions(ApplicationRunner appRunner) throws ShellException, IOException, AbstractApplicationException {
         if (argsList == null || argsList.isEmpty()) {
             throw new ShellException(ERR_SYNTAX);
         }
