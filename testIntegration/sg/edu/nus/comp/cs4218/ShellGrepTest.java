@@ -20,11 +20,11 @@ public class ShellGrepTest extends ShellTest{
     private static String cmdstr;
 
     private static final String FILE_LONG = "test.txt";
-    private static final String CONTENT_LINE_ONE = "1. test abc";
-    private static final String CONTENT_LINE_TWO = "2. HELLO world!";
-    private static final String CONTENT_LINE_THREE = "3. test tttt";
-    private static final String CONTENT_LONG = CONTENT_LINE_ONE + STRING_NEWLINE +
-            CONTENT_LINE_TWO + STRING_NEWLINE + CONTENT_LINE_THREE;
+    private static final String LINE_ONE = "1. test abc";
+    private static final String LINE_TWO = "2. HELLO world!";
+    private static final String LINE_THREE = "3. test tttt";
+    private static final String CONTENT_LONG = LINE_ONE + STRING_NEWLINE +
+            LINE_TWO + STRING_NEWLINE + LINE_THREE;
 
 
     private static File createAndWriteToFile(String filename, String content) throws IOException {
@@ -77,8 +77,8 @@ public class ShellGrepTest extends ShellTest{
                 "exit"
         };
         String[] expectedLines = {
-                temporaryDir + CHAR_SHELL_ARROW + CONTENT_LINE_ONE,
-                CONTENT_LINE_THREE,
+                temporaryDir + CHAR_SHELL_ARROW + LINE_ONE,
+                LINE_THREE,
                 temporaryDir + CHAR_SHELL_ARROW
         };
         assertInputOutput(input, expectedLines);
