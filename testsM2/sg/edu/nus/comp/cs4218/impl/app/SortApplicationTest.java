@@ -24,7 +24,7 @@ import static org.mockito.Mockito.verify;
 
 @SuppressWarnings({"PMD.LongVariable"})
 public class SortApplicationTest {
-    
+
     private static final String RESOURCE_DIR = TestUtils.pathToTestDataSubdir("sortTest");
     public static final String ALL_CHAR_NAME = RESOURCE_DIR+File.separator+"sortUnitTest1.txt";
     // SAC = Small And Capital
