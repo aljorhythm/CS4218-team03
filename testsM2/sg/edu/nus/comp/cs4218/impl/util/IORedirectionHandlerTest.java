@@ -15,8 +15,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static sg.edu.nus.comp.cs4218.impl.util.IOUtils.closeOutputStream;
-import static sg.edu.nus.comp.cs4218.impl.util.IOUtils.stringFromInputStream;
+import static sg.edu.nus.comp.cs4218.impl.util.IOUtils.*;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHAR_REDIR_INPUT;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHAR_REDIR_OUTPUT;
 
@@ -26,7 +25,7 @@ class IORedirectionHandlerTest {
     private static Path inputPath;
     private static String inputName = "input.txt";
     private static String outputName = "output.txt";
-    private static MockArgumentResolver mockArgResolver = new MockArgumentResolver();
+    private static MockArgumentResolver mockArgumentResolver = new MockArgumentResolver();
     private static String inputText = TestUtils.generateRandomString(1234);
     private static String outputText = TestUtils.generateRandomString(123);
     private static Path outputPath;
@@ -69,10 +68,11 @@ class IORedirectionHandlerTest {
     void extractRedirInput() throws IOException, ShellException, AbstractApplicationException {
         String[] args = {"print", "" + CHAR_REDIR_INPUT, inputPath.toString()};
         List<String> argsList = Arrays.asList(args);
-        IORedirectionHandler handler = new IORedirectionHandler(argsList, null, null, mockArgResolver);
+        IORedirectionHandler handler = new IORedirectionHandler(argsList, null, null, mockArgumentResolver);
         handler.extractRedirOptions(mockAppRunner);
-        FileInputStream redirInStream = (FileInputStream) handler.getInputStream();
-        String actual = stringFromInputStream(redirInStream);
+        FileInputStream redirectedInputStream = (FileInputStream) handler.getInputStream();
+        String actual = stringFromInputStream(redirectedInputStream);
+        closeInputStream(redirectedInputStream);
         assertEquals(inputText, actual);
         String[] noRedirectArgs = {"print"};
         assertArrayEquals(noRedirectArgs, handler.getNoRedirArgsList().toArray(new String[]{}));
@@ -86,7 +86,7 @@ class IORedirectionHandlerTest {
     void extractRedirOutputFileStream() throws IOException, ShellException, AbstractApplicationException {
         String[] args = {"print ", "" + CHAR_REDIR_OUTPUT, outputPath.toString()};
         List<String> argsList = Arrays.asList(args);
-        IORedirectionHandler handler = new IORedirectionHandler(argsList, null, null, mockArgResolver);
+        IORedirectionHandler handler = new IORedirectionHandler(argsList, null, null, mockArgumentResolver);
         handler.extractRedirOptions(mockAppRunner);
         OutputStream outputStream = handler.getOutputStream();
         outputStream.write(outputText.getBytes());
