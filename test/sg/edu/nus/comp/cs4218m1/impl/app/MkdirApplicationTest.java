@@ -34,9 +34,8 @@ public class MkdirApplicationTest {
      */
     @AfterEach
     void tearDown() throws IOException {
-
-        File f = new File(pathToTestDir + File.separator + "EmptyFileForGitTracking.txt");
-        f.createNewFile();
+        File file = new File(pathToTestDir + File.separator + "EmptyFileForGitTracking.txt");
+        file.createNewFile();
     }
 
     /**

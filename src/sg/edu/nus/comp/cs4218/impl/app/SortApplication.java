@@ -22,12 +22,12 @@ public class SortApplication implements SortInterface{
     public String sortFromFiles(Boolean isFirstWordNumber, Boolean isReverseOrder, Boolean isCaseIndependent,
                          String... fileName) throws Exception{
         List<String> list = new ArrayList<String>();
-        for (String file_string: fileName){
-            File file = new File(file_string);
+        for (String fileString: fileName){
+            File file = new File(fileString);
             if (!file.exists()){
                 throw new SortException("File not exist");
             }
-            FileReader fileReader = new FileReader(file_string);
+            FileReader fileReader = new FileReader(fileString);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String string;
             while ((string = bufferedReader.readLine()) != null){
@@ -116,6 +116,7 @@ public class SortApplication implements SortInterface{
         }
     }
 
+    @SuppressWarnings("PMD.ExcessiveMethodLength")
     public static void sortList(List list, boolean isFirstWordNumber, boolean isCaseIndependent){
         Collections.sort(list, new Comparator<String>() {
             @Override

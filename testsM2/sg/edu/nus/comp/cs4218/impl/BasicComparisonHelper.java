@@ -12,20 +12,21 @@ public final class BasicComparisonHelper {
      * Compares two sequences of characters.
      * The hierarchy is as so: Small Letter > Capital Letter > Numbers > Others.
      *
-     * @param string1CharArr The first sequence of characters to be compared.
-     * @param string2CharArr The second sequence of characters to be compared.
-     * @param string1Length  The length of the first sequence of characters.
-     * @param string2Length  The length of the second sequence of characters.
-     * @return 1 if string1CharArr is larger than string2CharArr, 0 if both are exactly identical,
-     * and -1 if string2CharArr is larger than string1CharArr.
+     * @param str1CharArr The first sequence of characters to be compared.
+     * @param str2CharArr The second sequence of characters to be compared.
+     * @param str1Length  The length of the first sequence of characters.
+     * @param str2Length  The length of the second sequence of characters.
+     * @return 1 if str1CharArr is larger than str2CharArr, 0 if both are exactly identical,
+     * and -1 if str2CharArr is larger than str1CharArr.
      */
-    public static int compare(int string1Length, int string2Length, char[] string1CharArr, char... string2CharArr) {
+    @SuppressWarnings("PMD.ExcessiveMethodLength")
+    public static int compare(int str1Length, int str2Length, char[] str1CharArr, char... str2CharArr) {
         int index = 0;
         int result = 10;
         int temp;
-        while (index < string1Length && index < string2Length) {
-            char string1CurrChar = string1CharArr[index];
-            char string2CurrChar = string2CharArr[index];
+        while (index < str1Length && index < str2Length) {
+            char string1CurrChar = str1CharArr[index];
+            char string2CurrChar = str2CharArr[index];
             if (string1CurrChar == string2CurrChar) {
                 index++;
                 continue;

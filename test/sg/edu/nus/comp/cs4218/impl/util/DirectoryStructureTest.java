@@ -12,7 +12,8 @@ import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.prependStringToString
 /**
  * Utility for tests that use directory structure
  */
-public class DirectoryStructureTest {
+@SuppressWarnings({"PMD.LongVariable", "PMD.VariableNamingConventions", "PMD."})
+public class DirectoryStructureTest {//NOPMD
     /**
      * Directory for resources used in this test
      **/

@@ -19,7 +19,7 @@ class ShellImplTest {
      * Shell should exit by 2 seconds
      */
     @Test
-    void shell_run_Exit() throws IOException {
+    void shellRunAndExit() throws IOException {
         InputStream inputStream = IOUtils.stringToInputStream("exit" + STRING_NEWLINE);
         ShellImpl shell = new ShellImpl(inputStream, null);
         assertTimeoutPreemptively(ofSeconds(2), () -> {
@@ -31,7 +31,7 @@ class ShellImplTest {
      * Test simple shell command
      */
     @Test
-    void shell_run_echo() throws IOException, ShellException {
+    void shellRunEcho() throws IOException, ShellException {
         InputStream inputStream = IOUtils.stringsToInputStream(new String[]{
                 "echo abc", "exit"
         });
@@ -48,7 +48,7 @@ class ShellImplTest {
      * Test simple shell command
      */
     @Test
-    void shell_run_pipe() throws IOException, ShellException {
+    void shellRunPipe() throws IOException, ShellException {
         InputStream inputStream = IOUtils.stringsToInputStream(new String[]{
                 "echo abcde;echo abc", "exit"
         });

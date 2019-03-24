@@ -20,6 +20,7 @@ import static org.junit.jupiter.api.condition.OS.WINDOWS;
 import static org.mockito.Mockito.*;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
+@SuppressWarnings("PMD.LongVariable")
 class CatApplicationTest {
 
     private static final String INPUT_DATA = "Input Data";
@@ -34,7 +35,7 @@ class CatApplicationTest {
     public static final String ERR_NO_PERM = "Permission denied";
     public static final String ERR_GENERAL = "Exception Caught";
 
-    public static final String pathToTestDataDir = System.getProperty("user.dir") + File.separator + "TestResources";
+    public static final String TEST_RESOURCES_DIR = System.getProperty("user.dir") + File.separator + "TestResources";
 
     @BeforeEach
     void setUp() {
@@ -64,7 +65,7 @@ class CatApplicationTest {
     public void testCatFilesWithSingleFile() throws Exception {
         catApplication = mock(CatApplication.class);
         when(catApplication.catFiles(Mockito.any())).thenCallRealMethod();
-        String dummy = pathToTestDataDir +"/wc/wc_file1.txt";
+        String dummy = TEST_RESOURCES_DIR +"/wc/wc_file1.txt";
         String expected = "Hello World" + STRING_NEWLINE;
         assertEquals(expected, catApplication.catFiles(dummy));
     }
@@ -74,7 +75,7 @@ class CatApplicationTest {
         catApplication = mock(CatApplication.class);
         when(catApplication.catFiles(Mockito.any(), Mockito.any())).thenCallRealMethod();
         String filename1 = "invalid";
-        String filename2 = pathToTestDataDir + "/wc/wc_file1.txt";
+        String filename2 = TEST_RESOURCES_DIR + "/wc/wc_file1.txt";
         assertThrows(CatException.class, () -> {catApplication.catFiles(filename1, filename2);});
     }
 
@@ -177,8 +178,8 @@ class CatApplicationTest {
 
     @Test
     public void testRunApplicationWithFiles() throws Exception {
-        String filename1 = pathToTestDataDir + "/wc/wc_file1.txt";
-        String filename2 = pathToTestDataDir + "/wc/wc_file2.txt";
+        String filename1 = TEST_RESOURCES_DIR + "/wc/wc_file1.txt";
+        String filename2 = TEST_RESOURCES_DIR + "/wc/wc_file2.txt";
         catApplication.run(new String[]{filename1, filename2}, input, output);
         String expected = "Hello World" + STRING_NEWLINE + STRING_NEWLINE + "EmptyFile";
         assertEquals(expected, output.toString());
