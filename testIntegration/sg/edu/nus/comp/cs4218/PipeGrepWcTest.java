@@ -94,7 +94,7 @@ public class PipeGrepWcTest {
         argForWc.add(file1.getAbsolutePath());
         grepCommand = new CallCommand(argForGrep, new ApplicationRunner());
         wcCommand = new CallCommand(argForWc, new ApplicationRunner());
-//        commands.add(grepCommand);
+        commands.add(grepCommand);
         commands.add(wcCommand);
         pipeCommand = new PipeCommand(commands);
         try {
@@ -121,7 +121,7 @@ public class PipeGrepWcTest {
         grepCommand = new CallCommand(argForGrep, new ApplicationRunner());
         wcCommand = new CallCommand(argForWc, new ApplicationRunner());
         commands.add(wcCommand);
-//        commands.add(grepCommand);
+        commands.add(grepCommand);
         pipeCommand = new PipeCommand(commands);
         try {
             pipeCommand.evaluate(inputStream,outputStream);
@@ -152,7 +152,7 @@ public class PipeGrepWcTest {
         wcCommand = new CallCommand(argForWc1, new ApplicationRunner());
         wcCommand2 = new CallCommand(argForWc2, new ApplicationRunner());
         commands.add(wcCommand);
-//        commands.add(grepCommand);
+        commands.add(grepCommand);
         commands.add(wcCommand2);
         pipeCommand = new PipeCommand(commands);
         try {
