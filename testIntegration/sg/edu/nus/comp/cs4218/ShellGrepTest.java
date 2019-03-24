@@ -11,6 +11,7 @@ import java.nio.file.Path;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHAR_SHELL_ARROW;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
+@SuppressWarnings("PMD.LongVariable")
 public class ShellGrepTest extends ShellTest{
 
     static String temporaryDir;
