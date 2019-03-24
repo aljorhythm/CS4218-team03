@@ -29,9 +29,6 @@ public class ShellGrepTest extends ShellTest{
             CONTENT_LINE_TWO + STRING_NEWLINE + CONTENT_LINE_THREE;
 
 
-    private ByteArrayOutputStream outputStream;
-    private InputStream inputStream;
-
     private static File createAndWriteToFile(String filename, String content) throws IOException {
         File file = new File(filename);
         file.createNewFile();
@@ -53,10 +50,8 @@ public class ShellGrepTest extends ShellTest{
     }
 
     @BeforeEach
-    void setUp() throws IOException {
+    void setUp() {
         grep = new GrepApplication();
-        inputStream = new ByteArrayInputStream("test".getBytes());
-        outputStream = new ByteArrayOutputStream();
     }
 
     /**
@@ -69,12 +64,7 @@ public class ShellGrepTest extends ShellTest{
 
 
     @AfterEach
-    void tearDown() throws IOException {
-        try {
-            outputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    void tearDown(){
         longFile.delete();
     }
 
@@ -99,8 +89,9 @@ public class ShellGrepTest extends ShellTest{
                 "exit"
         };
         String[] expectedLines = {
-                CONTENT_LINE_ONE,
-                CONTENT_LINE_THREE
+                temporaryDir + CHAR_SHELL_ARROW + CONTENT_LINE_ONE,
+                CONTENT_LINE_THREE,
+                temporaryDir + CHAR_SHELL_ARROW
         };
         assertInputOutput(input, expectedLines);
     }
