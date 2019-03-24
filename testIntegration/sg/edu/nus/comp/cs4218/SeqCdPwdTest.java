@@ -10,6 +10,7 @@ import sg.edu.nus.comp.cs4218.impl.app.PwdApplication;
 import sg.edu.nus.comp.cs4218.impl.cmd.CallCommand;
 import sg.edu.nus.comp.cs4218.impl.cmd.SequenceCommand;
 import sg.edu.nus.comp.cs4218.impl.util.ApplicationRunner;
+import sg.edu.nus.comp.cs4218.impl.util.ArgumentResolver;
 import sg.edu.nus.comp.cs4218.impl.util.StringUtils;
 import sg.edu.nus.comp.cs4218m1.TestUtils;
 
@@ -74,8 +75,8 @@ public class SeqCdPwdTest {
         argForCd.add("cd");
         argForCd.add(tempDir);
         argForPwd.add("pwd");
-        cdCommand = new CallCommand(argForCd, new ApplicationRunner());
-        pwdCommand = new CallCommand(argForPwd, new ApplicationRunner());
+        cdCommand = new CallCommand(argForCd, new ArgumentResolver(), new ApplicationRunner());
+        pwdCommand = new CallCommand(argForPwd, new ArgumentResolver(), new ApplicationRunner());
         commands.add(cdCommand);
         commands.add(pwdCommand);
         sequenceCommand = new SequenceCommand(commands);

@@ -25,7 +25,7 @@ class SequenceCmdTest {
         private final String input;
 
         public MockCommand(String word) {
-            super(null, null);
+            super(null, null, null);
             input = word;
         }
 
