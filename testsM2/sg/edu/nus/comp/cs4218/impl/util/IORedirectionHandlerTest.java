@@ -15,8 +15,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static sg.edu.nus.comp.cs4218.impl.util.IOUtils.closeOutputStream;
-import static sg.edu.nus.comp.cs4218.impl.util.IOUtils.stringFromInputStream;
+import static sg.edu.nus.comp.cs4218.impl.util.IOUtils.*;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHAR_REDIR_INPUT;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHAR_REDIR_OUTPUT;
 
@@ -73,6 +72,7 @@ class IORedirectionHandlerTest {
         handler.extractRedirOptions(mockAppRunner);
         FileInputStream redirectedInputStream = (FileInputStream) handler.getInputStream();
         String actual = stringFromInputStream(redirectedInputStream);
+        closeInputStream(redirectedInputStream);
         assertEquals(inputText, actual);
         String[] noRedirectArgs = {"print"};
         assertArrayEquals(noRedirectArgs, handler.getNoRedirArgsList().toArray(new String[]{}));
