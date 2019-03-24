@@ -547,7 +547,7 @@ class WcApplicationTest {
         wcApplication.run(args, null, fos);
 
         // Extract result from stdout file
-        String actualOutput = FileIOTestHelper.extractAndConcatenate(FILE_STDOUT_TEST);
+        String actualOutput = FileIOTestHelper.extractAndConcatenate(FILE_STDOUT_TEST).trim();
 
         assertEquals(expectedOutput, actualOutput);
     }
