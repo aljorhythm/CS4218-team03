@@ -26,6 +26,7 @@ public class IORedirectionHandler {
         this.argsList = argsList;
         this.inputStream = origInputStream;
         this.outputStream = origOutputStream;
+        this.argumentResolver = argumentResolver;
     }
 
     public void extractRedirOptions(ApplicationRunner appRunner) throws ShellException, IOException, AbstractApplicationException {

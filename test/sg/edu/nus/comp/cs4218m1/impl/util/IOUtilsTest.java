@@ -2,6 +2,7 @@ package sg.edu.nus.comp.cs4218m1.impl.util;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 import org.mockito.Mockito;
 import sg.edu.nus.comp.cs4218.Environment;
 import sg.edu.nus.comp.cs4218.exception.ShellException;
@@ -12,6 +13,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
@@ -293,5 +296,29 @@ class IOUtilsTest {
         assertThrows(IOException.class, () -> {
             IOUtils.stringsFromInputStream(inputStream);
         });
+    }
+
+    /**
+     * Test create and write file
+     */
+    @Test
+    void createAndWriteFileAndRead(@TempDir Path temp) throws IOException {
+        Path newFilePath = temp.resolve("hello.txt");
+        String inputString = "abc\nasdas123abc";
+        IOUtils.createAndWriteToFile(newFilePath.toAbsolutePath().toString(), inputString);
+        String read = new String(Files.readAllBytes(newFilePath));
+        assertEquals(inputString, read);
+    }
+
+    /**
+     * Test create and write file
+     */
+    @Test
+    void createAndWritePathAndRead(@TempDir Path temp) throws IOException {
+        Path newFilePath = temp.resolve("hello.txt");
+        String inputString = "abc\nasdas123abc";
+        IOUtils.createAndWriteToFile(newFilePath, inputString);
+        String read = new String(Files.readAllBytes(newFilePath));
+        assertEquals(inputString, read);
     }
 }
