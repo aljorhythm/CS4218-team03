@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +10,23 @@ import static sg.edu.nus.comp.cs4218.impl.app.MkdirApplicationTest.deleteDirecto
 
 @SuppressWarnings("PMD")
 public class RegressionTest0 {
+    static String pathToProjectDir = System.getProperty("user.dir") + File.separator;
 
+    /**
+     * Delete folders that are automatically created by the Randoop tests.
+     * @throws IOException
+     */
+    @AfterAll
+    static void tearDownAll() throws IOException {
+        String[] directoriesToDelete = new String[]{"Could not read stream", "Exception Caught", "fail_echo",
+                "fail_echo_write", "fail_sed_write", "File doesn't exist", "hi!", "null arguments",
+                "null input file provided", "null output stream provided", "Null Pointer Exception",
+                "Terminate process", "This is a directory", "This is a directory Could not read stream Null Pointer Exception Exception Caught"};
+        for (String f : directoriesToDelete) {
+            File file = new File(pathToProjectDir + f);
+            file.delete();
+        }
+    }
     public static boolean debug = false;
 
     @Test
