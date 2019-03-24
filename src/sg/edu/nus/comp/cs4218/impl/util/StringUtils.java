@@ -100,9 +100,13 @@ public final class StringUtils {
      * @param str String to be judge
      * @return boolean
      */
-    public static boolean isNumberic(String str) {
+    public static boolean isNumberic(String strArg) {
+        String str = strArg;
         if (isBlank(str)) {
             return false;
+        }
+        if(str.startsWith("-")) {
+            str = str.substring(1, str.length() - 1);
         }
         for (int i = 0; i < str.length(); i++) {
             if (!Character.isDigit(str.charAt(i))) {
