@@ -69,12 +69,20 @@ public class TestUtils {
     }
 
     /**
+     * Test generate random string
+     */
+    @Test
+    public void testGenerateRandomString() {
+        int length = 12351;
+        assertEquals(length, generateRandomString(length));
+    }
+
+    /**
      * Generate randomString
      */
     public static String generateRandomString(int length) {
         byte[] array = new byte[length]; // length is bounded by 7
         new java.util.Random().nextBytes(array);
-        String generatedString = new String(array, Charset.forName("UTF-8"));
-        return generatedString;
+        return new String(array, Charset.forName("UTF-8"));
     }
 }

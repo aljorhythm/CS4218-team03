@@ -9,7 +9,6 @@ import org.junit.jupiter.api.condition.DisabledOnOs;
 import org.junit.jupiter.api.io.TempDir;
 import org.mockito.Mockito;
 import sg.edu.nus.comp.cs4218.exception.CatException;
-import sg.edu.nus.comp.cs4218.impl.util.IOUtils;
 
 import java.io.*;
 import java.nio.file.Path;
@@ -18,6 +17,7 @@ import java.nio.file.Paths;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.condition.OS.WINDOWS;
 import static org.mockito.Mockito.*;
+import static sg.edu.nus.comp.cs4218.exception.CatException.*;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
 @SuppressWarnings("PMD.LongVariable")
@@ -27,13 +27,6 @@ class CatApplicationTest {
     private CatApplication catApplication;
     private InputStream input;
     private OutputStream output;
-
-    public static final String ERR_WRITE_STREAM = "Could not write to output stream";
-    public static final String ERR_NULL_STREAMS = "Null Pointer Exception";
-    public static final String ERR_FILE_NOT_FOUND = "No such file or directory";
-    public static final String ERR_IS_DIR = "This is a directory";
-    public static final String ERR_NO_PERM = "Permission denied";
-    public static final String ERR_GENERAL = "Exception Caught";
 
     public static final String TEST_RESOURCES_DIR = System.getProperty("user.dir") + File.separator + "TestResources";
 
@@ -98,15 +91,17 @@ class CatApplicationTest {
     @Test
     @DisabledOnOs(WINDOWS)
     public void testCatFilesWithNoPermissions(@TempDir Path tempDir) throws Exception {
-        // Create temporary file
-        String filename = tempDir.toAbsolutePath().toString() + File.separator + "noperm.txt";
-        File node = IOUtils.resolveFilePath(filename).toFile();
+        Path file = tempDir.resolve("noperm.txt");
+        File node = file.toFile();
         node.createNewFile();
         node.setReadable(false, false);
 
         catApplication = mock(CatApplication.class);
         when(catApplication.catFiles(Mockito.any())).thenCallRealMethod();
-        assertTrue(catApplication.catFiles(filename).contains(ERR_NO_PERM));
+        CatException exception = assertThrows(CatException.class, () -> {
+            catApplication.catFiles(file.toString());
+        });
+        assertTrue(exception.getMessage().contains(ERR_NO_PERM));
     }
 
     @Test
