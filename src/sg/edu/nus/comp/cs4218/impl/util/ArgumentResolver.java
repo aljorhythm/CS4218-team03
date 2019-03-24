@@ -20,11 +20,11 @@ public final class ArgumentResolver {
         // made class a dependency ie. not static
     }
 
-    public List<String> parseArguments(List<String> argsList, ApplicationRunner appRunner) throws ShellException {
+    public List<String> parseArguments(List<String> argsList, ApplicationRunner appRunner) throws ShellException, AbstractApplicationException {
         return parseArg(argsList, appRunner);
     }
 
-    public List<String> resolveOneArgument(String arg, ApplicationRunner appRunner) throws ShellException {
+    public List<String> resolveOneArgument(String arg, ApplicationRunner appRunner) throws ShellException, AbstractApplicationException {
         return resolveOneArg( arg,  appRunner);
     }
 
@@ -36,7 +36,7 @@ public final class ArgumentResolver {
      * @return The list of parsed arguments.
      * @throws ShellException If any of the arguments have an invalid syntax.
      */
-    private static List<String> parseArg(List<String> argsList, ApplicationRunner appRunner) throws ShellException {
+    private static List<String> parseArg(List<String> argsList, ApplicationRunner appRunner) throws ShellException, AbstractApplicationException {
         List<String> parsedArgsList = new LinkedList<>();
 
         List<String> parsedArgsSegment = new LinkedList<>();
@@ -60,7 +60,7 @@ public final class ArgumentResolver {
      * @return A list containing one or more parsed args, depending on the outcome of the parsing.
      * @throws ShellException If there are any mismatched quotes.
      */
-    private static List<String> resolveOneArg(String arg, ApplicationRunner appRunner) throws ShellException {
+    private static List<String> resolveOneArg(String arg, ApplicationRunner appRunner) throws ShellException, AbstractApplicationException {
         Queue<Character> unmatchedQuotes = new LinkedList<>();
         LinkedList<RegexArgument> parsedArgsSegment = new LinkedList<>();
         RegexArgument parsedArg = new RegexArgument();
@@ -183,7 +183,7 @@ public final class ArgumentResolver {
                 .collect(Collectors.toList());
     }
 
-    private static String evaluateSubCommand(String commandString, ApplicationRunner appRunner) {
+    private static String evaluateSubCommand(String commandString, ApplicationRunner appRunner) throws ShellException, AbstractApplicationException {
         if (StringUtils.isBlank(commandString)) {
             return "";
         }
@@ -191,13 +191,9 @@ public final class ArgumentResolver {
         OutputStream outputStream = new ByteArrayOutputStream();
         String output = null;
 
-        try {
-            Command command = CommandBuilder.parseCommand(commandString, appRunner);
-            command.evaluate(System.in, outputStream);
-            output = outputStream.toString();
-        } catch (AbstractApplicationException | ShellException e) {
-            output = e.getMessage();
-        }
+        Command command = CommandBuilder.parseCommand(commandString, appRunner);
+        command.evaluate(System.in, outputStream);
+        output = outputStream.toString();
 
         // replace newlines with spaces
         return output.replace(STRING_NEWLINE, String.valueOf(CHAR_SPACE));
