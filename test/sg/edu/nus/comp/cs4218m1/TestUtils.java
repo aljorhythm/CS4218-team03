@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 
 import java.io.File;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,5 +66,23 @@ public class TestUtils {
         assertThrows(AssertionFailedError.class, () -> {
             assertArrayEqualsList(new String[]{hello}, strings);
         });
+    }
+
+    /**
+     * Test generate random string
+     */
+    @Test
+    public void testGenerateRandomString() {
+        int length = 12351;
+        assertEquals(length, generateRandomString(length));
+    }
+
+    /**
+     * Generate randomString
+     */
+    public static String generateRandomString(int length) {
+        byte[] array = new byte[length]; // length is bounded by 7
+        new java.util.Random().nextBytes(array);
+        return new String(array, Charset.forName("UTF-8"));
     }
 }

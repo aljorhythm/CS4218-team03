@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.*;
 
 @SuppressWarnings("PMD.ExcessiveMethodLength")
-public final class ArgumentResolver {
+public class ArgumentResolver {
     public ArgumentResolver() {
         // made class a dependency ie. not static
     }

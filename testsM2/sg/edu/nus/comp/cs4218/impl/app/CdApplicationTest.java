@@ -18,7 +18,6 @@ import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static sg.edu.nus.comp.cs4218.exception.CdException.*;
-import static sg.edu.nus.comp.cs4218.impl.app.CatApplicationTest.ERR_FILE_NOT_FOUND;
 import static sg.edu.nus.comp.cs4218.impl.util.IOUtils.resolveFilePath;
 
 @SuppressWarnings("PMD.AvoidDuplicateLiterals")
@@ -314,7 +313,7 @@ class CdApplicationTest {
         CdException exception = assertThrows(CdException.class, () -> {
             cdApplication.run(new String[]{"folder8"}, null, null);
         });
-        assertTrue(exception.getMessage().contains(ERR_FILE_NOT_FOUND));
+        assertTrue(exception.getMessage().contains(ERR_NO_SUCH_DIR));
     }
 
     /**

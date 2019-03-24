@@ -19,13 +19,14 @@ public class IORedirectionHandler {
     private List<String> noRedirArgsList;
     private InputStream inputStream;
     private OutputStream outputStream;
-    private ArgumentResolver argumentResolver;
+    private final ArgumentResolver argumentResolver;
 
     public IORedirectionHandler(List<String> argsList, InputStream origInputStream,
                                 OutputStream origOutputStream, ArgumentResolver argumentResolver) {
         this.argsList = argsList;
         this.inputStream = origInputStream;
         this.outputStream = origOutputStream;
+        this.argumentResolver = argumentResolver;
     }
 
     public void extractRedirOptions(ApplicationRunner appRunner) throws ShellException, IOException, AbstractApplicationException {

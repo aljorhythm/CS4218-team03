@@ -157,4 +157,40 @@ public final class IOUtils {
 
         return string.split(STRING_NEWLINE);
     }
+
+    /**
+     * Writes string to file
+     * @param filename
+     * @param content
+     * @return
+     * @throws IOException
+     */
+    public static File createAndWriteToFile(String filename, String content) throws IOException {
+        File file = new File(filename);
+        file.createNewFile();
+
+        BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+        writer.write(content);
+        writer.close();
+
+        return file;
+    }
+
+    /**
+     * Writes string to file
+     * @param filePath
+     * @param content
+     * @return
+     * @throws IOException
+     */
+    public static File createAndWriteToFile(Path filePath, String content) throws IOException {
+        File file = filePath.toFile();
+        file.createNewFile();
+
+        BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+        writer.write(content);
+        writer.close();
+
+        return file;
+    }
 }
