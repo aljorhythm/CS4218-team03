@@ -3,6 +3,8 @@
  */
 package sg.edu.nus.comp.cs4218.impl.app;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -23,12 +25,32 @@ class PwdApplicationTest {
     private OutputStream output;
     private PwdApplication pwdApplication;
 
+    /**
+     * Original working directory before this test class is run
+     */
+    private static String origWorkingDir;
+
     public static final String ERR_WRITE_STREAM = "Could not write to output stream";
     public static final String ERR_NULL_STREAMS = "Null Pointer Exception";
 
     @BeforeEach
     public void setUp() {
         pwdApplication = new PwdApplication();
+    }
+
+    /**
+     * Saves the original directory
+     */
+    @BeforeAll
+    public static void saveOriginalDir() {
+        origWorkingDir = Environment.currentDirectory;
+    }
+    /**
+     * Reverts working directory
+     */
+    @AfterAll
+    public static void revertCurrentDirectory(){
+        Environment.currentDirectory = origWorkingDir;
     }
 
     @Test
