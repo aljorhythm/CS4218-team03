@@ -5,13 +5,19 @@ import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 
 import java.io.File;
-import java.nio.charset.Charset;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestUtils {
+    /**
+     * For random generation
+     */
+    private static final String CHARACTERS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    private static SecureRandom rnd = new SecureRandom();
+
     /**
      * Test data folder
      */
@@ -32,12 +38,13 @@ public class TestUtils {
 
     /**
      * Asserts that expected arr is equal to list.
+     *
      * @param arr
      * @param res List that will be converted to an array before assertion
      */
     public static void assertArrayEqualsList(String[] arr, List<String> res) {
-        if(arr == null) {
-            assertEquals(arr ,res);
+        if (arr == null) {
+            assertEquals(arr, res);
         } else {
             Assertions.assertArrayEquals(arr, res.toArray(new String[]{}));
         }
@@ -74,15 +81,17 @@ public class TestUtils {
     @Test
     public void testGenerateRandomString() {
         int length = 12351;
-        assertEquals(length, generateRandomString(length));
+        assertEquals(length, generateRandomString(length).length());
     }
 
     /**
      * Generate randomString
      */
     public static String generateRandomString(int length) {
-        byte[] array = new byte[length]; // length is bounded by 7
-        new java.util.Random().nextBytes(array);
-        return new String(array, Charset.forName("UTF-8"));
+        StringBuilder builder = new StringBuilder(length);
+        for (int i = 0; i < length; i++) {
+            builder.append(CHARACTERS.charAt(rnd.nextInt(CHARACTERS.length())));
+        }
+        return builder.toString();
     }
 }
