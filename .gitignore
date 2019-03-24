@@ -68,3 +68,8 @@ fabric.properties
 
 # Jetbrains end
 misc.xml
+
+## System tests
+# Actual system test outputs
+systemTests/actual/*
+systemTests/expected/*.out
