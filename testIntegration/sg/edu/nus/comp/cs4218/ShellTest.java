@@ -11,7 +11,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static sg.edu.nus.comp.cs4218.impl.util.IOUtils.stringsToInputStream;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
+/**
+ * Tests shell end to end integration
+ */
 public class ShellTest {
+    protected static final String CMD_EXIT = "exit";
     /**
      * Tests running of shell with input and output
      */

@@ -5,17 +5,14 @@ import org.junit.jupiter.api.io.TempDir;
 import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
 import sg.edu.nus.comp.cs4218.exception.ShellException;
 import sg.edu.nus.comp.cs4218.impl.app.GrepApplication;
-import sg.edu.nus.comp.cs4218.impl.util.ApplicationRunner;
-import sg.edu.nus.comp.cs4218.impl.util.CommandBuilder;
 
 import java.io.*;
 import java.nio.file.Path;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHARSET_UTF8;
+import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHAR_SHELL_ARROW;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
-public class ShellGrepTest {
+public class ShellGrepTest extends ShellTest {
 
     static String temporaryDir;
     static String oriWorkingDir;
@@ -82,12 +79,15 @@ public class ShellGrepTest {
     }
 
     @Test
-    void grepTestWithShell() throws AbstractApplicationException, ShellException, UnsupportedEncodingException {
-        String expected = CONTENT_LINE_ONE + STRING_NEWLINE + CONTENT_LINE_THREE + STRING_NEWLINE;
-        Command command = CommandBuilder.parseCommand(cmdstr, new ApplicationRunner());
-        command.evaluate(inputStream, outputStream);
-        String actual = outputStream.toString(CHARSET_UTF8);
-        assertEquals(expected,actual);
+    void grepTestWithShell() throws AbstractApplicationException, ShellException, IOException {
+        String[] expected = new String[]{
+                Environment.currentDirectory + CHAR_SHELL_ARROW,
+                CONTENT_LINE_ONE,
+                CONTENT_LINE_THREE,
+                Environment.currentDirectory + CHAR_SHELL_ARROW
+        };
+        String[] input = { cmdstr, CMD_EXIT };
+        assertInputOutput(input, expected);
     }
 
 }
