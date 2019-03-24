@@ -10,6 +10,7 @@ import sg.edu.nus.comp.cs4218.impl.app.WcApplication;
 import sg.edu.nus.comp.cs4218.impl.cmd.CallCommand;
 import sg.edu.nus.comp.cs4218.impl.cmd.PipeCommand;
 import sg.edu.nus.comp.cs4218.impl.util.ApplicationRunner;
+import sg.edu.nus.comp.cs4218.impl.util.ArgumentResolver;
 import sg.edu.nus.comp.cs4218.impl.util.StringUtils;
 
 import java.io.*;
@@ -92,8 +93,8 @@ public class PipeGrepWcTest {
         argForGrep.add(file1.getAbsolutePath());
         argForWc.add("wc");
         argForWc.add(file1.getAbsolutePath());
-        grepCommand = new CallCommand(argForGrep, new ApplicationRunner());
-        wcCommand = new CallCommand(argForWc, new ApplicationRunner());
+        grepCommand = new CallCommand(argForGrep, new ArgumentResolver(), new ApplicationRunner());
+        wcCommand = new CallCommand(argForWc, new ArgumentResolver(), new ApplicationRunner());
         commands.add(grepCommand);
         commands.add(wcCommand);
         pipeCommand = new PipeCommand(commands);
@@ -118,8 +119,8 @@ public class PipeGrepWcTest {
         argForGrep.add(file2.getAbsolutePath());
         argForWc.add("wc");
         argForWc.add(file2.getAbsolutePath());
-        grepCommand = new CallCommand(argForGrep, new ApplicationRunner());
-        wcCommand = new CallCommand(argForWc, new ApplicationRunner());
+        grepCommand = new CallCommand(argForGrep, new ArgumentResolver(), new ApplicationRunner());
+        wcCommand = new CallCommand(argForWc, new ArgumentResolver(), new ApplicationRunner());
         commands.add(wcCommand);
         commands.add(grepCommand);
         pipeCommand = new PipeCommand(commands);
@@ -148,9 +149,9 @@ public class PipeGrepWcTest {
         argForWc2.add("wc");
         argForWc2.add("-l");
         argForWc2.add(file2.getAbsolutePath());
-        grepCommand = new CallCommand(argForGrep, new ApplicationRunner());
-        wcCommand = new CallCommand(argForWc1, new ApplicationRunner());
-        wcCommand2 = new CallCommand(argForWc2, new ApplicationRunner());
+        grepCommand = new CallCommand(argForGrep, new ArgumentResolver(), new ApplicationRunner());
+        wcCommand = new CallCommand(argForWc1, new ArgumentResolver(), new ApplicationRunner());
+        wcCommand2 = new CallCommand(argForWc2, new ArgumentResolver(), new ApplicationRunner());
         commands.add(wcCommand);
         commands.add(grepCommand);
         commands.add(wcCommand2);
