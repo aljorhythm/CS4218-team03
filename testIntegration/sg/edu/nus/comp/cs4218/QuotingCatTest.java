@@ -186,7 +186,7 @@ public class QuotingCatTest {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         Command command = CommandBuilder.parseCommand(catStringEmpty,new ApplicationRunner());
         command.evaluate(null,byteArrayOutputStream);
-        assertEquals(StringUtils.STRING_NEWLINE,new String(byteArrayOutputStream.toByteArray()));
+        assertEquals("",new String(byteArrayOutputStream.toByteArray()));
     }
 
     /**
