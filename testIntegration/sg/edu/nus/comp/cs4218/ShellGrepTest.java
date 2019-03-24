@@ -4,7 +4,6 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.io.TempDir;
 import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
 import sg.edu.nus.comp.cs4218.exception.ShellException;
-import sg.edu.nus.comp.cs4218.impl.app.GrepApplication;
 
 import java.io.*;
 import java.nio.file.Path;
@@ -18,8 +17,6 @@ public class ShellGrepTest extends ShellTest{
     static String oriWorkingDir;
     private static File longFile;
     private static String cmdstr;
-
-    GrepApplication grep;
 
     private static final String FILE_LONG = "test.txt";
     private static final String CONTENT_LINE_ONE = "1. test abc";
@@ -47,11 +44,6 @@ public class ShellGrepTest extends ShellTest{
         Environment.currentDirectory = temp.toAbsolutePath().toString();
         longFile = createAndWriteToFile(FILE_LONG, CONTENT_LONG);
         cmdstr = "grep test " + longFile.getAbsolutePath();
-    }
-
-    @BeforeEach
-    void setUp() {
-        grep = new GrepApplication();
     }
 
     /**
