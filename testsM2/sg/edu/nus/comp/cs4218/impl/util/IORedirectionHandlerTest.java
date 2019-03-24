@@ -25,7 +25,7 @@ class IORedirectionHandlerTest {
     private static Path inputPath;
     private static String inputName = "input.txt";
     private static String outputName = "output.txt";
-    private static MockArgumentResolver mockArgumentResolver = new MockArgumentResolver();
+    private static MockArgumentResolver mockArgResolver = new MockArgumentResolver();
     private static String inputText = TestUtils.generateRandomString(1234);
     private static String outputText = TestUtils.generateRandomString(123);
     private static Path outputPath;
@@ -47,7 +47,8 @@ class IORedirectionHandlerTest {
     /**
      * Create temp directory and files
      *
-     * @param tempDir
+     * @param tempDirPath
+     * @throws IOException
      */
     @BeforeAll
     static void initTempDir(@TempDir Path tempDirPath) throws IOException {
@@ -68,11 +69,11 @@ class IORedirectionHandlerTest {
     void extractRedirInput() throws IOException, ShellException, AbstractApplicationException {
         String[] args = {"print", "" + CHAR_REDIR_INPUT, inputPath.toString()};
         List<String> argsList = Arrays.asList(args);
-        IORedirectionHandler handler = new IORedirectionHandler(argsList, null, null, mockArgumentResolver);
+        IORedirectionHandler handler = new IORedirectionHandler(argsList, null, null, mockArgResolver);
         handler.extractRedirOptions(mockAppRunner);
-        FileInputStream redirectedInputStream = (FileInputStream) handler.getInputStream();
-        String actual = stringFromInputStream(redirectedInputStream);
-        closeInputStream(redirectedInputStream);
+        FileInputStream redirInputStream = (FileInputStream) handler.getInputStream();
+        String actual = stringFromInputStream(redirInputStream);
+        closeInputStream(redirInputStream);
         assertEquals(inputText, actual);
         String[] noRedirectArgs = {"print"};
         assertArrayEquals(noRedirectArgs, handler.getNoRedirArgsList().toArray(new String[]{}));
@@ -86,7 +87,7 @@ class IORedirectionHandlerTest {
     void extractRedirOutputFileStream() throws IOException, ShellException, AbstractApplicationException {
         String[] args = {"print ", "" + CHAR_REDIR_OUTPUT, outputPath.toString()};
         List<String> argsList = Arrays.asList(args);
-        IORedirectionHandler handler = new IORedirectionHandler(argsList, null, null, mockArgumentResolver);
+        IORedirectionHandler handler = new IORedirectionHandler(argsList, null, null, mockArgResolver);
         handler.extractRedirOptions(mockAppRunner);
         OutputStream outputStream = handler.getOutputStream();
         outputStream.write(outputText.getBytes());
