@@ -26,10 +26,11 @@ public class CallCommand implements Command {
 //    private static final String ERR_WRITE_OUTPUT_STREAM = "write_output_stream";
     private final List<String> argsList;
     private final ApplicationRunner appRunner;
+    private final ArgumentResolver argumentResolver;
 
-    // TODO ArgumentResolver should be a dependency so that we can unit test CallCommand
-    public CallCommand(List<String> argsList, ApplicationRunner appRunner) {
+    public CallCommand(List<String> argsList, ArgumentResolver argumentResolver, ApplicationRunner appRunner) {
         this.argsList = argsList;
+        this.argumentResolver = argumentResolver;
         this.appRunner = appRunner;
     }
 
@@ -42,7 +43,7 @@ public class CallCommand implements Command {
         }
 
         // Handle IO redirection
-        IORedirectionHandler redirHandler = new IORedirectionHandler(argsList, stdin, stdout);
+        IORedirectionHandler redirHandler = new IORedirectionHandler(argsList, stdin, stdout, argumentResolver);
         try{
             redirHandler.extractRedirOptions(appRunner);
         } catch (IOException e){
@@ -53,7 +54,7 @@ public class CallCommand implements Command {
         OutputStream outputStream = redirHandler.getOutputStream();
 
         // Handle quoting + globing + command substitution
-        List<String> parsedArgsList = ArgumentResolver.parseArguments(noRedirArgsList, appRunner);
+        List<String> parsedArgsList = argumentResolver.parseArguments(noRedirArgsList, appRunner);
         if (!parsedArgsList.isEmpty()) {
             String app = argsList.get(0);
 //            String app = parsedArgsList.remove(0);

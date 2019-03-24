@@ -22,7 +22,7 @@ class PipeCommandTest {
     class MockCommand extends CallCommand {
 
         public MockCommand() {
-            super(null, null);
+            super(null, null, null);
         }
 
         @Override
