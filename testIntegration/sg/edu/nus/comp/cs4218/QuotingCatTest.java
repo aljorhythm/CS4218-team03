@@ -39,11 +39,12 @@ public class QuotingCatTest {
     String testFile2Content = String.join("\n", new String[]{"test2 For Cat Quoting test",
     "!@#$%^&*()","for number and symbols","1324567890"})+"\n";
     String testFileTogether = testFile1Content + STRING_NEWLINE +testFile2Content + STRING_NEWLINE;
-    String catStringEmpty = "cat `echo "+emptyFile+"`";
-    String catSthWrong = "cat `echo "+"wrong"+"`";
-    String catString1 = "cat `echo "+testFileName1+"`";
-    String catString2 = "cat `echo "+testFileName2+"`";
-    String catStringForTwoFile = "cat `echo "+testFileName1+"`"+" `echo "+testFileName2+"`";
+    String catEcho = "cat `echo ";
+    String catStringEmpty = catEcho + emptyFile+"`";
+    String catSthWrong = catEcho + "wrong"+"`";
+    String catString1 = catEcho + testFileName1+"`";
+    String catString2 = catEcho + testFileName2+"`";
+    String stringForTwoFile = catEcho + testFileName1 + "`" + " `echo " + testFileName2+"`";
 
     /**
      * Set up a new cat application and mock inputstreams in between each test.
@@ -143,10 +144,10 @@ public class QuotingCatTest {
      */
     @Test
     public void testCatEchoTestFile1() throws AbstractApplicationException,ShellException{
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        ByteArrayOutputStream baot = new ByteArrayOutputStream();
         Command command = CommandBuilder.parseCommand(catString1,new ApplicationRunner());
-        command.evaluate(null,byteArrayOutputStream);
-        assertEquals(testFile1Content + STRING_NEWLINE, new String(byteArrayOutputStream.toByteArray()));
+        command.evaluate(null, baot);
+        assertEquals(testFile1Content + STRING_NEWLINE, new String(baot.toByteArray()));
     }
 
     /**
@@ -156,10 +157,10 @@ public class QuotingCatTest {
      */
     @Test
     public void testCatEchoTestFile2() throws AbstractApplicationException,ShellException{
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        ByteArrayOutputStream baot = new ByteArrayOutputStream();
         Command command = CommandBuilder.parseCommand(catString2,new ApplicationRunner());
-        command.evaluate(null,byteArrayOutputStream);
-        assertEquals(testFile2Content + STRING_NEWLINE, new String(byteArrayOutputStream.toByteArray()));
+        command.evaluate(null,baot);
+        assertEquals(testFile2Content + STRING_NEWLINE, new String(baot.toByteArray()));
     }
 
     /**
@@ -170,9 +171,9 @@ public class QuotingCatTest {
     @Test
     public void testCatEchoWrongFile() throws CatException,ShellException{
         assertThrows(CatException.class,()->{
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            ByteArrayOutputStream baot = new ByteArrayOutputStream();
            Command command = CommandBuilder.parseCommand(catSthWrong,new ApplicationRunner());
-           command.evaluate(null,byteArrayOutputStream);
+           command.evaluate(null,baot);
         });
     }
 
@@ -183,10 +184,10 @@ public class QuotingCatTest {
      */
     @Test
     public void testCatEchoEmptyFile() throws AbstractApplicationException,ShellException{
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        ByteArrayOutputStream baot = new ByteArrayOutputStream();
         Command command = CommandBuilder.parseCommand(catStringEmpty,new ApplicationRunner());
-        command.evaluate(null,byteArrayOutputStream);
-        assertEquals("",new String(byteArrayOutputStream.toByteArray()));
+        command.evaluate(null,baot);
+        assertEquals("",new String(baot.toByteArray()));
     }
 
     /**
@@ -196,9 +197,9 @@ public class QuotingCatTest {
      */
     @Test
     public void testCatEchoTwoFile() throws AbstractApplicationException, ShellException{
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        Command command = CommandBuilder.parseCommand(catStringForTwoFile,new ApplicationRunner());
-        command.evaluate(null, byteArrayOutputStream);
-        assertEquals(testFileTogether,new String(byteArrayOutputStream.toByteArray()));
+        ByteArrayOutputStream baot = new ByteArrayOutputStream();
+        Command command = CommandBuilder.parseCommand(stringForTwoFile, new ApplicationRunner());
+        command.evaluate(null, baot);
+        assertEquals(testFileTogether,new String(baot.toByteArray()));
     }
 }
