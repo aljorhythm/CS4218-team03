@@ -55,11 +55,6 @@ public class ShellGrepTest extends ShellTest{
     }
 
 
-    @AfterEach
-    void tearDown(){
-        longFile.delete();
-    }
-
     /**
      * Shell should output working directory
      */
