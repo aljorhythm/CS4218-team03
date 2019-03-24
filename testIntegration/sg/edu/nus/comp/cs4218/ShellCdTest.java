@@ -17,9 +17,13 @@ import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHAR_SHELL_ARROW;
  */
 public class ShellCdTest extends ShellTest {
 
-    static String temporaryDir;
-    static String oriWorkingDir;
-    static String nonExistentDir;
+    private static String temporaryDir;
+    private static String oriWorkingDir;
+    private static String nonExistentDir;
+    private static String subDirName = "subDir";
+    private static String subDirPath;
+    private static String nonExistDirName = "non-existent";
+    private static final String STR_EXIT = "exit";
 
     /**
      * Inits directory for cd testing
@@ -30,7 +34,8 @@ public class ShellCdTest extends ShellTest {
         temporaryDir = temp.toAbsolutePath().toString();
         oriWorkingDir = Environment.currentDirectory;
         Environment.currentDirectory = temp.toAbsolutePath().toString();
-        nonExistentDir = temp.resolve("non-existent").toAbsolutePath().toString();
+        nonExistentDir = temp.resolve(nonExistDirName).toAbsolutePath().toString();
+        subDirPath = temp.resolve(subDirName).toAbsolutePath().toString();
     }
 
     /**
@@ -47,7 +52,7 @@ public class ShellCdTest extends ShellTest {
     @Test
     void initShell() throws IOException, ShellException {
         String[] input = {
-            "exit"
+            STR_EXIT
         };
         String[] expectedLines = {
                 temporaryDir + CHAR_SHELL_ARROW
@@ -58,19 +63,20 @@ public class ShellCdTest extends ShellTest {
     @Test
     void cdRelative() {
         String[] input = {
-                "cd " + temporaryDir,
-                "exit"
+                "cd " + subDirName,
+                STR_EXIT
         };
         String[] expectedLines = {
-                temporaryDir
+                temporaryDir + CHAR_SHELL_ARROW,
+                subDirPath + CHAR_SHELL_ARROW
         };
     }
 
     @Test
     void cdNonExistent() throws IOException, ShellException {
         String[] input = {
-                "cd " + temporaryDir,
-                "exit"
+                "cd " + nonExistentDir,
+                STR_EXIT
         };
         String[] expectedLines = {
                 temporaryDir + CHAR_SHELL_ARROW,
@@ -80,7 +86,15 @@ public class ShellCdTest extends ShellTest {
     }
 
     @Test
-    void cdAbsolute() {
-
+    void cdAbsolute() throws IOException, ShellException {
+        String[] input = {
+                "cd " + temporaryDir,
+                STR_EXIT
+        };
+        String[] expectedLines = {
+                temporaryDir + CHAR_SHELL_ARROW,
+                String.format(CdException.ERR_IS_NOT_DIR, nonExistentDir)
+        };
+        assertInputOutput(input, expectedLines);
     }
 }

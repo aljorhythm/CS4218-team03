@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
+@SuppressWarnings({"PMD.AvoidDuplicateLiterals", "PMD.LongVariable"})
 class GrepApplicationTest {
 
     private static final String DIRECTORY = "directory";
@@ -40,20 +41,20 @@ class GrepApplicationTest {
     private OutputStream stdout;
 
     private String constructExpectedOutput(String filename, boolean isCountLine, int... lineNumbers) {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder();
 
         if (isCountLine) {
-            sb.append(lineNumbers.length);
-            sb.append(STRING_NEWLINE);
-            return sb.toString();
+            stringBuilder.append(lineNumbers.length);
+            stringBuilder.append(STRING_NEWLINE);
+            return stringBuilder.toString();
         }
 
         for (int index : lineNumbers) {
-            sb.append(getContentLine(index));
-            sb.append(STRING_NEWLINE);
+            stringBuilder.append(getContentLine(index));
+            stringBuilder.append(STRING_NEWLINE);
         }
 
-        return sb.toString().trim();
+        return stringBuilder.toString().trim();
     }
 
     private String getContentLine(int lineNumber) {

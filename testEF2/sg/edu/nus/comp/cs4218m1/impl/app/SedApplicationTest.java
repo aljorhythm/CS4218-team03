@@ -13,6 +13,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class SedApplicationTest {
 
     /**
+     * Data
+     */
+    static String stringEmpty = "";
+    static String stringEmptySed = "";
+    static String str1ForFirst = "first * test";
+    static String str1ForFirstSed = "first replacement test";
+    static String replacement = "replacement";
+    // You need to add [] around * to replace * itself.
+    static String regexp1 = "[*]";
+    static String string2ForSecond = String.join(StringUtils.STRING_NEWLINE, new String[]{"second * test","second * test"});
+    static String str2ForSecondSed = String.join(StringUtils.STRING_NEWLINE, new String[]{"second replacement test","second replacement test"});
+    static String str3ForThird = "third * test *";
+    static String str3ForThirdSed = "third * test replacement";
+
+    /**
      * Test configurations
      */
     SedApplication application;
@@ -23,23 +38,9 @@ class SedApplicationTest {
     }
 
     /**
-     * Data
-     */
-    static String stringEmpty = "";
-    static String stringEmptySed = "";
-    static String string1ForFirst = "first * test";
-    static String string1ForFirstSed = "first replacement test";
-    static String replacement = "replacement";
-    // You need to add [] around * to replace * itself.
-    static String regexp1 = "[*]";
-    static String string2ForSecond = String.join(StringUtils.STRING_NEWLINE, new String[]{"second * test","second * test"});
-    static String string2ForSecondSed = String.join(StringUtils.STRING_NEWLINE, new String[]{"second replacement test","second replacement test"});
-    static String string3ForThird = "third * test *";
-    static String string3ForThirdSed = "third * test replacement";
-
-    /**
      * Helper class for easier reading and writing of test cases.
      */
+    @SuppressWarnings("PMD.AvoidFieldNameMatchingMethodName")
     class TestCase {
         private String regexp;
         private String replacement;
@@ -47,13 +48,6 @@ class SedApplicationTest {
         private String fileName;
         private InputStream stdIn;
         private String expected;
-
-        public TestCase() {
-//            String[] strings = string.split(" ");
-//            setRegexp(strings[0]);
-//            setReplacement(strings[1]);
-//            setReplacementIndex(Integer.parseInt(strings[2]));
-        }
 
         TestCase input(InputStream stdIn) {
             this.stdIn = stdIn;
@@ -136,11 +130,11 @@ class SedApplicationTest {
     @Test
     void sedFromStdinTest1() throws Exception {
         newCase()
-                .input(string1ForFirst)
+                .input(str1ForFirst)
                 .setRegexp(regexp1)
                 .setReplacement(replacement)
                 .setReplacementIndex(1)
-                .expected(string1ForFirstSed)
+                .expected(str1ForFirstSed)
                 .run();
     }
 
@@ -151,18 +145,18 @@ class SedApplicationTest {
                 .setRegexp(regexp1)
                 .setReplacement(replacement)
                 .setReplacementIndex(1)
-                .expected(string2ForSecondSed)
+                .expected(str2ForSecondSed)
                 .run();
     }
 
     @Test
     void sedFromStdinTest3() throws Exception{
         newCase()
-                .input(string3ForThird)
+                .input(str3ForThird)
                 .setRegexp(regexp1)
                 .setReplacement(replacement)
                 .setReplacementIndex(2)
-                .expected(string3ForThirdSed)
+                .expected(str3ForThirdSed)
                 .run();
     }
 

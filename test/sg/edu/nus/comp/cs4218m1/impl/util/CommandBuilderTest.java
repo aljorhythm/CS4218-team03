@@ -16,12 +16,13 @@ import static org.mockito.Mockito.mock;
 
 class CommandBuilderTest {
     ApplicationRunner mockAppRunner = mock(ApplicationRunner.class);
+    private static final String STR_ECHO = "echo";
 
     /**
      * Parse command string without sequence or pipe operators
      */
     @Test
-    void parseCommand_simpleTokens() {
+    void parseCommandSimpleTokens() {
         ApplicationRunner runner = mock(ApplicationRunner.class);
         String stringCommand = "echo abc";
         Command command = null;
@@ -31,7 +32,7 @@ class CommandBuilderTest {
             e.printStackTrace();
         }
         CallCommand callCommand = (CallCommand) command;
-        String[] expected = {"echo", "abc"};
+        String[] expected = {STR_ECHO, "abc"};
         String[] actual = callCommand
                 .getArgsList()
                 .toArray(new String[]{});
@@ -42,7 +43,7 @@ class CommandBuilderTest {
      * Pipe sub commands have arguments
      */
     @Test
-    void parseCommand_seq_multiple_args() {
+    void parseCommandSeqMultipleArgs() {
         String stringCommand = "echo abc;echo abcde 1234;ls";
         Command command = null;
         try {
@@ -51,7 +52,7 @@ class CommandBuilderTest {
             e.printStackTrace();
         }
         SequenceCommand seqCommand = (SequenceCommand) command;
-        String[][] expected = {{"echo", "abc"}, {"echo", "abcde", "1234"}, {"ls"}};
+        String[][] expected = {{STR_ECHO, "abc"}, {STR_ECHO, "abcde", "1234"}, {"ls"}};
         assertSequenceHasCalls(seqCommand, expected);
     }
 
@@ -59,7 +60,7 @@ class CommandBuilderTest {
      * Pipe sub commands have no arguments
      */
     @Test
-    void parseCommand_seq_noArgs() {
+    void parseCommandSeqNoArgs() {
         String stringCommand = "echo;ls";
         Command command = null;
         try {
@@ -68,14 +69,14 @@ class CommandBuilderTest {
             e.printStackTrace();
         }
         SequenceCommand seqCommand = (SequenceCommand) command;
-        String[][] expected = {{"echo"}, {"ls"}};
+        String[][] expected = {{STR_ECHO}, {"ls"}};
         assertSequenceHasCalls(seqCommand, expected);
     }
 
     /**
      * Asserts pipe command has call commands with args
      */
-    static void assertPipe(PipeCommand pipeCommand, String[][] expected) {
+    static void assertPipe(PipeCommand pipeCommand, String[]... expected) {
         String[][] actual = new String[pipeCommand.getCallCommands().size()][];
         List<CallCommand> callCommands = pipeCommand.getCallCommands();
         for(int i = 0; i < actual.length; i++) {
@@ -89,7 +90,7 @@ class CommandBuilderTest {
     /**
      * Asserts sequence command has call commands with args
      */
-    static void assertSequenceHasCalls(SequenceCommand seqCommand, String[][] expected) {
+    static void assertSequenceHasCalls(SequenceCommand seqCommand, String[]... expected) {
         List<Command> callCommands = seqCommand.getCommands();
         String[][] actual = new String[seqCommand.getCommands().size()][];
         for(int i = 0; i < actual.length; i++) {

@@ -35,17 +35,15 @@ class CdApplicationTest {
     @AfterEach
     void tearDown() throws IOException {
         deleteDirectory(null, new File(pathToTestDir).listFiles());
-        File f = new File(pathToTestDir + File.separator + "EmptyFileForGitTracking.txt");
-        f.createNewFile();
+        File file = new File(pathToTestDir + File.separator + "EmptyFileForGitTracking.txt");
+        file.createNewFile();
     }
 
     /**
-     * TODO
-     * test if the cd works
      * @throws CdException
      */
     @Test
-    void cd_exist_file() throws CdException {
+    void cdFileExists() throws CdException {
         cdApplication.changeToDirectory(pathToTestDir);
         String currentDir = Paths.get("").toAbsolutePath().toString();
         assertEquals(currentDir,pathToTestDir);
@@ -56,7 +54,7 @@ class CdApplicationTest {
      * test if the cd throw an exception when meeting a fake path
      */
     @Test
-    void cd_empty_file(){
+    void cdEmptyFile(){
         assertThrows(CdException.class, () -> {cdApplication.changeToDirectory(pathNoFile);});
     }
 }

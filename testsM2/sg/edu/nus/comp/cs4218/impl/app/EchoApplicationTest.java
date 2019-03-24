@@ -15,6 +15,7 @@ import java.io.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@SuppressWarnings("PMD.LongVariable")
 class EchoApplicationTest {
 
     private static EchoApplication application = new EchoApplication();
