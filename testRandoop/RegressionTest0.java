@@ -1,6 +1,11 @@
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.*;
+import static sg.edu.nus.comp.cs4218.impl.app.MkdirApplicationTest.deleteDirectory;
 
 @SuppressWarnings("PMD")
 public class RegressionTest0 {
@@ -23,14 +28,6 @@ public class RegressionTest0 {
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
         assertNotNull(strArray7);
-    }
-
-    @Test
-    public void test014() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test014");
-        java.lang.String str0 = sg.edu.nus.comp.cs4218.impl.app.CatApplication.ERR_NULL_STREAMS;
-        assertTrue(str0.equals("Null Pointer Exception"));
     }
 
     @Test
@@ -354,26 +351,6 @@ public class RegressionTest0 {
         } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
         }
         assertNotNull(strArray8);
-    }
-
-    @Test
-    public void test036() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test036");
-        java.lang.String str0 = sg.edu.nus.comp.cs4218.impl.app.CatApplication.ERR_NULL_ARGS;
-        assertTrue(str0.equals("null arguments"));
-    }
-
-    @Test
-    public void test037() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test037");
-        java.util.List list0 = null;
-        try {
-            sg.edu.nus.comp.cs4218.impl.app.SortApplication.sortList(list0, true, true);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
-        } catch (java.lang.NullPointerException e) {
-        }
     }
 
     @Test
@@ -8388,28 +8365,6 @@ public class RegressionTest0 {
     }
 
     @Test
-    public void test302() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test302");
-        sg.edu.nus.comp.cs4218.impl.app.CdApplication cdApplication0 = new sg.edu.nus.comp.cs4218.impl.app.CdApplication();
-        cdApplication0.changeToDirectory("");
-        cdApplication0.changeToDirectory("C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write");
-        sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication5 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
-        java.lang.String[] strArray12 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
-        java.io.InputStream inputStream13 = null;
-        java.io.OutputStream outputStream14 = null;
-        mkdirApplication5.run(strArray12, inputStream13, outputStream14);
-        java.io.InputStream inputStream16 = null;
-        java.io.OutputStream outputStream17 = null;
-        try {
-            cdApplication0.run(strArray12, inputStream16, outputStream17);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
-        } catch (sg.edu.nus.comp.cs4218.exception.CdException e) {
-        }
-        assertNotNull(strArray12);
-    }
-
-    @Test
     public void test303() throws Throwable {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test303");
@@ -13157,57 +13112,6 @@ public class RegressionTest0 {
     }
 
     @Test
-    public void test425() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test425");
-        sg.edu.nus.comp.cs4218.impl.app.CdApplication cdApplication0 = new sg.edu.nus.comp.cs4218.impl.app.CdApplication();
-        cdApplication0.changeToDirectory("");
-        cdApplication0.changeToDirectory("C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write");
-        cdApplication0.changeToDirectory("");
-        sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication7 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
-        java.lang.String[] strArray10 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
-        java.io.InputStream inputStream11 = null;
-        java.io.OutputStream outputStream12 = null;
-        mkdirApplication7.run(strArray10, inputStream11, outputStream12);
-        sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication14 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
-        sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication17 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
-        java.lang.String[] strArray20 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
-        java.io.InputStream inputStream21 = null;
-        java.io.OutputStream outputStream22 = null;
-        mkdirApplication17.run(strArray20, inputStream21, outputStream22);
-        java.lang.String str24 = lsApplication14.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray20);
-        mkdirApplication7.createFolder(strArray20);
-        java.lang.String[] strArray29 = new java.lang.String[] { "null output stream provided", "null arguments", "null output stream provided" };
-        java.io.InputStream inputStream30 = null;
-        java.io.OutputStream outputStream31 = null;
-        mkdirApplication7.run(strArray29, inputStream30, outputStream31);
-        java.io.InputStream inputStream33 = null;
-        java.io.OutputStream outputStream34 = null;
-        try {
-            cdApplication0.run(strArray29, inputStream33, outputStream34);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
-        } catch (sg.edu.nus.comp.cs4218.exception.CdException e) {
-        }
-        assertNotNull(strArray10);
-        assertNotNull(strArray20);
-        assertTrue(str24.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertNotNull(strArray29);
-    }
-
-    @Test
-    public void test426() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test426");
-        sg.edu.nus.comp.cs4218.impl.app.WcApplication wcApplication0 = new sg.edu.nus.comp.cs4218.impl.app.WcApplication();
-        java.lang.String[] strArray4 = null;
-        try {
-            java.lang.String str5 = wcApplication0.countFromFiles((java.lang.Boolean) false, (java.lang.Boolean) true, (java.lang.Boolean) true, strArray4);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: no argument can be null!");
-        } catch (sg.edu.nus.comp.cs4218.exception.WcException e) {
-        }
-    }
-
-    @Test
     public void test427() throws Throwable {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test427");
@@ -14865,20 +14769,6 @@ public class RegressionTest0 {
     }
 
     @Test
-    public void test465() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test465");
-        sg.edu.nus.comp.cs4218.impl.app.CdApplication cdApplication0 = new sg.edu.nus.comp.cs4218.impl.app.CdApplication();
-        cdApplication0.changeToDirectory("");
-        cdApplication0.changeToDirectory("C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write");
-        try {
-            cdApplication0.changeToDirectory("Null Pointer Exception");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write\\Null Pointer Exception: No such file or directory");
-        } catch (sg.edu.nus.comp.cs4218.exception.CdException e) {
-        }
-    }
-
-    @Test
     public void test466() throws Throwable {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test466");
@@ -15402,86 +15292,6 @@ public class RegressionTest0 {
     }
 
     @Test
-    public void test484() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test484");
-        sg.edu.nus.comp.cs4218.impl.app.CdApplication cdApplication0 = new sg.edu.nus.comp.cs4218.impl.app.CdApplication();
-        cdApplication0.changeToDirectory("");
-        cdApplication0.changeToDirectory("C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write");
-        cdApplication0.changeToDirectory("");
-        sg.edu.nus.comp.cs4218.impl.app.EchoApplication echoApplication7 = new sg.edu.nus.comp.cs4218.impl.app.EchoApplication();
-        sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication8 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
-        java.lang.String[] strArray15 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
-        java.io.InputStream inputStream16 = null;
-        java.io.OutputStream outputStream17 = null;
-        mkdirApplication8.run(strArray15, inputStream16, outputStream17);
-        sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication19 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
-        sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication22 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
-        sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication24 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
-        java.lang.String[] strArray27 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
-        java.io.InputStream inputStream28 = null;
-        java.io.OutputStream outputStream29 = null;
-        mkdirApplication24.run(strArray27, inputStream28, outputStream29);
-        java.lang.String str31 = findApplication22.findFolderContent("", strArray27);
-        java.lang.String str32 = lsApplication19.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray27);
-        java.io.InputStream inputStream33 = null;
-        java.io.OutputStream outputStream34 = null;
-        mkdirApplication8.run(strArray27, inputStream33, outputStream34);
-        java.lang.String str36 = echoApplication7.constructResult(strArray27);
-        sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication37 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
-        java.lang.String[] strArray44 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
-        java.io.InputStream inputStream45 = null;
-        java.io.OutputStream outputStream46 = null;
-        mkdirApplication37.run(strArray44, inputStream45, outputStream46);
-        java.io.InputStream inputStream48 = null;
-        java.io.OutputStream outputStream49 = null;
-        echoApplication7.run(strArray44, inputStream48, outputStream49);
-        sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication51 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
-        java.lang.String[] strArray54 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
-        java.io.InputStream inputStream55 = null;
-        java.io.OutputStream outputStream56 = null;
-        mkdirApplication51.run(strArray54, inputStream55, outputStream56);
-        java.lang.String str58 = echoApplication7.constructResult(strArray54);
-        sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication59 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
-        sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication62 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
-        java.lang.String[] strArray65 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
-        java.io.InputStream inputStream66 = null;
-        java.io.OutputStream outputStream67 = null;
-        mkdirApplication62.run(strArray65, inputStream66, outputStream67);
-        sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication69 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
-        sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication72 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
-        java.lang.String[] strArray75 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
-        java.io.InputStream inputStream76 = null;
-        java.io.OutputStream outputStream77 = null;
-        mkdirApplication72.run(strArray75, inputStream76, outputStream77);
-        java.lang.String str79 = lsApplication69.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray75);
-        mkdirApplication62.createFolder(strArray75);
-        java.lang.String str81 = lsApplication59.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray75);
-        java.io.InputStream inputStream82 = null;
-        java.io.OutputStream outputStream83 = null;
-        echoApplication7.run(strArray75, inputStream82, outputStream83);
-        java.io.InputStream inputStream85 = null;
-        java.io.OutputStream outputStream86 = null;
-        try {
-            cdApplication0.run(strArray75, inputStream85, outputStream86);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
-        } catch (sg.edu.nus.comp.cs4218.exception.CdException e) {
-        }
-        assertNotNull(strArray15);
-        assertNotNull(strArray27);
-        assertTrue(str31.equals(""));
-        assertTrue(str32.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str36.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray44);
-        assertNotNull(strArray54);
-        assertTrue(str58.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray65);
-        assertNotNull(strArray75);
-        assertTrue(str79.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str81.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-    }
-
-    @Test
     public void test485() throws Throwable {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test485");
@@ -15785,30 +15595,6 @@ public class RegressionTest0 {
         assertNotNull(wildcardClass40);
         assertNotNull(strArray45);
         assertTrue(str52.equals("This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught"));
-    }
-
-    @Test
-    public void test492() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test492");
-        sg.edu.nus.comp.cs4218.impl.app.CdApplication cdApplication0 = new sg.edu.nus.comp.cs4218.impl.app.CdApplication();
-        cdApplication0.changeToDirectory("");
-        cdApplication0.changeToDirectory("C:\\Users\\boman\\CS4218-team03-project\\randoop-4.1.1\\fail_echo_write");
-        cdApplication0.changeToDirectory("");
-        sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication7 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
-        sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication9 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
-        java.lang.String[] strArray12 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication9.createFolder(strArray12);
-        java.lang.String str14 = findApplication7.findFolderContent("fail_sed_write", strArray12);
-        java.io.InputStream inputStream15 = null;
-        java.io.OutputStream outputStream16 = null;
-        try {
-            cdApplication0.run(strArray12, inputStream15, outputStream16);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CdException; message: cd: cd only takes one argument");
-        } catch (sg.edu.nus.comp.cs4218.exception.CdException e) {
-        }
-        assertNotNull(strArray12);
-        assertTrue(str14.equals(""));
     }
 
     @Test
