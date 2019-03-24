@@ -7,7 +7,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import sg.edu.nus.comp.cs4218.exception.MkdirException;
-import sg.edu.nus.comp.cs4218.impl.app.MkdirApplication;
 
 import java.io.File;
 import java.io.IOException;
@@ -37,9 +36,8 @@ public class MkdirApplicationTest {
      */
     @AfterEach
     void tearDown() throws IOException {
-
-        File f = new File(pathToTestDir + File.separator + "EmptyFileForGitTracking.txt");
-        f.createNewFile();
+        File file = new File(pathToTestDir + File.separator + "EmptyFileForGitTracking.txt");
+        file.createNewFile();
     }
 
     /**

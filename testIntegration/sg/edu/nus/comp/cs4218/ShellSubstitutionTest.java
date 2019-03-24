@@ -9,7 +9,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import static java.time.Duration.ofSeconds;
-import static org.junit.jupiter.api.Assertions.assertTimeout;
+import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHAR_SHELL_ARROW;
 
 public class ShellSubstitutionTest extends ShellTest {
@@ -66,11 +66,11 @@ public class ShellSubstitutionTest extends ShellTest {
      */
     @Test
     void exitSubstitution() throws IOException, ShellException, DateException {
-        String[] input = {"echo `exit`"};
+                String[] input = {"echo `exit`"};
         String[] output = {
                 currentDirectory + CHAR_SHELL_ARROW
         };
-        assertTimeout(ofSeconds(1), () -> {
+        assertTimeoutPreemptively(ofSeconds(1), () -> {
             this.assertInputOutput(input, output);
         });
     }
