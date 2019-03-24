@@ -25,21 +25,16 @@ import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 public class QuotingGlobingTest {
 
     public static String quotingCommand1 = "echo \"This is space:`echo \" \"`.\"";
-    public static String quotingExpect1 = "This is space:  ."+STRING_NEWLINE;
+    public static String quotingExpect1 = "This is space: ."+STRING_NEWLINE;
     public static String quotingCommand2 = "echo \'This is space:`echo \" \"`.\'";
     public static String quotingExpect2 = "This is space:`echo \" \"`."+STRING_NEWLINE;
     public static String quotingCommand3 = "echo \"This is space:\' \'.\"";
     public static String quotingExpect3 = "This is space:\' \'."+STRING_NEWLINE;
     public static String quotingCommand4 = "echo \"\'This is space `echo \" \"`\'\"";
-    public static String quotingExpect4 = "\'This is space   \'"+STRING_NEWLINE;
+    public static String quotingExpect4 = "\'This is space \'"+STRING_NEWLINE;
     public static String quotingCommand5 = "echo \'\"This is space `echo \" \"`\"\'";
     public static String quotingExpect5 = "\"This is space `echo \" \"`\""+STRING_NEWLINE;
 
-    ShellTest shellTest;
-
-    @BeforeAll
-    static void setUp(){
-    }
 
     /**
      * Tests running of shell with input and output
