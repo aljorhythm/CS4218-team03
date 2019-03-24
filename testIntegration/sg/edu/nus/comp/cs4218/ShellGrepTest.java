@@ -27,9 +27,9 @@ public class ShellGrepTest {
     private static final String FILE_LONG = "test.txt";
     private static final String CONTENT_LINE_ONE = "1. test abc";
     private static final String CONTENT_LINE_TWO = "2. HELLO world!";
-    private static final String CONTENT_LINE_THR = "3. test tttt";
+    private static final String CONTENT_LINE_THREE = "3. test tttt";
     private static final String CONTENT_LONG = CONTENT_LINE_ONE + STRING_NEWLINE +
-            CONTENT_LINE_TWO + STRING_NEWLINE + CONTENT_LINE_THR;
+            CONTENT_LINE_TWO + STRING_NEWLINE + CONTENT_LINE_THREE;
 
 
     private ByteArrayOutputStream outputStream;
@@ -83,7 +83,7 @@ public class ShellGrepTest {
 
     @Test
     void grepTestWithShell() throws AbstractApplicationException, ShellException, UnsupportedEncodingException {
-        String expected = CONTENT_LINE_ONE + STRING_NEWLINE + CONTENT_LINE_THR + STRING_NEWLINE;
+        String expected = CONTENT_LINE_ONE + STRING_NEWLINE + CONTENT_LINE_THREE + STRING_NEWLINE;
         Command command = CommandBuilder.parseCommand(cmdstr, new ApplicationRunner());
         command.evaluate(inputStream, outputStream);
         String actual = outputStream.toString(CHARSET_UTF8);
