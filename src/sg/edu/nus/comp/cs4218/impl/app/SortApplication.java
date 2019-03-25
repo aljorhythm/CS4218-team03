@@ -104,14 +104,16 @@ public class SortApplication implements SortInterface{
                 for (int i = 0 ; i < file.length; i++){
                     file[i] = files.get(i);
                 }
-                sortFromFiles(firstWord,reverseOrder,caseIndependent,file);
+                String result = sortFromFiles(firstWord,reverseOrder,caseIndependent,file);
+                stdout.write(result.getBytes());
             }catch (Exception e){
                 throw (SortException) new SortException("").initCause(e);
             }
         }
         else {
             try {
-                sortFromStdin(firstWord,reverseOrder,caseIndependent,stdin);
+                String result = sortFromStdin(firstWord,reverseOrder,caseIndependent,stdin);
+                stdout.write(result.getBytes());
             }catch (Exception e){
                 throw (SortException) new SortException("").initCause(e);
             }
