@@ -6,6 +6,7 @@ import sg.edu.nus.comp.cs4218.exception.ShellException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -31,7 +32,7 @@ public class ArgumentResolver {
     /**
      * Handle quoting + globing + command substitution for a list of arguments.
      *
-     * @param argsList The original list of arguments.
+     * @param argsList  The original list of arguments.
      * @param appRunner
      * @return The list of parsed arguments.
      * @throws ShellException If any of the arguments have an invalid syntax.
@@ -55,7 +56,7 @@ public class ArgumentResolver {
      * Single quotes disable the interpretation of all special characters.
      * Double quotes disable the interpretation of all special characters, except for back quotes.
      *
-     * @param arg String containing one argument.
+     * @param arg       String containing one argument.
      * @param appRunner
      * @return A list containing one or more parsed args, depending on the outcome of the parsing.
      * @throws ShellException If there are any mismatched quotes.
@@ -72,9 +73,9 @@ public class ArgumentResolver {
             if (chr == CHAR_BACK_QUOTE) {
                 if (unmatchedQuotes.isEmpty() || unmatchedQuotes.peek() == CHAR_DOUBLE_QUOTE) {
                     // start of command substitution
-                    if (unmatchedQuotes.isEmpty()){
+                    if (unmatchedQuotes.isEmpty()) {
                         unmatchedQuotes.add(chr);
-                    }else {
+                    } else {
                         unmatchedQuotes.remove();
                         unmatchedQuotes.add(chr);
                         unmatchedQuotes.add(CHAR_DOUBLE_QUOTE);
@@ -131,7 +132,7 @@ public class ArgumentResolver {
                     unmatchedQuotes.remove();
 
                     // make sure parsedArgsSegment is not empty
-                    while (!unmatchedQuotes.isEmpty()){
+                    while (!unmatchedQuotes.isEmpty()) {
                         parsedArg.append(unmatchedQuotes.remove());
                     }
                     appendParsedArgIntoSegment(parsedArgsSegment, parsedArg);
@@ -172,14 +173,19 @@ public class ArgumentResolver {
         if (!parsedArg.isEmpty()) {
             appendParsedArgIntoSegment(parsedArgsSegment, parsedArg);
         }
-        if (subCommand.length() != 0){
-            appendParsedArgIntoSegment(parsedArgsSegment,new RegexArgument(subCommand.toString()));
+        if (subCommand.length() != 0) {
+            appendParsedArgIntoSegment(parsedArgsSegment, new RegexArgument(subCommand.toString()));
         }
 
         // perform globing
 
-        return parsedArgsSegment.stream()
-                .flatMap(regexArgument -> regexArgument.globFiles().stream())
+        return parsedArgsSegment
+                .stream()
+                .flatMap(regexArgument -> {
+                    String plain = regexArgument.toString();
+                    List<String> ret = plain.contains(STRING_ASTERISK) ? regexArgument.globFiles() : Arrays.asList(new String[]{plain});
+                    return ret.stream();
+                })
                 .collect(Collectors.toList());
     }
 
