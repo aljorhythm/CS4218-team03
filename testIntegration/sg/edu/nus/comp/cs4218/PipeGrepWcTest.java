@@ -55,12 +55,9 @@ public class PipeGrepWcTest {
         file1 = createAndWriteToFile(FILE_NAME1, FILE_CONTENT1);
         file2 = createAndWriteToFile(FILE_NAME2, FILE_CONTENT2);
         file3 = createAndWriteToFile(FILE_NAME3, FILE_CONTENT3);
-        answer1 = LINE1 + StringUtils.STRING_NEWLINE + "2 6 29 " + file1.getAbsolutePath() + StringUtils.STRING_NEWLINE;
-        answer2 = "3 9 51 " + file2.getAbsolutePath() + StringUtils.STRING_NEWLINE +
-                LINE1 + StringUtils.STRING_NEWLINE + LINE2 + StringUtils.STRING_NEWLINE;
-        answer3 = "4 10 70 " + file3.getAbsolutePath() + StringUtils.STRING_NEWLINE +
-                LINE1 + StringUtils.STRING_NEWLINE + LINE2 + StringUtils.STRING_NEWLINE +
-                "3 " + file2.getAbsolutePath() + StringUtils.STRING_NEWLINE;
+        answer1 = "2 6 29 " + file1.getAbsolutePath() + StringUtils.STRING_NEWLINE;
+        answer2 = LINE1 + StringUtils.STRING_NEWLINE + LINE2 + StringUtils.STRING_NEWLINE;
+        answer3 = "3 " + file2.getAbsolutePath() + StringUtils.STRING_NEWLINE;
     }
 
     @AfterEach
