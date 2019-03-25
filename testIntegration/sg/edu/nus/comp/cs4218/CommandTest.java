@@ -17,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static sg.edu.nus.comp.cs4218.impl.util.IOUtils.stringsToInputStream;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
+@SuppressWarnings({"PMD.LongVariable"})
 public class CommandTest {
 
     public static final String WORK_DIR_NAME = TestUtils.pathToTestDataSubdir("CommandTest")+ File.separator;
@@ -40,7 +41,7 @@ public class CommandTest {
     public static String catGrepExpect2 = String.join(STRING_NEWLINE,new String[]{"sort test1","sor test2","sort test3","so test4"})+STRING_NEWLINE;
 
     @BeforeAll
-    static void Setup() throws FileNotFoundException, IOException {
+    static void setup() throws FileNotFoundException, IOException {
         File sortFile = new File(SORT_FILE_NAME);
         FileOutputStream fileOutputStream = new FileOutputStream(sortFile);
         fileOutputStream.write(sortString.getBytes());
@@ -71,7 +72,7 @@ public class CommandTest {
     void assertCallCommand(String cmdType, String commandString, String expect) throws ShellException{
         Command finalCommand;
         finalCommand = CommandBuilder.parseCommand(commandString,new ApplicationRunner());
-        if (cmdType.equals("callCommand")){
+        if ("callCommand".equals(cmdType)){
             finalCommand = (CallCommand)finalCommand;
             List<String> stringList = ((CallCommand) finalCommand).getArgsList();
             String actual = "";
@@ -80,7 +81,7 @@ public class CommandTest {
             }
             assertEquals(expect,actual);
         }
-        else if (cmdType.equals("pipeCommand")){
+        else if ("pipeCommand".equals(cmdType)){
             finalCommand = (PipeCommand)finalCommand;
             List<CallCommand> commandsList = ((PipeCommand) finalCommand).getCallCommands();
             String actual = "";
