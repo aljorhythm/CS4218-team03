@@ -51,6 +51,8 @@ class CdApplicationTest {
     @BeforeAll
     public static void createDirectories(@TempDir Path tempDir) throws IOException {
         origWorkingDir = Environment.currentDirectory;
+        System.out.println("Original dir was:" + Environment.currentDirectory);
+
         testWorkingDir = tempDir.toString();
         Environment.currentDirectory = testWorkingDir;
 
