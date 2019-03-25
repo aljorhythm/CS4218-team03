@@ -3,14 +3,12 @@ package sg.edu.nus.comp.cs4218;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import sg.edu.nus.comp.cs4218.Command;
 import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
 import sg.edu.nus.comp.cs4218.exception.CatException;
 import sg.edu.nus.comp.cs4218.exception.ShellException;
 import sg.edu.nus.comp.cs4218.impl.app.CatApplication;
 import sg.edu.nus.comp.cs4218.impl.util.ApplicationRunner;
 import sg.edu.nus.comp.cs4218.impl.util.CommandBuilder;
-import sg.edu.nus.comp.cs4218.impl.util.StringUtils;
 import sg.edu.nus.comp.cs4218m1.TestUtils;
 
 import java.io.ByteArrayOutputStream;
@@ -18,7 +16,6 @@ import java.io.InputStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Matchers.notNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHAR_FILE_SEP;
@@ -27,17 +24,17 @@ import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 public class QuotingCatTest {
     CatApplication catApplication;
     InputStream defaultIStream;
-    String defaultString = "ab abc\nb ccc";
+    String defaultString = "ab abc" + STRING_NEWLINE + "b ccc";
     InputStream emptyIStream;
     String nonExistentFile = "wrong.txt";
     String testDir = TestUtils.pathToTestDataSubdir("catQuotingTest");
     String emptyFile = testDir + CHAR_FILE_SEP + "empty.txt";
     String testFileName1 = testDir + CHAR_FILE_SEP + "testFile1.txt";
     String testFileName2 = testDir + CHAR_FILE_SEP + "testFile2.txt";
-    String testFile1Content = String.join("\n", new String[]{"test1 For Cat Quoting",
-    "easy","for characters","4 lines"})+"\n";
-    String testFile2Content = String.join("\n", new String[]{"test2 For Cat Quoting test",
-    "!@#$%^&*()","for number and symbols","1324567890"})+"\n";
+    String testFile1Content = String.join(STRING_NEWLINE, new String[]{"test1 For Cat Quoting",
+    "easy","for characters","4 lines"})+STRING_NEWLINE;
+    String testFile2Content = String.join(STRING_NEWLINE, new String[]{"test2 For Cat Quoting test",
+    "!@#$%^&*()","for number and symbols","1324567890"})+STRING_NEWLINE;
     String testFileTogether = testFile1Content + STRING_NEWLINE +testFile2Content + STRING_NEWLINE;
     String catEcho = "cat `echo ";
     String catStringEmpty = catEcho + emptyFile+"`";
