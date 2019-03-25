@@ -13,8 +13,6 @@ import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.REGEX_FILE_SEP;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_FILE_SEP;
 
 public final class GlobUtil {
-    private static String GLOB_SLASH = "/";
-
     /**
      *
      * Globs files in with respect to directory

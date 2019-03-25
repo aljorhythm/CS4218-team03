@@ -1,9 +1,7 @@
 package sg.edu.nus.comp.cs4218m1.impl.app;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import sg.edu.nus.comp.cs4218.exception.SortException;
 import sg.edu.nus.comp.cs4218.impl.app.SortApplication;
 import sg.edu.nus.comp.cs4218.impl.util.IOUtils;
 import sg.edu.nus.comp.cs4218.impl.util.StringUtils;
@@ -12,17 +10,8 @@ import java.io.InputStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@SuppressWarnings({"PMD.LongVariable", "PMD.VariableNamingConventions", "PMD.MethodNamingConventions"})
 class SortApplicationTest {
-
-    /**
-     * Test configurations
-     */
-    SortApplication application;
-
-    @BeforeEach
-    void beforeEach() {
-        application = new SortApplication();
-    }
 
     /**
      * Data
@@ -39,15 +28,27 @@ class SortApplicationTest {
     static String string_4_sorted_depcase = String.join(StringUtils.STRING_NEWLINE, new String[]{"aAa","aaa","bbb", "cCc", "ccc"});
     static String string_4_sorted_indcase = String.join(StringUtils.STRING_NEWLINE, new String[]{"aAa", "aaa", "bbb", "ccc", "cCc"});
 
+
+    /**
+     * Test configurations
+     */
+    SortApplication application;
+
+    @BeforeEach
+    void beforeEach() {
+        application = new SortApplication();
+    }
     /**
      * Helper class for easier reading and writing of test cases.
      */
+    @SuppressWarnings("PMD.AvoidFieldNameMatchingMethodName")
     class TestCase {
         private boolean isFirstWordNumber, isReverseOrder, isCaseIndependent;
         private String[] fileNames;
         private InputStream stdIn;
         private String expected;
 
+        @SuppressWarnings("PMD.UncommentedEmptyConstructor")
         public TestCase() {
         }
 
@@ -108,15 +109,6 @@ class SortApplicationTest {
     TestCase newCase() {
         return new TestCase();
     }
-
-    /**
-     * Tests
-     */
-
-//    @Test
-//    void sortFromFiles() {
-//        Assertions.fail("todo");
-//    }
 
     @Test
     void sortFromStdin_test0() throws Exception {

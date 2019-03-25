@@ -84,7 +84,6 @@ public final class RegexArgument {
         return plaintext.toString();
     }
 
-
     /**
      * get nearest non glob ancestors
      * Returns front portion of path with no asterisk

@@ -21,7 +21,7 @@ public class GrepApplication implements GrepInterface {
      *
      * @param pattern            String specifying a regular expression in JAVA format
      * @param isCaseInsensitive  Boolean option to perform case insensitive matching
-     * @param isCountOfLinesOnly Boolean option to only write out a count of matched lines
+     * @param isLineCountsOnly Boolean option to only write out a count of matched lines
      * @param fileNames          Array of file names
      * @return All lines in the files that match the pattern
      * @throws GrepException
@@ -29,7 +29,7 @@ public class GrepApplication implements GrepInterface {
      * @throws IOException
      */
     @java.lang.Override
-    public String grepFromFiles(String pattern, Boolean isCaseInsensitive, Boolean isCountOfLinesOnly, String... fileNames) throws GrepException {
+    public String grepFromFiles(String pattern, Boolean isCaseInsensitive, Boolean isLineCountsOnly, String... fileNames) throws GrepException {
         if (fileNames == null) {
             throw new GrepException("filesNames is null!");
         }
@@ -37,7 +37,7 @@ public class GrepApplication implements GrepInterface {
         for (int i = 0; i < fileNames.length; i++) {
             try {
                 InputStream inputStream = IOUtils.openInputStream(fileNames[i]);
-                result.append(grepFromStdin(pattern, isCaseInsensitive, isCountOfLinesOnly, inputStream)).append(StringUtils.STRING_NEWLINE);
+                result.append(grepFromStdin(pattern, isCaseInsensitive, isLineCountsOnly, inputStream)).append(StringUtils.STRING_NEWLINE);
                 IOUtils.closeInputStream(inputStream);
             } catch (IOException e) {
                 throw (GrepException) new GrepException("IO not working").initCause(e);
@@ -53,12 +53,12 @@ public class GrepApplication implements GrepInterface {
      *
      * @param pattern            String specifying a regular expression in JAVA format
      * @param isCaseInsensitive  Boolean option to perform case insensitive matching
-     * @param isCountOfLinesOnly Boolean option to only write out a count of matched lines
+     * @param isLineCountsOnly Boolean option to only write out a count of matched lines
      * @param stdin              InputStream containing arguments from Stdin
      * @throws Exception
      */
     @java.lang.Override
-    public String grepFromStdin(String pattern, Boolean isCaseInsensitive, Boolean isCountOfLinesOnly, InputStream stdin) throws GrepException, IOException {
+    public String grepFromStdin(String pattern, Boolean isCaseInsensitive, Boolean isLineCountsOnly, InputStream stdin) throws GrepException, IOException {
         if (pattern == null) {
             throw new GrepException("Pattern is null!");
         }
@@ -85,7 +85,7 @@ public class GrepApplication implements GrepInterface {
                 numberOfMatches++;
             }
         }
-        if (isCountOfLinesOnly) {
+        if (isLineCountsOnly) {
             return Integer.toString(numberOfMatches);
         }
         else {
@@ -102,7 +102,7 @@ public class GrepApplication implements GrepInterface {
      * @throws GrepException
      */
     @java.lang.Override
-    public void run(String[] args, InputStream stdin, OutputStream stdout) throws GrepException {
+    public void run(String[] args, InputStream stdin, OutputStream stdout) throws GrepException {//NOPMD
         if (args == null) {
             throw new GrepException("args is null!");
         }
@@ -111,7 +111,7 @@ public class GrepApplication implements GrepInterface {
         }
         String result;
         Boolean isCaseInsensitive = false;
-        Boolean isCountOfLinesOnly = false;
+        Boolean isLineCountsOnly = false;
         Boolean patternProvided = false;
         String pattern = null;
         List<String> fileNames = new ArrayList<>();
@@ -120,7 +120,7 @@ public class GrepApplication implements GrepInterface {
                 if (args[i].charAt(1) == 'i') {
                     isCaseInsensitive = true;
                 } else if (args[i].charAt(1) == 'c') {
-                    isCountOfLinesOnly = true;
+                    isLineCountsOnly = true;
                 } else {
                     throw new GrepException("Unknown option for grep!");
                 }
@@ -141,14 +141,14 @@ public class GrepApplication implements GrepInterface {
                 try {
                     inputString = IOUtils.stringFromInputStream(stdin);
                     InputStream inputStream = new ByteArrayInputStream(inputString.getBytes());
-                    result = grepFromStdin(pattern, isCaseInsensitive, isCountOfLinesOnly, inputStream);
+                    result = grepFromStdin(pattern, isCaseInsensitive, isLineCountsOnly, inputStream);
                 } catch (IOException e) {
                     throw (GrepException) new GrepException("could not read input stream").initCause(e);
                 }
             }
         } else {
             String[] fileNamesArray = fileNames.toArray(new String[0]);
-            result = grepFromFiles(pattern, isCaseInsensitive, isCountOfLinesOnly, fileNamesArray);
+            result = grepFromFiles(pattern, isCaseInsensitive, isLineCountsOnly, fileNamesArray);
         }
         try {
             stdout.write(result.getBytes(CHARSET_UTF8));

@@ -9,7 +9,6 @@ import org.junit.jupiter.api.condition.DisabledOnOs;
 import org.junit.jupiter.api.io.TempDir;
 import org.mockito.Mockito;
 import sg.edu.nus.comp.cs4218.exception.CatException;
-import sg.edu.nus.comp.cs4218.impl.util.IOUtils;
 
 import java.io.*;
 import java.nio.file.Path;
@@ -18,8 +17,10 @@ import java.nio.file.Paths;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.condition.OS.WINDOWS;
 import static org.mockito.Mockito.*;
+import static sg.edu.nus.comp.cs4218.exception.CatException.*;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
+@SuppressWarnings("PMD.LongVariable")
 class CatApplicationTest {
 
     private static final String INPUT_DATA = "Input Data";
@@ -27,14 +28,7 @@ class CatApplicationTest {
     private InputStream input;
     private OutputStream output;
 
-    public static final String ERR_WRITE_STREAM = "Could not write to output stream";
-    public static final String ERR_NULL_STREAMS = "Null Pointer Exception";
-    public static final String ERR_FILE_NOT_FOUND = "No such file or directory";
-    public static final String ERR_IS_DIR = "This is a directory";
-    public static final String ERR_NO_PERM = "Permission denied";
-    public static final String ERR_GENERAL = "Exception Caught";
-
-    public static final String pathToTestDataDir = System.getProperty("user.dir") + File.separator + "TestResources";
+    public static final String TEST_RESOURCES_DIR = System.getProperty("user.dir") + File.separator + "TestResources";
 
     @BeforeEach
     void setUp() {
@@ -64,8 +58,8 @@ class CatApplicationTest {
     public void testCatFilesWithSingleFile() throws Exception {
         catApplication = mock(CatApplication.class);
         when(catApplication.catFiles(Mockito.any())).thenCallRealMethod();
-        String dummy = pathToTestDataDir +"/wc/wc_file1.txt";
-        String expected = "Hello World" + STRING_NEWLINE;
+        String dummy = TEST_RESOURCES_DIR +"/wc/wc_file1.txt";
+        String expected = "Hello World\n";
         assertEquals(expected, catApplication.catFiles(dummy));
     }
 
@@ -74,7 +68,7 @@ class CatApplicationTest {
         catApplication = mock(CatApplication.class);
         when(catApplication.catFiles(Mockito.any(), Mockito.any())).thenCallRealMethod();
         String filename1 = "invalid";
-        String filename2 = pathToTestDataDir + "/wc/wc_file1.txt";
+        String filename2 = TEST_RESOURCES_DIR + "/wc/wc_file1.txt";
         assertThrows(CatException.class, () -> {catApplication.catFiles(filename1, filename2);});
     }
 
@@ -97,15 +91,17 @@ class CatApplicationTest {
     @Test
     @DisabledOnOs(WINDOWS)
     public void testCatFilesWithNoPermissions(@TempDir Path tempDir) throws Exception {
-        // Create temporary file
-        String filename = tempDir.toAbsolutePath().toString() + File.separator + "noperm.txt";
-        File node = IOUtils.resolveFilePath(filename).toFile();
+        Path file = tempDir.resolve("noperm.txt");
+        File node = file.toFile();
         node.createNewFile();
         node.setReadable(false, false);
 
         catApplication = mock(CatApplication.class);
         when(catApplication.catFiles(Mockito.any())).thenCallRealMethod();
-        assertTrue(catApplication.catFiles(filename).contains(ERR_NO_PERM));
+        CatException exception = assertThrows(CatException.class, () -> {
+            catApplication.catFiles(file.toString());
+        });
+        assertTrue(exception.getMessage().contains(ERR_NO_PERM));
     }
 
     @Test
@@ -177,10 +173,10 @@ class CatApplicationTest {
 
     @Test
     public void testRunApplicationWithFiles() throws Exception {
-        String filename1 = pathToTestDataDir + "/wc/wc_file1.txt";
-        String filename2 = pathToTestDataDir + "/wc/wc_file2.txt";
+        String filename1 = TEST_RESOURCES_DIR + "/wc/wc_file1.txt";
+        String filename2 = TEST_RESOURCES_DIR + "/wc/wc_file2.txt";
         catApplication.run(new String[]{filename1, filename2}, input, output);
-        String expected = "Hello World" + STRING_NEWLINE + STRING_NEWLINE + "EmptyFile";
+        String expected = "Hello World\n" + STRING_NEWLINE + "EmptyFile";
         assertEquals(expected, output.toString());
     }
 }

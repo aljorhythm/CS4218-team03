@@ -1,7 +1,12 @@
 /**
  * From Team 02
  */
-package sg.edu.nus.comp.cs4218.impl.app;import org.junit.jupiter.api.*;
+package sg.edu.nus.comp.cs4218.impl.app;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import sg.edu.nus.comp.cs4218.exception.SortException;
 import sg.edu.nus.comp.cs4218.impl.FileIOTestHelper;
@@ -17,31 +22,31 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 
-
+@SuppressWarnings({"PMD.LongVariable"})
 public class SortApplicationTest {
 
-
-    public static final String ALL_CHAR_NAME = TestUtils.pathToTestDataSubdir("sortTest")+File.separator+"sortUnitTest1.txt";
+    private static final String RESOURCE_DIR = TestUtils.pathToTestDataSubdir("sortTest");
+    public static final String ALL_CHAR_NAME = RESOURCE_DIR+File.separator+"sortUnitTest1.txt";
     // SAC = Small And Capital
-    public static final String SAC_LETTER_NAME = TestUtils.pathToTestDataSubdir("sortTest")+File.separator+"sortUnitTest2.txt";
-    public static final String SLETTER_NUM_NAME = TestUtils.pathToTestDataSubdir("sortTest")+File.separator+"sortUnitTest3.txt";
+    public static final String SAC_LETTER_NAME = RESOURCE_DIR+File.separator+"sortUnitTest2.txt";
+    public static final String SLETTER_NUM_NAME = RESOURCE_DIR+File.separator+"sortUnitTest3.txt";
     // SL means Small Letter
-    public static final String SL_OTHERS_NAME = TestUtils.pathToTestDataSubdir("sortTest")+File.separator+"sortUnitTest4.txt";
-    public static final String CLETTER_NUM_NAME = TestUtils.pathToTestDataSubdir("sortTest")+File.separator+"sortUnitTest5.txt";
+    public static final String SL_OTHERS_NAME = RESOURCE_DIR+File.separator+"sortUnitTest4.txt";
+    public static final String CLETTER_NUM_NAME = RESOURCE_DIR+File.separator+"sortUnitTest5.txt";
     // CL means Capital Letter
-    public static final String CL_OTHERS_NAME = TestUtils.pathToTestDataSubdir("sortTest")+File.separator+"sortUnitTest6.txt";
-    public static final String NUM_OTHERS_NAME = TestUtils.pathToTestDataSubdir("sortTest")+File.separator+"sortUnitTest7.txt";
-    public static final String STDOUT_NAME = TestUtils.pathToTestDataSubdir("sortTest")+File.separator+"sortUnitTestStdout.txt";
-    public static final String FILE_NOT_EXIST = TestUtils.pathToTestDataSubdir("sortTest")+File.separator+"fileThatDoesNotExist.txt";
+    public static final String CL_OTHERS_NAME = RESOURCE_DIR+File.separator+"sortUnitTest6.txt";
+    public static final String NUM_OTHERS_NAME = RESOURCE_DIR+File.separator+"sortUnitTest7.txt";
+    public static final String STDOUT_NAME = RESOURCE_DIR+File.separator+"sortUnitTestStdout.txt";
+    public static final String FILE_NOT_EXIST = RESOURCE_DIR+File.separator+"fileThatDoesNotExist.txt";
 
-    public static final String REVERSE_ONLY_ALL_CHAR = TestUtils.pathToTestDataSubdir("sortTest")+File.separator+"reverseOnlyAllChar.txt";
-    public static final String MULTIPLE_FILES_ALL_OPTION = TestUtils.pathToTestDataSubdir("sortTest")+File.separator+"multiFileAllOption.txt";
-    public static final String NUMERIC_ONLY_ALL_CHAR = TestUtils.pathToTestDataSubdir("sortTest")+File.separator+"numericOnlyAllChar.txt";
-    public static final String MULTIPLE_FILES_UNIQUE_ALL_OPTION = TestUtils.pathToTestDataSubdir("sortTest")+File.separator+"multiFileUniqueAllOption.txt";
-    public static final String REVERSE_NUMERIC_ALL_CHAR = TestUtils.pathToTestDataSubdir("sortTest")+File.separator+"reverseNumericAllChar.txt";
-    public static final String NUMERIC_CASE_ALL_CHAR = TestUtils.pathToTestDataSubdir("sortTest")+File.separator+"numericCaseAllChar.txt";
-    public static final String ALL_OPTION_ALL_CHAR = TestUtils.pathToTestDataSubdir("sortTest")+File.separator+"allOptionAllChar.txt";
-    public static final String REVERSE_CASE_ALL_CHAR = TestUtils.pathToTestDataSubdir("sortTest")+File.separator+"reverseCaseAllChar.txt";
+    public static final String REVERSE_ONLY_ALL_CHAR = RESOURCE_DIR+File.separator+"reverseOnlyAllChar.txt";
+    public static final String MULTIPLE_FILES_ALL_OPTION = RESOURCE_DIR+File.separator+"multiFileAllOption.txt";
+    public static final String NUMERIC_ONLY_ALL_CHAR = RESOURCE_DIR+File.separator+"numericOnlyAllChar.txt";
+    public static final String MULTIPLE_FILES_UNIQUE_ALL_OPTION = RESOURCE_DIR+File.separator+"multiFileUniqueAllOption.txt";
+    public static final String REVERSE_NUMERIC_ALL_CHAR = RESOURCE_DIR+File.separator+"reverseNumericAllChar.txt";
+    public static final String NUMERIC_CASE_ALL_CHAR = RESOURCE_DIR+File.separator+"numericCaseAllChar.txt";
+    public static final String ALL_OPTION_ALL_CHAR = RESOURCE_DIR+File.separator+"allOptionAllChar.txt";
+    public static final String REVERSE_CASE_ALL_CHAR = RESOURCE_DIR+File.separator+"reverseCaseAllChar.txt";
 
     public static final String ALL_CHAR = "a\nA\nb\n10\n0\n2\n$\n#\n%\n"
             + "\nabc8\nabc5\nABCD\nABC9";
@@ -126,14 +131,14 @@ public class SortApplicationTest {
     }
 
     @AfterEach
-    void tearDown() {
+    void deleteFiles() {
         FileIOTestHelper.deleteMultipleFiles(ALL_CHAR_NAME, SLETTER_NUM_NAME,
                 SAC_LETTER_NAME, SL_OTHERS_NAME, CLETTER_NUM_NAME,
                 CL_OTHERS_NAME, NUM_OTHERS_NAME);
     }
 
     @AfterAll
-    static void tearDownAfterEachTest() {
+    static void deleteStdOutFile() {
         File file = new File(STDOUT_NAME);
         if (file.exists()) {
             file.delete();

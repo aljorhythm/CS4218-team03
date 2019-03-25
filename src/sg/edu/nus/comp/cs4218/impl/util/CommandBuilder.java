@@ -30,6 +30,7 @@ public final class CommandBuilder {//NOPMD
      */
     private static final Pattern ARGUMENT_REGEX = Pattern
             .compile("([^'\"`|<>;\\s]+|'[^']*'|\"([^\"`]*`.*?`[^\"`]*)+\"|\"[^\"]*\"|`[^`]*`)+");
+    private static ArgumentResolver argumentResolver = new ArgumentResolver();
 
     private CommandBuilder() {
     }
@@ -108,7 +109,7 @@ public final class CommandBuilder {//NOPMD
                             tokens.add(commandSubstring.substring(2, index + 1));
                             commandSubstring = commandSubstring.substring(index + 1);
                         }
-                        cmdsForIORedirection.add(new CallCommand(tokens, appRunner));
+                        cmdsForIORedirection.add(new CallCommand(tokens, argumentResolver, appRunner));
                     }
                     break;
                 case CHAR_SPACE:
@@ -127,7 +128,7 @@ public final class CommandBuilder {//NOPMD
                         throw new ShellException(ERR_SYNTAX);
                     } else {
                         // add CallCommand as part of a PipeCommand
-                        callCmdsForPipe.add(new CallCommand(tokens, appRunner));
+                        callCmdsForPipe.add(new CallCommand(tokens, argumentResolver, appRunner));
                     }
                     break;
 
@@ -138,11 +139,11 @@ public final class CommandBuilder {//NOPMD
                         throw new ShellException(ERR_SYNTAX);
                     } else if (callCmdsForPipe.isEmpty()) {
                         // add CallCommand as part of a SequenceCommand
-                        cmdsForSequence.add(new CallCommand(tokens, appRunner));
+                        cmdsForSequence.add(new CallCommand(tokens, argumentResolver, appRunner));
                         tokens = new LinkedList<>();
                     } else {
                         // add CallCommand as part of ongoing PipeCommand
-                        callCmdsForPipe.add(new CallCommand(tokens, appRunner));
+                        callCmdsForPipe.add(new CallCommand(tokens, argumentResolver, appRunner));
                         // add PipeCommand as part of a SequenceCommand
                         cmdsForSequence.add(new PipeCommand(callCmdsForPipe));
                         callCmdsForPipe = new LinkedList<>();
@@ -155,7 +156,7 @@ public final class CommandBuilder {//NOPMD
             }
         }
 
-        Command finalCommand = new CallCommand(tokens, appRunner);
+        Command finalCommand = new CallCommand(tokens, argumentResolver, appRunner);
         if (!callCmdsForPipe.isEmpty()) {
             // add CallCommand as part of ongoing PipeCommand
             callCmdsForPipe.add((CallCommand) finalCommand);
