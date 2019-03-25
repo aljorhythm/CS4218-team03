@@ -131,7 +131,7 @@ public class PipeGrepWcTest {
     }
 
     @Test
-    void testPipeWcGrepWcFile3_2() throws UnsupportedEncodingException {
+    void testPipeWcGrepWcFile3() throws UnsupportedEncodingException {
         InputStream inputStream = new ByteArrayInputStream("test data ".getBytes());
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         List<CallCommand> commands = new ArrayList<>();
