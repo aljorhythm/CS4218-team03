@@ -61,7 +61,7 @@ public class ShellCdTest extends ShellTest {
     }
 
     @Test
-    void cdRelative() {
+    void cdRelative() throws IOException, ShellException {
         String[] input = {
                 "cd " + subDirName,
                 STR_EXIT
@@ -70,6 +70,7 @@ public class ShellCdTest extends ShellTest {
                 temporaryDir + CHAR_SHELL_ARROW,
                 subDirPath + CHAR_SHELL_ARROW
         };
+        assertInputOutput(input, expectedLines);
     }
 
     @Test
