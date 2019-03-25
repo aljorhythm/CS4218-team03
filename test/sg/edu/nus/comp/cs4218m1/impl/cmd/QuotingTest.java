@@ -18,11 +18,11 @@ class QuotingTest {
     private static final ApplicationRunner MOCK_APP_RUNNER = mock(ApplicationRunner.class);
     private static final String WORD_UNQUOTED = "test for quoting";
     private static final String WORD_QUOTED = String.format(CHAR_SINGLE_QUOTE + "%s" + CHAR_SINGLE_QUOTE, WORD_UNQUOTED);
-    private static final String WORD_DOUBLE_QUOTED = String.format(CHAR_DOUBLE_QUOTE + "%s" + CHAR_DOUBLE_QUOTE, WORD_UNQUOTED);
+    private static final String WORD_DBL_QUOTED = String.format(CHAR_DOUBLE_QUOTE + "%s" + CHAR_DOUBLE_QUOTE, WORD_UNQUOTED);
     private static final String WORD_MIX_QUOTED1 = String.format(CHAR_DOUBLE_QUOTE + CHAR_SINGLE_QUOTE + "%s" + CHAR_SINGLE_QUOTE + CHAR_DOUBLE_QUOTE, WORD_UNQUOTED);
     private static final String WORD_MIX_QUOTED2 = String.format(CHAR_SINGLE_QUOTE + CHAR_DOUBLE_QUOTE + "%s" + CHAR_DOUBLE_QUOTE + CHAR_SINGLE_QUOTE, WORD_UNQUOTED);
     private static final String WORD_ERROR_QUOTED = String.format(CHAR_SINGLE_QUOTE  + "%s" + CHAR_DOUBLE_QUOTE, WORD_UNQUOTED);
-    
+
     @Test
     void testUnquoted() throws ShellException, AbstractApplicationException {
         ArgumentResolver resolver = new ArgumentResolver();
@@ -42,7 +42,7 @@ class QuotingTest {
     @Test
     void testDoubleQuotes() throws ShellException, AbstractApplicationException {
         ArgumentResolver resolver = new ArgumentResolver();
-        List<String> resolved = resolver.resolveOneArgument(WORD_DOUBLE_QUOTED, MOCK_APP_RUNNER);
+        List<String> resolved = resolver.resolveOneArgument(WORD_DBL_QUOTED, MOCK_APP_RUNNER);
         String[] expected = new String[]{WORD_UNQUOTED};
         TestUtils.assertArrayEqualsList(expected, resolved);
     }
@@ -59,7 +59,7 @@ class QuotingTest {
     void testMixQuotes2() throws ShellException, AbstractApplicationException {
         ArgumentResolver resolver = new ArgumentResolver();
         List<String> resolved = resolver.resolveOneArgument(WORD_MIX_QUOTED2, MOCK_APP_RUNNER);
-        String[] expected = new String[]{WORD_DOUBLE_QUOTED};
+        String[] expected = new String[]{WORD_DBL_QUOTED};
         TestUtils.assertArrayEqualsList(expected, resolved);
     }
 
