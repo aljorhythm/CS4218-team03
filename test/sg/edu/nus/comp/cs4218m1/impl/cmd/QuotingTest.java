@@ -1,4 +1,4 @@
-package sg.edu.nus.comp.cs4218.impl.cmd;
+package sg.edu.nus.comp.cs4218m1.impl.cmd;
 
 import org.junit.jupiter.api.Test;
 import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;

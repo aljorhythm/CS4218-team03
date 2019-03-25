@@ -1,23 +1,33 @@
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import sg.edu.nus.comp.cs4218.Environment;
 
 import java.io.File;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static sg.edu.nus.comp.cs4218.impl.app.MkdirApplicationTest.deleteDirectory;
 
 @SuppressWarnings("PMD")
 public class RegressionTest0 {
     static String pathToProjectDir = System.getProperty("user.dir") + File.separator;
+    /**
+     * Original working directory before this test class is run
+     */
+    private static String origWorkingDir;
+
+    @BeforeAll
+    public static void createDirectories() {
+        origWorkingDir = Environment.currentDirectory;
+        System.out.println("Original dir was:" + Environment.currentDirectory);
+    }
 
     /**
      * Delete folders that are automatically created by the Randoop tests.
      * @throws IOException
      */
     @AfterAll
-    static void tearDownAll() throws IOException {
+    static void tearDownAll() {
         String[] directoriesToDelete = new String[]{"Could not read stream", "Exception Caught", "fail_echo",
                 "fail_echo_write", "fail_sed_write", "File doesn't exist", "hi!", "null arguments",
                 "null input file provided", "null output stream provided", "Null Pointer Exception",
@@ -26,7 +36,10 @@ public class RegressionTest0 {
             File file = new File(pathToProjectDir + f);
             file.delete();
         }
+        Environment.currentDirectory = origWorkingDir;
+        System.out.println("Current directory reverted to :" + Environment.currentDirectory);
     }
+
     public static boolean debug = false;
 
     @Test

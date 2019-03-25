@@ -8,7 +8,10 @@ import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -89,7 +92,9 @@ public class GlobUtilTest extends DirectoryStructureTest {
     @Test
     void globTestSubdirectoriesAll() throws IOException {
         List<String> res = GlobUtil.glob(Paths.get(testRootDir), "*" + CHAR_FILE_SEP + "*");
-        Assertions.assertArrayEquals(allSubDirFiles, res.toArray(new String[]{}));
+        Set<String> resSet = new HashSet(res);
+        Set<String> expected = new HashSet(Arrays.asList(allSubDirFiles));
+        Assertions.assertTrue(expected.equals(resSet));
     }
 
     /**
@@ -115,7 +120,9 @@ public class GlobUtilTest extends DirectoryStructureTest {
                 .of(allSubDirFiles)
                 .filter(s -> s.endsWith(".txt"))
                 .toArray(String[]::new);
-        Assertions.assertArrayEquals(expected, res.toArray(new String[]{}));
+        Set<String> resSet = new HashSet(res);
+        Set<String> expectedSet = new HashSet(Arrays.asList(expected));
+        Assertions.assertTrue(expectedSet.equals(resSet));
     }
 
     /**

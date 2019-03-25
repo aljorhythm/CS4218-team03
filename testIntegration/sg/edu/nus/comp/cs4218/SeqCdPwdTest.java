@@ -1,8 +1,6 @@
 package sg.edu.nus.comp.cs4218;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
 import sg.edu.nus.comp.cs4218.exception.ShellException;
 import sg.edu.nus.comp.cs4218.impl.app.CdApplication;
@@ -30,6 +28,17 @@ public class SeqCdPwdTest {
     CallCommand cdCommand;
     CallCommand pwdCommand;
 
+    /**
+     * Original working directory before this test class is run
+     */
+    private static String origWorkingDir;
+
+    @BeforeAll
+    public static void createDirectories() throws IOException {
+        origWorkingDir = Environment.currentDirectory;
+        System.out.println("Original dir was:" + Environment.currentDirectory);
+    }
+
     @BeforeEach
     void setUp() throws IOException {
         File tempFile = new File(tempDir);
@@ -38,11 +47,16 @@ public class SeqCdPwdTest {
 
 
     @AfterEach
-    void tearDown() throws IOException {
+    void tearDown() {
         File tempFile = new File(tempDir);
         deleteDirectory(tempFile, tempFile.listFiles());
     }
 
+    @AfterAll
+    static void tearDownAll() {
+        Environment.currentDirectory = origWorkingDir;
+        System.out.println("Current directory reverted to :" + Environment.currentDirectory);
+    }
     /**
      * Helper function used to delete the a directory and its content.
      * @param directory The directory to be deleted.
