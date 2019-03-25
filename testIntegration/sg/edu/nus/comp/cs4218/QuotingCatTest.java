@@ -24,17 +24,17 @@ import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 public class QuotingCatTest {
     CatApplication catApplication;
     InputStream defaultIStream;
-    String defaultString = "ab abc" + STRING_NEWLINE + "b ccc";
+    String defaultString = "ab abc\nb ccc";
     InputStream emptyIStream;
     String nonExistentFile = "wrong.txt";
     String testDir = TestUtils.pathToTestDataSubdir("catQuotingTest");
     String emptyFile = testDir + CHAR_FILE_SEP + "empty.txt";
     String testFileName1 = testDir + CHAR_FILE_SEP + "testFile1.txt";
     String testFileName2 = testDir + CHAR_FILE_SEP + "testFile2.txt";
-    String testFile1Content = String.join(STRING_NEWLINE, new String[]{"test1 For Cat Quoting",
-    "easy","for characters","4 lines"})+STRING_NEWLINE;
-    String testFile2Content = String.join(STRING_NEWLINE, new String[]{"test2 For Cat Quoting test",
-    "!@#$%^&*()","for number and symbols","1324567890"})+STRING_NEWLINE;
+    String testFile1Content = String.join("\n", new String[]{"test1 For Cat Quoting",
+    "easy","for characters","4 lines"})+"\n";
+    String testFile2Content = String.join("\n", new String[]{"test2 For Cat Quoting test",
+    "!@#$%^&*()","for number and symbols","1324567890"})+"\n";
     String testFileTogether = testFile1Content + STRING_NEWLINE +testFile2Content + STRING_NEWLINE;
     String catEcho = "cat `echo ";
     String catStringEmpty = catEcho + emptyFile+"`";

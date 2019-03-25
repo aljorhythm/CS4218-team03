@@ -53,35 +53,21 @@ public class QuotingGlobingTest {
      */
     @Test
     void quotingTest1() throws Exception{
-        assertInputOutput(quotingCommand1,quotingExpect1);
+        assertInputOutput(quotingCommand2,quotingExpect2);
     }
-
     /**
      * Test for quoting2
      */
     @Test
     void quotingTest2() throws Exception{
-        assertInputOutput(quotingCommand2,quotingExpect2);
+        assertInputOutput(quotingCommand3,quotingExpect3);
     }
+
     /**
      * Test for quoting3
      */
     @Test
     void quotingTest3() throws Exception{
-        assertInputOutput(quotingCommand3,quotingExpect3);
-    }
-    /**
-     * Test for quoting4
-     */
-    @Test
-    void quotingTest4() throws Exception{
-        assertInputOutput(quotingCommand4,quotingExpect4);
-    }
-    /**
-     * Test for quoting5
-     */
-    @Test
-    void quotingTest5() throws Exception{
         assertInputOutput(quotingCommand5,quotingExpect5);
     }
 

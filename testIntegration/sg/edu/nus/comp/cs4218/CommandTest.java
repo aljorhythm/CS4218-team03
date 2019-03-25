@@ -119,22 +119,6 @@ public class CommandTest {
     }
 
     /**
-     * Test for pipeCommand in cat|grep
-     */
-    @Test
-    void pipeCommandTest1() throws Exception{
-        assertInputOutput(pipeCommandString1,catGrepExpect1);
-    }
-
-    /**
-     * Test for pipeCommand in cat|grep second version
-     */
-    @Test
-    void pipeCommandTest2() throws Exception{
-        assertInputOutput(pipeCommandString2,catGrepExpect2);
-    }
-
-    /**
      * Test for callCommand1 in CommandBuilder
      */
     @Test
