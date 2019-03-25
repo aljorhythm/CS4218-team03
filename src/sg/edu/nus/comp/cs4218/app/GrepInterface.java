@@ -10,11 +10,11 @@ public interface GrepInterface extends Application {
      *
      * @param pattern            String specifying a regular expression in JAVA format
      * @param isCaseInsensitive  Boolean option to perform case insensitive matching
-     * @param isCountOfLinesOnly Boolean option to only write out a count of matched lines
+     * @param isLineCountsOnly Boolean option to only write out a count of matched lines
      * @param fileNames          Array of file names
      * @throws Exception
      */
-    String grepFromFiles(String pattern, Boolean isCaseInsensitive, Boolean isCountOfLinesOnly, String... fileNames)
+    String grepFromFiles(String pattern, Boolean isCaseInsensitive, Boolean isLineCountsOnly, String... fileNames)
             throws Exception;
 
     /**
@@ -22,10 +22,10 @@ public interface GrepInterface extends Application {
      *
      * @param pattern            String specifying a regular expression in JAVA format
      * @param isCaseInsensitive  Boolean option to perform case insensitive matching
-     * @param isCountOfLinesOnly Boolean option to only write out a count of matched lines
+     * @param isLineCountsOnly Boolean option to only write out a count of matched lines
      * @param stdin              InputStream containing arguments from Stdin
      * @throws Exception
      */
-    String grepFromStdin(String pattern, Boolean isCaseInsensitive, Boolean isCountOfLinesOnly, InputStream stdin)
+    String grepFromStdin(String pattern, Boolean isCaseInsensitive, Boolean isLineCountsOnly, InputStream stdin)
             throws Exception;
 }

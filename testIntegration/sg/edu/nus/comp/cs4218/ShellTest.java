@@ -15,7 +15,7 @@ public class ShellTest {
     /**
      * Tests running of shell with input and output
      */
-    void assertInputOutput(String[] commands, String[] expectedLines) throws IOException, ShellException {
+    void assertInputOutput(String[] commands, String... expectedLines) throws IOException, ShellException {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         InputStream inputStream = stringsToInputStream(commands);
         Shell shell = new ShellImpl(inputStream, outputStream);

@@ -26,13 +26,13 @@ public class SedApplication implements SedInterface{
         try {
             inputStream = new FileInputStream(fileName);
         } catch (FileNotFoundException e) {
-            throw new SedException(FILE_NOT_EXIST);
+            throw new SedException(FILE_NOT_EXIST);//NOPMD
         }
         List<String> resList = null;
         try {
             resList = replace(inputStream,regexp,replacement,replacementIndex);
         } catch (IOException e) {
-            throw new SedException(FILE_NULL);
+            throw new SedException(FILE_NULL);//NOPMD
         }
         return String.join(StringUtils.STRING_NEWLINE,resList);
     }
@@ -44,7 +44,7 @@ public class SedApplication implements SedInterface{
         try {
             resList = replace(stdin,regexp,replacement,replacementIndex);
         } catch (IOException e) {
-            throw new SedException(FILE_NULL);
+            throw new SedException(FILE_NULL);//NOPMD
         }
         return String.join(StringUtils.STRING_NEWLINE,resList);
     }
@@ -161,8 +161,8 @@ public class SedApplication implements SedInterface{
      */
     public static boolean isSpecialSymbol(String str){
         String regEx = "[ _`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]|\n|\r|\t";
-        Pattern p = Pattern.compile(regEx);
-        Matcher m = p.matcher(str);
-        return m.find();
+        Pattern pattern = Pattern.compile(regEx);
+        Matcher matcher = pattern.matcher(str);
+        return matcher.find();
     }
 }

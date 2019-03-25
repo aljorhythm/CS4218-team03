@@ -18,7 +18,6 @@ import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static sg.edu.nus.comp.cs4218.exception.CdException.*;
-import static sg.edu.nus.comp.cs4218.impl.app.CatApplicationTest.ERR_FILE_NOT_FOUND;
 import static sg.edu.nus.comp.cs4218.impl.util.IOUtils.resolveFilePath;
 
 @SuppressWarnings("PMD.AvoidDuplicateLiterals")
@@ -52,6 +51,8 @@ class CdApplicationTest {
     @BeforeAll
     public static void createDirectories(@TempDir Path tempDir) throws IOException {
         origWorkingDir = Environment.currentDirectory;
+        System.out.println("Original dir was:" + Environment.currentDirectory);
+
         testWorkingDir = tempDir.toString();
         Environment.currentDirectory = testWorkingDir;
 
@@ -311,10 +312,9 @@ class CdApplicationTest {
      */
     @Test
     public void testThrowExceptionIfPathDirectoryNotExist() {
-        CdException exception = assertThrows(CdException.class, () -> {
+        assertThrows(CdException.class, () -> {
             cdApplication.run(new String[]{"folder8"}, null, null);
         });
-        assertTrue(exception.getMessage().contains(ERR_FILE_NOT_FOUND));
     }
 
     /**

@@ -10,7 +10,7 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
-import static sg.edu.nus.comp.cs4218.exception.ShellException.INVALID_INPUT_STREAM;
+import static sg.edu.nus.comp.cs4218.exception.ShellException.INVALID_IO_STREAM;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHARSET_UTF8;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
@@ -18,31 +18,29 @@ class SequenceCmdTest {
 
     /**
      * Mocks a call command
-     * Simply writes input from stdin and "ABC" or "DEF" to output
+     * Simply writes input from stdin and input argument to output
      */
     static class MockCommand extends CallCommand{
 
-        private static String input;
+        private final String input;
 
         public MockCommand(String word) {
-            super(null, null);
-            String input = word;
+            super(null, null, null);
+            input = word;
         }
 
         @Override
         public void evaluate(InputStream stdin, OutputStream stdout) throws ShellException {
             byte[] buffer = new byte[1024];
             int length;
-
             try {
-
                 while ((length = stdin.read(buffer)) != -1) {
                     stdout.write(buffer, 0, length);
                 }
-                buffer = MockCommand.input.getBytes(CHARSET_UTF8);
+                buffer = (input + STRING_NEWLINE).getBytes(CHARSET_UTF8);
                 stdout.write(buffer);
             } catch (IOException e) {
-                throw new ShellException(INVALID_INPUT_STREAM);//NOPMD
+                throw new ShellException(INVALID_IO_STREAM);//NOPMD
             }
         }
     }
@@ -54,7 +52,7 @@ class SequenceCmdTest {
     void evaluateTwoCommandsAFDL() throws Exception {
         mock(CallCommand.class);
         InputStream inputStream = new ByteArrayInputStream("test data ".getBytes());
-        OutputStream outputStream = new ByteArrayOutputStream();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
         CallCommand[] commands = {
                 new MockCommand("ABC"), new MockCommand("DEF")
@@ -63,8 +61,8 @@ class SequenceCmdTest {
         SequenceCommand sequenceCommand = new SequenceCommand(Arrays.asList(commands));
         sequenceCommand.evaluate(inputStream, outputStream);
         String expected = "test data ABC" + STRING_NEWLINE + "DEF" + STRING_NEWLINE;
-        String actual = ((ByteArrayOutputStream) outputStream).toString("UTF-8");
-        assertEquals(actual, expected);
+        String actual = outputStream.toString("UTF-8");
+        assertEquals(expected, actual);
     }
 
     /**
@@ -74,7 +72,7 @@ class SequenceCmdTest {
     void evaluateTwoCommandsDFAL() throws Exception {
         mock(CallCommand.class);
         InputStream inputStream = new ByteArrayInputStream("test data ".getBytes());
-        OutputStream outputStream = new ByteArrayOutputStream();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
         CallCommand[] commands = {
                 new MockCommand("DEF"), new MockCommand("ABC")
@@ -83,7 +81,7 @@ class SequenceCmdTest {
         SequenceCommand sequenceCommand = new SequenceCommand(Arrays.asList(commands));
         sequenceCommand.evaluate(inputStream, outputStream);
         String expected = "test data DEF" + STRING_NEWLINE + "ABC" + STRING_NEWLINE;
-        String actual = ((ByteArrayOutputStream) outputStream).toString("UTF-8");
-        assertEquals(actual, expected);
+        String actual = outputStream.toString("UTF-8");
+        assertEquals(expected, actual);
     }
 }

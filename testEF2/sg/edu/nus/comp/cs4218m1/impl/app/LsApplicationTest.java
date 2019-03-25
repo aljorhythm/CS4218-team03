@@ -11,33 +11,35 @@ import java.io.File;
 import static org.junit.jupiter.api.Assertions.*;
 import static sg.edu.nus.comp.cs4218m1.TestUtils.pathToTestDataSubdir;
 
+@SuppressWarnings({"PMD.LongVariable", "PMD.VariableNamingConventions", "PMD.AvoidDuplicateLiterals"})
 class LsApplicationTest {
     /**
      * Configuration and data
      */
     LsApplication application;
-    private static String testDir = pathToTestDataSubdir("lsTestDir");
-    private static String test1And2Output = String.join(StringUtils.STRING_NEWLINE, new String[]{testDir + File.separator + "folder_b"});
-    private static String test3Output = String.join(StringUtils.STRING_NEWLINE, new String[]{
+    private static final String testDir = pathToTestDataSubdir("lsTestDir");
+    private static final String test1And2Output = String.join(StringUtils.STRING_NEWLINE, new String[]{testDir + File.separator + "folder_b"});
+    private static final String test3Output = String.join(StringUtils.STRING_NEWLINE, new String[]{
             testDir + ":", "folder_a folder_b" + StringUtils.STRING_NEWLINE,
             testDir + File.separator + "folder_a:", "file_a" + StringUtils.STRING_NEWLINE,
             testDir + File.separator + "folder_b:", "folder_c folder_d" + StringUtils.STRING_NEWLINE,
             testDir + File.separator + "folder_b" + File.separator + "folder_c:", "file_a" + StringUtils.STRING_NEWLINE,
             testDir + File.separator + "folder_b" + File.separator + "folder_d:", "file_b"});
-    private static String test4Output = String.join(" ", new String[]{"folder_a", "folder_b"});
-    private static String test5Output = testDir + File.separator + "folder_a" + File.separator + "file_a";
-    private static String FOLDER_B = testDir + File.separator + "folder_b";
-    private static String FOLDER_A = testDir + File.separator + "folder_a";
-    private static String FILE_A = FOLDER_A + File.separator + "file_a";
-    private static String FOLDER_C = FOLDER_B + File.separator + "folder_c";
-    private static String FOLDER_E = FOLDER_C + File.separator + "folder_e";
-    private static String FOLDER_F = testDir + File.separator + "folder_f";
+    private static final String test4Output = String.join(" ", new String[]{"folder_a", "folder_b"});
+    private static final String test5Output = testDir + File.separator + "folder_a" + File.separator + "file_a";
+    private static final String FOLDER_B = testDir + File.separator + "folder_b";
+    private static final String FOLDER_A = testDir + File.separator + "folder_a";
+    private static final String FILE_A = FOLDER_A + File.separator + "file_a";
+    private static final String FOLDER_C = FOLDER_B + File.separator + "folder_c";
+    private static final String FOLDER_E = FOLDER_C + File.separator + "folder_e";
+    private static final String FOLDER_F = testDir + File.separator + "folder_f";
 
     @BeforeEach
     void init() {
         application = new LsApplication();
     }
 
+    @SuppressWarnings("PMD.AvoidFieldNameMatchingMethodName")
     private class TestCase {
         boolean isFoldersOnly, isRecursive;
         String folder, expected;

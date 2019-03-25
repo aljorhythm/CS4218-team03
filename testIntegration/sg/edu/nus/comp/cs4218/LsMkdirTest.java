@@ -14,9 +14,8 @@ import java.io.File;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class AppAppTest {
+public class LsMkdirTest {
 
     MkdirApplication mkdirApplication;
     LsApplication lsApplication;
@@ -30,7 +29,7 @@ public class AppAppTest {
     }
 
     @AfterEach
-    void tearDown() throws IOException {
+    void tearDown() {
         File tempFile = new File(tempDir);
         deleteDirectory(tempFile, tempFile.listFiles());
     }

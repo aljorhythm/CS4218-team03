@@ -16,7 +16,7 @@ import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHARSET_UTF8;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
 class SubstitutionTest {
-    private ApplicationRunner mockAppRunner = new MockAppRunner();
+    private final ApplicationRunner mockAppRunner = new MockAppRunner();
 
     /**
      * Mock application runner that does straightforward stuff without any commands

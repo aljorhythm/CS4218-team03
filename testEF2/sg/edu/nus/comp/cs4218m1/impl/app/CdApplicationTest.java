@@ -1,62 +1,73 @@
 package sg.edu.nus.comp.cs4218m1.impl.app;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+import sg.edu.nus.comp.cs4218.Environment;
 import sg.edu.nus.comp.cs4218.exception.CdException;
 import sg.edu.nus.comp.cs4218.impl.app.CdApplication;
+import sg.edu.nus.comp.cs4218m1.TestUtils;
+
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static sg.edu.nus.comp.cs4218.impl.app.MkdirApplicationTest.deleteDirectory;
+import static org.junit.jupiter.api.Assertions.*;
 
 class CdApplicationTest {
-    CdApplication cdApplication;
-    String pathToTestDir = System.getProperty("user.dir") + File.separator + "testEF2" + File.separator +
-            "sg" + File.separator + "edu" + File.separator + "nus" + File.separator + "comp" + File.separator +
-            "cs4218m1" + File.separator + "cdTestDir";
-    String pathNoFile = pathToTestDir  + File.separator + "cdEmpty";
+    private CdApplication cdApplication;
 
     /**
-     * create the aim file
+     * Original working directory before this test class is run
+     */
+    private static String origWorkingDir;
+
+    /**
+     * Testing directory
+     */
+    private static String testWorkingDir;
+
+    /**
+     * Initializes application for each test
      */
     @BeforeEach
-    void setup() throws IOException {
+    public void initApplication(){
         cdApplication = new CdApplication();
-        deleteDirectory(null, new File(pathToTestDir).listFiles());
-        File file = new File(pathToTestDir);
-        file.mkdirs();
     }
 
-    @AfterEach
-    void tearDown() throws IOException {
-        deleteDirectory(null, new File(pathToTestDir).listFiles());
-        File f = new File(pathToTestDir + File.separator + "EmptyFileForGitTracking.txt");
-        f.createNewFile();
-    }
 
-    /**
-     * TODO
-     * test if the cd works
-     * @throws CdException
-     */
-    @Test
-    void cd_exist_file() throws CdException {
-        cdApplication.changeToDirectory(pathToTestDir);
-        String currentDir = Paths.get("").toAbsolutePath().toString();
-        assertEquals(currentDir,pathToTestDir);
+    @BeforeAll
+    public static void createDirectories() throws IOException {
+        origWorkingDir = Environment.currentDirectory;
+        testWorkingDir = TestUtils.TEST_DATA_DIR;
+        Environment.currentDirectory = testWorkingDir;
     }
 
     /**
-     * TODO
-     * test if the cd throw an exception when meeting a fake path
+     * Sets working directory to temporary test directory before each test
+     */
+    @BeforeEach
+    public void setWorkingDirectory() {
+        Environment.currentDirectory = testWorkingDir;
+    }
+
+    /**
+     * Reverts working directory
+     */
+    @AfterAll
+    public static void revertCurrentDirectory(){
+        Environment.currentDirectory = origWorkingDir;
+    }
+
+    @Test
+    void cdFileExists() throws CdException {
+        cdApplication.changeToDirectory("cdTestDir");
+        assertEquals(testWorkingDir + File.separator + "cdTestDir", Environment.currentDirectory);
+    }
+
+    /**
+     * Test if the cd throw an exception when meeting a fake path
      */
     @Test
-    void cd_empty_file(){
-        assertThrows(CdException.class, () -> {cdApplication.changeToDirectory(pathNoFile);});
+    void cdEmptyFile(){
+        assertThrows(CdException.class, () -> {cdApplication.changeToDirectory("non-existing");});
     }
 }

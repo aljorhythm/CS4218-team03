@@ -1,5 +1,6 @@
 package sg.edu.nus.comp.cs4218.impl.app;
 
+import sg.edu.nus.comp.cs4218.Environment;
 import sg.edu.nus.comp.cs4218.app.CatInterface;
 import sg.edu.nus.comp.cs4218.exception.CatException;
 import sg.edu.nus.comp.cs4218.exception.ShellException;
@@ -7,18 +8,10 @@ import sg.edu.nus.comp.cs4218.impl.util.IOUtils;
 
 import java.io.*;
 
+import static sg.edu.nus.comp.cs4218.exception.CatException.*;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
 public class CatApplication implements CatInterface {
-    public static final String ERR_IS_DIR = "This is a directory";
-    public static final String ERR_RD_FILE = "Could not read file";
-    public static final String ERR_RD_STREAM = "Could not read stream";
-    public static final String ERR_WRITE_STREAM = "Could not write to output stream";
-    public static final String ERR_NULL_STREAMS = "Null Pointer Exception";
-    public static final String ERR_NULL_FILENAME = "null input file provided";
-    public static final String ERR_NULL_OS = "null output stream provided";
-    public static final String ERR_GENERAL = "Exception Caught";
-    public static final String ERR_NULL_ARGS = "null arguments";
 
     /**
      * Runs the cat application with the specified arguments.
@@ -66,7 +59,9 @@ public class CatApplication implements CatInterface {
             } catch (ShellException e) {
                 throw (CatException) new CatException(ERR_RD_FILE).initCause(e);
             } catch (FileNotFoundException e) {
-                throw (CatException) new CatException(ERR_RD_FILE).initCause(e);
+                String error = e.getMessage().toLowerCase(Environment.LOCALE);
+                error = error.contains("permission denied") ? ERR_NO_PERM : ERR_RD_FILE;
+                throw (CatException) new CatException(error).initCause(e);
             }
         }
 
