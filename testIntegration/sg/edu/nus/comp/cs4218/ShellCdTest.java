@@ -83,8 +83,8 @@ public class ShellCdTest extends ShellTest {
                 STR_EXIT
         };
         String[] expectedLines = {
-                temporaryDir + CHAR_SHELL_ARROW,
-                String.format(CdException.ERR_IS_NOT_DIR, nonExistentDir)
+                temporaryDir + CHAR_SHELL_ARROW + "cd: " + String.format(CdException.ERR_NO_SUCH_DIR, nonExistentDir),
+                temporaryDir + CHAR_SHELL_ARROW
         };
         assertInputOutput(input, expectedLines);
     }
@@ -97,7 +97,7 @@ public class ShellCdTest extends ShellTest {
         };
         String[] expectedLines = {
                 temporaryDir + CHAR_SHELL_ARROW,
-                String.format(CdException.ERR_IS_NOT_DIR, nonExistentDir)
+                temporaryDir + CHAR_SHELL_ARROW
         };
         assertInputOutput(input, expectedLines);
     }
