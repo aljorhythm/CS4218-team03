@@ -59,7 +59,7 @@ class CatApplicationTest {
         catApplication = mock(CatApplication.class);
         when(catApplication.catFiles(Mockito.any())).thenCallRealMethod();
         String dummy = TEST_RESOURCES_DIR +"/wc/wc_file1.txt";
-        String expected = "Hello World" + STRING_NEWLINE;
+        String expected = "Hello World\n";
         assertEquals(expected, catApplication.catFiles(dummy));
     }
 
@@ -176,7 +176,7 @@ class CatApplicationTest {
         String filename1 = TEST_RESOURCES_DIR + "/wc/wc_file1.txt";
         String filename2 = TEST_RESOURCES_DIR + "/wc/wc_file2.txt";
         catApplication.run(new String[]{filename1, filename2}, input, output);
-        String expected = "Hello World" + STRING_NEWLINE + STRING_NEWLINE + "EmptyFile";
+        String expected = "Hello World\n" + STRING_NEWLINE + "EmptyFile";
         assertEquals(expected, output.toString());
     }
 }

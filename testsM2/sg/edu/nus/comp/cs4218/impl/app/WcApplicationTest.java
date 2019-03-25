@@ -3,9 +3,11 @@
  */
 package sg.edu.nus.comp.cs4218.impl.app;import org.junit.jupiter.api.*;
 import org.mockito.Mockito;
+import sg.edu.nus.comp.cs4218.Environment;
 import sg.edu.nus.comp.cs4218.exception.WcException;
 import sg.edu.nus.comp.cs4218.impl.FileIOTestHelper;
 import sg.edu.nus.comp.cs4218.impl.StringsToArrayHelper;
+import sg.edu.nus.comp.cs4218.impl.util.IOUtils;
 import sg.edu.nus.comp.cs4218.impl.util.StringUtils;
 
 import java.io.*;
@@ -93,20 +95,12 @@ class WcApplicationTest {
     public static final int ALL_CHAR_LC = 5;
     public static final int ALL_CHAR_BC = 183;
 
-    public static final String SPACE_CHARACTER = " ";
-    // NSFOD = No Such File Or Directory
-    public static final String WC_NSFOD_FORMAT = "wc: %s: No such file or directory.";
-    public static final String WC_ILLEGAL_OPTION = "illegal option -- %s" + StringUtils.STRING_NEWLINE + "usage: wcApplication [-clw] [file ...]";
-    public static final String OPTION_MATCH = "-.*";
-    // DTRY = Directory
-    public static final String IS_A_DTRY_FORMAT = "%s: Is a directory.";
-
-
     public static final String SPACE_CHAR = " ";
     public static final String NEWLINE_CHAR = StringUtils.STRING_NEWLINE;
 
     public static WcApplication wcApplication;
 
+    public static String pathToProject = System.getProperty("user.dir") + File.separator;
 
     @BeforeAll
     static void setUp() {
@@ -159,10 +153,14 @@ class WcApplicationTest {
     @AfterAll
     static void tearDown() {
         // Delete the created files when testing is done.
-        FileIOTestHelper.deleteMultipleFiles(ALPHA_NUM_NAME, ALPHA_WS_NAME,
+        String[] fileNames = new String[]{ALPHA_NUM_NAME, ALPHA_WS_NAME,
                 ALPHA_OTHER_NAME, NUM_WS_NAME, NUM_OTHERS_NAME,
-                WS_OTHERS_NAME, ALL_CHAR_NAME, WC_FOLDER_NAME_1);
-
+                WS_OTHERS_NAME, ALL_CHAR_NAME, WC_FOLDER_NAME_1};
+        String[] pathForFiles = new String[fileNames.length];
+        for (int i = 0; i < fileNames.length; i++) {
+            pathForFiles[i] = pathToProject + fileNames[i];
+        }
+        FileIOTestHelper.deleteMultipleFiles(pathForFiles);
     }
 
     @BeforeEach
@@ -547,7 +545,7 @@ class WcApplicationTest {
         wcApplication.run(args, null, fos);
 
         // Extract result from stdout file
-        String actualOutput = FileIOTestHelper.extractAndConcatenate(FILE_STDOUT_TEST);
+        String actualOutput = FileIOTestHelper.extractAndConcatenate(FILE_STDOUT_TEST).trim();
 
         assertEquals(expectedOutput, actualOutput);
     }
