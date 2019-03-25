@@ -51,6 +51,8 @@ class CdApplicationTest {
     @BeforeAll
     public static void createDirectories(@TempDir Path tempDir) throws IOException {
         origWorkingDir = Environment.currentDirectory;
+        System.out.println("Original dir was:" + Environment.currentDirectory);
+
         testWorkingDir = tempDir.toString();
         Environment.currentDirectory = testWorkingDir;
 
@@ -310,10 +312,9 @@ class CdApplicationTest {
      */
     @Test
     public void testThrowExceptionIfPathDirectoryNotExist() {
-        CdException exception = assertThrows(CdException.class, () -> {
+        assertThrows(CdException.class, () -> {
             cdApplication.run(new String[]{"folder8"}, null, null);
         });
-        assertTrue(exception.getMessage().contains(ERR_NO_SUCH_DIR));
     }
 
     /**

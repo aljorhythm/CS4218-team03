@@ -1,4 +1,4 @@
-package sg.edu.nus.comp.cs4218.impl.cmd;
+package sg.edu.nus.comp.cs4218m1.impl.cmd;
 
 import org.junit.jupiter.api.Test;
 import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
@@ -22,7 +22,6 @@ class QuotingTest {
     private static final String WORD_MIX_QUOTED1 = String.format(CHAR_DOUBLE_QUOTE + CHAR_SINGLE_QUOTE + "%s" + CHAR_SINGLE_QUOTE + CHAR_DOUBLE_QUOTE, WORD_UNQUOTED);
     private static final String WORD_MIX_QUOTED2 = String.format(CHAR_SINGLE_QUOTE + CHAR_DOUBLE_QUOTE + "%s" + CHAR_DOUBLE_QUOTE + CHAR_SINGLE_QUOTE, WORD_UNQUOTED);
     private static final String WORD_ERROR_QUOTED = String.format(CHAR_SINGLE_QUOTE  + "%s" + CHAR_DOUBLE_QUOTE, WORD_UNQUOTED);
-
 
     @Test
     void testUnquoted() throws ShellException, AbstractApplicationException {
