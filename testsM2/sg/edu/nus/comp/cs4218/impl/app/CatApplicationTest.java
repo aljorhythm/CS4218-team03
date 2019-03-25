@@ -89,22 +89,6 @@ class CatApplicationTest {
     }
 
     @Test
-    @DisabledOnOs(WINDOWS)
-    public void testCatFilesWithNoPermissions(@TempDir Path tempDir) throws Exception {
-        Path file = tempDir.resolve("noperm.txt");
-        File node = file.toFile();
-        node.createNewFile();
-        node.setReadable(false, false);
-
-        catApplication = mock(CatApplication.class);
-        when(catApplication.catFiles(Mockito.any())).thenCallRealMethod();
-        CatException exception = assertThrows(CatException.class, () -> {
-            catApplication.catFiles(file.toString());
-        });
-        assertTrue(exception.getMessage().contains(ERR_NO_PERM));
-    }
-
-    @Test
     public void testCatStdinThrowExceptionIfInputStreamNull() throws Exception {
         catApplication = mock(CatApplication.class);
         when(catApplication.catStdin(Mockito.any())).thenCallRealMethod();
