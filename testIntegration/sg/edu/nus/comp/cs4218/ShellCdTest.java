@@ -7,6 +7,7 @@ import org.junit.jupiter.api.io.TempDir;
 import sg.edu.nus.comp.cs4218.exception.CdException;
 import sg.edu.nus.comp.cs4218.exception.ShellException;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 
@@ -36,6 +37,8 @@ public class ShellCdTest extends ShellTest {
         Environment.currentDirectory = temp.toAbsolutePath().toString();
         nonExistentDir = temp.resolve(nonExistDirName).toAbsolutePath().toString();
         subDirPath = temp.resolve(subDirName).toAbsolutePath().toString();
+        File subDir = new File(subDirPath);
+        subDir.mkdirs();
     }
 
     /**
