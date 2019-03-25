@@ -26,23 +26,23 @@ class QuotingTest {
     String cmdStringBackOne = "echo `test";
     ByteArrayOutputStream baoStream = new ByteArrayOutputStream(1024);
     private static final ApplicationRunner MOCK_APP_RUNNER = mock(ApplicationRunner.class);
-    private static final String WORD_1_UNQUOTED = "asdbasdb asdsa";
-    private static final String WORD_1_QUOTED = String.format(CHAR_SINGLE_QUOTE + "%s" + CHAR_SINGLE_QUOTE, WORD_1_UNQUOTED);
-    private static final String WORD_1_DOUBLE_QUOTED = String.format(CHAR_DOUBLE_QUOTE + "%s" + CHAR_DOUBLE_QUOTE, WORD_1_UNQUOTED);
+    private static final String W1_UNQUOTED = "asdbasdb asdsa";
+    private static final String W1_QUOTED = String.format(CHAR_SINGLE_QUOTE + "%s" + CHAR_SINGLE_QUOTE, W1_UNQUOTED);
+    private static final String W1_DOUBLE_QUOTED = String.format(CHAR_DOUBLE_QUOTE + "%s" + CHAR_DOUBLE_QUOTE, W1_UNQUOTED);
 
     @Test
     void testSingleQuotes() throws ShellException, AbstractApplicationException, IOException {
         ArgumentResolver resolver = new ArgumentResolver();
-        List<String> resolved = resolver.resolveOneArgument(WORD_1_QUOTED, MOCK_APP_RUNNER);
-        String[] expected = new String[]{WORD_1_UNQUOTED};
+        List<String> resolved = resolver.resolveOneArgument(W1_QUOTED, MOCK_APP_RUNNER);
+        String[] expected = new String[]{W1_UNQUOTED};
         TestUtils.assertArrayEqualsList(expected, resolved);
     }
 
     @Test
     void testDoubleQuotes() throws ShellException, AbstractApplicationException, IOException {
         ArgumentResolver resolver = new ArgumentResolver();
-        List<String> resolved = resolver.resolveOneArgument(WORD_1_DOUBLE_QUOTED, MOCK_APP_RUNNER);
-        String[] expected = new String[]{WORD_1_UNQUOTED};
+        List<String> resolved = resolver.resolveOneArgument(W1_DOUBLE_QUOTED, MOCK_APP_RUNNER);
+        String[] expected = new String[]{W1_UNQUOTED};
         TestUtils.assertArrayEqualsList(expected, resolved);
     }
 
