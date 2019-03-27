@@ -3,12 +3,12 @@ package sg.edu.nus.comp.cs4218m1.impl.app;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import sg.edu.nus.comp.cs4218.impl.app.SedApplication;
-import sg.edu.nus.comp.cs4218.impl.util.IOUtils;
 import sg.edu.nus.comp.cs4218.impl.util.StringUtils;
 
 import java.io.InputStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static sg.edu.nus.comp.cs4218m1.TestUtils.stringsToInputStream;
 
 class SedApplicationTest {
 
@@ -55,7 +55,7 @@ class SedApplicationTest {
         }
 
         TestCase input(String... strings) {
-            this.stdIn = IOUtils.stringsToInputStream(strings);
+            this.stdIn = stringsToInputStream(strings);
             return this;
         }
 

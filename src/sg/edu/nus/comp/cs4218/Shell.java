@@ -11,4 +11,6 @@ public interface Shell {
      * Parses and evaluates user's command line.
      */
     void parseAndEvaluate(String cmdline, OutputStream stdout) throws AbstractApplicationException, ShellException;
+
+    void run();
 }

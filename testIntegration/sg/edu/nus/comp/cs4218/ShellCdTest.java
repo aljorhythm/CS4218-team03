@@ -4,7 +4,6 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-import sg.edu.nus.comp.cs4218.exception.CdException;
 import sg.edu.nus.comp.cs4218.exception.ShellException;
 
 import java.io.File;
@@ -12,6 +11,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 import static sg.edu.nus.comp.cs4218m1.TestUtils.CHAR_SHELL_ARROW;
+import static sg.edu.nus.comp.cs4218m1.TestUtils.ERR_NO_SUCH_DIR;
 
 /**
  * Tests working directory change
@@ -83,7 +83,7 @@ public class ShellCdTest extends ShellTest {
                 STR_EXIT
         };
         String[] expectedLines = {
-                temporaryDir + CHAR_SHELL_ARROW + "cd: " + String.format(CdException.ERR_NO_SUCH_DIR, nonExistentDir),
+                temporaryDir + CHAR_SHELL_ARROW + "cd: " + String.format(ERR_NO_SUCH_DIR, nonExistentDir),
                 temporaryDir + CHAR_SHELL_ARROW
         };
         assertInputOutput(input, expectedLines);

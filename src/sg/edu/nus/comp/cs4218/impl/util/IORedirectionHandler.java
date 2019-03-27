@@ -19,6 +19,13 @@ public class IORedirectionHandler {
     private InputStream inputStream;
     private OutputStream outputStream;
 
+    public IORedirectionHandler(List<String> argsList, InputStream origInputStream,
+                                OutputStream origOutputStream, ArgumentResolver resolver) {
+        this.argsList = argsList;
+        this.inputStream = origInputStream;
+        this.outputStream = origOutputStream;
+    }
+
     // TODO ArgumentResolver should be a dependency so that we can unit test IORedirectionHandler
     public IORedirectionHandler(List<String> argsList, InputStream origInputStream,
                                 OutputStream origOutputStream) {
@@ -27,7 +34,11 @@ public class IORedirectionHandler {
         this.outputStream = origOutputStream;
     }
 
-    public void extractRedirOptions() throws ShellException{
+    public void extractRedirOptions(ApplicationRunner runner) throws ShellException {
+        extractRedirOptions();
+    }
+
+    public void extractRedirOptions()throws ShellException{
         if (argsList == null || argsList.isEmpty()) {
             throw new ShellException(ERR_SYNTAX);
         }
@@ -65,7 +76,7 @@ public class IORedirectionHandler {
             }
 
             // handle quoting + globing + command substitution in file arg
-            List<String> fileSegment = ArgumentResolver.resolveOneArgument(file);
+            List<String> fileSegment = ArgumentResolver.resolveOneArg(file);
             if (fileSegment.size() > 1) {
                 // ambiguous redirect if file resolves to more than one parsed arg
                 throw new ShellException(ERR_SYNTAX);

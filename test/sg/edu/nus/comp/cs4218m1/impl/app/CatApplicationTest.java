@@ -52,7 +52,7 @@ public class CatApplicationTest {
      * @throws CatException
      */
     @Test
-    public void testCatStdinDefaultInputSuccess() throws CatException {
+    public void testCatStdinDefaultInputSuccess() throws Exception {
         assertEquals(defaultString, catApplication.catStdin(defaultIStream));
     }
 
@@ -72,7 +72,7 @@ public class CatApplicationTest {
      * @throws CatException
      */
     @Test
-    public void testCatStdinEmptyInputSuccess() throws CatException {
+    public void testCatStdinEmptyInputSuccess() throws Exception {
         assertEquals("", catApplication.catStdin(emptyIStream));
     }
 
@@ -102,7 +102,7 @@ public class CatApplicationTest {
      * @throws CatException
      */
     @Test
-    public void testCatFilesEmptyInputSuccess() throws CatException {
+    public void testCatFilesEmptyInputSuccess() throws Exception {
         assertEquals("", catApplication.catFiles(emptyFile));
     }
 
@@ -112,7 +112,7 @@ public class CatApplicationTest {
      * @throws CatException
      */
     @Test
-    public void testCatFilesDefaultInputSuccess() throws CatException {
+    public void testCatFilesDefaultInputSuccess() throws Exception {
         String expected = testFile1Content;
         String actual = catApplication.catFiles(testFileName1);
         assertEquals(expected, actual);
@@ -124,7 +124,7 @@ public class CatApplicationTest {
      * @throws CatException
      */
     @Test
-    public void testCatFilesTwoInputFilesSuccess() throws CatException {
+    public void testCatFilesTwoInputFilesSuccess() throws Exception {
         assertEquals(testFile1Content + STRING_NEWLINE + testFile2Content,
                 catApplication.catFiles(testFileName1, testFileName2));
     }

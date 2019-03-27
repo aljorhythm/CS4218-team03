@@ -177,31 +177,4 @@ class RegexArgumentTest extends DirectoryStructureTest {
         RegexArgument argument = new RegexArgument("^");
         assertFalse(argument.isEmpty());
     }
-
-    /**
-     * Should return front portion of possible glob pattern where there are no asterisks
-     */
-    @Test
-    void nearestAncestorsReturnNoAsterisk() {
-        String abcde = "abcde";
-        String actual = RegexArgument.getNonGlobAncestors(abcde);
-        assertEquals(abcde, actual);
-    }
-
-    /**
-     * Should return front portion of possible glob pattern where there are no asterisks
-     */
-    @Test
-    void nearestAncestorsReturnNone() {
-        String abcde = "*/abcde";
-        String actual = RegexArgument.getNonGlobAncestors(abcde);
-        assertEquals("", actual);
-    }
-
-    @Test
-    void nearestAncestorsReturn() {
-        String path = "abcde/*/abcde";
-        String actual = RegexArgument.getNonGlobAncestors(path);
-        assertEquals("abcde/", actual);
-    }
 }

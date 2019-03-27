@@ -1,16 +1,17 @@
 package sg.edu.nus.comp.cs4218;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
 import sg.edu.nus.comp.cs4218.exception.ShellException;
-import sg.edu.nus.comp.cs4218.impl.util.IOUtils;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
 
-import static sg.edu.nus.comp.cs4218m1.TestUtils.CHAR_SHELL_ARROW;
-import static sg.edu.nus.comp.cs4218m1.TestUtils.STRING_NEWLINE;
+import static sg.edu.nus.comp.cs4218m1.TestUtils.*;
 
 @SuppressWarnings("PMD.LongVariable")
 public class ShellGrepTest extends ShellTest{
@@ -33,7 +34,7 @@ public class ShellGrepTest extends ShellTest{
         temporaryDir = temp.toAbsolutePath().toString();
         oriWorkingDir = Environment.currentDirectory;
         Environment.currentDirectory = temp.toAbsolutePath().toString();
-        longFile = IOUtils.createAndWriteToFile(FILE_LONG, CONTENT_LONG);
+        longFile = createAndWriteToFile(FILE_LONG, CONTENT_LONG);
         cmdstr = "grep test " + longFile.getAbsolutePath();
     }
 

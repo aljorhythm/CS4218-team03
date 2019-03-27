@@ -25,6 +25,11 @@ public class CallCommand implements Command {
     private final List<String> argsList;
     private final ApplicationRunner appRunner;
 
+    public CallCommand(List<String> argsList,  ArgumentResolver resolver, ApplicationRunner appRunner) {
+        this.argsList = argsList;
+        this.appRunner = appRunner;
+    }
+
     // TODO ArgumentResolver should be a dependency so that we can unit test CallCommand
     public CallCommand(List<String> argsList, ApplicationRunner appRunner) {
         this.argsList = argsList;
@@ -46,7 +51,7 @@ public class CallCommand implements Command {
         OutputStream outputStream = redirHandler.getOutputStream();
 
         // Handle quoting + globing + command substitution
-        List<String> parsedArgsList = ArgumentResolver.parseArguments(noRedirArgsList);
+        List<String> parsedArgsList = ArgumentResolver.parseArg(noRedirArgsList);
         //List<String> parsedArgsList = noRedirArgsList;
         if (!parsedArgsList.isEmpty()) {
             String app = parsedArgsList.remove(0);

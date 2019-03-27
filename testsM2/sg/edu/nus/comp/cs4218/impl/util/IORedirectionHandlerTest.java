@@ -16,8 +16,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static sg.edu.nus.comp.cs4218.impl.util.IOUtils.*;
-import static sg.edu.nus.comp.cs4218m1.TestUtils.CHAR_REDIR_INPUT;
-import static sg.edu.nus.comp.cs4218m1.TestUtils.CHAR_REDIR_OUTPUT;
+import static sg.edu.nus.comp.cs4218m1.TestUtils.*;
 
 class IORedirectionHandlerTest {
     private static String tempDir;
@@ -32,11 +31,6 @@ class IORedirectionHandlerTest {
     private ApplicationRunner mockAppRunner;
 
     public static class MockArgumentResolver extends ArgumentResolver {
-
-        @Override
-        public List<String> parseArguments(List<String> argsList, ApplicationRunner appRunner) throws ShellException {
-            return argsList;
-        }
 
         @Override
         public List<String> resolveOneArgument(String arg, ApplicationRunner appRunner) throws ShellException {
@@ -58,7 +52,7 @@ class IORedirectionHandlerTest {
                 .toString();
         inputPath = tempDirPath.resolve(inputName);
         outputPath = tempDirPath.resolve(outputName);
-        IOUtils.createAndWriteToFile(inputPath, inputText);
+        createAndWriteToFile(inputPath, inputText);
     }
 
     /**

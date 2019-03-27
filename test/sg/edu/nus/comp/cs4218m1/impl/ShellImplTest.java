@@ -3,16 +3,15 @@ package sg.edu.nus.comp.cs4218.impl;
 import org.junit.jupiter.api.Test;
 import sg.edu.nus.comp.cs4218.Environment;
 import sg.edu.nus.comp.cs4218.exception.ShellException;
-import sg.edu.nus.comp.cs4218.impl.util.IOUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
 import static java.time.Duration.ofSeconds;
-import static org.junit.jupiter.api.Assertions.*;
-import static sg.edu.nus.comp.cs4218m1.TestUtils.CHARSET_UTF8;
-import static sg.edu.nus.comp.cs4218m1.TestUtils.STRING_NEWLINE;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
+import static sg.edu.nus.comp.cs4218m1.TestUtils.*;
 
 class ShellImplTest {
     /**
@@ -20,7 +19,7 @@ class ShellImplTest {
      */
     @Test
     void shellRunAndExit() throws IOException {
-        InputStream inputStream = IOUtils.stringToInputStream("exit" + STRING_NEWLINE);
+        InputStream inputStream = stringToInputStream("exit" + STRING_NEWLINE);
         ShellImpl shell = new ShellImpl(inputStream, null);
         assertTimeoutPreemptively(ofSeconds(2), () -> {
             shell.run();
@@ -32,7 +31,7 @@ class ShellImplTest {
      */
     @Test
     void shellRunEcho() throws IOException, ShellException {
-        InputStream inputStream = IOUtils.stringsToInputStream(new String[]{
+        InputStream inputStream = stringsToInputStream(new String[]{
                 "echo abc", "exit"
         });
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -49,7 +48,7 @@ class ShellImplTest {
      */
     @Test
     void shellRunPipe() throws IOException, ShellException {
-        InputStream inputStream = IOUtils.stringsToInputStream(new String[]{
+        InputStream inputStream = stringsToInputStream(new String[]{
                 "echo abcde;echo abc", "exit"
         });
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

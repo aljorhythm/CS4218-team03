@@ -183,19 +183,6 @@ public class RegressionTest0 {
     }
 
     @Test
-    public void test027() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test027");
-        sg.edu.nus.comp.cs4218.impl.app.DateApplication dateApplication0 = new sg.edu.nus.comp.cs4218.impl.app.DateApplication();
-        java.util.HashMap<java.lang.String, java.lang.String> strMap1 = null;
-        try {
-            dateApplication0.initMap(strMap1);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
-        } catch (java.lang.NullPointerException e) {
-        }
-    }
-
-    @Test
     public void test028() throws Throwable {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test028");
@@ -491,14 +478,6 @@ public class RegressionTest0 {
         assertTrue(str12.equals(""));
         assertTrue(str13.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
         assertNotNull(strArray17);
-    }
-
-    @Test
-    public void test059() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test059");
-        boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isSpecialSymbol("Could not read stream");
-        assertTrue(boolean1 == true);
     }
 
     @Test
@@ -911,32 +890,6 @@ public class RegressionTest0 {
     }
 
     @Test
-    public void test091() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test091");
-        sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication0 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
-        java.lang.String[] strArray9 = new java.lang.String[] { "Could not read stream", "Exception Caught", "fail_echo_write", "null output stream provided fail_echo_write", "null arguments", "fail_echo_empty_params" };
-        try {
-            java.lang.String str10 = lsApplication0.listFolderContent((java.lang.Boolean) true, (java.lang.Boolean) true, strArray9);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.LsException; message: ls: File does not exist, make sure the path is correct!");
-        } catch (sg.edu.nus.comp.cs4218.exception.LsException e) {
-        }
-        assertNotNull(strArray9);
-    }
-
-    @Test
-    public void test092() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test092");
-        sg.edu.nus.comp.cs4218.impl.app.ExitApplication exitApplication0 = new sg.edu.nus.comp.cs4218.impl.app.ExitApplication();
-        try {
-            exitApplication0.terminateExecution();
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.ExitException; message: exit: Terminate process.");
-        } catch (sg.edu.nus.comp.cs4218.exception.ExitException e) {
-        }
-    }
-
-    @Test
     public void test093() throws Throwable {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test093");
@@ -1229,14 +1182,6 @@ public class RegressionTest0 {
     }
 
     @Test
-    public void test107() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test107");
-        boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isSpecialSymbol("null arguments");
-        assertTrue(boolean1 == true);
-    }
-
-    @Test
     public void test108() throws Throwable {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test108");
@@ -1397,51 +1342,6 @@ public class RegressionTest0 {
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: Stdin is null!");
         } catch (sg.edu.nus.comp.cs4218.exception.GrepException e) {
         }
-    }
-
-    @Test
-    public void test116() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test116");
-        sg.edu.nus.comp.cs4218.impl.app.EchoApplication echoApplication0 = new sg.edu.nus.comp.cs4218.impl.app.EchoApplication();
-        sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication1 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
-        java.lang.String[] strArray8 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
-        java.io.InputStream inputStream9 = null;
-        java.io.OutputStream outputStream10 = null;
-        mkdirApplication1.run(strArray8, inputStream9, outputStream10);
-        sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication12 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
-        sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication15 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
-        sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication17 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
-        java.lang.String[] strArray20 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
-        java.io.InputStream inputStream21 = null;
-        java.io.OutputStream outputStream22 = null;
-        mkdirApplication17.run(strArray20, inputStream21, outputStream22);
-        java.lang.String str24 = findApplication15.findFolderContent("", strArray20);
-        java.lang.String str25 = lsApplication12.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray20);
-        java.io.InputStream inputStream26 = null;
-        java.io.OutputStream outputStream27 = null;
-        mkdirApplication1.run(strArray20, inputStream26, outputStream27);
-        java.lang.String str29 = echoApplication0.constructResult(strArray20);
-        sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication30 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
-        java.lang.String[] strArray37 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
-        java.io.InputStream inputStream38 = null;
-        java.io.OutputStream outputStream39 = null;
-        mkdirApplication30.run(strArray37, inputStream38, outputStream39);
-        java.io.InputStream inputStream41 = null;
-        java.io.OutputStream outputStream42 = null;
-        echoApplication0.run(strArray37, inputStream41, outputStream42);
-        java.lang.String[] strArray44 = null;
-        try {
-            java.lang.String str45 = echoApplication0.constructResult(strArray44);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.EchoException; message: echo: fail_echo_empty_params");
-        } catch (sg.edu.nus.comp.cs4218.exception.EchoException e) {
-        }
-        assertNotNull(strArray8);
-        assertNotNull(strArray20);
-        assertTrue(str24.equals(""));
-        assertTrue(str25.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-        assertTrue(str29.equals("null output stream provided fail_echo_write"));
-        assertNotNull(strArray37);
     }
 
     @Test
@@ -1625,18 +1525,6 @@ public class RegressionTest0 {
         assertTrue(str47.equals(""));
         assertTrue(str48.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
         assertTrue(str52.equals(""));
-    }
-
-    @Test
-    public void test125() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test125");
-        java.util.List list0 = null;
-        try {
-            sg.edu.nus.comp.cs4218.impl.app.SortApplication.sortList(list0, true, false);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
-        } catch (java.lang.NullPointerException e) {
-        }
     }
 
     @Test
@@ -2026,27 +1914,6 @@ public class RegressionTest0 {
     }
 
     @Test
-    public void test173() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test173");
-        sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication0 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
-        sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication3 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
-        java.lang.String[] strArray6 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
-        java.io.InputStream inputStream7 = null;
-        java.io.OutputStream outputStream8 = null;
-        mkdirApplication3.run(strArray6, inputStream7, outputStream8);
-        java.lang.String str10 = lsApplication0.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray6);
-        java.lang.String[] strArray13 = null;
-        try {
-            java.lang.String str14 = lsApplication0.listFolderContent((java.lang.Boolean) true, (java.lang.Boolean) false, strArray13);
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.LsException; message: ls: Input arguments cannot be null!");
-        } catch (sg.edu.nus.comp.cs4218.exception.LsException e) {
-        }
-        assertNotNull(strArray6);
-        assertTrue(str10.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-    }
-
-    @Test
     public void test174() throws Throwable {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test174");
@@ -2060,19 +1927,6 @@ public class RegressionTest0 {
         } catch (sg.edu.nus.comp.cs4218.exception.ExitException e) {
         }
     }
-
-    @Test
-    public void test175() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test175");
-        sg.edu.nus.comp.cs4218.impl.app.DateApplication dateApplication0 = new sg.edu.nus.comp.cs4218.impl.app.DateApplication();
-        try {
-            java.lang.String str2 = dateApplication0.getDate("null arguments");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
-        } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
-        }
-    }
-
     @Test
     public void test176() throws Throwable {
         if (debug)
@@ -2270,18 +2124,6 @@ public class RegressionTest0 {
     }
 
     @Test
-    public void test186() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test186");
-        java.io.InputStream inputStream0 = null;
-        try {
-            java.util.List<java.lang.String> strList4 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.replace(inputStream0, "File is null.", "", 100);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
-        } catch (java.lang.NullPointerException e) {
-        }
-    }
-
-    @Test
     public void test188() throws Throwable {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test188");
@@ -2431,14 +2273,6 @@ public class RegressionTest0 {
         assertNotNull(strArray10);
         assertNotNull(wildcardClass14);
         assertNotNull(strArray19);
-    }
-
-    @Test
-    public void test200() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test200");
-        boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isSpecialSymbol("File is null.");
-        assertTrue(boolean1 == true);
     }
 
     @Test
@@ -2627,14 +2461,6 @@ public class RegressionTest0 {
             fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
-    }
-
-    @Test
-    public void test235() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test235");
-        boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isInteger("fail_echo_write");
-        assertTrue(boolean1 == false);
     }
 
     @Test
@@ -3269,15 +3095,6 @@ public class RegressionTest0 {
         }
         assertNotNull(wildcardClass1);
     }
-
-    @Test
-    public void test295() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test295");
-        boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isSpecialSymbol("null output stream provided");
-        assertTrue(boolean1 == true);
-    }
-
     @Test
     public void test297() throws Throwable {
         if (debug)
@@ -3752,18 +3569,6 @@ public class RegressionTest0 {
     }
 
     @Test
-    public void test339() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test339");
-        sg.edu.nus.comp.cs4218.impl.app.DateApplication dateApplication0 = new sg.edu.nus.comp.cs4218.impl.app.DateApplication();
-        try {
-            java.lang.String str2 = dateApplication0.getDate("Terminate process.");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
-        } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
-        }
-    }
-
-    @Test
     public void test340() throws Throwable {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test340");
@@ -3844,18 +3649,6 @@ public class RegressionTest0 {
     }
 
     @Test
-    public void test346() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test346");
-        java.io.InputStream inputStream0 = null;
-        try {
-            java.util.List<java.lang.String> strList4 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.replace(inputStream0, "", "Could not read stream", (int) (byte) 1);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
-        } catch (java.lang.NullPointerException e) {
-        }
-    }
-
-    @Test
     public void test347() throws Throwable {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test347");
@@ -3883,14 +3676,6 @@ public class RegressionTest0 {
         assertNotNull(strArray8);
         assertNotNull(strArray18);
         assertTrue(str22.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-    }
-
-    @Test
-    public void test349() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test349");
-        boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isInteger("Could not write to output stream");
-        assertTrue(boolean1 == false);
     }
 
     @Test
@@ -4131,18 +3916,6 @@ public class RegressionTest0 {
     }
 
     @Test
-    public void test360() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test360");
-        sg.edu.nus.comp.cs4218.impl.app.DateApplication dateApplication0 = new sg.edu.nus.comp.cs4218.impl.app.DateApplication();
-        try {
-            java.lang.String str2 = dateApplication0.getDate("null output stream provided\r\nfail_echo_write");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
-        } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
-        }
-    }
-
-    @Test
     public void test361() throws Throwable {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test361");
@@ -4160,18 +3933,6 @@ public class RegressionTest0 {
         } catch (java.lang.StringIndexOutOfBoundsException e) {
         }
         assertNotNull(strArray8);
-    }
-
-    @Test
-    public void test368() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test368");
-        java.io.InputStream inputStream0 = null;
-        try {
-            java.util.List<java.lang.String> strList4 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.replace(inputStream0, "", "null output stream provided", (int) (short) 1);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
-        } catch (java.lang.NullPointerException e) {
-        }
     }
 
     @Test
@@ -4572,18 +4333,6 @@ public class RegressionTest0 {
     }
 
     @Test
-    public void test389() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test389");
-        sg.edu.nus.comp.cs4218.impl.app.DateApplication dateApplication0 = new sg.edu.nus.comp.cs4218.impl.app.DateApplication();
-        try {
-            java.lang.String str2 = dateApplication0.getDate("hi!");
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.DateException; message: date: Invalid format. Date format must start with '+'");
-        } catch (sg.edu.nus.comp.cs4218.exception.DateException e) {
-        }
-    }
-
-    @Test
     public void test393() throws Throwable {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test393");
@@ -4821,14 +4570,6 @@ public class RegressionTest0 {
     }
 
     @Test
-    public void test416() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test416");
-        boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isInteger("This is a directory Could not read stream Null Pointer Exception Exception Caught");
-        assertTrue(boolean1 == false);
-    }
-
-    @Test
     public void test417() throws Throwable {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test417");
@@ -4888,18 +4629,6 @@ public class RegressionTest0 {
         assertTrue(str47.equals(""));
         assertTrue(str48.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
         assertTrue(str52.equals(""));
-    }
-
-    @Test
-    public void test421() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test421");
-        java.io.InputStream inputStream0 = null;
-        try {
-            java.util.List<java.lang.String> strList4 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.replace(inputStream0, "null output stream provided", "", 100);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
-        } catch (java.lang.NullPointerException e) {
-        }
     }
 
     @Test
@@ -4970,14 +4699,6 @@ public class RegressionTest0 {
         assertTrue(str57.equals(""));
         assertTrue(str58.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
         assertNotNull(strArray65);
-    }
-
-    @Test
-    public void test423() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test423");
-        boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isInteger("Could not read file");
-        assertTrue(boolean1 == false);
     }
 
     @Test
@@ -5302,18 +5023,6 @@ public class RegressionTest0 {
         assertNotNull(strArray48);
         assertTrue(str52.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
         assertTrue(str54.equals(""));
-    }
-
-    @Test
-    public void test447() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test447");
-        java.io.InputStream inputStream0 = null;
-        try {
-            java.util.List<java.lang.String> strList4 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.replace(inputStream0, "Could not write to output stream", "fail_echo_write", 0);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
-        } catch (java.lang.NullPointerException e) {
-        }
     }
 
     @Test

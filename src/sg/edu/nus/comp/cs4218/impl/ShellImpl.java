@@ -10,9 +10,7 @@ import sg.edu.nus.comp.cs4218.impl.util.ApplicationRunner;
 import sg.edu.nus.comp.cs4218.impl.util.CommandBuilder;
 import sg.edu.nus.comp.cs4218.impl.util.StringUtils;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.io.*;
 
 @SuppressWarnings("PMD.LongVariable")
 public class ShellImpl implements Shell {
@@ -20,6 +18,24 @@ public class ShellImpl implements Shell {
     public static final String ERR_INVALID_APP = "Invalid app.";
     public static final String ERR_NOT_SUPPORTED = "Not supported yet.";
     public static final String ERR_SYNTAX = "Invalid syntax.";
+    private InputStream inputStream = System.in;
+    private OutputStream outputStream = System.out;
+
+    /**
+     * Initializes shell with stdin
+     */
+    public ShellImpl() {
+        // Default function
+        // System.in & out
+    }
+
+    /**
+     * Initializes shell with specified streams
+     */
+    public ShellImpl(InputStream inputStream, OutputStream outputStream) {
+        this.inputStream = inputStream;
+        this.outputStream = outputStream;
+    }
 
     /**
      * Main method for the Shell Interpreter program.
@@ -27,7 +43,15 @@ public class ShellImpl implements Shell {
      * @param args List of strings arguments, unused.
      */
     public static void main(String... args) {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        ShellImpl shell = new ShellImpl();
+            shell.run();
+    }
+
+    /**
+     * Starts shell, will stop on "exit" command
+     */
+    public void run() {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         Shell shell = new ShellImpl();
 
         while (true) {
@@ -37,7 +61,7 @@ public class ShellImpl implements Shell {
 
                 String commandString = reader.readLine();
                 if (!StringUtils.isBlank(commandString)) {
-                    shell.parseAndEvaluate(commandString, System.out);
+                    shell.parseAndEvaluate(commandString, outputStream);
                 }
             } catch (ExitException e) {
                 continue;
@@ -51,7 +75,6 @@ public class ShellImpl implements Shell {
     public void parseAndEvaluate(String commandString, OutputStream stdout)
             throws AbstractApplicationException, ShellException {
         Command command = CommandBuilder.parseCommand(commandString, new ApplicationRunner());
-
         command.evaluate(null, stdout);
     }
 }

@@ -9,10 +9,7 @@ import sg.edu.nus.comp.cs4218.exception.ShellException;
 import sg.edu.nus.comp.cs4218.impl.util.IOUtils;
 import sg.edu.nus.comp.cs4218m1.TestUtils;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -107,11 +104,37 @@ class IOUtilsTest {
      */
     @Test
     void openInputStream() throws ShellException, IOException {
-        InputStream inputStream = IOUtils.openInputStream(in1);
+        InputStream inputStream = TestUtils.openInputStream(in1);
         byte[] bytes = new byte[5];
         inputStream.read(bytes);
         inputStream.close();
         assertArrayEquals(STRING_ABCDE.getBytes(), bytes);
+    }
+
+    /**
+     * Open an outputStream based on the file name.
+     *
+     * @param fileName String containing file name.
+     * @return OutputStream of file opened.
+     * @throws ShellException If file destination is inaccessible.
+     */
+    public static OutputStream openOutputStream(String fileName) throws ShellException, FileNotFoundException {
+        String resolvedFileName = resolveFilePath(fileName).toString();
+
+        FileOutputStream fileOutputStream;
+        fileOutputStream = new FileOutputStream(new File(resolvedFileName));
+
+        return fileOutputStream;
+    }
+
+    /**
+     * Resolves relative file path with respect to working directory
+     * @param fileName
+     * @return resolved file path
+     */
+    public static Path resolveFilePath(String fileName) {
+        Path currentDirectory = Paths.get(Environment.currentDirectory);
+        return currentDirectory.resolve(fileName);
     }
 
     /**
@@ -121,7 +144,7 @@ class IOUtilsTest {
      */
     @Test
     void openOutputStream() throws ShellException, IOException {
-        OutputStream outputStream = IOUtils.openOutputStream(out1);
+        OutputStream outputStream = TestUtils.openOutputStream(out1);
         outputStream.write(new byte[]{97});
         outputStream.close();
         Scanner scanner = new Scanner(new File(out1));
@@ -178,13 +201,13 @@ class IOUtilsTest {
 
     /**
      * Tests conversion of string into InputStream.
-     * Assumes IOUtils.stringFromInputStream is correct
+     * Assumes TestUtils.stringFromInputStream is correct
      */
     @Test
     void stringToInputStream() throws IOException {
         String stringData = "abcde12345  ";
-        InputStream inputStream = IOUtils.stringToInputStream(stringData);
-        String actual = IOUtils.stringFromInputStream(inputStream);
+        InputStream inputStream = TestUtils.stringToInputStream(stringData);
+        String actual = TestUtils.stringFromInputStream(inputStream);
         assertEquals(stringData, actual);
     }
 
@@ -195,7 +218,7 @@ class IOUtilsTest {
     void stringToInputStreamNull() throws IOException {
         String stringData = null;
         assertThrows(IOException.class, () -> {
-            InputStream inputStream = IOUtils.stringToInputStream(stringData);
+            InputStream inputStream = TestUtils.stringToInputStream(stringData);
         });
     }
 
@@ -205,8 +228,8 @@ class IOUtilsTest {
     @Test
     void stringToInputStreamEmpty() throws IOException {
         String stringData = "";
-        InputStream inputStream = IOUtils.stringToInputStream(stringData);
-        String actual = IOUtils.stringFromInputStream(inputStream);
+        InputStream inputStream = TestUtils.stringToInputStream(stringData);
+        String actual = TestUtils.stringFromInputStream(inputStream);
         assertEquals(stringData, actual);
     }
 
@@ -217,8 +240,8 @@ class IOUtilsTest {
     void stringsToInputStream() throws IOException {
         String[] strings = {STRING_ABCDE, "12345", "asdasd"};
         String expected = String.join(STRING_NEWLINE, strings);
-        InputStream inputStream = IOUtils.stringsToInputStream(strings);
-        String actual = IOUtils.stringFromInputStream(inputStream);
+        InputStream inputStream = TestUtils.stringsToInputStream(strings);
+        String actual = TestUtils.stringFromInputStream(inputStream);
         assertEquals(expected, actual);
     }
 
@@ -231,8 +254,8 @@ class IOUtilsTest {
     void stringFromInputStream() throws IOException {
         String[] strings = {STRING_ABCDE, "12345", "asdasd"};
         String inputString = String.join(STRING_NEWLINE, strings);
-        InputStream inputStream = IOUtils.stringToInputStream(inputString);
-        String actual = IOUtils.stringFromInputStream(inputStream);
+        InputStream inputStream = TestUtils.stringToInputStream(inputString);
+        String actual = TestUtils.stringFromInputStream(inputStream);
         String expected = inputString;
         assertEquals(expected, actual);
     }
@@ -246,7 +269,7 @@ class IOUtilsTest {
     void stringFromInputStreamEmpty() throws IOException {
         InputStream inputStream = mock(InputStream.class, Mockito.CALLS_REAL_METHODS);
         when(inputStream.read()).thenReturn(-1);
-        String actual = IOUtils.stringFromInputStream(inputStream);
+        String actual = TestUtils.stringFromInputStream(inputStream);
         String expected = "";
         assertEquals(expected, actual);
     }
@@ -258,7 +281,7 @@ class IOUtilsTest {
     void stringFromInputStreamNull() {
         InputStream inputStream = null;
         assertThrows(IOException.class, () -> {
-            IOUtils.stringFromInputStream(null);
+            TestUtils.stringFromInputStream(null);
         });
     }
 
@@ -269,8 +292,8 @@ class IOUtilsTest {
     void stringsFromInputStream() throws IOException {
         String[] strings = {STRING_ABCDE, "12345", "asdasd"};
         String inputString = String.join(STRING_NEWLINE, strings);
-        InputStream inputStream = IOUtils.stringToInputStream(inputString);
-        String[] actualArray = IOUtils.stringsFromInputStream(inputStream);
+        InputStream inputStream = TestUtils.stringToInputStream(inputString);
+        String[] actualArray = TestUtils.stringsFromInputStream(inputStream);
         String[] expected = strings;
         assertArrayEquals(expected, actualArray);
     }
@@ -282,7 +305,7 @@ class IOUtilsTest {
     void stringsFromInputStreamEmpty() throws IOException {
         InputStream inputStream = mock(InputStream.class, Mockito.CALLS_REAL_METHODS);
         when(inputStream.read()).thenReturn(-1);
-        String[] actual = IOUtils.stringsFromInputStream(inputStream);
+        String[] actual = TestUtils.stringsFromInputStream(inputStream);
         String[] expected = new String[]{};
         assertArrayEquals(expected, actual);
     }
@@ -294,7 +317,7 @@ class IOUtilsTest {
     void stringsFromInputStreamNull() throws IOException {
         InputStream inputStream = null;
         assertThrows(IOException.class, () -> {
-            IOUtils.stringsFromInputStream(inputStream);
+            TestUtils.stringsFromInputStream(inputStream);
         });
     }
 
@@ -305,7 +328,7 @@ class IOUtilsTest {
     void createAndWriteFileAndRead(@TempDir Path temp) throws IOException {
         Path newFilePath = temp.resolve("hello.txt");
         String inputString = "abc\nasdas123abc";
-        IOUtils.createAndWriteToFile(newFilePath.toAbsolutePath().toString(), inputString);
+        TestUtils.createAndWriteToFile(newFilePath.toAbsolutePath().toString(), inputString);
         String read = new String(Files.readAllBytes(newFilePath));
         assertEquals(inputString, read);
     }
@@ -317,7 +340,7 @@ class IOUtilsTest {
     void createAndWritePathAndRead(@TempDir Path temp) throws IOException {
         Path newFilePath = temp.resolve("hello.txt");
         String inputString = "abc\nasdas123abc";
-        IOUtils.createAndWriteToFile(newFilePath, inputString);
+        TestUtils.createAndWriteToFile(newFilePath, inputString);
         String read = new String(Files.readAllBytes(newFilePath));
         assertEquals(inputString, read);
     }

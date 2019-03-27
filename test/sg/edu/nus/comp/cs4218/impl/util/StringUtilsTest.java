@@ -1,8 +1,10 @@
 package sg.edu.nus.comp.cs4218.impl.util;
 
 import org.junit.jupiter.api.Test;
+import sg.edu.nus.comp.cs4218m1.TestUtils;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static sg.edu.nus.comp.cs4218m1.TestUtils.isNumberic;
 
 class StringUtilsTest {
 
@@ -50,7 +52,7 @@ class StringUtilsTest {
     @Test
     void isNumbericTrue() {
         String str = "123";
-        assertTrue(StringUtils.isNumberic(str));
+        assertTrue(isNumberic(str));
     }
 
     /**
@@ -59,7 +61,7 @@ class StringUtilsTest {
     @Test
     void isNumbericTrueNegative() {
         String str = "-123";
-        assertTrue(StringUtils.isNumberic(str));
+        assertTrue(isNumberic(str));
     }
 
     /**
@@ -68,9 +70,9 @@ class StringUtilsTest {
     @Test
     void isNumbericFalse() {
         String str = "abc";
-        assertFalse(StringUtils.isNumberic(str));
+        assertFalse(isNumberic(str));
         str = "";
-        assertFalse(StringUtils.isNumberic(str));
+        assertFalse(isNumberic(str));
     }
 
     /**
@@ -79,7 +81,7 @@ class StringUtilsTest {
     @Test
     void getFirstNum() {
         String str = "123 asdas";
-        assertEquals(123, StringUtils.getFirstNum(str));
+        assertEquals(123, TestUtils.getFirstNum(str));
     }
 
     /**
@@ -88,7 +90,7 @@ class StringUtilsTest {
     @Test
     void getFirstNumNegative() {
         String str = "-123 asdas";
-        assertEquals(-123, StringUtils.getFirstNum(str));
+        assertEquals(-123, TestUtils.getFirstNum(str));
     }
 
     /**
@@ -98,7 +100,7 @@ class StringUtilsTest {
     void getFirstNumError() {
         String str = "asdas";
         assertThrows(Exception.class, () -> {
-            StringUtils.getFirstNum(str);
+            TestUtils.getFirstNum(str);
         });
     }
 
@@ -110,6 +112,6 @@ class StringUtilsTest {
         String[] strs = {"abc", "cde"};
         String prepend = "13";
         String[] expected = {"13abc", "13cde"};
-        assertArrayEquals(expected, StringUtils.prependStringToStrings(prepend, strs));
+        assertArrayEquals(expected, TestUtils.prependStringToStrings(prepend, strs));
     }
 }

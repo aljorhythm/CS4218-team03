@@ -18,8 +18,30 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.isBlank;
 
 public class TestUtils {
+    /** CDException.java **/
+
+    public static final String ERR_IS_NOT_DIR = "Not a directory: %s";
+    public static final String ERR_NO_SUCH_DIR = "%s: No such file or directory";
+    public static final String ERR_NO_ARGS = "No arguments";
+    public static final String ERR_ARGS_LENGTH = "cd only takes one argument";
+
+
+    /** CatException.java **/
+
+    public static final String ERR_IS_DIR = "This is a directory";
+    public static final String ERR_RD_FILE = "Could not read file";
+    public static final String ERR_RD_STREAM = "Could not read stream";
+    public static final String ERR_NULL_STREAMS = "Null Pointer Exception";
+    public static final String ERR_NULL_FILENAME = "null input file provided";
+    public static final String ERR_NULL_OS = "null output stream provided";
+    public static final String ERR_GENERAL = "Exception Caught";
+    public static final String ERR_NULL_ARGS = "null arguments";
+    public static final String ERR_WRITE_STREAM = "Could not write to output stream";
+    public static final String ERR_FILE_NOT_FOUND = "No such file or directory";
+    public static final String ERR_NO_PERM = "Permission denied";
 
     /**
      * ShellException.java
@@ -43,6 +65,39 @@ public class TestUtils {
     /**
      * StringUtils.java
      **/
+
+    /**
+     * getFirstNum is to get the first num of string
+     *
+     * @param str String to be get
+     * @return int num
+     */
+    public static int getFirstNum(String str) {
+        return Integer.parseInt(str.split(" ")[0]);
+    }
+
+    /**
+     * isNumberic is a num string
+     *
+     * @param str String to be judge
+     * @return boolean
+     */
+    public static boolean isNumberic(String strArg) {
+        String str = strArg;
+        if (isBlank(str)) {
+            return false;
+        }
+        if(str.startsWith("-")) {
+            str = str.substring(1, str.length() - 1);
+        }
+        for (int i = 0; i < str.length(); i++) {
+            if (!Character.isDigit(str.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * System dependent new line
      */
@@ -90,16 +145,7 @@ public class TestUtils {
                 .toArray(String[]::new);
     }
 
-    /**
-     * Non existent folder
-     */
-    public static final String NON_EXISTENT_DIR = pathToTestDataSubdir("non-existent");
-    public static final String NULL_STREAM = "null_stream";
-    public static final String NULL_STRING= "null_string";
-
-    /**
-     * IOUtils.java
-     **/
+    /** IOUtils.java **/
 
     /**
      * Open an inputStream based on the file name.
@@ -134,33 +180,11 @@ public class TestUtils {
     }
 
     /**
-     * Close an inputStream. If inputStream provided is System.in or null, it will be ignored.
-     *
-     * @param inputStream InputStream to be closed.
-     * @throws ShellException If inputStream cannot be closed successfully.
+     * Non existent folder
      */
-    public static void closeInputStream(InputStream inputStream) throws ShellException, IOException {
-        if (inputStream == System.in || inputStream == null) {
-            return;
-        }
-
-        inputStream.close();
-
-    }
-
-    /**
-     * Close an outputStream. If outputStream provided is System.out or null, it will be ignored.
-     *
-     * @param outputStream OutputStream to be closed.
-     * @throws ShellException If outputStream cannot be closed successfully.
-     */
-    public static void closeOutputStream(OutputStream outputStream) throws ShellException, IOException {
-        if (outputStream == System.out || outputStream == null) {
-            return;
-        }
-
-        outputStream.close();
-    }
+    public static final String NON_EXISTENT_DIR = pathToTestDataSubdir("non-existent");
+    public static final String NULL_STREAM = "null_stream";
+    public static final String NULL_STRING= "null_string";
 
     /**
      * Resolves relative file path with respect to working directory

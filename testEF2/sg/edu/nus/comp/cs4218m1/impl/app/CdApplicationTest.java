@@ -1,16 +1,19 @@
 package sg.edu.nus.comp.cs4218m1.impl.app;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import sg.edu.nus.comp.cs4218.Environment;
 import sg.edu.nus.comp.cs4218.exception.CdException;
 import sg.edu.nus.comp.cs4218.impl.app.CdApplication;
 import sg.edu.nus.comp.cs4218m1.TestUtils;
 
-
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Paths;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CdApplicationTest {
     private CdApplication cdApplication;
@@ -58,7 +61,7 @@ class CdApplicationTest {
     }
 
     @Test
-    void cdFileExists() throws CdException {
+    void cdFileExists() throws CdException, IOException {
         cdApplication.changeToDirectory("cdTestDir");
         assertEquals(testWorkingDir + File.separator + "cdTestDir", Environment.currentDirectory);
     }

@@ -11,14 +11,15 @@ import org.junit.jupiter.api.io.TempDir;
 import sg.edu.nus.comp.cs4218.Environment;
 import sg.edu.nus.comp.cs4218.exception.CdException;
 import sg.edu.nus.comp.cs4218.impl.util.StringUtils;
+import sg.edu.nus.comp.cs4218m1.TestUtils;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static sg.edu.nus.comp.cs4218.exception.CdException.*;
 import static sg.edu.nus.comp.cs4218.impl.util.IOUtils.resolveFilePath;
+import static sg.edu.nus.comp.cs4218m1.TestUtils.*;
 
 @SuppressWarnings("PMD.AvoidDuplicateLiterals")
 class CdApplicationTest {
@@ -336,7 +337,7 @@ class CdApplicationTest {
         CdException exception = assertThrows(CdException.class, () -> {
             cdApplication.run(null, null, null);
         });
-        assertTrue(exception.getMessage().contains(ERR_NULL_ARGS));
+        assertTrue(exception.getMessage().contains(TestUtils.ERR_NULL_ARGS));
     }
 
     /**

@@ -3,6 +3,7 @@ package sg.edu.nus.comp.cs4218m1.impl.app;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
 import sg.edu.nus.comp.cs4218.exception.MkdirException;
 import sg.edu.nus.comp.cs4218.impl.app.MkdirApplication;
 import sg.edu.nus.comp.cs4218m1.TestUtils;
@@ -72,7 +73,7 @@ public class MkdirApplicationTest {
      * @throws MkdirException
      */
     @Test
-    void testCreateFolderEmptyInputSuccess() throws MkdirException {
+    void testCreateFolderEmptyInputSuccess() throws Exception {
         mkdirApplication.createFolder("");
         assertEquals(0, new File(pathToTestDir).list().length);
     }
@@ -82,7 +83,7 @@ public class MkdirApplicationTest {
      * @throws MkdirException
      */
     @Test
-    void testCreateFolderOneNewDirectoryInputSuccess() throws MkdirException {
+    void testCreateFolderOneNewDirectoryInputSuccess() throws Exception {
         mkdirApplication.createFolder(tempDir);
         assertTrue(new File(tempDir).exists());
     }
@@ -92,7 +93,7 @@ public class MkdirApplicationTest {
      * @throws MkdirException
      */
     @Test
-    void testCreateFolderTwoNewDirectoryInputSuccess() throws MkdirException {
+    void testCreateFolderTwoNewDirectoryInputSuccess() throws Exception {
         mkdirApplication.createFolder(tempDir, tempDir2);
         assertTrue(new File(tempDir).exists());
         assertTrue(new File(tempDir2).exists());
@@ -103,7 +104,7 @@ public class MkdirApplicationTest {
      * @throws MkdirException
      */
     @Test
-    void testCreateFolderDirectoryInDirectoryInputSuccess() throws MkdirException {
+    void testCreateFolderDirectoryInDirectoryInputSuccess() throws Exception {
         mkdirApplication.createFolder(tempParent, tempChild);
         assertTrue(new File(tempChild).exists());
     }
@@ -131,7 +132,7 @@ public class MkdirApplicationTest {
      * @throws MkdirException
      */
     @Test
-    void testRunOneNewDirectoryInputSuccess() throws MkdirException {
+    void testRunOneNewDirectoryInputSuccess() throws AbstractApplicationException {
         String[] args = new String[1];
         args[0] = tempDir;
         mkdirApplication.run(args, null, null);
@@ -144,7 +145,7 @@ public class MkdirApplicationTest {
      * @throws MkdirException
      */
     @Test
-    void testRunTwoNewDirectoryInputSuccess() throws MkdirException {
+    void testRunTwoNewDirectoryInputSuccess() throws AbstractApplicationException {
         String[] args = new String[2];
         args[0] = tempDir;
         args[1] = tempDir2;
@@ -159,7 +160,7 @@ public class MkdirApplicationTest {
      * @throws MkdirException
      */
     @Test
-    void testRunDirectoryInDirectoryInputSuccess() throws MkdirException {
+    void testRunDirectoryInDirectoryInputSuccess() throws AbstractApplicationException {
         String[] args = new String[2];
         args[0] = tempParent;
         args[1] = tempChild;

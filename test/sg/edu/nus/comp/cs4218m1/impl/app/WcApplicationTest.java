@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import sg.edu.nus.comp.cs4218.exception.WcException;
 import sg.edu.nus.comp.cs4218.impl.app.WcApplication;
-import sg.edu.nus.comp.cs4218.impl.util.IOUtils;
 import sg.edu.nus.comp.cs4218.impl.util.StringUtils;
 
 import java.io.IOException;
@@ -12,6 +11,7 @@ import java.io.InputStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static sg.edu.nus.comp.cs4218m1.TestUtils.stringToInputStream;
 
 class WcApplicationTest {
     WcApplication wcApp;
@@ -21,8 +21,8 @@ class WcApplicationTest {
     @BeforeEach
     void setUp() throws IOException {
         wcApp = new WcApplication();
-        defaultIStream = IOUtils.stringToInputStream("ab abc" + StringUtils.STRING_NEWLINE + "b ccc");
-        emptyIStream = IOUtils.stringToInputStream("");
+        defaultIStream = stringToInputStream("ab abc" + StringUtils.STRING_NEWLINE + "b ccc");
+        emptyIStream = stringToInputStream("");
     }
 
     @Test

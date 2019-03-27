@@ -3,15 +3,13 @@ package sg.edu.nus.comp.cs4218;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import sg.edu.nus.comp.cs4218.exception.LsException;
-import sg.edu.nus.comp.cs4218.exception.MkdirException;
+import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
 import sg.edu.nus.comp.cs4218.impl.app.LsApplication;
 import sg.edu.nus.comp.cs4218.impl.app.MkdirApplication;
 import sg.edu.nus.comp.cs4218m1.TestUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -56,7 +54,7 @@ public class LsMkdirTest {
     }
 
     @Test
-    void testLsMkdirCheckNewFolderCreatedSuccess() throws LsException, MkdirException {
+    void testLsMkdirCheckNewFolderCreatedSuccess() throws AbstractApplicationException {
         String expectedOutput = "ls-mkdir.txtls-mkdir.txt lsMkdirTest";
         String[] lsArgs = new String[]{pathToTestDir};
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
