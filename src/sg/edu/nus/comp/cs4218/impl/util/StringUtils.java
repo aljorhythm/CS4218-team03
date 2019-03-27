@@ -1,10 +1,10 @@
 package sg.edu.nus.comp.cs4218.impl.util;
 
-import sg.edu.nus.comp.cs4218.exception.StringUtilException;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.StringUtilException.ERR_INVALID_REPLACEMENT_RULE;
 
 @SuppressWarnings({"PMD.PreserveStackTrace", "PMD.LongVariable", "PMD.ExcessiveMethodLength",
         "PMD.InefficientEmptyStringCheck"})
@@ -25,8 +25,6 @@ public final class StringUtils {
     public static final char CHAR_SEMICOLON = ';';
     public static final char CHAR_ASTERISK = '*';
     public static final char CHAR_FLAG_PREFIX = '-';
-
-    public static final String ERR_INVALID_REPLACEMENT_RULE = "Invalid replacement rule";
 
     private StringUtils() {
     }
@@ -130,6 +128,15 @@ public final class StringUtils {
         return input.replaceAll("^\\s+", "");
     }
 
+    static class StringUtilException extends Exception {
+
+        public static final String ERR_INVALID_REPLACEMENT_RULE = "Invalid replacement rule";
+
+        String err;
+        public StringUtilException(String err){
+            this.err = err;
+        }
+    }
 
     public static ArrayList<String> parseReplacementRule(String replacementRule) throws StringUtilException {
         ArrayList<String> result;

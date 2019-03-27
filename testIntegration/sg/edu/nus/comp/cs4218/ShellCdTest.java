@@ -11,7 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 
-import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHAR_SHELL_ARROW;
+import static sg.edu.nus.comp.cs4218m1.TestUtils.CHAR_SHELL_ARROW;
 
 /**
  * Tests working directory change

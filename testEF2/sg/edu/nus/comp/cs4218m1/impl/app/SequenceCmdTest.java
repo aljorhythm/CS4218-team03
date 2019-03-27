@@ -10,9 +10,7 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
-import static sg.edu.nus.comp.cs4218.exception.ShellException.INVALID_IO_STREAM;
-import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHARSET_UTF8;
-import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
+import static sg.edu.nus.comp.cs4218m1.TestUtils.*;
 
 class SequenceCmdTest {
 

@@ -14,8 +14,8 @@ import java.io.IOException;
 import java.util.List;
 
 import static org.mockito.Mockito.mock;
-import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHAR_DOUBLE_QUOTE;
-import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHAR_SINGLE_QUOTE;
+import static sg.edu.nus.comp.cs4218m1.TestUtils.CHAR_DOUBLE_QUOTE;
+import static sg.edu.nus.comp.cs4218m1.TestUtils.CHAR_SINGLE_QUOTE;
 
 class QuotingTest {
     Command command;

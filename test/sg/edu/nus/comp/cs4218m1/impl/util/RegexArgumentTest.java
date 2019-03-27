@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_ASTERISK;
+import static sg.edu.nus.comp.cs4218m1.TestUtils.STRING_ASTERISK;
 
 class RegexArgumentTest extends DirectoryStructureTest {
 

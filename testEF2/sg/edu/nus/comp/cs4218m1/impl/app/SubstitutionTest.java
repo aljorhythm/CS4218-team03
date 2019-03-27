@@ -11,9 +11,7 @@ import java.io.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
-import static sg.edu.nus.comp.cs4218.impl.util.IOUtils.stringToInputStream;
-import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHARSET_UTF8;
-import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
+import static sg.edu.nus.comp.cs4218m1.TestUtils.*;
 
 class SubstitutionTest {
     private final ApplicationRunner mockAppRunner = new MockAppRunner();
@@ -22,6 +20,21 @@ class SubstitutionTest {
      * Mock application runner that does straightforward stuff without any commands
      */
     static class MockAppRunner extends ApplicationRunner {
+        /**
+         * Deletes first argument if not empty
+         * @param argsArray
+         * @return empty array if argsArray is null
+         */
+        public static String[] deleteDefaultArg(String... argsArray){
+            if(argsArray == null) {
+                return new String[]{};
+            }
+            String[] res = new String[argsArray.length-1];
+            for(int i = 0;i<res.length;i++){
+                res[i] = argsArray[i+1];
+            }
+            return res;
+        }
 
         @Override
         public void runApp(String app, String[] argsArray, InputStream inputStream, OutputStream outputStream) throws ShellException, AbstractApplicationException {

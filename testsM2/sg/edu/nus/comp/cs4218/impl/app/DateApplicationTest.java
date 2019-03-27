@@ -13,7 +13,6 @@ import java.io.OutputStream;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
-import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
 @SuppressWarnings({"PMD.AvoidDuplicateLiterals", "PMD.LongVariable"})
 public class DateApplicationTest {

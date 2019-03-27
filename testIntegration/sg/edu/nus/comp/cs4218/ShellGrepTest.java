@@ -9,8 +9,8 @@ import sg.edu.nus.comp.cs4218.impl.util.IOUtils;
 import java.io.*;
 import java.nio.file.Path;
 
-import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHAR_SHELL_ARROW;
-import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
+import static sg.edu.nus.comp.cs4218m1.TestUtils.CHAR_SHELL_ARROW;
+import static sg.edu.nus.comp.cs4218m1.TestUtils.STRING_NEWLINE;
 
 @SuppressWarnings("PMD.LongVariable")
 public class ShellGrepTest extends ShellTest{

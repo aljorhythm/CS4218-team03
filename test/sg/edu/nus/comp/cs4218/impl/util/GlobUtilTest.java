@@ -15,8 +15,8 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHAR_FILE_SEP;
-import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_ASTERISK;
+import static sg.edu.nus.comp.cs4218m1.TestUtils.CHAR_FILE_SEP;
+import static sg.edu.nus.comp.cs4218m1.TestUtils.STRING_ASTERISK;
 import static sg.edu.nus.comp.cs4218m1.TestUtils.NON_EXISTENT_DIR;
 
 public class GlobUtilTest extends DirectoryStructureTest {

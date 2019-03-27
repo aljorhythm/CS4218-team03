@@ -11,8 +11,8 @@ import java.io.InputStream;
 
 import static java.time.Duration.ofSeconds;
 import static org.junit.jupiter.api.Assertions.*;
-import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHARSET_UTF8;
-import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
+import static sg.edu.nus.comp.cs4218m1.TestUtils.CHARSET_UTF8;
+import static sg.edu.nus.comp.cs4218m1.TestUtils.STRING_NEWLINE;
 
 class ShellImplTest {
     /**

@@ -16,8 +16,8 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static sg.edu.nus.comp.cs4218.impl.util.IOUtils.*;
-import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHAR_REDIR_INPUT;
-import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHAR_REDIR_OUTPUT;
+import static sg.edu.nus.comp.cs4218m1.TestUtils.CHAR_REDIR_INPUT;
+import static sg.edu.nus.comp.cs4218m1.TestUtils.CHAR_REDIR_OUTPUT;
 
 class IORedirectionHandlerTest {
     private static String tempDir;
