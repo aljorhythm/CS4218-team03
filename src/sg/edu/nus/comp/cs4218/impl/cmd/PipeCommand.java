@@ -4,7 +4,10 @@ import sg.edu.nus.comp.cs4218.Command;
 import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
 import sg.edu.nus.comp.cs4218.exception.ShellException;
 
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 
 /**
@@ -32,8 +35,6 @@ public class PipeCommand implements Command {
         OutputStream nextOutputStream;
 
         for (int i = 0; i < callCommands.size(); i++) {
-            boolean isLastCommand = i == callCommands.size() - 1;
-
             CallCommand callCommand = callCommands.get(i);
 
             if (absAppException != null || shellException != null) {
@@ -42,7 +43,7 @@ public class PipeCommand implements Command {
             }
 
             try {
-                if (isLastCommand) {
+                if(i == callCommands.size() - 1) {
                     nextOutputStream = stdout;
                 } else {
                     nextOutputStream = new ByteArrayOutputStream();

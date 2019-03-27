@@ -1,42 +1,40 @@
 package sg.edu.nus.comp.cs4218.impl.app;
 
-import sg.edu.nus.comp.cs4218.Environment;
-import sg.edu.nus.comp.cs4218.app.PwdInterface;
-import sg.edu.nus.comp.cs4218.exception.PwdException;
-
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
+
+import sg.edu.nus.comp.cs4218.Environment;
+import sg.edu.nus.comp.cs4218.app.PwdInterface;
+import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
+import sg.edu.nus.comp.cs4218.exception.PwdException;
 
 public class PwdApplication implements PwdInterface {
+    public static final String ERR_NUM_ARGS = "Incorrect number of arguments";
+    public static final String ERR_NULL_ARGS = "Argument is null";
+    public static final String ERR_NULL_STDOUT = "OutputStream is null";
 
-    /**
-     * The absolute path is the full path to the current working directory.
-     *
-     * @return The absolute pathname of the current working directory.
-     * @throws PwdException
-     */
     @Override
-    public String getAbsolutePath() throws PwdException {
+    public String getAbsolutePath() {
         return Environment.currentDirectory;
     }
 
-    /**
-     * Runs the pwd application with specified input data and specified output stream.
-     *
-     * @param args Additional arguments (ignored by pwd).
-     * @param stdin Inputstream (ignored by pwd).
-     * @param stdout Outputstream that the result will be written to.
-     * @throws PwdException If outputstream cannot be written to.
-     */
     @Override
     public void run(String[] args, InputStream stdin, OutputStream stdout) throws PwdException {
-        try {
-            stdout.write(getAbsolutePath().getBytes());
-        } catch (IOException e) {
-            throw (PwdException) new PwdException("Could not write to output stream").initCause(e);
-        } catch (NullPointerException e) {
-            throw (PwdException) new PwdException("Null Pointer Exception").initCause(e);
+        if (args == null) {
+            throw new PwdException(ERR_NULL_ARGS);
         }
+
+        if (stdout == null) {
+            throw new PwdException(ERR_NULL_STDOUT);
+        }
+
+        if (args.length != 0) {
+            throw new PwdException(ERR_NUM_ARGS);
+        }
+
+        PrintWriter out = new PrintWriter(stdout);
+        out.println(getAbsolutePath());
+        out.flush();
     }
 }

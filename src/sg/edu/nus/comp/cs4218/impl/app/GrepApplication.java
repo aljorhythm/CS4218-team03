@@ -1,159 +1,164 @@
 package sg.edu.nus.comp.cs4218.impl.app;
 
 import sg.edu.nus.comp.cs4218.app.GrepInterface;
+import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
 import sg.edu.nus.comp.cs4218.exception.GrepException;
 import sg.edu.nus.comp.cs4218.exception.ShellException;
 import sg.edu.nus.comp.cs4218.impl.util.IOUtils;
-import sg.edu.nus.comp.cs4218.impl.util.StringUtils;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
-import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHARSET_UTF8;
-
+@SuppressWarnings({"PMD.ShortVariable", "PMD.LongVariable"})
 public class GrepApplication implements GrepInterface {
-    /**
-     * Returns string containing lines which match the specified pattern in the given files
-     *
-     * @param pattern            String specifying a regular expression in JAVA format
-     * @param isCaseInsensitive  Boolean option to perform case insensitive matching
-     * @param isLineCountsOnly Boolean option to only write out a count of matched lines
-     * @param fileNames          Array of file names
-     * @return All lines in the files that match the pattern
-     * @throws GrepException
-     * @throws ShellException
-     * @throws IOException
-     */
-    @java.lang.Override
-    public String grepFromFiles(String pattern, Boolean isCaseInsensitive, Boolean isLineCountsOnly, String... fileNames) throws GrepException {
-        if (fileNames == null) {
-            throw new GrepException("filesNames is null!");
+
+    public static final String ERR_NULL_STREAMS = "Null Pointer Exception";
+    public static final String ERR_READING_FILE = "Could not read file";
+    public static final String ERR_INVALID_PATTERN = "Pattern's syntax is invalid";
+    public static final String ERR_NO_PATTERN = "No pattern found";
+
+    public static final String FLAG_CASE_INSENSITIVE = "-i";
+    public static final String FLAG_COUNT_ONLY = "-c";
+
+    public static final boolean DEFAULT_CASE_SENSITIVITY = false;
+    public static final boolean DEFAULT_COUNT_ONLY = false;
+
+    private boolean isCaseInsensitive = DEFAULT_CASE_SENSITIVITY;
+    private boolean isCountOfLinesOnly = DEFAULT_COUNT_ONLY;
+
+    @Override
+    public String grepFromFiles(String pattern, Boolean isCaseInsensitive, Boolean isCountOfLinesOnly, String... fileNames) throws Exception {
+        Pattern grepPattern;
+        if (isCaseInsensitive) {
+            grepPattern = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE);
+        } else {
+            grepPattern = Pattern.compile(pattern);
         }
-        StringBuilder result = new StringBuilder();
-        for (int i = 0; i < fileNames.length; i++) {
+
+        StringBuilder sb = new StringBuilder();
+        int matchCount;
+
+        for (String fileName : fileNames) {
+            matchCount = 0;
             try {
-                InputStream inputStream = IOUtils.openInputStream(fileNames[i]);
-                result.append(grepFromStdin(pattern, isCaseInsensitive, isLineCountsOnly, inputStream)).append(StringUtils.STRING_NEWLINE);
-                IOUtils.closeInputStream(inputStream);
-            } catch (IOException e) {
-                throw (GrepException) new GrepException("IO not working").initCause(e);
-            } catch (ShellException e) {
-                throw (GrepException) new GrepException("Shell exception").initCause(e);
+                InputStream fis = IOUtils.openInputStream(fileName);
+                BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+                String line;
+                while ((line = br.readLine()) != null) {
+                    Matcher matcher = grepPattern.matcher(line);
+                    if (matcher.find()) {
+                        if (isCountOfLinesOnly) {
+                            matchCount++;
+                        } else {
+                            sb.append(fileName + ":");
+                            sb.append(line);
+                            sb.append(System.lineSeparator());
+                        }
+                    }
+                }
+                IOUtils.closeInputStream(fis);
+                if (isCountOfLinesOnly) {
+                    sb.append(fileName + ":" + matchCount);
+                    sb.append(System.lineSeparator());
+                }
+            } catch (ShellException se) {
+                System.out.println(new GrepException(fileName + ": " + ERR_READING_FILE).getMessage());
             }
         }
-        return result.toString().trim();
+
+        return sb.toString();
     }
 
-    /**
-     * Returns string containing lines which match the specified pattern in Stdin
-     *
-     * @param pattern            String specifying a regular expression in JAVA format
-     * @param isCaseInsensitive  Boolean option to perform case insensitive matching
-     * @param isLineCountsOnly Boolean option to only write out a count of matched lines
-     * @param stdin              InputStream containing arguments from Stdin
-     * @throws Exception
-     */
-    @java.lang.Override
-    public String grepFromStdin(String pattern, Boolean isCaseInsensitive, Boolean isLineCountsOnly, InputStream stdin) throws GrepException, IOException {
-        if (pattern == null) {
-            throw new GrepException("Pattern is null!");
+    @Override
+    public String grepFromStdin(String pattern, Boolean isCaseInsensitive, Boolean isCountOfLinesOnly, InputStream stdin) throws Exception {
+        Pattern grepPattern;
+        if (isCaseInsensitive) {
+            grepPattern = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE);
+        } else {
+            grepPattern = Pattern.compile(pattern);
         }
-        if (stdin == null) {
-            throw new GrepException("Stdin is null!");
-        }
-        Pattern regexPattern;
-        try {
-            if (isCaseInsensitive != null && isCaseInsensitive) {
-                regexPattern = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE);
-            } else {
-                regexPattern = Pattern.compile(pattern);
+
+        StringBuilder sb = new StringBuilder();
+        int matchCount = 0;
+        String line;
+        BufferedReader bf = new BufferedReader(new InputStreamReader(stdin));
+
+        while ((line = bf.readLine()) != null) {
+            if (line.equals("")) {
+                break;
             }
-        } catch (PatternSyntaxException e) {
-            throw (GrepException) new GrepException("Pattern compile error").initCause(e);
-        }
-        BufferedReader reader = new BufferedReader(new InputStreamReader(stdin));
-        StringBuilder result = new StringBuilder();
-        int numberOfMatches = 0;
-        for (String line; (line = reader.readLine()) != null; ) {
-            Matcher matcher = regexPattern.matcher(line);
-            if (matcher.find()){
-                result.append(line).append(StringUtils.STRING_NEWLINE);
-                numberOfMatches++;
+            Matcher matcher = grepPattern.matcher(line);
+            if (matcher.find()) {
+                if (isCountOfLinesOnly) {
+                    matchCount++;
+                } else {
+                    sb.append(line);
+                    sb.append(System.lineSeparator());
+                }
             }
         }
-        if (isLineCountsOnly) {
-            return Integer.toString(numberOfMatches);
+        if (isCountOfLinesOnly) {
+            return String.valueOf(matchCount) + System.lineSeparator();
         }
         else {
-            return result.toString().trim();
+            return sb.toString();
         }
     }
 
-    /**
-     * Run the grep application.
-     *
-     * @param args Array of arguments for the application.
-     * @param stdin An inputstream.
-     * @param stdout An outputstream.
-     * @throws GrepException
-     */
-    @java.lang.Override
-    public void run(String[] args, InputStream stdin, OutputStream stdout) throws GrepException {//NOPMD
+    @Override
+    public void run(String[] args, InputStream stdin, OutputStream stdout) throws AbstractApplicationException {
+
         if (args == null) {
-            throw new GrepException("args is null!");
+            throw new GrepException(ERR_NULL_STREAMS);
         }
+
         if (stdout == null) {
-            throw new GrepException("output stream is null!");
+            throw new GrepException(ERR_NULL_STREAMS);
         }
-        String result;
-        Boolean isCaseInsensitive = false;
-        Boolean isLineCountsOnly = false;
-        Boolean patternProvided = false;
-        String pattern = null;
-        List<String> fileNames = new ArrayList<>();
-        for (int i = 0; i < args.length; i++) {
-            if (args[i].length() > 0 && args[i].charAt(0) == '-') {
-                if (args[i].charAt(1) == 'i') {
-                    isCaseInsensitive = true;
-                } else if (args[i].charAt(1) == 'c') {
-                    isLineCountsOnly = true;
-                } else {
-                    throw new GrepException("Unknown option for grep!");
-                }
-            } else{
-                if (patternProvided) {
-                    fileNames.add(args[i]);
-                } else {
-                    pattern = args[i];
-                    patternProvided = true;
-                }
-            }
+        if (stdin == null) {
+            stdin = System.in;
         }
-        if (!patternProvided || fileNames.isEmpty()) {
-            if (stdin == null) {
-                throw new GrepException("Not correct number of arguments for grep!");
-            } else {
-                String inputString;
-                try {
-                    inputString = IOUtils.stringFromInputStream(stdin);
-                    InputStream inputStream = new ByteArrayInputStream(inputString.getBytes());
-                    result = grepFromStdin(pattern, isCaseInsensitive, isLineCountsOnly, inputStream);
-                } catch (IOException e) {
-                    throw (GrepException) new GrepException("could not read input stream").initCause(e);
-                }
-            }
-        } else {
-            String[] fileNamesArray = fileNames.toArray(new String[0]);
-            result = grepFromFiles(pattern, isCaseInsensitive, isLineCountsOnly, fileNamesArray);
-        }
+
         try {
-            stdout.write(result.getBytes(CHARSET_UTF8));
-        } catch (IOException e) {
-            throw (GrepException) new GrepException("grep failed to write!").initCause(e);
+            ArrayList<String> processedArgs = processArgs(args);
+            if (processedArgs.size() == 0) {
+                throw new GrepException(ERR_NO_PATTERN);
+            } else if (processedArgs.size() == 1) {
+                stdout.write(grepFromStdin(processedArgs.get(0), isCaseInsensitive, isCountOfLinesOnly, stdin).getBytes());
+            } else {
+                String pattern = processedArgs.remove(0);
+                String [] fileNames = processedArgs.toArray(new String[0]);
+                stdout.write(grepFromFiles(pattern, isCaseInsensitive, isCountOfLinesOnly, fileNames).getBytes());
+            }
+        } catch (PatternSyntaxException pse) {
+            throw new GrepException(ERR_INVALID_PATTERN);
+        } catch (Exception e) {
+            throw new GrepException(e.getMessage());
         }
+    }
+
+    private ArrayList<String> processArgs(String[] args) throws Exception {
+        ArrayList<String> processedArgs = new ArrayList<String>();
+        for (int i = 0; i < args.length; i++) {
+
+            if (args[i].startsWith("-")) {
+                if (args[i].equals(FLAG_CASE_INSENSITIVE)) {
+                    isCaseInsensitive = true;
+                } else if (args[i].equals(FLAG_COUNT_ONLY)) {
+                    isCountOfLinesOnly = true;
+                } else {
+                    throw new Exception("Invalid Flag");
+                }
+            } else {
+                processedArgs.add(args[i]);
+            }
+        }
+        return processedArgs;
     }
 }

@@ -1,57 +1,37 @@
 package sg.edu.nus.comp.cs4218.impl.app;
 
+import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHAR_SPACE;
+
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+
 import sg.edu.nus.comp.cs4218.app.EchoInterface;
 import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
 import sg.edu.nus.comp.cs4218.exception.EchoException;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-
-import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHARSET_UTF8;
-
 public class EchoApplication implements EchoInterface {
-    public static final String FAIL_ECHO = "fail_echo";
-    public static final String FAIL_ECHO_WRITE = "fail_echo_write";
-    public static final String FAIL_ECHO_EMPTY = "fail_echo_empty_params";
+    public static final String ERR_NULL_ARGS = "Argument is null";
+    public static final String ERR_NULL_STDOUT = "OutputStream is null";
 
     @Override
-    public String constructResult(String... args) throws EchoException {
-        if(args == null) {
-            throw new EchoException(FAIL_ECHO_EMPTY);
-        }
-        return String.join(" ", args);
+    public String constructResult(String... args) {
+        return String.join(Character.toString(CHAR_SPACE), args);
     }
 
-    /**
-     * Runs the echo application with the specified arguments.
-     *
-     * @param args   Array of arguments for the application, consists of some strings.
-     * @param stdin  An InputStream. Not used.
-     * @param stdout An OutputStream. Not used.
-     *
-     * @throws EchoException If the shell doesn't work.
-     */
     @Override
     public void run(String[] args, InputStream stdin, OutputStream stdout) throws EchoException {
-        if(args == null || args.length == 0){
-            throw new EchoException("Empty arguments");
-        }
-        String result;
-        try {
-            result = this.constructResult(args);
-        } catch (AbstractApplicationException e) {
-            throw new EchoException(FAIL_ECHO);//NOPMD
+        if (args == null) {
+            throw new EchoException(ERR_NULL_ARGS);
         }
 
-        if(stdout == null) {
-            return;
+        if (stdout == null) {
+            throw new EchoException(ERR_NULL_STDOUT);
         }
 
-        try {
-            stdout.write(result.getBytes(CHARSET_UTF8));
-        } catch (IOException e) {
-            throw new EchoException(FAIL_ECHO_WRITE);//NOPMD
-        }
+        String res = constructResult(args);
+        PrintWriter out = new PrintWriter(stdout);
+        out.println(res);
+        out.flush();
     }
 }

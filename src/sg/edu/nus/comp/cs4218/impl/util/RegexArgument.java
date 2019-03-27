@@ -2,16 +2,17 @@ package sg.edu.nus.comp.cs4218.impl.util;
 
 import sg.edu.nus.comp.cs4218.Environment;
 
-import java.io.IOException;
+import java.io.File;
 import java.nio.file.Paths;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.*;
+import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHAR_ASTERISK;
+import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHAR_FILE_SEP;
 
-@SuppressWarnings("PMD.AvoidStringBufferField")
+@SuppressWarnings({"PMD.AvoidStringBufferField", "PMD.AvoidDeeplyNestedIfStmts"})
 public final class RegexArgument {
     private StringBuilder plaintext;
     private StringBuilder regex;
@@ -35,7 +36,7 @@ public final class RegexArgument {
 
     public void appendAsterisk() {
         plaintext.append(CHAR_ASTERISK);
-        regex.append("[^" + CHAR_FILE_SEP + "]*");
+        regex.append("[^" + CHAR_FILE_SEP + "^]*");
         isRegex = true;
     }
 
@@ -50,29 +51,37 @@ public final class RegexArgument {
         regex.append(Pattern.quote(str));
     }
 
-    /**
-     * List containing only plain text returned if directory is invalid or no files are matched.
-     *
-     * @return list of files and directories with names that match glob pattern
-     */
     public List<String> globFiles() {
-        List<String> globbedFiles;
-        String globPattern = plaintext.toString();
-        try {
-            if (globPattern.startsWith(STRING_FILE_SEP)) {
-                String nonGlobAncestors = getNonGlobAncestors(globPattern);
-                String subDirGlobPattern = globPattern.replaceFirst(nonGlobAncestors, "");
-                globbedFiles = GlobUtil.glob(Paths.get(nonGlobAncestors), subDirGlobPattern);
-            } else {
-                globbedFiles = GlobUtil.glob(Paths.get(Environment.currentDirectory), globPattern);
+        List<String> globbedFiles = new LinkedList<>();
+
+        if (isRegex) {
+            Pattern regexPattern = Pattern.compile(regex.toString());
+            String dir = "";
+            String tokens[] = plaintext.toString().replaceAll("\\\\", "/").split("/");
+            for (int i = 0; i < tokens.length; i++) {
+                if (!StringUtils.isBlank(tokens[i]) && !tokens[i].contains("*")) {
+                    dir += tokens[i] + File.separator;
+                }
             }
-        } catch (IOException e) {
-            return new LinkedList<>();
+
+            File currentDir = Paths.get(Environment.currentDirectory + File.separator + dir).toFile();
+
+            // TODO not simply just the current directory
+            if (currentDir.list() != null) {
+                for (String candidate : currentDir.list()) {
+                    if (regexPattern.matcher(dir + candidate).matches()) {
+                        globbedFiles.add(dir + candidate);
+                    }
+                }
+            }
+
+            Collections.sort(globbedFiles);
         }
 
         if (globbedFiles.isEmpty()) {
-            globbedFiles = Arrays.asList(new String[]{globPattern});
+            globbedFiles.add(plaintext.toString());
         }
+
         return globbedFiles;
     }
 
@@ -82,27 +91,5 @@ public final class RegexArgument {
 
     public String toString() {
         return plaintext.toString();
-    }
-
-    /**
-     * get nearest non glob ancestors
-     * Returns front portion of path with no asterisk
-     */
-    public static String getNonGlobAncestors(String path) {
-        StringBuilder nonGlobAncestors = new StringBuilder();
-        StringBuilder ancestor = new StringBuilder();
-        for (char c : path.toCharArray()) {
-            if (c == CHAR_FILE_SEP) {
-                ancestor.append(c);
-                nonGlobAncestors.append(ancestor);
-                ancestor = new StringBuilder();
-            } else if (c == CHAR_ASTERISK) {
-                break;
-            } else {
-                ancestor.append(c);
-            }
-        }
-        nonGlobAncestors.append(ancestor);
-        return nonGlobAncestors.toString();
     }
 }

@@ -1,101 +1,142 @@
 package sg.edu.nus.comp.cs4218.impl.app;
 
+import sg.edu.nus.comp.cs4218.Environment;
 import sg.edu.nus.comp.cs4218.app.LsInterface;
 import sg.edu.nus.comp.cs4218.exception.LsException;
-import sg.edu.nus.comp.cs4218.impl.util.StringUtils;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.io.PrintWriter;
+import java.nio.file.InvalidPathException;
+import java.nio.file.Paths;
+import java.util.LinkedList;
 
-import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHARSET_UTF8;
+import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
+@SuppressWarnings("PMD.ExcessiveMethodLength")
 public class LsApplication implements LsInterface {
+    public static final String ERR_INVALID_DIR = "invalid dir";
+    public static final String ERR_INVALID_TAG = "Invalid tag";
+    public static final String ERR_INVALID_ORDER = "The order of the tag is wrong";
+    public static final String ERR_NULL_STDOUT = "stdout is null";
+    public static final String ERR_NULL_ARGS = "Argument is null";
 
     @Override
-    public String listFolderContent(Boolean isFoldersOnly, Boolean isRecursive, String... folderName) throws LsException {
-        if (isFoldersOnly == null || isRecursive == null || folderName == null) {
-            throw new LsException("Input arguments cannot be null!");
+    public String listFolderContent(Boolean isFoldersOnly, Boolean isRecursive, String... folderName) {
+        boolean multipleFile = (folderName.length > 1);
+        String result = "";
+        LinkedList<String> folderList = new LinkedList<>();
+        for (String folder: folderName) {
+            folderList.offer(folder);
         }
-        Set<String> foldersContents = new LinkedHashSet();
-        for(String f: folderName) {
-            if ((folderName.length > 1 || isRecursive) && !isFoldersOnly) {
-                foldersContents.add(f + ":");
+        if (folderName.length == 0) {
+            folderList.offer("");
+        }
+        while (!folderList.isEmpty()) {
+            String dir = "";
+            String fileList = "";
+            String folder = folderList.poll();
+            String[] token = folder.replace("\\\\", "/").split("/");
+            for (int i = 0; i < token.length; i++) {
+                if (i == token.length - 1) {
+                    dir += token[token.length-1];
+                } else {
+                    dir += token[i] + File.separator;
+                }
             }
-            String folderContents = getFolderContent(isFoldersOnly, isRecursive, f);
-            foldersContents.add(folderContents + StringUtils.STRING_NEWLINE);
-        }
-        if (folderName.length == 0 && isFoldersOnly) {
-                foldersContents.add(".");
-        }
-        String result;
-        if (isFoldersOnly) {
-            result = String.join("", foldersContents).trim();
-        } else {
-            result = String.join(StringUtils.STRING_NEWLINE, foldersContents).trim();
+            try {
+                File currDir = Paths.get(Environment.getCurrentDirectory() + File.separator + dir).toFile();
+                if (!currDir.exists()) {
+                    result += "ls: " + dir + " " + ERR_INVALID_DIR + STRING_NEWLINE;
+                    continue;
+                }
+                if (currDir.isFile()) {
+                    result += dir + STRING_NEWLINE;
+                    continue;
+                }
+                if (isFoldersOnly) {
+                    result += (dir.isEmpty()) ? "." + STRING_NEWLINE : dir + STRING_NEWLINE;
+                    continue;
+                }
+                String[] list = sortCurrentDirectory(currDir);
+                for (int i = 0; list != null && i < list.length; i++) {
+                    File file = Paths.get(Environment.getCurrentDirectory() + File.separator + dir + File.separator + currDir.list()[i]).toFile();
+                    if (file.isDirectory() && isRecursive) {
+                        folderList.offer((dir.isEmpty()) ? list[i] : dir + File.separator + list[i]);
+                        multipleFile = true;
+                    }
+                    if (file.isDirectory()) {
+                        fileList += list[i] + " ";
+                    } else if (!isFoldersOnly) {
+                        fileList += list[i] + " ";
+                    }
+                }
+                if (dir.isEmpty() || (folderName.length == 1 && dir.equals(folderName[0]) && !fileList.isEmpty())) {
+                    result += fileList + STRING_NEWLINE;
+                    continue;
+                }
+                if (multipleFile) {
+                    result += dir + ":" + STRING_NEWLINE + fileList + STRING_NEWLINE;
+                } else if (!fileList.isEmpty()) {
+                    result += fileList + STRING_NEWLINE;
+                }
+            } catch (InvalidPathException e){
+            result += "ls: " + dir + " " + ERR_INVALID_DIR + STRING_NEWLINE;
+            continue;
+            }
         }
         return result;
     }
 
-    private String getFolderContent(Boolean isFoldersOnly, Boolean isRecursive, String folderName) throws LsException {
-        File file = new File(folderName);
-        if (file == null || !file.exists()) {
-            throw new LsException("File does not exist, make sure the path is correct!");
+    private String[] sortCurrentDirectory(File currDir) {
+        LinkedList<String> list = new LinkedList<>();
+        for (String s: currDir.list()) {
+            list.add(s);
         }
-        String result;
-        if(isFoldersOnly) {
-            result = file.getPath();
-        } else if (file.isDirectory()) {
-            String[] content = file.list();
-            result = String.join(" ", content);
-            if (isRecursive && content.length > 0) {
-                for (String c: content) {
-                    String recursivePath = folderName + File.separator + c;
-                    File subFolder = new File(recursivePath);
-                    if (subFolder.isDirectory()) {
-                        result += StringUtils.STRING_NEWLINE + StringUtils.STRING_NEWLINE + recursivePath + ":"
-                                + StringUtils.STRING_NEWLINE + getFolderContent(isFoldersOnly, true, recursivePath);
-                    }
-                }
-            }
-        } else {
-            result = folderName;
+        list.sort(String::compareTo);
+        String[] result = new String[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            result[i] = list.get(i);
         }
         return result;
     }
 
     @Override
     public void run(String[] args, InputStream stdin, OutputStream stdout) throws LsException {
+        if (args == null) {
+            throw new LsException(ERR_NULL_ARGS);
+        }
+        if (stdout == null) {
+            throw new LsException(ERR_NULL_STDOUT);
+        }
+        boolean isFoldersOnly = false, isRecursive = false;
         String result;
-        Boolean isFoldersOnly = false;
-        Boolean isRecursive = false;
-        List<String> fileNames = new ArrayList<>();
-        for (int i = 0; i < args.length; i++) {
-            if (args[i].charAt(0) == '-') {
-
-                if (args[i].contains("d")) {
-                    isFoldersOnly = true;
-                } else if (args[i].contains("R")) {
-                    isRecursive = true;
-                } else {
-                    throw new LsException("Unknown option for ls!");
+        String[] folderName = new String[0];
+        if (args.length > 0) {
+            int start = 0, end = args.length;
+            if (args[start].equals("-d")) {
+                isFoldersOnly = true;
+                start += 1;
+            }
+            if (args[end - 1].equals("-R")) {
+                isRecursive = true;
+                end -= 1;
+            }
+            folderName = new String[end - start];
+            for (int i = start; i < end; i++) {
+                if (args[i].equals("-d") || args[i].equals("-R")) {
+                    throw new LsException(ERR_INVALID_ORDER);
                 }
-            } else{
-                fileNames.add(args[i]);
+                if (!args[i].isEmpty() && args[i].charAt(0) == '-') {
+                    throw new LsException(ERR_INVALID_TAG);
+                }
+                folderName[i - start] = args[i];
             }
         }
-
-        String[] fileNamesArray = fileNames.toArray(new String[0]);
-        result = listFolderContent(isFoldersOnly, isRecursive, fileNamesArray);
-        try {
-            stdout.write(result.getBytes(CHARSET_UTF8));
-        } catch (IOException e) {
-            throw (LsException) new LsException("ls failed to write!").initCause(e);
-        }
+        result = listFolderContent(isFoldersOnly, isRecursive, folderName);
+        PrintWriter out = new PrintWriter(stdout);
+        out.print(result);
+        out.flush();
     }
 }

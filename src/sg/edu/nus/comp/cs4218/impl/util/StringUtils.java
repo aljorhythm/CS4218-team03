@@ -1,28 +1,20 @@
 package sg.edu.nus.comp.cs4218.impl.util;
 
+import sg.edu.nus.comp.cs4218.exception.StringUtilException;
+
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.stream.Stream;
 
+@SuppressWarnings({"PMD.PreserveStackTrace", "PMD.LongVariable", "PMD.ExcessiveMethodLength",
+        "PMD.InefficientEmptyStringCheck"})
 public final class StringUtils {
-
-    /**
-     * System dependent new line
-     */
     public static final String STRING_NEWLINE = System.lineSeparator();
     public static final String STRING_CURR_DIR = ".";
     public static final String STRING_PARENT_DIR = "..";
-
-    /**
-     * Char representation of file separator
-     */
     public static final char CHAR_FILE_SEP = File.separatorChar;
-
-    /**
-     * String representation of file separator
-     */
-    public static final String STRING_FILE_SEP = new String(new char[]{File.separatorChar});
     public static final char CHAR_TAB = '\t';
+    public static final char CHAR_NEWLINE = '\n';
     public static final char CHAR_SPACE = ' ';
     public static final char CHAR_DOUBLE_QUOTE = '"';
     public static final char CHAR_SINGLE_QUOTE = '\'';
@@ -32,11 +24,9 @@ public final class StringUtils {
     public static final char CHAR_PIPE = '|';
     public static final char CHAR_SEMICOLON = ';';
     public static final char CHAR_ASTERISK = '*';
-    public static final String STRING_ASTERISK = "*";
-    public static final char CHAR_SHELL_ARROW = '>';
     public static final char CHAR_FLAG_PREFIX = '-';
-    public static final String REGEX_FILE_SEP = SystemUtil.isWindows() ? "\\\\" : "/";
-    public static final String CHARSET_UTF8 = "UTF-8";
+
+    public static final String ERR_INVALID_REPLACEMENT_RULE = "Invalid replacement rule";
 
     private StringUtils() {
     }
@@ -51,7 +41,7 @@ public final class StringUtils {
      * 3. string contains only whitespace
      */
     public static boolean isBlank(String str) {
-        if (str == null || str.isEmpty()) {
+        if (str == null || str.equals("")) {
             return true;
         }
 
@@ -89,71 +79,142 @@ public final class StringUtils {
             return new String[0];
         }
 
-        return str
-                .trim()
-                .split("\\s+");
+        return str.trim().split("\\s+");
     }
 
     /**
-     * isNumberic is a num string
+     * parse a string to retrieve the double value contained in the string as its first word.
+     * the double is recognized if the string begins with optional blanks,
+     * an optional ‘-’ sign, and zero or more digits, or a decimal-point character.
+     * neither a leading ‘+’ nor exponential notation is recognized.
      *
-     * @param str String to be judge
-     * @return boolean
+     * @param str String to be parsed
+     * @return a double contained in the string as its first word.
+     * 0.0 if the string does not contain a double as its first word.
      */
-    public static boolean isNumberic(String strArg) {
-        String str = strArg;
-        if (isBlank(str)) {
-            return false;
+    public static double parseDoubleContainedInString (String str) {
+        if (str == null || str.equals("")) {
+            return 0.0;
         }
-        if(str.startsWith("-")) {
-            str = str.substring(1, str.length() - 1);
+
+        char firstChar = str.charAt(0);
+        if (!(firstChar == ' ' || firstChar == '-' || firstChar == '.' || Character.isDigit(firstChar))) {
+            return 0.0;
         }
-        for (int i = 0; i < str.length(); i++) {
-            if (!Character.isDigit(str.charAt(i))) {
-                return false;
+
+        int index = str.length();
+        while (index >= 1) {
+            String subStr = str.substring(0, index);
+            try {
+                if (Double.valueOf(subStr).getClass().equals(Double.class)) {
+
+                    if (Double.parseDouble(subStr) == 0.0) {
+                        return 0.0;
+                    }
+
+                    if(subStr.contains("e") || subStr.contains("E")
+                            || subStr.contains("f") || subStr.contains("F")) {
+                        index--;
+                    } else {
+                        return Double.valueOf(subStr);
+                    }
+                }
+            } catch (NumberFormatException nfe) {
+                index--;
             }
         }
-        return true;
+        return  0.0;
     }
 
-    /**
-     * getFirstNum is to get the first num of string
-     *
-     * @param str String to be get
-     * @return int num
-     */
-    public static int getFirstNum(String str) {
-        return Integer.parseInt(str.split(" ")[0]);
+    public static String removeLeadingWhiteSpaces(String input) {
+        return input.replaceAll("^\\s+", "");
     }
 
-    /**
-     * getCharacterType is to get the character type to compare
-     *
-     * @param  cha to be get type
-     * @return int num, special character would be 1, number would be 2, capital letter would be 3 and a smaller be 4
-     */
-    public static int getCharacterType(char cha) {
-        if (Character.isLowerCase(cha)) {
-            return 4;
-        } else if (Character.isUpperCase(cha)) {
-            return 3;
-        } else if (Character.isDigit(cha)) {
-            return 2;
-        } else {
-            return 1;
+
+    public static ArrayList<String> parseReplacementRule(String replacementRule) throws StringUtilException {
+        ArrayList<String> result;
+
+        String trimmedReplacementRule = removeLeadingWhiteSpaces(replacementRule);
+
+        if (!trimmedReplacementRule.startsWith("s")) {
+            throw new StringUtilException(ERR_INVALID_REPLACEMENT_RULE);
         }
+
+        if (trimmedReplacementRule.length() < 2) {
+            throw new StringUtilException(ERR_INVALID_REPLACEMENT_RULE);
+        }
+
+        char [] replacementRuleCharsArray = trimmedReplacementRule.toCharArray();
+        char delimiter = trimmedReplacementRule.charAt(1);
+
+        //substitute pattern can not be delimited by newline or backslash
+        if (delimiter == '\\' || delimiter == System.lineSeparator().charAt(0)) {
+            throw new StringUtilException(ERR_INVALID_REPLACEMENT_RULE);
+        }
+
+        int delimiterCount = 0;
+        for (int i = 0; i < replacementRuleCharsArray.length; i++) {
+            if (replacementRuleCharsArray[i] == delimiter) {
+                delimiterCount++;
+            }
+        }
+        if (delimiterCount < 3) {
+            throw new StringUtilException(ERR_INVALID_REPLACEMENT_RULE);
+        }
+
+        result = splitByDelimiter(trimmedReplacementRule, delimiter);
+        switch (result.size()) {
+            case 3:
+                //regex cannot be empty
+                if (result.get(1).equals("")) {
+                    throw new StringUtilException(ERR_INVALID_REPLACEMENT_RULE);
+                }
+                result.add("1");
+                break;
+            case 4:
+                //regex cannot be empty
+                if (result.get(1).equals("")) {
+                    throw new StringUtilException(ERR_INVALID_REPLACEMENT_RULE);
+                }
+                String replacementIndex = result.get(3).trim();
+                if (replacementIndex.startsWith("0") || replacementIndex.startsWith("-")
+                        || replacementIndex.startsWith("+")) {
+                    throw new StringUtilException(ERR_INVALID_REPLACEMENT_RULE);
+                }
+                try {
+                    int replacementIndexInt = Integer.parseInt(replacementIndex);
+                    if (replacementIndexInt < 1) {
+                        throw new StringUtilException(ERR_INVALID_REPLACEMENT_RULE);
+                    }
+                } catch (NumberFormatException nfe) {
+                    throw new StringUtilException(ERR_INVALID_REPLACEMENT_RULE);
+                }
+                break;
+                default:
+                    throw new StringUtilException(ERR_INVALID_REPLACEMENT_RULE);
+        }
+        return result;
     }
-    /**
-     * Prepends string to all strings
-     *
-     * @param str
-     * @param strings
-     * @return array where elements are strings prepended with str
-     */
-    public static String[] prependStringToStrings(String str, String... strings) {
-        return Stream
-                .of(strings)
-                .map(s -> str + s)
-                .toArray(String[]::new);
+
+    private static ArrayList<String> splitByDelimiter(String input, char delimiter) {
+        ArrayList<String> result = new ArrayList<String>();
+        int substringStartIndex = 0;
+        int delimiterCount = 3;
+
+        for (int i = 0; i < input.length(); i++) {
+            if (input.charAt(i) == delimiter) {
+                result.add(input.substring(substringStartIndex, i));
+                substringStartIndex = i + 1;
+                delimiterCount -= 1;
+                if (delimiterCount == 0) {
+                    break;
+                }
+            }
+        }
+        String lastSlice = input.substring(substringStartIndex);
+        if (!lastSlice.trim().isEmpty()) {
+            result.add(lastSlice.trim());
+        }
+        return result;
     }
 }

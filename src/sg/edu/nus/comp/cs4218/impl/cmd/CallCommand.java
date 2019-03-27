@@ -6,14 +6,13 @@ import sg.edu.nus.comp.cs4218.exception.ShellException;
 import sg.edu.nus.comp.cs4218.impl.util.ApplicationRunner;
 import sg.edu.nus.comp.cs4218.impl.util.ArgumentResolver;
 import sg.edu.nus.comp.cs4218.impl.util.IORedirectionHandler;
+import sg.edu.nus.comp.cs4218.impl.util.IOUtils;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.List;
 
 import static sg.edu.nus.comp.cs4218.impl.ShellImpl.ERR_SYNTAX;
-import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
 /**
  * A Call Command is a sub-command consisting of at least one non-keyword or quoted.
@@ -23,50 +22,41 @@ import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
  * </p>
  */
 public class CallCommand implements Command {
-//    private static final String ERR_WRITE_OUTPUT_STREAM = "write_output_stream";
     private final List<String> argsList;
     private final ApplicationRunner appRunner;
-    private final ArgumentResolver argumentResolver;
 
-    public CallCommand(List<String> argsList, ArgumentResolver argumentResolver, ApplicationRunner appRunner) {
+    // TODO ArgumentResolver should be a dependency so that we can unit test CallCommand
+    public CallCommand(List<String> argsList, ApplicationRunner appRunner) {
         this.argsList = argsList;
-        this.argumentResolver = argumentResolver;
         this.appRunner = appRunner;
     }
 
     @Override
     public void evaluate(InputStream stdin, OutputStream stdout)
             throws AbstractApplicationException, ShellException {
-        IOException ioException = null;
         if (argsList == null || argsList.isEmpty()) {
             throw new ShellException(ERR_SYNTAX);
         }
 
         // Handle IO redirection
-        IORedirectionHandler redirHandler = new IORedirectionHandler(argsList, stdin, stdout, argumentResolver);
-        try{
-            redirHandler.extractRedirOptions(appRunner);
-        } catch (IOException e){
-            e.printStackTrace();
-        }
+        IORedirectionHandler redirHandler = new IORedirectionHandler(argsList, stdin, stdout);
+        redirHandler.extractRedirOptions();
         List<String> noRedirArgsList = redirHandler.getNoRedirArgsList();
         InputStream inputStream = redirHandler.getInputStream();
         OutputStream outputStream = redirHandler.getOutputStream();
 
         // Handle quoting + globing + command substitution
-        List<String> parsedArgsList = argumentResolver.parseArguments(noRedirArgsList, appRunner);
+        List<String> parsedArgsList = ArgumentResolver.parseArguments(noRedirArgsList);
+        //List<String> parsedArgsList = noRedirArgsList;
         if (!parsedArgsList.isEmpty()) {
-            String app = argsList.get(0);
-//            String app = parsedArgsList.remove(0);
-            appRunner.runApp(app, parsedArgsList.toArray(new String[]{}), inputStream, outputStream);
+            String app = parsedArgsList.remove(0);
+            appRunner.runApp(app, parsedArgsList.toArray(new String[0]), inputStream, outputStream);
+            IOUtils.closeInputStream(redirHandler.getInputStream());
+            IOUtils.closeOutputStream(redirHandler.getOutputStream());
+            terminate();
         }
-        if (outputStream.toString().length() > 0) {
-            try {
-                outputStream.write(STRING_NEWLINE.getBytes());
-            } catch (IOException e) {
-                ioException = e;
-            }
-        }
+
+
     }
 
     @Override

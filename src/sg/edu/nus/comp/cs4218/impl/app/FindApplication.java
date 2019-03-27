@@ -1,67 +1,63 @@
 package sg.edu.nus.comp.cs4218.impl.app;
 
-
+import sg.edu.nus.comp.cs4218.Environment;
 import sg.edu.nus.comp.cs4218.app.FindInterface;
 import sg.edu.nus.comp.cs4218.exception.FindException;
-import sg.edu.nus.comp.cs4218.impl.util.StringUtils;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.PrintWriter;
+import java.nio.file.Paths;
+import java.util.LinkedList;
+import java.util.regex.Pattern;
 
-import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHARSET_UTF8;
+import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
+@SuppressWarnings("PMD.PositionLiteralsFirstInComparisons")
 public class FindApplication implements FindInterface {
+    public static final String ERR_NULL_ARGS = "Argument is null";
+    public static final String ERR_NULL_STDOUT = "OutputStream is null";
+    public static final String ERR_NUM_ARGS = "Incorrect number of argument";
+    public static final String ERR_INVALID_DIR = " is not a valid folder";
+    public static final String ERR_INVALID_TAG = "The tag -name is missing";
 
-    /**
-     * Return the string listing the names of the matched file/folder in the specified folder.
-     *
-     * @param fileName   String of a regular expression of the file name
-     * @param folderName Array of String of given folder/folders' name
-     * @throws FindException
-     */
     @Override
     public String findFolderContent(String fileName, String... folderName) throws FindException {
-        if (fileName == null || folderName == null) {
-            throw new FindException("Arguments for findFolderContent are not allowed to be null!");
-        }
         String result = "";
-        for (String f: folderName) {
-            File file = new File(f);
-            if (!file.exists()) {
-                throw new FindException("nonExistentFolder: No such file or directory");
-            }
-            if (file.isDirectory()) {
-                String[] subFiles = file.list();
-                result += getFolderContent(fileName, f, subFiles);
-            }
+        Pattern pattern = Pattern.compile(fileName.replace("*", ".*"));
+        LinkedList<String> folderList = new LinkedList<>();
+        for (String folder: folderName) {
+            folderList.offer(folder);
         }
-        return result.trim();
-    }
-
-    /**
-     * Helper function for recursion.
-     *
-     * @param fileName   String of a regular expression of the file name
-     * @param parentPath String path to the parent folder
-     * @param folderName Array of String of given folder/folders' name
-     * @return
-     * @throws FindException
-     */
-    private String getFolderContent(String fileName, String parentPath, String... folderName) throws FindException {
-        String result = "";
-        for (String f: folderName) {
-            String path = parentPath + File.separator + f;
-            File file = new File(path);
-            if (f.matches(fileName)) {
-                result = path + StringUtils.STRING_NEWLINE + result;
+        while (!folderList.isEmpty()) {
+            String dir = "";
+            String folder = folderList.poll();
+            String[] token = folder.replace("\\\\", "/").split("/");
+            for (int i = 0; i < token.length - 1; i++) {
+                dir += token[i] + File.separator;
             }
-            if (file.isDirectory()) {
-                String[] subFiles = file.list();
-                result += getFolderContent(fileName, path, subFiles);
+            dir += token[token.length-1];
+            File currDir = Paths.get(Environment.getCurrentDirectory()+ File.separator + dir).toFile();
+            if (!currDir.exists()) {
+                result += "find: " + dir + ERR_INVALID_DIR + STRING_NEWLINE;
+                continue;
+            }
+            String[] list = null;
+            if (currDir.list() != null) {
+                list = sortCurrentDirectory(currDir);
+            }
+            if(pattern.matcher(dir).matches()) {
+                result += dir + STRING_NEWLINE;
+            }
+            for (int i = 0; list != null && i < list.length; i++) {
+                File file = Paths.get(Environment.getCurrentDirectory()+ File.separator + dir + File.separator + list[i]).toFile();
+                if (file.isDirectory()) {
+                    folderList.offer(dir + File.separator + list[i]);
+                }
+                else if (pattern.matcher(list[i]).matches()) {
+                    result += dir + File.separator + list[i] + STRING_NEWLINE;
+                }
             }
         }
         return result;
@@ -69,40 +65,54 @@ public class FindApplication implements FindInterface {
 
     @Override
     public void run(String[] args, InputStream stdin, OutputStream stdout) throws FindException {
-        if (args == null) {
-            throw new FindException("Args cannot be null for find!");
+        if(args == null) {
+            throw new FindException(ERR_NULL_ARGS);
         }
         if (stdout == null) {
-            throw new FindException("output stream is null");
+            throw new FindException(ERR_NULL_STDOUT);
         }
-        String result;
-        String fileName = null;
-        List<String> folderNames = new ArrayList<>();
+        LinkedList<String> folderNameList = new LinkedList<>();
+        String fileName = "";
+        boolean nameTagPresent = false;
         for (int i = 0; i < args.length; i++) {
-            if (args[i].charAt(0) == '-') {
-
-                if (args[i].contains("name")) {
-                    if (args.length != i + 2) {
-                        throw new FindException("Invalid syntax. Check that an argument is given after -name");
-                    }
-                    fileName = args[i + 1];
-                    i++;
-                } else {
-                    throw new FindException("Unknown option for find!");
+            if (args[i].equals("-name")) {
+                nameTagPresent = true;
+                i++;
+                if ( i == args.length - 1) {
+                    fileName = args[i];
+                    break;
                 }
-            } else{
-                folderNames.add(args[i]);
+                break;
             }
+            folderNameList.add(args[i]);
         }
-        if (folderNames.isEmpty() || fileName == null) {
-            throw new FindException("Invalid syntax. Check that an argument is given after -name");
+        if (!nameTagPresent) {
+            throw new FindException(ERR_INVALID_TAG);
         }
-        String[] folderNamesArray = folderNames.toArray(new String[0]);
-        result = findFolderContent(fileName, folderNamesArray);
-        try {
-            stdout.write(result.getBytes(CHARSET_UTF8));
-        } catch (IOException e) {
-            throw (FindException) new FindException("find failed to write!").initCause(e);
+        if (folderNameList.isEmpty()) {
+            throw new FindException(ERR_NUM_ARGS);
         }
+        if (fileName.equals("")) {
+            throw new FindException(ERR_NUM_ARGS);
+        }
+        String[] folderName = new String[folderNameList.size()];
+        folderNameList.toArray(folderName);
+        String result = findFolderContent(fileName,folderName);
+        PrintWriter out = new PrintWriter(stdout);
+        out.print(result);
+        out.flush();
+    }
+
+    private String[] sortCurrentDirectory(File currDir) {
+        LinkedList<String> list = new LinkedList<>();
+        for (String s: currDir.list()) {
+            list.add(s);
+        }
+        list.sort(String::compareTo);
+        String[] result = new String[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            result[i] = list.get(i);
+        }
+        return result;
     }
 }
