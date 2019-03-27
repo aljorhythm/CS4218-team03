@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import sg.edu.nus.comp.cs4218.impl.app.SedApplication;
 import sg.edu.nus.comp.cs4218.impl.util.IOUtils;
 import sg.edu.nus.comp.cs4218.impl.util.StringUtils;
+import sg.edu.nus.comp.cs4218m1.TestUtils;
 
 import java.io.InputStream;
 
@@ -55,7 +56,7 @@ class SedApplicationTest {
         }
 
         TestCase input(String... strings) {
-            this.stdIn = IOUtils.stringsToInputStream(strings);
+            this.stdIn = TestUtils.stringsToInputStream(strings);
             return this;
         }
 

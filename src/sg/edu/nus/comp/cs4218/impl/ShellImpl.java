@@ -10,9 +10,7 @@ import sg.edu.nus.comp.cs4218.impl.util.ApplicationRunner;
 import sg.edu.nus.comp.cs4218.impl.util.CommandBuilder;
 import sg.edu.nus.comp.cs4218.impl.util.StringUtils;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.io.*;
 
 public class ShellImpl implements Shell {
     public static final String ERR_INVALID_APP = "Invalid app.";
@@ -22,14 +20,39 @@ public class ShellImpl implements Shell {
     public static final String FOLDER_NOT_FOUND = "Folder not found.";
     public static final String MISSING_STREAM = "Missing input stream or input file";
 
-    public static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    private InputStream inputStream = System.in;
+    private OutputStream outputStream = System.out;
+
+    /**
+     * Initializes shell with stdin
+     */
+    public ShellImpl() {
+        // Default function
+        // System.in & out
+    }
+
+    /**
+     * Initializes shell with specified streams
+     */
+    public ShellImpl(InputStream inputStream, OutputStream outputStream) {
+        this.inputStream = inputStream;
+        this.outputStream = outputStream;
+    }
+
     /**
      * Main method for the Shell Interpreter program.
      *
      * @param args List of strings arguments, unused.
      */
-    public static void main(String... args) {
+    public static void main(String... args) throws ShellException, IOException {
         Shell shell = new ShellImpl();
+        ((ShellImpl) shell).run();
+
+
+    }
+
+    public void run() throws ShellException, IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 
         while (true) {
             try {
@@ -40,7 +63,7 @@ public class ShellImpl implements Shell {
                 if (StringUtils.isBlank(commandString)) {
                     break;
                 } else {
-                    shell.parseAndEvaluate(commandString, System.out);
+                    parseAndEvaluate(commandString, outputStream);
                 }
             } catch (ExitException e) {
                 break;

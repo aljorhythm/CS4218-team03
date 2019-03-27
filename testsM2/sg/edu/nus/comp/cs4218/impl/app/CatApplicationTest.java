@@ -18,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.condition.OS.WINDOWS;
 import static org.mockito.Mockito.*;
 import static sg.edu.nus.comp.cs4218.exception.CatException.*;
+import static sg.edu.nus.comp.cs4218.impl.app.CatApplication.*;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
 @SuppressWarnings("PMD.LongVariable")

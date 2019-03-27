@@ -6,6 +6,7 @@ import sg.edu.nus.comp.cs4218.exception.WcException;
 import sg.edu.nus.comp.cs4218.impl.app.WcApplication;
 import sg.edu.nus.comp.cs4218.impl.util.IOUtils;
 import sg.edu.nus.comp.cs4218.impl.util.StringUtils;
+import sg.edu.nus.comp.cs4218m1.TestUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,8 +22,8 @@ class WcApplicationTest {
     @BeforeEach
     void setUp() throws IOException {
         wcApp = new WcApplication();
-        defaultIStream = IOUtils.stringToInputStream("ab abc" + StringUtils.STRING_NEWLINE + "b ccc");
-        emptyIStream = IOUtils.stringToInputStream("");
+        defaultIStream = TestUtils.stringToInputStream("ab abc" + StringUtils.STRING_NEWLINE + "b ccc");
+        emptyIStream = TestUtils.stringToInputStream("");
     }
 
     @Test

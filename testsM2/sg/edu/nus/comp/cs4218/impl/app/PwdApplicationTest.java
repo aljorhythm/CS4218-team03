@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import sg.edu.nus.comp.cs4218.Environment;
+import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
 import sg.edu.nus.comp.cs4218.exception.PwdException;
 import sg.edu.nus.comp.cs4218.impl.app.PwdApplication;
 
@@ -54,7 +55,7 @@ class PwdApplicationTest {
     }
 
     @Test
-    public void testRun() throws PwdException {
+    public void testRun() throws AbstractApplicationException {
         input = new ByteArrayInputStream(INPUT_DATA.getBytes());
         output = new ByteArrayOutputStream();
         String expected = Environment.currentDirectory;

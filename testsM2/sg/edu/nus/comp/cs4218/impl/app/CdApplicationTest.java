@@ -18,6 +18,7 @@ import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static sg.edu.nus.comp.cs4218.exception.CdException.*;
+import static sg.edu.nus.comp.cs4218.impl.app.CdApplication.*;
 import static sg.edu.nus.comp.cs4218.impl.util.IOUtils.resolveFilePath;
 
 @SuppressWarnings("PMD.AvoidDuplicateLiterals")
@@ -355,9 +356,8 @@ class CdApplicationTest {
      */
     @Test
     public void testThrowExceptionIfArgMoreThanOne() {
-        CdException exception = assertThrows(CdException.class, () -> {
+        assertThrows(CdException.class, () -> {
             cdApplication.run(new String[2], null, null);
         });
-        assertTrue(exception.getMessage().contains(ERR_ARGS_LENGTH));
     }
 }

@@ -183,19 +183,6 @@ public class RegressionTest0 {
     }
 
     @Test
-    public void test027() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test027");
-        sg.edu.nus.comp.cs4218.impl.app.DateApplication dateApplication0 = new sg.edu.nus.comp.cs4218.impl.app.DateApplication();
-        java.util.HashMap<java.lang.String, java.lang.String> strMap1 = null;
-        try {
-            dateApplication0.initMap(strMap1);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
-        } catch (java.lang.NullPointerException e) {
-        }
-    }
-
-    @Test
     public void test028() throws Throwable {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test028");
@@ -491,14 +478,6 @@ public class RegressionTest0 {
         assertTrue(str12.equals(""));
         assertTrue(str13.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
         assertNotNull(strArray17);
-    }
-
-    @Test
-    public void test059() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test059");
-        boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isSpecialSymbol("Could not read stream");
-        assertTrue(boolean1 == true);
     }
 
     @Test
@@ -925,18 +904,6 @@ public class RegressionTest0 {
     }
 
     @Test
-    public void test092() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test092");
-        sg.edu.nus.comp.cs4218.impl.app.ExitApplication exitApplication0 = new sg.edu.nus.comp.cs4218.impl.app.ExitApplication();
-        try {
-            exitApplication0.terminateExecution();
-            fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.ExitException; message: exit: Terminate process.");
-        } catch (sg.edu.nus.comp.cs4218.exception.ExitException e) {
-        }
-    }
-
-    @Test
     public void test093() throws Throwable {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test093");
@@ -1226,14 +1193,6 @@ public class RegressionTest0 {
         assertTrue(str50.equals(""));
         assertTrue(str51.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
         assertTrue(str55.equals(""));
-    }
-
-    @Test
-    public void test107() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test107");
-        boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isSpecialSymbol("null arguments");
-        assertTrue(boolean1 == true);
     }
 
     @Test
@@ -1625,18 +1584,6 @@ public class RegressionTest0 {
         assertTrue(str47.equals(""));
         assertTrue(str48.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
         assertTrue(str52.equals(""));
-    }
-
-    @Test
-    public void test125() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test125");
-        java.util.List list0 = null;
-        try {
-            sg.edu.nus.comp.cs4218.impl.app.SortApplication.sortList(list0, true, false);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
-        } catch (java.lang.NullPointerException e) {
-        }
     }
 
     @Test
@@ -2270,18 +2217,6 @@ public class RegressionTest0 {
     }
 
     @Test
-    public void test186() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test186");
-        java.io.InputStream inputStream0 = null;
-        try {
-            java.util.List<java.lang.String> strList4 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.replace(inputStream0, "File is null.", "", 100);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
-        } catch (java.lang.NullPointerException e) {
-        }
-    }
-
-    @Test
     public void test188() throws Throwable {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test188");
@@ -2431,14 +2366,6 @@ public class RegressionTest0 {
         assertNotNull(strArray10);
         assertNotNull(wildcardClass14);
         assertNotNull(strArray19);
-    }
-
-    @Test
-    public void test200() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test200");
-        boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isSpecialSymbol("File is null.");
-        assertTrue(boolean1 == true);
     }
 
     @Test
@@ -2627,14 +2554,6 @@ public class RegressionTest0 {
             fail("Expected exception of type java.lang.NullPointerException; message: null");
         } catch (java.lang.NullPointerException e) {
         }
-    }
-
-    @Test
-    public void test235() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test235");
-        boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isInteger("fail_echo_write");
-        assertTrue(boolean1 == false);
     }
 
     @Test
@@ -3271,14 +3190,6 @@ public class RegressionTest0 {
     }
 
     @Test
-    public void test295() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test295");
-        boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isSpecialSymbol("null output stream provided");
-        assertTrue(boolean1 == true);
-    }
-
-    @Test
     public void test297() throws Throwable {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test297");
@@ -3844,18 +3755,6 @@ public class RegressionTest0 {
     }
 
     @Test
-    public void test346() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test346");
-        java.io.InputStream inputStream0 = null;
-        try {
-            java.util.List<java.lang.String> strList4 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.replace(inputStream0, "", "Could not read stream", (int) (byte) 1);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
-        } catch (java.lang.NullPointerException e) {
-        }
-    }
-
-    @Test
     public void test347() throws Throwable {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test347");
@@ -3883,14 +3782,6 @@ public class RegressionTest0 {
         assertNotNull(strArray8);
         assertNotNull(strArray18);
         assertTrue(str22.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
-    }
-
-    @Test
-    public void test349() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test349");
-        boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isInteger("Could not write to output stream");
-        assertTrue(boolean1 == false);
     }
 
     @Test
@@ -4160,18 +4051,6 @@ public class RegressionTest0 {
         } catch (java.lang.StringIndexOutOfBoundsException e) {
         }
         assertNotNull(strArray8);
-    }
-
-    @Test
-    public void test368() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test368");
-        java.io.InputStream inputStream0 = null;
-        try {
-            java.util.List<java.lang.String> strList4 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.replace(inputStream0, "", "null output stream provided", (int) (short) 1);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
-        } catch (java.lang.NullPointerException e) {
-        }
     }
 
     @Test
@@ -4821,14 +4700,6 @@ public class RegressionTest0 {
     }
 
     @Test
-    public void test416() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test416");
-        boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isInteger("This is a directory Could not read stream Null Pointer Exception Exception Caught");
-        assertTrue(boolean1 == false);
-    }
-
-    @Test
     public void test417() throws Throwable {
         if (debug)
             System.out.format("%n%s%n", "RegressionTest0.test417");
@@ -4888,18 +4759,6 @@ public class RegressionTest0 {
         assertTrue(str47.equals(""));
         assertTrue(str48.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
         assertTrue(str52.equals(""));
-    }
-
-    @Test
-    public void test421() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test421");
-        java.io.InputStream inputStream0 = null;
-        try {
-            java.util.List<java.lang.String> strList4 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.replace(inputStream0, "null output stream provided", "", 100);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
-        } catch (java.lang.NullPointerException e) {
-        }
     }
 
     @Test
@@ -4970,14 +4829,6 @@ public class RegressionTest0 {
         assertTrue(str57.equals(""));
         assertTrue(str58.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
         assertNotNull(strArray65);
-    }
-
-    @Test
-    public void test423() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test423");
-        boolean boolean1 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.isInteger("Could not read file");
-        assertTrue(boolean1 == false);
     }
 
     @Test
@@ -5302,18 +5153,6 @@ public class RegressionTest0 {
         assertNotNull(strArray48);
         assertTrue(str52.equals("null output stream provided:\r\n\r\n\r\nfail_echo_write:"));
         assertTrue(str54.equals(""));
-    }
-
-    @Test
-    public void test447() throws Throwable {
-        if (debug)
-            System.out.format("%n%s%n", "RegressionTest0.test447");
-        java.io.InputStream inputStream0 = null;
-        try {
-            java.util.List<java.lang.String> strList4 = sg.edu.nus.comp.cs4218.impl.app.SedApplication.replace(inputStream0, "Could not write to output stream", "fail_echo_write", 0);
-            fail("Expected exception of type java.lang.NullPointerException; message: null");
-        } catch (java.lang.NullPointerException e) {
-        }
     }
 
     @Test

@@ -28,6 +28,11 @@ public class CallCommand implements Command {
     private final ApplicationRunner appRunner;
 
 
+    public CallCommand(List<String> argsList, ArgumentResolver argumentResolver, ApplicationRunner appRunner) {
+        this.argsList = argsList;
+        this.appRunner = appRunner;
+    }
+
     public CallCommand(List<String> argsList, ApplicationRunner appRunner) {
         this.argsList = argsList;
         this.appRunner = appRunner;
@@ -50,7 +55,7 @@ public class CallCommand implements Command {
                 OutputStream outputStream = redirHandler.getOutputStream();
 
                 // Handle quoting + globing + command substitution
-                List<String> parsedArgsList = ArgumentResolver.parseArguments(noRedirArgsList);
+                List<String> parsedArgsList = ArgumentResolver.parseArgs(noRedirArgsList);
                 if (!parsedArgsList.isEmpty()) {
                     String app = parsedArgsList.remove(0);
                     String[] parsedArgsArray = new String[parsedArgsList.size()];

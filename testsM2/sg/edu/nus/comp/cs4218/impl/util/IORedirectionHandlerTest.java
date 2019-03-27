@@ -58,7 +58,7 @@ class IORedirectionHandlerTest {
                 .toString();
         inputPath = tempDirPath.resolve(inputName);
         outputPath = tempDirPath.resolve(outputName);
-        IOUtils.createAndWriteToFile(inputPath, inputText);
+        TestUtils.createAndWriteToFile(inputPath, inputText);
     }
 
     /**
@@ -70,9 +70,9 @@ class IORedirectionHandlerTest {
         String[] args = {"print", "" + CHAR_REDIR_INPUT, inputPath.toString()};
         List<String> argsList = Arrays.asList(args);
         IORedirectionHandler handler = new IORedirectionHandler(argsList, null, null, mockArgResolver);
-        handler.extractRedirOptions(mockAppRunner);
+        handler.extractRedirOptions();
         FileInputStream redirInputStream = (FileInputStream) handler.getInputStream();
-        String actual = stringFromInputStream(redirInputStream);
+        String actual = TestUtils.stringFromInputStream(redirInputStream);
         closeInputStream(redirInputStream);
         assertEquals(inputText, actual);
         String[] noRedirectArgs = {"print"};
@@ -88,7 +88,7 @@ class IORedirectionHandlerTest {
         String[] args = {"print ", "" + CHAR_REDIR_OUTPUT, outputPath.toString()};
         List<String> argsList = Arrays.asList(args);
         IORedirectionHandler handler = new IORedirectionHandler(argsList, null, null, mockArgResolver);
-        handler.extractRedirOptions(mockAppRunner);
+        handler.extractRedirOptions();
         OutputStream outputStream = handler.getOutputStream();
         outputStream.write(outputText.getBytes());
         closeOutputStream(outputStream);

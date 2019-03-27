@@ -14,8 +14,8 @@ import java.io.*;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static sg.edu.nus.comp.cs4218.impl.util.IOUtils.stringsToInputStream;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
+import static sg.edu.nus.comp.cs4218m1.TestUtils.stringsToInputStream;
 
 @SuppressWarnings({"PMD.LongVariable"})
 public class CommandTest {

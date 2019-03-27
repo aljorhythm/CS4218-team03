@@ -2,6 +2,7 @@ package sg.edu.nus.comp.cs4218m1.impl.app;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
 import sg.edu.nus.comp.cs4218.exception.FindException;
 import sg.edu.nus.comp.cs4218.impl.app.FindApplication;
 import sg.edu.nus.comp.cs4218.impl.util.StringUtils;
@@ -53,7 +54,7 @@ public class FindApplicationTest {
      * @throws FindException
      */
     @Test
-    void testFindFolderDefaultInputSuccess() throws FindException {
+    void testFindFolderDefaultInputSuccess() throws Exception {
         assertEquals(here + File.separator + findFileName, findApplication.findFolderContent(findFileName, here));
     }
 
@@ -62,7 +63,7 @@ public class FindApplicationTest {
      * @throws FindException
      */
     @Test
-    void testFindFolderWildcardInputSuccess() throws FindException {
+    void testFindFolderWildcardInputSuccess() throws Exception {
         assertEquals(here + File.separator + findFileName, findApplication.findFolderContent("find.*", here));
     }
 
@@ -71,7 +72,7 @@ public class FindApplicationTest {
      * @throws FindException
      */
     @Test
-    void testFindFolderNoPresentFileInputSuccess() throws FindException {
+    void testFindFolderNoPresentFileInputSuccess() throws Exception {
         assertEquals("", findApplication.findFolderContent(findFileName, notHere));
     }
 
@@ -80,7 +81,7 @@ public class FindApplicationTest {
      * @throws FindException
      */
     @Test
-    void testFindFolderTwoOccurrencesSuccess() throws FindException {
+    void testFindFolderTwoOccurrencesSuccess() throws Exception {
         assertEquals(here + File.separator + findFileName + StringUtils.STRING_NEWLINE
                         + andHere + File.separator + findFileName
                 , findApplication.findFolderContent(findFileName, here, andHere));
@@ -91,7 +92,7 @@ public class FindApplicationTest {
      * @throws FindException
      */
     @Test
-    void testFindFolderNestedSuccess() throws FindException {
+    void testFindFolderNestedSuccess() throws Exception {
         assertEquals(nested + File.separator + "in" + File.separator + findFileName
                 , findApplication.findFolderContent(findFileName, nested));
     }
@@ -101,7 +102,7 @@ public class FindApplicationTest {
      * @throws FindException
      */
     @Test
-    void testFindFolderTwoFoldersOneOccurrenceSuccess() throws FindException {
+    void testFindFolderTwoFoldersOneOccurrenceSuccess() throws Exception {
         assertEquals(here + File.separator + findFileName,
                 findApplication.findFolderContent(findFileName, notHere, here));
     }
@@ -144,7 +145,7 @@ public class FindApplicationTest {
      * @throws FindException
      */
     @Test
-    void testRunFindFileSuccess() throws FindException {
+    void testRunFindFileSuccess() throws AbstractApplicationException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         String[] args = new String[3];
         args[0] = here;
@@ -160,7 +161,7 @@ public class FindApplicationTest {
      * @throws FindException
      */
     @Test
-    void testRunNoSuchFileSuccess() throws FindException {
+    void testRunNoSuchFileSuccess() throws AbstractApplicationException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         String[] args = new String[3];
         args[0] = notHere;
@@ -176,7 +177,7 @@ public class FindApplicationTest {
      * @throws FindException
      */
     @Test
-    void testRunMultipleFoldersSuccess() throws FindException {
+    void testRunMultipleFoldersSuccess() throws AbstractApplicationException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         String[] args = new String[4];
         args[0] = here;

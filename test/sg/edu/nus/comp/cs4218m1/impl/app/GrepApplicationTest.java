@@ -7,6 +7,7 @@ import sg.edu.nus.comp.cs4218.app.GrepInterface;
 import sg.edu.nus.comp.cs4218.exception.GrepException;
 import sg.edu.nus.comp.cs4218.impl.app.GrepApplication;
 import sg.edu.nus.comp.cs4218.impl.util.IOUtils;
+import sg.edu.nus.comp.cs4218m1.TestUtils;
 
 import java.io.InputStream;
 
@@ -69,7 +70,7 @@ public class GrepApplicationTest {
 
         StdinTestCase inputStream(String inputString) {
             try {
-                return this.inputStream(IOUtils.stringToInputStream(inputString));
+                return this.inputStream(TestUtils.stringToInputStream(inputString));
             } catch (Exception e) {
                 fail("Test case should not have invalid input string");
                 return this;
@@ -77,7 +78,7 @@ public class GrepApplicationTest {
         }
 
         StdinTestCase inputStream(String... inputStrings) {
-            return this.inputStream(IOUtils.stringsToInputStream(inputStrings));
+            return this.inputStream(TestUtils.stringsToInputStream(inputStrings));
         }
 
         /**

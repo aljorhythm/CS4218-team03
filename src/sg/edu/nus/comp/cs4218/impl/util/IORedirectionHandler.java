@@ -20,6 +20,13 @@ public class IORedirectionHandler {
     private OutputStream outputStream;
 
     public IORedirectionHandler(List<String> argsList, InputStream origInputStream,
+                                OutputStream origOutputStream, ArgumentResolver argumentResolver) {
+        this.argsList = argsList;
+        this.inputStream = origInputStream;
+        this.outputStream = origOutputStream;
+    }
+
+    public IORedirectionHandler(List<String> argsList, InputStream origInputStream,
                                 OutputStream origOutputStream) {
         this.argsList = argsList;
         this.inputStream = origInputStream;
@@ -53,7 +60,7 @@ public class IORedirectionHandler {
             }
 
             // handle quoting + globing + command substitution in file arg
-            List<String> fileSegment = ArgumentResolver.resolveOneArgument(file);
+            List<String> fileSegment = ArgumentResolver.resolveOneArg(file);
             if (fileSegment.size() > 1) {
                 // ambiguous redirect if file resolves to more than one parsed arg
                 throw new ShellException(ERR_SYNTAX);

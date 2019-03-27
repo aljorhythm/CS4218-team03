@@ -11,7 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 
-import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHAR_SHELL_ARROW;
+import static sg.edu.nus.comp.cs4218m1.TestUtils.CHAR_SHELL_ARROW;
 
 /**
  * Tests working directory change
@@ -83,7 +83,7 @@ public class ShellCdTest extends ShellTest {
                 STR_EXIT
         };
         String[] expectedLines = {
-                temporaryDir + CHAR_SHELL_ARROW + "cd: " + String.format(CdException.ERR_NO_SUCH_DIR, nonExistentDir),
+                temporaryDir + CHAR_SHELL_ARROW + "cd: " + String.format("%s: No such file or directory", nonExistentDir),
                 temporaryDir + CHAR_SHELL_ARROW
         };
         assertInputOutput(input, expectedLines);

@@ -4,14 +4,55 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 
-import java.io.File;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestUtils {
+
+    /**
+     * System dependent new line
+     */
+    public static final String STRING_NEWLINE = System.lineSeparator();
+    public static final String STRING_CURR_DIR = ".";
+    public static final String STRING_PARENT_DIR = "..";
+
+    public static final String NULL_STREAM = "null_stream";
+    public static final String NULL_STRING= "null_string";
+
+    /**
+     * Char representation of file separator
+     */
+    public static final char CHAR_FILE_SEP = File.separatorChar;
+
+    /**
+     * String representation of file separator
+     */
+    public static final String STRING_FILE_SEP = new String(new char[]{File.separatorChar});
+    public static final char CHAR_TAB = '\t';
+    public static final char CHAR_SPACE = ' ';
+    public static final char CHAR_DOUBLE_QUOTE = '"';
+    public static final char CHAR_SINGLE_QUOTE = '\'';
+    public static final char CHAR_BACK_QUOTE = '`';
+    public static final char CHAR_REDIR_INPUT = '<';
+    public static final char CHAR_REDIR_OUTPUT = '>';
+    public static final char CHAR_PIPE = '|';
+    public static final char CHAR_SEMICOLON = ';';
+    public static final char CHAR_ASTERISK = '*';
+    public static final String STRING_ASTERISK = "*";
+    public static final char CHAR_SHELL_ARROW = '>';
+    public static final char CHAR_FLAG_PREFIX = '-';
+    public static final String REGEX_FILE_SEP = System.getProperty("os.name").toLowerCase(Locale.ENGLISH).indexOf("win") >= 0 ? "\\\\" : "/";
+    public static final String CHARSET_UTF8 = "UTF-8";
+
     /**
      * For random generation
      */
@@ -94,4 +135,121 @@ public class TestUtils {
         }
         return builder.toString();
     }
+
+    /**
+     * Prepends string to all strings
+     *
+     * @param str
+     * @param strings
+     * @return array where elements are strings prepended with str
+     */
+    public static String[] prependStringToStrings(String str, String... strings) {
+        return Stream
+                .of(strings)
+                .map(s -> str + s)
+                .toArray(String[]::new);
+    }
+
+    /**
+     * @param arg argument
+     * @return an InputStream where input is argument
+     */
+    public static InputStream stringToInputStream(String arg) throws IOException {
+        if(arg == null) {
+            throw new IOException(NULL_STRING);
+        }
+
+        return new ByteArrayInputStream(arg.getBytes(StandardCharsets.UTF_8));
+    }
+
+    /**
+     * @param inputStrings variable length argument of strings
+     * @return an InputStream where input is arguments joined together by system line separator
+     */
+    public static InputStream stringsToInputStream(String... inputStrings) {
+        String inputString = Stream
+                .of(inputStrings)
+                .collect(Collectors.joining(STRING_NEWLINE));
+        return new ByteArrayInputStream(inputString.getBytes(StandardCharsets.UTF_8));
+    }
+
+    /**
+     * Converts input from stream into String
+     *
+     * @param inputStream input stream
+     * @return String from input stream
+     * @throws IOException
+     */
+    public static String stringFromInputStream(InputStream inputStream) throws IOException {
+        if (inputStream == null) {
+            throw new IOException(NULL_STREAM);
+        }
+
+        String newLine = STRING_NEWLINE;
+
+        ByteArrayOutputStream result = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        int length;
+        while ((length = inputStream.read(buffer)) != -1) {
+            result.write(buffer, 0, length);
+        }
+
+        return result.toString(CHARSET_UTF8).replaceAll("\\r\\n", STRING_NEWLINE);
+    }
+
+    /**
+     * Converts input from stream into list of String representing lines
+     *
+     * @param inputStream input stream
+     * @return String from input stream
+     * @throws IOException
+     */
+    public static String[] stringsFromInputStream(InputStream inputStream) throws IOException {
+        if (inputStream == null) {
+            throw new IOException(NULL_STREAM);
+        }
+
+        String string = stringFromInputStream(inputStream);
+        if(string.isEmpty()) {
+            return new String[]{};
+        }
+
+        return string.split(STRING_NEWLINE);
+    }
+    /**
+     * Writes string to file
+     * @param filename
+     * @param content
+     * @return
+     * @throws IOException
+     */
+    public static File createAndWriteToFile(String filename, String content) throws IOException {
+        File file = new File(filename);
+        file.createNewFile();
+
+        BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+        writer.write(content);
+        writer.close();
+
+        return file;
+    }
+
+    /**
+     * Writes string to file
+     * @param filePath
+     * @param content
+     * @return
+     * @throws IOException
+     */
+    public static File createAndWriteToFile(Path filePath, String content) throws IOException {
+        File file = filePath.toFile();
+        file.createNewFile();
+
+        BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+        writer.write(content);
+        writer.close();
+
+        return file;
+    }
+
 }

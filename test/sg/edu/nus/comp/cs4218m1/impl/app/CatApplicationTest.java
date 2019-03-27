@@ -52,7 +52,7 @@ public class CatApplicationTest {
      * @throws CatException
      */
     @Test
-    public void testCatStdinDefaultInputSuccess() throws CatException {
+    public void testCatStdinDefaultInputSuccess() throws Exception {
         assertEquals(defaultString, catApplication.catStdin(defaultIStream));
     }
 
@@ -72,7 +72,7 @@ public class CatApplicationTest {
      * @throws CatException
      */
     @Test
-    public void testCatStdinEmptyInputSuccess() throws CatException {
+    public void testCatStdinEmptyInputSuccess() throws Exception {
         assertEquals("", catApplication.catStdin(emptyIStream));
     }
 

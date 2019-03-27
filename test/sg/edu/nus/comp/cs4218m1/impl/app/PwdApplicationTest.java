@@ -2,6 +2,7 @@ package sg.edu.nus.comp.cs4218m1.impl.app;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
 import sg.edu.nus.comp.cs4218.exception.PwdException;
 import sg.edu.nus.comp.cs4218.impl.app.PwdApplication;
 import sg.edu.nus.comp.cs4218m1.TestUtils;
@@ -36,7 +37,7 @@ class PwdApplicationTest {
      * @throws PwdException
      */
     @Test
-    void testRunDefaultSuccess() throws PwdException {
+    void testRunDefaultSuccess() throws AbstractApplicationException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         pwdApplication.run(new String[0], null, baos);
         byte[] byteArray = baos.toByteArray();

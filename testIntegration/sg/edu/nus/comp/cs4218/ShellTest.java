@@ -8,8 +8,8 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static sg.edu.nus.comp.cs4218.impl.util.IOUtils.stringsToInputStream;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
+import static sg.edu.nus.comp.cs4218m1.TestUtils.stringsToInputStream;
 
 public class ShellTest {
     /**
@@ -18,7 +18,7 @@ public class ShellTest {
     void assertInputOutput(String[] commands, String... expectedLines) throws IOException, ShellException {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         InputStream inputStream = stringsToInputStream(commands);
-        Shell shell = new ShellImpl(inputStream, outputStream);
+        ShellImpl shell = new ShellImpl(inputStream, outputStream);
         shell.run();
         String actual = outputStream.toString();
         String expected = String.join(STRING_NEWLINE, expectedLines);

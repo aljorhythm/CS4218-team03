@@ -10,7 +10,7 @@ import java.io.IOException;
 
 import static java.time.Duration.ofSeconds;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
-import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHAR_SHELL_ARROW;
+import static sg.edu.nus.comp.cs4218m1.TestUtils.CHAR_SHELL_ARROW;
 
 public class ShellSubstitutionTest extends ShellTest {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

@@ -11,8 +11,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
-import static sg.edu.nus.comp.cs4218.exception.ShellException.INVALID_IO_STREAM;
-import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHARSET_UTF8;
+import static sg.edu.nus.comp.cs4218m1.TestUtils.CHARSET_UTF8;
 
 class PipeCommandTest {
     /**
@@ -22,7 +21,7 @@ class PipeCommandTest {
     class MockCommand extends CallCommand {
 
         public MockCommand() {
-            super(null, null, null);
+            super(null,  null);
         }
 
         @Override
@@ -38,7 +37,7 @@ class PipeCommandTest {
                 buffer = "abc".getBytes(CHARSET_UTF8);
                 stdout.write(buffer);
             } catch (IOException e) {
-                throw new ShellException(INVALID_IO_STREAM);//NOPMD
+                throw new ShellException("");//NOPMD
             }
         }
 
