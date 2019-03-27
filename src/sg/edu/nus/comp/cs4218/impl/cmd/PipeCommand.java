@@ -7,6 +7,8 @@ import sg.edu.nus.comp.cs4218.exception.ShellException;
 import java.io.*;
 import java.util.List;
 
+@SuppressWarnings("PMD.OverrideBothEqualsAndHashcode")
+
 /**
  * A Pipe Command is a sub-command consisting of two Call Commands separated with a pipe,
  * or a Pipe Command and a Call Command separated with a pipe.
@@ -24,7 +26,7 @@ public class PipeCommand implements Command {
 
     @Override
     public void evaluate(InputStream stdin, OutputStream stdout)
-            throws AbstractApplicationException, ShellException {
+            throws ShellException {
         AbstractApplicationException absAppException = null;
         ShellException shellException = null;
 
@@ -32,35 +34,35 @@ public class PipeCommand implements Command {
         OutputStream nextOutputStream;
 
         for (int i = 0; i < callCommands.size(); i++) {
-            boolean isLastCommand = i == callCommands.size() - 1;
-
             CallCommand callCommand = callCommands.get(i);
 
-            if (absAppException != null || shellException != null) {
+            if (shellException != null) {
                 callCommand.terminate();
                 continue;
             }
 
             try {
-                if (isLastCommand) {
-                    nextOutputStream = stdout;
-                } else {
-                    nextOutputStream = new ByteArrayOutputStream();
-                }
+                nextOutputStream = new ByteArrayOutputStream();
                 callCommand.evaluate(nextInputStream, nextOutputStream);
                 nextInputStream = new ByteArrayInputStream(
                         ((ByteArrayOutputStream) nextOutputStream).toByteArray());
-            } catch (AbstractApplicationException e) {
-                absAppException = e;
             } catch (ShellException e) {
                 shellException = e;
+            } catch (Exception e) {
+                shellException = new ShellException(e.getMessage());
             }
         }
-
-        if (absAppException != null) {
-            throw absAppException;
-        }
         if (shellException != null) {
+            throw shellException;
+        }
+        try {
+            int len;
+            byte[] buffer = new byte[1024];
+            while((len = nextInputStream.read(buffer)) != -1) {
+                stdout.write(buffer, 0, len);
+            }
+        } catch (IOException e) {
+            shellException = new ShellException(e.getMessage());
             throw shellException;
         }
     }
@@ -72,5 +74,10 @@ public class PipeCommand implements Command {
 
     public List<CallCommand> getCallCommands() {
         return callCommands;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        return object instanceof PipeCommand && ((PipeCommand) object).callCommands.equals(this.callCommands);
     }
 }

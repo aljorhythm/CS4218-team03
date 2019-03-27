@@ -1,6 +1,5 @@
 package sg.edu.nus.comp.cs4218.impl.util;
 
-import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
 import sg.edu.nus.comp.cs4218.exception.ShellException;
 
 import java.io.IOException;
@@ -19,17 +18,15 @@ public class IORedirectionHandler {
     private List<String> noRedirArgsList;
     private InputStream inputStream;
     private OutputStream outputStream;
-    private final ArgumentResolver argumentResolver;
 
     public IORedirectionHandler(List<String> argsList, InputStream origInputStream,
-                                OutputStream origOutputStream, ArgumentResolver argumentResolver) {
+                                OutputStream origOutputStream) {
         this.argsList = argsList;
         this.inputStream = origInputStream;
         this.outputStream = origOutputStream;
-        this.argumentResolver = argumentResolver;
     }
 
-    public void extractRedirOptions(ApplicationRunner appRunner) throws ShellException, IOException, AbstractApplicationException {
+    public void extractRedirOptions() throws ShellException {
         if (argsList == null || argsList.isEmpty()) {
             throw new ShellException(ERR_SYNTAX);
         }
@@ -56,7 +53,7 @@ public class IORedirectionHandler {
             }
 
             // handle quoting + globing + command substitution in file arg
-            List<String> fileSegment = argumentResolver.resolveOneArgument(file, appRunner);
+            List<String> fileSegment = ArgumentResolver.resolveOneArgument(file);
             if (fileSegment.size() > 1) {
                 // ambiguous redirect if file resolves to more than one parsed arg
                 throw new ShellException(ERR_SYNTAX);
@@ -89,5 +86,14 @@ public class IORedirectionHandler {
     private boolean isRedirOperator(String str) {
         return str.equals(String.valueOf(CHAR_REDIR_INPUT)) ||
                 str.equals(String.valueOf(CHAR_REDIR_OUTPUT));
+    }
+
+    public void closeStreams() throws IOException {
+        if (inputStream != System.in) {
+            inputStream.close();
+        }
+        if (outputStream != System.out) {
+            outputStream.close();
+        }
     }
 }

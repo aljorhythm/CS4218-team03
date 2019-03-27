@@ -2,41 +2,41 @@ package sg.edu.nus.comp.cs4218.impl.app;
 
 import sg.edu.nus.comp.cs4218.Environment;
 import sg.edu.nus.comp.cs4218.app.PwdInterface;
+import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
 import sg.edu.nus.comp.cs4218.exception.PwdException;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
+
 public class PwdApplication implements PwdInterface {
 
     /**
-     * The absolute path is the full path to the current working directory.
+     * Runs the pwd application with no specified arguments.
+     * Assumption: The application does not take in any arguments.
      *
-     * @return The absolute pathname of the current working directory.
+     * @param args   Array of arguments for the application, not used.
+     * @param stdin  An InputStream, not used.
+     * @param stdout An OutputStream, not used.
+     *
      * @throws PwdException
      */
     @Override
-    public String getAbsolutePath() throws PwdException {
-        return Environment.currentDirectory;
+    public void run(String[] args, InputStream stdin, OutputStream stdout) throws AbstractApplicationException {
+        String path = getAbsolutePath() + STRING_NEWLINE;
+        try {
+            stdout.write(path.getBytes());
+        } catch (IOException e) {
+            throw new PwdException(e, "Cannot write to output stream");
+        } catch (NullPointerException e) {
+            throw new PwdException(e, "Null Pointer Exception");
+        }
     }
 
-    /**
-     * Runs the pwd application with specified input data and specified output stream.
-     *
-     * @param args Additional arguments (ignored by pwd).
-     * @param stdin Inputstream (ignored by pwd).
-     * @param stdout Outputstream that the result will be written to.
-     * @throws PwdException If outputstream cannot be written to.
-     */
     @Override
-    public void run(String[] args, InputStream stdin, OutputStream stdout) throws PwdException {
-        try {
-            stdout.write(getAbsolutePath().getBytes());
-        } catch (IOException e) {
-            throw (PwdException) new PwdException("Could not write to output stream").initCause(e);
-        } catch (NullPointerException e) {
-            throw (PwdException) new PwdException("Null Pointer Exception").initCause(e);
-        }
+    public String getAbsolutePath() throws PwdException {
+        return Environment.currentDirectory;
     }
 }

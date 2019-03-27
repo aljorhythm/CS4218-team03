@@ -1,90 +1,102 @@
 package sg.edu.nus.comp.cs4218.impl.app;
 
-import sg.edu.nus.comp.cs4218.Environment;
 import sg.edu.nus.comp.cs4218.app.DateInterface;
 import sg.edu.nus.comp.cs4218.exception.DateException;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
+import java.util.Calendar;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
+
+/**
+ * Date Application
+ */
 public class DateApplication implements DateInterface {
 
-    public void initMap(HashMap<String,String> dateStr){
-        Date date = new Date();
-        // Should specify Locale.US (or whatever)
-        DateFormat sdf = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss", Locale.CHINA);
-        String formatDate = sdf.format(date);
-        dateStr.put("%y",formatDate.substring(6,10));
-        dateStr.put("%m",formatDate.substring(0,2));
-        dateStr.put("%d",formatDate.substring(3,5));
-        dateStr.put("%H",formatDate.substring(11,13));
-        dateStr.put("%M",formatDate.substring(14,16));
-        dateStr.put("%S",formatDate.substring(17));
-    }
+    public static final String FORMAT_DEFAULT = "MM-dd-Y HH:mm:ss";
+    private static final Pattern FORMAT_REGEX = Pattern
+            .compile("^\\+(%(d|y|m|H|M|S)[^\\w\\d^%]*)+$");
 
     /**
+     * Runs the date application with arguments.
+     * Assumption: arguments can be empty or not
      *
-     * @param format String of user-defined format
-     * @return
+     * @param args   format supplied by user, can be empty
+     * @param stdin  An InputStream
+     * @param stdout An OutputStream
      * @throws DateException
      */
-    @Override
-    public String getDate(String format) throws DateException {
-        String formatStr = format;
-        if(formatStr == null){
-            throw new DateException("Null format");
+    public void run(final String[] args, final InputStream stdin, final OutputStream stdout) throws DateException {
+        String date;
+        if (args == null || args.length == 0) {
+            date = getDate(FORMAT_DEFAULT);
+        } else {
+            date = getDate(args[0]);
         }
-        HashMap<String,String> dateStr = new HashMap<>();
-        initMap(dateStr);
-        String formatDate = null;
-        Date date = new Date();
-        DateFormat sdf = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss", Environment.LOCALE);
-        //This is the default version.
-        if(formatStr.length() == 0){
-            formatDate = sdf.format(date);
-        }
-        else{
-            if(formatStr.charAt(0)=='+'){
-                formatStr = formatStr.substring(1);
-            } else {
-                throw new DateException("Invalid format. Date format must start with '+'");
-            }
-            for(String entry : dateStr.keySet()){
-                formatStr = formatStr.replaceAll(entry, dateStr.get(entry));
-            }
-            formatDate = formatStr;
-        }
-        return formatDate;
-    }
-
-    /**
-     * Runs the date application with the specified arguments.
-     *
-     * @param args   Array of arguments for the application.It may contain the format.
-     * @param stdin  An InputStream, not used.
-     * @param stdout An OutputStream, not used.
-     *
-     * @throws DateException
-     */
-    @Override
-    public void run(String[] args, InputStream stdin, OutputStream stdout) throws DateException {
-        if (args == null || stdout == null) {
-            throw new DateException("Null Pointer Exception");
-        }
-        if(args.length > 1){
-            throw new DateException("Invalid syntax.");
-        }
-        String format = (args.length == 0) ? "" : args[0];
         try {
-            stdout.write((getDate(format)).getBytes());
+            stdout.write(date.getBytes());
         } catch (IOException e) {
-            throw (DateException) new DateException("Could not write to output stream").initCause(e);
+            throw new DateException(e, DateException.ERR_WRITE_STREAM);
         }
+    }
+
+    /**
+     * Validate and reformat the format supplied by user, return it in the UNIX syntax
+     * Assumption: the format is supplied as a string
+     *
+     * @param formatString format supplied by user
+     * @throws DateException
+     */
+    private String validateFormatString(final String formatString) throws DateException {
+        if (!isValidFormat(formatString)) {
+            throw new DateException(DateException.INVALID_FORMAT);
+        }
+        return convertFormatToUNIXNotation(formatString.substring(1));
+    }
+
+    /**
+     * convert the format supplied to UNIX notation
+     *
+     * @param formatString format supplied by user
+     * @throws DateException
+     */
+    private String convertFormatToUNIXNotation(final String formatString) {
+        return formatString.replace("%d", "dd")
+                .replace("%m", "MM")
+                .replace("%y", "Y")
+                .replace("%H", "HH")
+                .replace("%M", "mm")
+                .replace("%S", "ss");
+    }
+
+    /**
+     * check if the format supplied by user is valid
+     *
+     * @param formatString format supplied by user
+     * @throws DateException
+     */
+    private boolean isValidFormat(final String formatString) {
+        final Matcher matcher = FORMAT_REGEX.matcher(formatString);
+        return matcher.find();
+    }
+
+    @Override
+    public String getDate(final String formatString) throws DateException {
+        if (formatString == null || formatString.isEmpty()) {
+            throw new DateException(DateException.INVALID_FORMAT);
+        }
+        String customFS = formatString;
+        if (!formatString.equals(FORMAT_DEFAULT)) {
+            customFS = validateFormatString(formatString);
+        }
+        final SimpleDateFormat dateFormat = new SimpleDateFormat(customFS, Locale.ENGLISH);
+        final Calendar calendar = Calendar.getInstance();
+        return dateFormat.format(calendar.getTime()) + STRING_NEWLINE;
     }
 }

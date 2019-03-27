@@ -2,26 +2,12 @@ package sg.edu.nus.comp.cs4218.impl.util;
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.stream.Stream;
 
 public final class StringUtils {
-
-    /**
-     * System dependent new line
-     */
     public static final String STRING_NEWLINE = System.lineSeparator();
     public static final String STRING_CURR_DIR = ".";
     public static final String STRING_PARENT_DIR = "..";
-
-    /**
-     * Char representation of file separator
-     */
     public static final char CHAR_FILE_SEP = File.separatorChar;
-
-    /**
-     * String representation of file separator
-     */
-    public static final String STRING_FILE_SEP = new String(new char[]{File.separatorChar});
     public static final char CHAR_TAB = '\t';
     public static final char CHAR_SPACE = ' ';
     public static final char CHAR_DOUBLE_QUOTE = '"';
@@ -32,11 +18,7 @@ public final class StringUtils {
     public static final char CHAR_PIPE = '|';
     public static final char CHAR_SEMICOLON = ';';
     public static final char CHAR_ASTERISK = '*';
-    public static final String STRING_ASTERISK = "*";
-    public static final char CHAR_SHELL_ARROW = '>';
     public static final char CHAR_FLAG_PREFIX = '-';
-    public static final String REGEX_FILE_SEP = SystemUtil.isWindows() ? "\\\\" : "/";
-    public static final String CHARSET_UTF8 = "UTF-8";
 
     private StringUtils() {
     }
@@ -51,17 +33,8 @@ public final class StringUtils {
      * 3. string contains only whitespace
      */
     public static boolean isBlank(String str) {
-        if (str == null || str.isEmpty()) {
-            return true;
-        }
-
-        for (int i = 0; i < str.length(); i++) {
-            if (!Character.isWhitespace(str.charAt(i))) {
-                return false;
-            }
-        }
-
-        return true;
+        String temp = str.trim();
+        return temp.isEmpty();
     }
 
     /**
@@ -89,71 +62,6 @@ public final class StringUtils {
             return new String[0];
         }
 
-        return str
-                .trim()
-                .split("\\s+");
-    }
-
-    /**
-     * isNumberic is a num string
-     *
-     * @param str String to be judge
-     * @return boolean
-     */
-    public static boolean isNumberic(String strArg) {
-        String str = strArg;
-        if (isBlank(str)) {
-            return false;
-        }
-        if(str.startsWith("-")) {
-            str = str.substring(1, str.length() - 1);
-        }
-        for (int i = 0; i < str.length(); i++) {
-            if (!Character.isDigit(str.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
-     * getFirstNum is to get the first num of string
-     *
-     * @param str String to be get
-     * @return int num
-     */
-    public static int getFirstNum(String str) {
-        return Integer.parseInt(str.split(" ")[0]);
-    }
-
-    /**
-     * getCharacterType is to get the character type to compare
-     *
-     * @param  cha to be get type
-     * @return int num, special character would be 1, number would be 2, capital letter would be 3 and a smaller be 4
-     */
-    public static int getCharacterType(char cha) {
-        if (Character.isLowerCase(cha)) {
-            return 4;
-        } else if (Character.isUpperCase(cha)) {
-            return 3;
-        } else if (Character.isDigit(cha)) {
-            return 2;
-        } else {
-            return 1;
-        }
-    }
-    /**
-     * Prepends string to all strings
-     *
-     * @param str
-     * @param strings
-     * @return array where elements are strings prepended with str
-     */
-    public static String[] prependStringToStrings(String str, String... strings) {
-        return Stream
-                .of(strings)
-                .map(s -> str + s)
-                .toArray(String[]::new);
+        return str.trim().split("\\s+");
     }
 }

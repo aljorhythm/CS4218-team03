@@ -8,78 +8,44 @@ import sg.edu.nus.comp.cs4218.exception.ExitException;
 import sg.edu.nus.comp.cs4218.exception.ShellException;
 import sg.edu.nus.comp.cs4218.impl.util.ApplicationRunner;
 import sg.edu.nus.comp.cs4218.impl.util.CommandBuilder;
-import sg.edu.nus.comp.cs4218.impl.util.IOUtils;
 import sg.edu.nus.comp.cs4218.impl.util.StringUtils;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 
 public class ShellImpl implements Shell {
     public static final String ERR_INVALID_APP = "Invalid app.";
     public static final String ERR_NOT_SUPPORTED = "Not supported yet.";
     public static final String ERR_SYNTAX = "Invalid syntax.";
-    private InputStream inputStream = System.in;
-    private OutputStream outputStream = System.out;
+    public static final String FILE_NOT_FOUND = "File not found.";
+    public static final String FOLDER_NOT_FOUND = "Folder not found.";
+    public static final String MISSING_STREAM = "Missing input stream or input file";
 
-    /**
-     * Initializes shell with stdin
-     */
-    public ShellImpl() {
-        // Default function
-        // System.in & out
-    }
-
-    /**
-     * Initializes shell with specified streams
-     */
-    public ShellImpl(InputStream inputStream, OutputStream outputStream) {
-        this.inputStream = inputStream;
-        this.outputStream = outputStream;
-    }
-
+    public static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     /**
      * Main method for the Shell Interpreter program.
      *
      * @param args List of strings arguments, unused.
      */
     public static void main(String... args) {
-        ShellImpl shell = new ShellImpl();
-        try {
-            shell.run();
-        } catch (ShellException | IOException e) {
-            e.printStackTrace();
-        }
-    }
+        Shell shell = new ShellImpl();
 
-    /**
-     * Does nothing if output stream is null
-     */
-    private void writeToOutputStream(byte[] bytes) throws IOException {
-        if(outputStream == null){
-            return;
-        }
-        outputStream.write(bytes);
-    }
-
-    /**
-     * Starts shell, will stop on "exit" command
-     */
-    public void run() throws ShellException, IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         while (true) {
             try {
                 String currentDirectory = Environment.currentDirectory;
-                writeToOutputStream((currentDirectory + ">").getBytes());
+                System.out.print(currentDirectory + ">");
 
                 String commandString = reader.readLine();
-                if (!StringUtils.isBlank(commandString)) {
-                    parseAndEvaluate(commandString, outputStream);
+                if (StringUtils.isBlank(commandString)) {
+                    break;
+                } else {
+                    shell.parseAndEvaluate(commandString, System.out);
                 }
             } catch (ExitException e) {
-                IOUtils.closeInputStream(inputStream);
-                IOUtils.closeOutputStream(outputStream);
                 break;
             } catch (Exception e) {
-                writeToOutputStream((e.getMessage() + StringUtils.STRING_NEWLINE).getBytes());
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -88,6 +54,6 @@ public class ShellImpl implements Shell {
     public void parseAndEvaluate(String commandString, OutputStream stdout)
             throws AbstractApplicationException, ShellException {
         Command command = CommandBuilder.parseCommand(commandString, new ApplicationRunner());
-        command.evaluate(inputStream, outputStream);
+        command.evaluate(System.in, stdout); //TODO: Fix IO input/output
     }
 }

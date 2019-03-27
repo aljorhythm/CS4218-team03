@@ -8,4 +8,8 @@ public class LsException extends AbstractApplicationException {
         super("ls: " + message);
     }
 
+    public LsException(Exception exception, String message) {
+        super("ls: " + message);
+    }
+
 }

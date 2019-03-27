@@ -6,7 +6,6 @@ import sg.edu.nus.comp.cs4218.exception.ShellException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -16,35 +15,26 @@ import java.util.stream.Stream;
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.*;
 
 @SuppressWarnings("PMD.ExcessiveMethodLength")
-public class ArgumentResolver {
-    public ArgumentResolver() {
-        // made class a dependency ie. not static
-    }
-
-    public List<String> parseArguments(List<String> argsList, ApplicationRunner appRunner) throws ShellException, AbstractApplicationException {
-        return parseArg(argsList, appRunner);
-    }
-
-    public List<String> resolveOneArgument(String arg, ApplicationRunner appRunner) throws ShellException, AbstractApplicationException {
-        return resolveOneArg( arg,  appRunner);
+public final class ArgumentResolver {
+    private ArgumentResolver() {
     }
 
     /**
      * Handle quoting + globing + command substitution for a list of arguments.
      *
-     * @param argsList  The original list of arguments.
-     * @param appRunner
+     * @param argsList The original list of arguments.
      * @return The list of parsed arguments.
      * @throws ShellException If any of the arguments have an invalid syntax.
      */
-    private static List<String> parseArg(List<String> argsList, ApplicationRunner appRunner) throws ShellException, AbstractApplicationException {
+    public static List<String> parseArguments(List<String> argsList) throws ShellException {
         List<String> parsedArgsList = new LinkedList<>();
 
         List<String> parsedArgsSegment = new LinkedList<>();
         for (String arg : argsList) {
-            parsedArgsSegment.addAll(resolveOneArg(arg, appRunner));
+            parsedArgsSegment = resolveOneArgument(arg);
+            parsedArgsList.addAll(parsedArgsSegment);
         }
-        parsedArgsList.addAll(parsedArgsSegment);
+
         return parsedArgsList;
     }
 
@@ -56,12 +46,11 @@ public class ArgumentResolver {
      * Single quotes disable the interpretation of all special characters.
      * Double quotes disable the interpretation of all special characters, except for back quotes.
      *
-     * @param arg       String containing one argument.
-     * @param appRunner
+     * @param arg String containing one argument.
      * @return A list containing one or more parsed args, depending on the outcome of the parsing.
      * @throws ShellException If there are any mismatched quotes.
      */
-    private static List<String> resolveOneArg(String arg, ApplicationRunner appRunner) throws ShellException, AbstractApplicationException {
+    public static List<String> resolveOneArgument(String arg) throws ShellException {
         Queue<Character> unmatchedQuotes = new LinkedList<>();
         LinkedList<RegexArgument> parsedArgsSegment = new LinkedList<>();
         RegexArgument parsedArg = new RegexArgument();
@@ -71,32 +60,22 @@ public class ArgumentResolver {
             char chr = arg.charAt(i);
 
             if (chr == CHAR_BACK_QUOTE) {
-                if (unmatchedQuotes.isEmpty() || unmatchedQuotes.peek() == CHAR_DOUBLE_QUOTE) {
+                if (unmatchedQuotes.isEmpty() || ((LinkedList<Character>) unmatchedQuotes).peekLast() == CHAR_DOUBLE_QUOTE) {
                     // start of command substitution
-                    if (unmatchedQuotes.isEmpty()) {
-                        unmatchedQuotes.add(chr);
-                    } else {
-                        unmatchedQuotes.remove();
-                        unmatchedQuotes.add(chr);
-                        unmatchedQuotes.add(CHAR_DOUBLE_QUOTE);
-                    }
+                    unmatchedQuotes.add(chr);
+
                     if (!parsedArg.isEmpty()) {
                         appendParsedArgIntoSegment(parsedArgsSegment, parsedArg);
                         parsedArg = new RegexArgument();
                     }
-                } else if (unmatchedQuotes.peek() == chr) {
+                } else if (((LinkedList<Character>) unmatchedQuotes).peekLast() == chr) {
                     // end of command substitution
-                    unmatchedQuotes.remove();
-//                    while (unmatchedQuotes.size() > 0){
-//                        subCommand.append(unmatchedQuotes.remove());
-//                    }
-//                    if (!unmatchedQuotes.isEmpty()){
-//                        unmatchedQuotes.remove();
-//                    }
-                    // evaluate subCommand and get the output
-                    String subCommandOutput = evaluateSubCommand(subCommand.toString(), appRunner);
-                    subCommand = new StringBuilder();
+                    ((LinkedList<Character>) unmatchedQuotes).removeLast();
 
+                    // evaluate subCommand and get the output
+                    String subCommandOutput = evaluateSubCommand(subCommand.toString());
+                    // clear the subcommand Stringbuilder
+                    subCommand = new StringBuilder();
                     // check if back quotes are nested
                     if (unmatchedQuotes.isEmpty()) {
                         List<RegexArgument> subOutputSegment = Stream
@@ -107,7 +86,7 @@ public class ArgumentResolver {
                         // append the first token to the previous parsedArg
                         // e.g. arg: abc`1 2 3`xyz`4 5 6` (contents in `` is after command sub)
                         // expected: [abc1, 2, 3xyz4, 5, 6]
-                        if (subOutputSegment.isEmpty()) {
+                        if (!subOutputSegment.isEmpty()) {
                             RegexArgument firstOutputArg = subOutputSegment.remove(0);
                             appendParsedArgIntoSegment(parsedArgsSegment, firstOutputArg);
                         }
@@ -127,17 +106,13 @@ public class ArgumentResolver {
                 if (unmatchedQuotes.isEmpty()) {
                     // start of quote
                     unmatchedQuotes.add(chr);
-                } else if (unmatchedQuotes.peek() == chr) {
+                } else if (((LinkedList<Character>) unmatchedQuotes).peekLast() == chr) {
                     // end of quote
-                    unmatchedQuotes.remove();
+                    ((LinkedList<Character>) unmatchedQuotes).removeLast();
 
                     // make sure parsedArgsSegment is not empty
-                    while (!unmatchedQuotes.isEmpty()) {
-                        parsedArg.append(unmatchedQuotes.remove());
-                    }
-                    appendParsedArgIntoSegment(parsedArgsSegment, parsedArg);
-                    parsedArg = new RegexArgument();
-                } else if (unmatchedQuotes.peek() == CHAR_BACK_QUOTE) {
+                    appendParsedArgIntoSegment(parsedArgsSegment, new RegexArgument());
+                } else if (((LinkedList<Character>) unmatchedQuotes).peekLast() == CHAR_BACK_QUOTE) {
                     // ongoing back quote: add chr to subCommand
                     subCommand.append(chr);
                 } else {
@@ -146,12 +121,11 @@ public class ArgumentResolver {
                 }
             } else if (chr == CHAR_ASTERISK) {
                 if (unmatchedQuotes.isEmpty()) {
-                    // each unquoted * matches a (possibly empty) sequence of non-slash chars   
+                    // each unquoted * matches a (possibly empty) sequence of non-slash chars
                     parsedArg.appendAsterisk();
-                } else if (unmatchedQuotes.peek() == CHAR_BACK_QUOTE) {
+                } else if (((LinkedList<Character>) unmatchedQuotes).peekLast() == CHAR_BACK_QUOTE) {
                     // ongoing back quote: add chr to subCommand
                     subCommand.append(chr);
-                    parsedArg.append(chr);
                 } else {
                     // ongoing single/double quote
                     parsedArg.append(chr);
@@ -160,7 +134,7 @@ public class ArgumentResolver {
                 if (unmatchedQuotes.isEmpty()) {
                     // not a special character
                     parsedArg.append(chr);
-                } else if (unmatchedQuotes.peek() == CHAR_BACK_QUOTE) {
+                } else if (((LinkedList<Character>) unmatchedQuotes).peekLast() == CHAR_BACK_QUOTE) {
                     // ongoing back quote: add chr to subCommand
                     subCommand.append(chr);
                 } else {
@@ -170,39 +144,36 @@ public class ArgumentResolver {
             }
         }
 
+
+
         if (!parsedArg.isEmpty()) {
             appendParsedArgIntoSegment(parsedArgsSegment, parsedArg);
         }
-        if (subCommand.length() != 0) {
-            appendParsedArgIntoSegment(parsedArgsSegment, new RegexArgument(subCommand.toString()));
-        }
 
         // perform globing
-
-        return parsedArgsSegment
-                .stream()
-                .flatMap(regexArgument -> {
-                    String plain = regexArgument.toString();
-                    List<String> ret = plain.contains(STRING_ASTERISK) ? regexArgument.globFiles() : Arrays.asList(new String[]{plain});
-                    return ret.stream();
-                })
+        return parsedArgsSegment.stream()
+                .flatMap(regexArgument -> regexArgument.globFiles().stream())
                 .collect(Collectors.toList());
     }
 
-    private static String evaluateSubCommand(String commandString, ApplicationRunner appRunner) throws ShellException, AbstractApplicationException {
+    private static String evaluateSubCommand(String commandString) {
         if (StringUtils.isBlank(commandString)) {
             return "";
         }
 
         OutputStream outputStream = new ByteArrayOutputStream();
-        String output = null;
+        String output = "";
 
-        Command command = CommandBuilder.parseCommand(commandString, appRunner);
-        command.evaluate(System.in, outputStream);
-        output = outputStream.toString();
+        try {
+            Command command = CommandBuilder.parseCommand(commandString, new ApplicationRunner());
+            command.evaluate(System.in, outputStream);
+            output = outputStream.toString();
+        } catch (AbstractApplicationException | ShellException e) {
+            output = e.getMessage();
+        }
 
-        // replace newlines with spaces
-        return output.replace(STRING_NEWLINE, String.valueOf(CHAR_SPACE));
+        // remove newlines
+        return output.replace(STRING_NEWLINE, "");
     }
 
     /**
@@ -215,8 +186,8 @@ public class ArgumentResolver {
             parsedArgsSegment.add(parsedArg);
         } else {
             RegexArgument lastParsedArg = parsedArgsSegment.removeLast();
-            lastParsedArg.merge(parsedArg);
             parsedArgsSegment.add(lastParsedArg);
+            lastParsedArg.merge(parsedArg);
         }
     }
 }

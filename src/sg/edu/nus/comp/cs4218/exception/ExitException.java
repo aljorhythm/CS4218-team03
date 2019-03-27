@@ -12,4 +12,8 @@ public class ExitException extends AbstractApplicationException {
     public ExitException(String message) {
         super("exit: " + message);
     }
+
+    public ExitException(Exception exception, String message) {
+        super("exit: " + message);
+    }
 }

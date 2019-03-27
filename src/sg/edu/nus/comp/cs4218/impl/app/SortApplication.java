@@ -1,177 +1,236 @@
 package sg.edu.nus.comp.cs4218.impl.app;
 
 import sg.edu.nus.comp.cs4218.app.SortInterface;
+import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
 import sg.edu.nus.comp.cs4218.exception.SortException;
+import sg.edu.nus.comp.cs4218.impl.ShellImpl;
+import sg.edu.nus.comp.cs4218.impl.util.NumberAwareStringComparator;
 import sg.edu.nus.comp.cs4218.impl.util.StringUtils;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
-public class SortApplication implements SortInterface{
-    /**
-     * Returns string containing the orders of the lines of the specified file
-     * 
-     * @param isFirstWordNumber Boolean option to treat the first word of a line as a number
-     * @param isReverseOrder    Boolean option to sort in reverse order
-     * @param isCaseIndependent Boolean option to perform case-independent sorting
-     * @param fileName          Array of String of file names
-     * @return
-     * @throws Exception
-     */
-    public String sortFromFiles(Boolean isFirstWordNumber, Boolean isReverseOrder, Boolean isCaseIndependent,
-                         String... fileName) throws SortException {
-        List<String> list = new ArrayList<>();
-        for (String fileString: fileName){
-            File file = new File(fileString);
-            if (!file.exists()){
-                throw new SortException("File not exist");
-            }
-            try {
-                FileReader fileReader = new FileReader(fileString);
-                BufferedReader bufferedReader = new BufferedReader(fileReader);
-                String string;
-                while ((string = bufferedReader.readLine()) != null) {
-                    list.add(string);
-                }
-                bufferedReader.close();
-                fileReader.close();
-            } catch (FileNotFoundException e) {
-                throw (SortException) new SortException("File not found!").initCause(e);
-            } catch (IOException e) {
-                throw (SortException) new SortException("IO not working!").initCause(e);
-            }
-        }
-        sortList(list, isFirstWordNumber, isCaseIndependent);
-        if (isReverseOrder){
-            Collections.reverse(list);
-        }
-        return String.join(StringUtils.STRING_NEWLINE,list.toArray(new String[0]));
-    }
+import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHAR_FLAG_PREFIX;
+
+public class SortApplication implements SortInterface {
+
+    private static Boolean isFirstWordNumber;
+    private static Boolean isReverseOrder;
+    private static Boolean isCaseIndependent;
+    private static String[] inputFiles;
+    private static String sorted;
+
+    private static final Pattern SORT_REGEX = Pattern
+            .compile("(-?n)|(-?r)|(-?f)");
+    private static final Pattern INVALID_REGEX = Pattern
+            .compile("[^nfr\\-\\s]");
 
     /**
-     * Returns string containing the orders of the lines from the standard input
+     * Runs the sort application with arguments.
+     * Assumption: arguments must be supplied by user
      *
-     * @param isFirstWordNumber Boolean option to treat the first word of a line as a number
-     * @param isReverseOrder    Boolean option to sort in reverse order
-     * @param isCaseIndependent Boolean option to perform case-independent sorting
-     * @param stdin             InputStream containing arguments from Stdin
-     * @return
-     * @throws Exception
+     * @param args   arguments supplied by user, cannot be empty
+     * @param stdin  An InputStream
+     * @param stdout An OutputStream
+     * @throws SortException
      */
-    public String sortFromStdin(Boolean isFirstWordNumber, Boolean isReverseOrder, Boolean isCaseIndependent,
-                         InputStream stdin) throws IOException,SortException{
-        List<String> list = new ArrayList<String>();
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(stdin));
-        String temp;
-        while ((temp = bufferedReader.readLine()) != null){
-            list.add(temp);
-        }
-        sortList(list, isFirstWordNumber, isCaseIndependent);
-        if (isReverseOrder){
-            Collections.reverse(list);
-        }
-        return String.join(StringUtils.STRING_NEWLINE,list.toArray(new String[0]));
-    }
+    @Override
+    public void run(String[] args, InputStream stdin, OutputStream stdout) throws AbstractApplicationException {
 
-    public void run(String[] args, InputStream stdin, OutputStream stdout) throws SortException {
-        boolean firstWord = false,reverseOrder = false, caseIndependent = false, useFile = false;
-        ArrayList<String> files = new ArrayList<>();
-        for (String arg : args){
-            if (arg.charAt(0) == '-'){
-                for (int iterator = 1; iterator < arg.length(); iterator++){
-                    if (arg.charAt(iterator) == 'n') {
-                        firstWord = true;
-                    }
-                    else if (arg.charAt(iterator) == 'r') {
-                        reverseOrder = true;
-                    }
-                    else if (arg.charAt(iterator) == 'f') {
-                        caseIndependent = true;
-                    }
-                    else {
-                        throw new SortException("invalid arg");
-                    }
-                }
-            }
-            else {
-                useFile = true;
-                files.add(arg);
-            }
+        isFirstWordNumber = false;
+        isReverseOrder = false;
+        isCaseIndependent = false;
+        inputFiles = null;
+
+        if (args.length == 0 && stdin == null) {
+            throw new SortException(ShellImpl.MISSING_STREAM);
         }
-        if (useFile){
-            try {
-                String[] file = new String[files.size()];
-                for (int i = 0 ; i < file.length; i++){
-                    file[i] = files.get(i);
-                }
-                String result = sortFromFiles(firstWord,reverseOrder,caseIndependent,file);
-                stdout.write(result.getBytes());
-            }catch (Exception e){
-                throw (SortException) new SortException("").initCause(e);
-            }
+        initialiseArguments(args);
+        if (inputFiles == null || inputFiles.length == 0) {
+            sorted = sortFromStdin(isFirstWordNumber, isReverseOrder, isCaseIndependent, stdin);
+        } else {
+            sorted = sortFromFiles(isFirstWordNumber, isReverseOrder, isCaseIndependent, inputFiles);
         }
-        else {
-            try {
-                String result = sortFromStdin(firstWord,reverseOrder,caseIndependent,stdin);
-                stdout.write(result.getBytes());
-            }catch (Exception e){
-                throw (SortException) new SortException("").initCause(e);
-            }
+
+        try {
+            stdout.write(sorted.getBytes());
+        } catch (Exception e) {
+            throw new SortException(e, e.getMessage());
         }
     }
 
-    @SuppressWarnings("PMD.ExcessiveMethodLength")
-    public static void sortList(List list, boolean isFirstWordNumber, boolean isCaseIndependent){
-        Collections.sort(list, new Comparator<String>() {
-            @Override
-            public int compare(String string1, String string2) {
-                int result = string1.length()-string2.length();
-                int index = 0;
-                if (string1.length() == 0 && string2.length() == 0){
-                    return 0;
+    /**
+     * Parse and initialise the sort arguments
+     * Assumption: arguments must be supplied by user
+     *
+     * @param args arguments supplied by user, cannot be empty
+     * @throws SortException
+     */
+    private void initialiseArguments(String... args) throws SortException {
+
+        if (args.length == 0) {
+            return;
+        }
+
+        ArrayList<String> fileList = new ArrayList<>();
+
+        for (String s : args) {
+            char[] arg = s.toCharArray();
+            if (arg[0] == CHAR_FLAG_PREFIX) {
+                Matcher matcher = INVALID_REGEX.matcher(s);
+                if (matcher.find()) {
+                    throw new SortException(SortException.INVALID_CMD);
                 }
-                else if (string2.length() == 0){
-                    return 1;
+                List<Character> parameters;
+                parameters = s.chars().mapToObj(c -> (char) c).collect(Collectors.toList());
+
+                if (parameters.contains('n')) {
+                    isFirstWordNumber = true;
                 }
-                else if (string1.length() == 0){
-                    return -1;
+                if (parameters.contains('r')) {
+                    isReverseOrder = true;
                 }
-                if (isFirstWordNumber){
-                    String tempString1 = string1.split(" ")[0];
-                    String tempString2 = string2.split(" ")[0];
-                    if (StringUtils.isNumberic(tempString1) && StringUtils.isNumberic(tempString2)){
-                        Integer numForString1 = Integer.parseInt(tempString1);
-                        Integer numForString2 = Integer.parseInt(tempString2);
-                        if (numForString1.compareTo(numForString2) != 0){
-                            return numForString1.compareTo(numForString2);
-                        }
-                    }
+                if (parameters.contains('f')) {
+                    isCaseIndependent = true;
                 }
-                int wordLength = Math.min(string1.length(),string2.length());
-                while (index < wordLength){
-                    char charOfO1 = string1.charAt(index), charOfO2 = string2.charAt(index);
-                    int typeOfStr1 = StringUtils.getCharacterType(charOfO1), typeOfStr2 = StringUtils.getCharacterType(charOfO2);
-                    if (typeOfStr1 > typeOfStr2 && typeOfStr2 < 3){
-                        return 1;
-                    }
-                    else if (typeOfStr1 < typeOfStr2 && typeOfStr1 < 3){
-                        return -1;
-                    }
-                    if (isCaseIndependent){
-                        Locale defLoc = Locale.getDefault();
-                        charOfO1 = String.valueOf(charOfO1).toUpperCase(defLoc).charAt(0);
-                        charOfO2 = String.valueOf(charOfO2).toUpperCase(defLoc).charAt(0);
-                    }
-                    if (charOfO1 > charOfO2) {
-                        return 1;
-                    }
-                    else if (charOfO1 < charOfO2){
-                        return -1;
-                    }
-                    index++;
-                }
-                return result;
+            } else {
+                fileList.add(s);
             }
-        });
+        }
+        inputFiles = fileList.toArray(new String[0]);
+    }
+
+
+    /**
+     * Checks if input file(s) is provided by the user.
+     *
+     * @param args supplied by user.
+     * @return a String array of file names.
+     */
+    private String[] getInputFiles(String... args) {
+        ArrayList<String> inputFiles = new ArrayList<>();
+
+        for (String s : args) {
+            char[] arg = s.toCharArray();
+            if (arg[0] != CHAR_FLAG_PREFIX) {
+                inputFiles.add(s);
+            }
+        }
+        return inputFiles.toArray(new String[0]);
+    }
+
+    @Override
+    public String sortFromFiles(Boolean isFirstWordNum, Boolean isReverseOdr, Boolean isCaseIdpt, String... fileName) throws SortException {
+
+        BufferedReader file;
+        String line;
+        ArrayList<String> lines = new ArrayList<String>();
+
+        if (isFirstWordNum != null) {
+            isFirstWordNumber = isFirstWordNum;
+        }
+        if (isReverseOdr != null) {
+            isReverseOrder = isReverseOdr;
+        }
+        if (isCaseIdpt != null) {
+            isCaseIndependent = isCaseIdpt;
+        }
+        if (fileName != null) {
+            inputFiles = getInputFiles(fileName);
+        }
+
+        try {
+            for (String f : fileName) {
+                file = Files.newBufferedReader(Paths.get(f));
+                try {
+                    while ((line = file.readLine()) != null) {
+                        lines.add(line);
+                    }
+                    file.close();
+                } catch (Exception e) {
+                    throw new SortException(e, SortException.PROB_SORT_FILE + e.getMessage());
+                } finally {
+                    if (file != null) {
+                        file.close();
+                    }
+                }
+            }
+            sortInputs(lines);
+        } catch (Exception e) {
+            throw new SortException(e, SortException.PROB_SORT_FILE + e.getMessage());
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String s : lines) {
+            stringBuilder.append(s);
+            stringBuilder.append(StringUtils.STRING_NEWLINE);
+        }
+        return stringBuilder.toString();
+    }
+
+    @Override
+    public String sortFromStdin(Boolean isFirstWordNum, Boolean isReverseOdr, Boolean
+            isCaseIdpt, InputStream stdin) throws SortException {
+        BufferedReader input = new BufferedReader(new InputStreamReader(stdin));
+        String line;
+        ArrayList<String> lines = new ArrayList<String>();
+
+        if (isFirstWordNum != null) {
+            isFirstWordNumber = isFirstWordNum;
+        }
+        if (isReverseOdr != null) {
+            isReverseOrder = isReverseOdr;
+        }
+        if (isCaseIdpt != null) {
+            isCaseIndependent = isCaseIdpt;
+        }
+
+        try {
+            while ((line = input.readLine()) != null) {
+                lines.add(line);
+            }
+            input.close();
+            sortInputs(lines);
+        } catch (Exception e) {
+            throw new SortException(e, SortException.PROB_SORT_STDIN + e.getMessage());
+        } finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    throw new SortException(e, SortException.PROB_SORT_STDIN + e.getMessage());
+                }
+            }
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String s : lines) {
+            stringBuilder.append(s);
+            stringBuilder.append(StringUtils.STRING_NEWLINE);
+        }
+        return stringBuilder.toString();
+    }
+
+    /**
+     * return sorted results
+     *
+     * @param lines ArrayList containing the lines needed to be sorted
+     */
+    private void sortInputs(ArrayList<String> lines) {
+        if (isCaseIndependent) {
+            lines.sort(String::compareToIgnoreCase);
+        }
+        if (isFirstWordNumber) {
+            Collections.sort(lines, new NumberAwareStringComparator());
+        }
+        if (!isCaseIndependent && ! isFirstWordNumber){
+            Collections.sort(lines);
+        }
+        if (isReverseOrder) {
+            Collections.reverse(lines);
+        }
     }
 }

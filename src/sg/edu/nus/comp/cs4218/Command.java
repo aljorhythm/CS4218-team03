@@ -19,4 +19,7 @@ public interface Command {
      */
     void terminate();
 
+    @Override
+    boolean equals(Object obj);
+
 }

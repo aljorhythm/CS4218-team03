@@ -7,4 +7,8 @@ public class PwdException extends AbstractApplicationException {
     public PwdException(String message) {
         super("pwd: " + message);
     }
+
+    public PwdException(Exception exception, String message) {
+        super("pwd: " + message);
+    }
 }

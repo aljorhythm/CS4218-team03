@@ -8,4 +8,7 @@ public class FindException extends AbstractApplicationException {
         super("find: " + message);
     }
 
+    public FindException(Exception exception, String message) {
+        super("find: " + message);
+    }
 }

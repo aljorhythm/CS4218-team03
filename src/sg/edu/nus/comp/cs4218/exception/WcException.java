@@ -7,4 +7,8 @@ public class WcException extends AbstractApplicationException {
     public WcException(String message) {
         super("wc: " + message);
     }
+
+    public WcException(Exception exception, String message) {
+        super("wc: " + message);
+    }
 }

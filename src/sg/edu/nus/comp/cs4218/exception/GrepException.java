@@ -8,4 +8,7 @@ public class GrepException extends AbstractApplicationException {
         super("grep: " + message);
     }
 
+    public GrepException(Exception exception, String message) {
+        super("grep: " + message);
+    }
 }

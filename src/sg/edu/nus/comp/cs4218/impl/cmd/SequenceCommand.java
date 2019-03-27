@@ -12,7 +12,7 @@ import java.io.OutputStream;
 import java.util.LinkedList;
 import java.util.List;
 
-import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
+@SuppressWarnings("PMD.OverrideBothEqualsAndHashcode")
 
 /**
  * A Sequence Command is a sub-command consisting of two Commands separated with a semicolon.
@@ -21,8 +21,10 @@ import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
  * <b>Command format:</b> <code>&lt;Command&gt; ; &lt;Command&gt;</code>
  * </p>
  *
- */
+ **/
+
 public class SequenceCommand implements Command {
+    private static final String STRING_NEWLINE = "\n";
     private final List<Command> commands;
 
     public SequenceCommand(List<Command> commands) {
@@ -39,6 +41,7 @@ public class SequenceCommand implements Command {
             try {
                 OutputStream outputStream = new ByteArrayOutputStream();
                 command.evaluate(stdin, outputStream);
+
                 String outputLine = outputStream.toString();
                 if (!outputLine.isEmpty()) {
                     outputLines.add(outputLine);
@@ -55,7 +58,7 @@ public class SequenceCommand implements Command {
             try {
                 stdout.write(outputLine.getBytes());
             } catch (IOException e) {
-                throw new ShellException(e.getMessage());//NOPMD
+                throw new ShellException(e, e.getMessage());
             }
         }
 
@@ -71,5 +74,10 @@ public class SequenceCommand implements Command {
 
     public List<Command> getCommands() {
         return commands;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        return object instanceof SequenceCommand && ((SequenceCommand) object).commands.equals(this.commands);
     }
 }

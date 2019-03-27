@@ -3,166 +3,214 @@ package sg.edu.nus.comp.cs4218.impl.app;
 import sg.edu.nus.comp.cs4218.app.SedInterface;
 import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
 import sg.edu.nus.comp.cs4218.exception.SedException;
+import sg.edu.nus.comp.cs4218.impl.ShellImpl;
 import sg.edu.nus.comp.cs4218.impl.util.StringUtils;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHARSET_UTF8;
+public class SedApplication implements SedInterface {
 
-public class SedApplication implements SedInterface{
-    public static final String FAIL_SED_WRITE = "fail_sed_write";
-    public static final String FILE_NOT_EXIST = "File doesn't exist.";
-    public static final String FILE_NULL = "File is null.";
-
-    @Override
-    public String replaceSubstringInFile(String regexp, String replacement, int replacementIndex,
-                                  String fileName) throws SedException{
-        File file = new File(fileName);
-        FileInputStream inputStream = null;
-        try {
-            inputStream = new FileInputStream(fileName);
-        } catch (FileNotFoundException e) {
-            throw new SedException(FILE_NOT_EXIST);//NOPMD
-        }
-        List<String> resList = null;
-        try {
-            resList = replace(inputStream,regexp,replacement,replacementIndex);
-        } catch (IOException e) {
-            throw new SedException(FILE_NULL);//NOPMD
-        }
-        return String.join(StringUtils.STRING_NEWLINE,resList);
-    }
-
-    @Override
-    public String replaceSubstringInStdin(String regexp, String replacement, int replacementIndex,
-                                          InputStream stdin) throws SedException{
-        List<String> resList = null;
-        try {
-            resList = replace(stdin,regexp,replacement,replacementIndex);
-        } catch (IOException e) {
-            throw new SedException(FILE_NULL);//NOPMD
-        }
-        return String.join(StringUtils.STRING_NEWLINE,resList);
-    }
+    private static String[] sedArgs;
+    private static String regexp;
+    private static String replacement;
+    private static int replacementIndex;
+    private static String inputFile;
+    private static String replaced;
+    private static final Pattern REPLACE_REGEX = Pattern
+            .compile("^s");
 
     /**
-     * use this function to delete those redundant codes
-     * @param inputStream, file or stdin
-     * @param regexp following the calling function
-     * @param replacement following the calling function
-     * @param replacementIndex following the calling function
-     * @return
-     * @throws IOException
-     */
-    public static List<String> replace(InputStream inputStream, String regexp, String replacement, int replacementIndex) throws IOException {
-        Pattern pattern = Pattern.compile(regexp);
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-        List<String> resList = new ArrayList<>();
-        String str;
-        while((str = bufferedReader.readLine()) != null)
-        {
-            StringBuilder newStr = new StringBuilder(str);
-            Matcher matcher = pattern.matcher(str);
-            int count = replacementIndex;
-            while(matcher.find()){
-                count--;
-                if(count == 0){
-                    newStr.replace(matcher.start(),matcher.end(),replacement);
-                    break;
-                }
-            }
-            resList.add(newStr.toString());
-        }
-
-        //close
-        inputStream.close();
-        return resList;
-    }
-
-    /**
-     * Runs the sed application with the specified arguments.
-     * Assumption: The application must take in one or two args. (sed without args is not supported)
+     * Runs the sed application with arguments.
+     * Assumption: arguments must be supplied by user
      *
-     * @param args   Array of arguments for the application.e.g sed command file. command should look like "s\dwa\dwa\2"
-     * @param stdin  An InputStream.
-     * @param stdout An OutputStream.
-     * 
+     * @param args   arguments supplied by user, cannot be empty
+     * @param stdin  An InputStream
+     * @param stdout An OutputStream
      * @throws SedException
      */
+    public void run(final String[] args, final InputStream stdin, final OutputStream stdout) throws AbstractApplicationException {
+        regexp = "";
+        replacement = "";
+        replacementIndex = 1;
+        inputFile = null;
+
+        if (args.length == 0 && stdin == null) {
+            throw new SedException(ShellImpl.MISSING_STREAM);
+        }
+        initialiseArguments(args);
+        try {
+            if (inputFile == null) {
+                replaced = replaceSubstringInStdin(regexp, replacement, replacementIndex, stdin);
+            } else {
+                replaced = replaceSubstringInFile(regexp, replacement, replacementIndex, inputFile);
+            }
+        } catch (SedException sed) {
+            throw sed;
+        } catch (Exception e) {
+            throw new SedException(e, e.getMessage());
+        }
+
+        try {
+            stdout.write(replaced.getBytes());
+        } catch (IOException e) {
+            throw new SedException(e, e.getMessage());
+        }
+    }
+
+
+    /**
+     * Parse and initialise the sed arguments
+     * Assumption: arguments must be supplied by user
+     *
+     * @param args arguments supplied by user, cannot be empty
+     * @throws SedException
+     */
+    private void initialiseArguments(final String... args) throws SedException {
+
+        if (args.length > 2) {
+            throw new SedException(SedException.TOO_MANY_ARGS);
+        }
+
+        if (args.length == 0) {
+            throw new SedException(SedException.EMPTY_ARGUMENTS);
+        }
+
+        final Matcher matcher = REPLACE_REGEX.matcher(args[0]);
+        if (!matcher.find()) {
+            throw new SedException(SedException.INVALID_CMD);
+        }
+
+        try {
+            sedArgs = getSedArguments(args[0].substring(1));
+        } catch (StringIndexOutOfBoundsException e) {
+            throw new SedException(e, SedException.BAD_FLAG);
+        }
+        regexp = sedArgs[1];
+        if (regexp == null || regexp.isEmpty()) {
+            throw new SedException(SedException.REGEX_EMPTY);
+        }
+        replacement = sedArgs[2];
+        replacementIndex = 1;
+        if (sedArgs.length > 3 && !sedArgs[3].isEmpty()) {
+            try {
+                replacementIndex = Integer.valueOf(sedArgs[3]);
+            } catch (NumberFormatException e) {
+                throw new SedException(e, SedException.INVALID_INDEX);
+            }
+            if (replacementIndex <= 0) {
+                throw new SedException(SedException.INVALID_INDEX);
+            }
+        }
+
+        inputFile = args.length == 2 ? args[1] : null;
+
+    }
+
+    /**
+     * Get the arguments (regexp, replacement, replacementIndex) for sed
+     *
+     * @param rule supplied by user, cannot be empty
+     * @throws SedException
+     */
+    private String[] getSedArguments(final String rule) throws SedException {
+
+        final String separator = rule.substring(0, 1);
+        final int count = rule.split(Pattern.quote(separator)).length;
+        if (count < 3) {
+            throw new SedException(SedException.INSUFFICIENT_ARGS);
+        }
+        return rule.split(Pattern.quote(separator));
+    }
+
+    /**
+     * Find the nth match of the pattern p in src
+     *
+     * @param nth     index to match
+     * @param pattern pattern to match
+     * @param src     charsequence where match is to be found
+     * @throws SedException
+     */
+    private MatchResult findNthOccurence(final int nth, final Pattern pattern, final CharSequence src) {
+        final Matcher matcher = pattern.matcher(src);
+        for (int i = 0; i < nth; i++) {
+            matcher.find();
+        }
+        return matcher;
+    }
+
+    /**
+     * Replace and save the replaced content to output buffer for writing out later
+     *
+     * @param line             original string where replacement is to be made
+     * @param regexp           regexp to replace
+     * @param replacement      new string to replace with
+     * @param replacementIndex Only replace the xth match of the regexp
+     * @param outputBuffer     where to write the output
+     * @throws SedException
+     */
+    private void replaceAndSaveToOutputBuffer
+    (final String line, final String regexp, final String replacement,
+     final int replacementIndex, final StringBuffer outputBuffer) {
+        MatchResult matchResult;
+        matchResult = findNthOccurence(replacementIndex, Pattern.compile(regexp), line);
+        try {
+            final String resultline = line.substring(0, matchResult.start()) + replacement + line.substring(matchResult.end());
+            outputBuffer.append(resultline).append(StringUtils.STRING_NEWLINE);
+        } catch (IllegalStateException e) {
+            outputBuffer.append(line).append(StringUtils.STRING_NEWLINE);
+        }
+
+    }
+
     @Override
-    public void run(String[] args, InputStream stdin, OutputStream stdout) throws AbstractApplicationException {
-        if(args.length < 1 || args.length > 3 || args[0].charAt(0) != 's'){
-            throw new SedException("Invalid syntax.");
-        }
-        String splitSymbol = args[0].substring(1,2);
-        if(isSpecialSymbol(splitSymbol)) {
-            splitSymbol = String.format("\\%s", splitSymbol);
-        }
-        String[] argsForRegex = args[0].split(splitSymbol);
-        if(argsForRegex.length < 3 || argsForRegex.length > 4){
-            throw new SedException("Invalid syntax.");
-        }
-        int replacementIndex = 1;
-        String regexp = argsForRegex[1];
-        if(regexp.isEmpty()){
-            throw new SedException("Missing args.");
-        }
-        String replacement = argsForRegex[2];
-        if(argsForRegex.length == 4){
-            String index = argsForRegex[3];
-            if(isInteger(index) && Integer.parseInt(index) > 0) {
-                replacementIndex = Integer.parseInt(index);
+    public String replaceSubstringInFile
+            (final String regexp, final String replacement, final int replacementIndex, final String fileName) throws SedException, IOException {
+        BufferedReader file = null;
+        try {
+            file = Files.newBufferedReader(Paths.get(fileName));
+            final StringBuffer outputBuffer = new StringBuffer();
+            String line;
+            while ((line = file.readLine()) != null) {
+                replaceAndSaveToOutputBuffer(line, regexp, replacement, replacementIndex, outputBuffer);
             }
-            else{
-                throw new SedException("Invalid syntax.");
-            }
-        }
-        if(args.length == 2){
-            String fileName = args[1];
-            try {
-                String res = replaceSubstringInFile(regexp,replacement,replacementIndex,fileName);
-                stdout.write(res.getBytes(CHARSET_UTF8));
-            } catch (Exception e) {
-                throw new AbstractApplicationException(FAIL_SED_WRITE){};//NOPMD
-            }
-        }
-        else{
-            if(stdin == null){
-                throw new SedException("stdin is missing.");
-            }
-            String res;
-            try {
-                res = replaceSubstringInStdin(regexp,replacement,replacementIndex,stdin);
-                stdout.write(res.getBytes(CHARSET_UTF8));
-            } catch (Exception e) {
-                throw new AbstractApplicationException(FAIL_SED_WRITE){};//NOPMD
+            file.close();
+            return outputBuffer.toString();
+        } catch (Exception e) {
+            throw new SedException(e, SedException.PROB_FILE + e.getMessage());
+        } finally {
+            if (file != null) {
+                file.close();
             }
         }
     }
 
-    /**
-     * judge if a string could represent an integer.
-     * @param str, argsForRegex[3]
-     * @return isInteger
-     */
-    public static boolean isInteger(String str) {
-        Pattern pattern = Pattern.compile("^[-\\+]?[\\d]*$");
-        return pattern.matcher(str).matches();
+    @Override
+    public String replaceSubstringInStdin
+            (final String regexp, final String replacement, final int replacementIndex, final InputStream stdin) throws SedException, IOException {
+        BufferedReader input = null;
+        try {
+            input = new BufferedReader(new InputStreamReader(stdin));
+            final StringBuffer outputBuffer = new StringBuffer();
+            String line;
+
+            while ((line = input.readLine()) != null) {
+                replaceAndSaveToOutputBuffer(line, regexp, replacement, replacementIndex, outputBuffer);
+            }
+            input.close();
+            return outputBuffer.toString();
+
+        } catch (Exception e) {
+            throw new SedException(e, SedException.PROB_STDIN + e.getMessage());
+        } finally {
+            if (input != null) {
+                input.close();
+            }
+        }
     }
 
-    /**
-     * judge if a string has some special symbols.
-     * @param str, splitSymbol
-     * @return isSpecialSymbol
-     */
-    public static boolean isSpecialSymbol(String str){
-        String regEx = "[ _`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]|\n|\r|\t";
-        Pattern pattern = Pattern.compile(regEx);
-        Matcher matcher = pattern.matcher(str);
-        return matcher.find();
-    }
 }
