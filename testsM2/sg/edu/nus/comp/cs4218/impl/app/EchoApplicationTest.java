@@ -12,8 +12,7 @@ import sg.edu.nus.comp.cs4218.exception.EchoException;
 
 import java.io.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SuppressWarnings("PMD.LongVariable")
 class EchoApplicationTest {
@@ -63,6 +62,10 @@ class EchoApplicationTest {
     public static final String ERR_OPTION_NOT_SUPPORT = "Echo option is currently not supported";
     public static final String ERR_EMPTY_ARG = "Empty arguments";
 
+    @BeforeEach
+    void initOutputStream() {
+        stdout = new ByteArrayOutputStream();
+    }
 
     @Test
     void testConstructResultEmpty() throws EchoException {
@@ -179,32 +182,33 @@ class EchoApplicationTest {
     }
      */
 
-    /** COMMENTED OUT SINCE TEST IS WRONG
     @Test
     void testRunValidMultiArgs() throws Exception {
         application.run(argListMultiArgument, stdin, stdout);
         assertEquals(SINGLE_CHAR_STRING_A_B_C, stdout.toString());
     }
-    */
 
-    /** COMMENTED OUT SINCE TEST IS WRONG
     @Test
     void testRunValidMultiArgsWithAsterick() throws Exception {
         application.run(argListMultiArgumentSpecialChar, stdin, stdout);
         assertEquals(MULTI_CHAR_ASTERISK_STRING, stdout.toString());
     }
+
+    /**
+     * Echo can run with flags. Flags are interpreted as strings
+     * @throws Exception
+     * @Test
      */
-
-    /** COMMENTED OUT SINCE TEST IS WRONG
-    @Test
     void testRunValidArgsWithOptionThrowException() throws Exception {
-        Throwable thrown = assertThrows(EchoException.class, () -> {
+        try {
             application.run(argListWithEchoOptions, stdin, stdout);
-        });
-
-        assertEquals(new EchoException(ERR_OPTION_NOT_SUPPORT).getMessage(), thrown.getMessage());
+            String actual = stdout.toString();
+            assertEquals("-n ABC", actual);
+            fail("Should fail");
+        }catch(EchoException e) {
+            assertEquals(new EchoException(ERR_OPTION_NOT_SUPPORT).getMessage(), e.getMessage());
+        }
     }
-    */
 
     /** COMMENTED OUT SINCE TEST IS WRONG
     @Test
