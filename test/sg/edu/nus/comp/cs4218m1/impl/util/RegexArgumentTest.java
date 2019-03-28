@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static sg.edu.nus.comp.cs4218m1.TestUtils.CHAR_ASTERISK;
 import static sg.edu.nus.comp.cs4218m1.TestUtils.STRING_ASTERISK;
 
 class RegexArgumentTest extends DirectoryStructureTest {
@@ -62,9 +63,6 @@ class RegexArgumentTest extends DirectoryStructureTest {
     }
 
     /**
-     * TODO
-     * test if a empty file effects the result
-     *
      * @throws AbstractApplicationException
      * @throws ShellException
      * @throws IOException
@@ -75,6 +73,22 @@ class RegexArgumentTest extends DirectoryStructureTest {
         arg.appendAsterisk();
         List<String> globbed = arg.globFiles();
         TestUtils.assertArrayEqualsList(allTestRootFiles, globbed);
+    }
+
+    @Test()
+    void expandSubDirectoryInSubDirectory() {
+        RegexArgument arg = new RegexArgument();
+        System.out.println("*");
+        String glob = TestUtils.NON_EXISTENT_DIR;
+        for (char s : glob.toCharArray()) {
+            if (s == CHAR_ASTERISK) {
+                arg.appendAsterisk();
+            } else {
+                arg.append(s);
+            }
+        }
+        List<String> globbed = arg.globFiles();
+        System.out.println(Arrays.toString(globbed.toArray(new String[]{})));
     }
 
     /**
