@@ -41,8 +41,8 @@ public class GrepApplicationTest {
      */
     private class StdinTestCase implements Runnable {
         private String pattern;//NOPMD
-        private Boolean isCaseInsensitive;//NOPMD
-        private Boolean isLineCountsOnly;
+        private Boolean isCaseInsensitive = false;//NOPMD
+        private Boolean isLineCountsOnly = false;
         private InputStream inputStream;//NOPMD
         private String expected;//NOPMD
         private Class expectedException;
