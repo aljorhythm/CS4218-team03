@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import sg.edu.nus.comp.cs4218.app.GrepInterface;
 import sg.edu.nus.comp.cs4218.exception.GrepException;
 import sg.edu.nus.comp.cs4218.impl.app.GrepApplication;
-import sg.edu.nus.comp.cs4218.impl.util.IOUtils;
 import sg.edu.nus.comp.cs4218m1.TestUtils;
 
 import java.io.InputStream;
@@ -42,8 +41,8 @@ public class GrepApplicationTest {
      */
     private class StdinTestCase implements Runnable {
         private String pattern;//NOPMD
-        private Boolean isCaseInsensitive;//NOPMD
-        private Boolean isLineCountsOnly;
+        private Boolean isCaseInsensitive = false;//NOPMD
+        private Boolean isLineCountsOnly = false;
         private InputStream inputStream;//NOPMD
         private String expected;//NOPMD
         private Class expectedException;
