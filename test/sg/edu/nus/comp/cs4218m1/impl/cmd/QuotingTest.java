@@ -49,22 +49,6 @@ class QuotingTest {
     }
 
     @Test
-    void testMixQuotes1() throws ShellException, AbstractApplicationException {
-        ArgumentResolver resolver = new ArgumentResolver();
-        List<String> resolved = resolver.resolveOneArgument(WORD_MIX_QUOTED1, MOCK_APP_RUNNER);
-        String[] expected = new String[]{WORD_QUOTED};
-        TestUtils.assertArrayEqualsList(expected, resolved);
-    }
-
-    @Test
-    void testMixQuotes2() throws ShellException, AbstractApplicationException {
-        ArgumentResolver resolver = new ArgumentResolver();
-        List<String> resolved = resolver.resolveOneArgument(WORD_MIX_QUOTED2, MOCK_APP_RUNNER);
-        String[] expected = new String[]{WORD_DOUBLE_QUOTED};
-        TestUtils.assertArrayEqualsList(expected, resolved);
-    }
-
-    @Test
     void testErrorSingleQuote() throws ShellException, AbstractApplicationException {
         ArgumentResolver resolver = new ArgumentResolver();
         assertThrows(ShellException.class, () -> {
