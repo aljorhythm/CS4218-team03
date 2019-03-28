@@ -44,7 +44,7 @@ class EchoApplicationTest {
         } catch (Exception e) {
             fail(e);
         }
-        assertEquals(actual, expect);
+        assertEquals(expect, actual);
     }
 
     /**
@@ -89,6 +89,6 @@ class EchoApplicationTest {
         application.run(stringList, null, outputStream);
         String actual = outputStream.toString(CHARSET_UTF8);
         String expected = "abc cde fgh";
-        assertEquals(actual, expected);
+        assertEquals(expected, actual);
     }
 }
