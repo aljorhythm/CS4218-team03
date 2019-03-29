@@ -122,7 +122,7 @@ class SortApplicationTest {
     void sortFromStdin_test1() throws Exception {
         newCase()
                 .input(string_1)
-                .expected(string_1)
+                .expected(string_1 + StringUtils.STRING_NEWLINE)
                 .run();
     }
 
@@ -132,7 +132,7 @@ class SortApplicationTest {
                 .input(string_2)
                 .isFirstWordNumber(false)
                 .isReverseOrder(false)
-                .expected(string_2_sorted)
+                .expected(string_2_sorted+ StringUtils.STRING_NEWLINE)
                 .run();
     }
 
@@ -142,7 +142,7 @@ class SortApplicationTest {
                 .input(string_2)
                 .isFirstWordNumber(false)
                 .isReverseOrder(true)
-                .expected(string_2_sorted_reverse)
+                .expected(string_2_sorted_reverse+ StringUtils.STRING_NEWLINE)
                 .run();
     }
 
@@ -152,7 +152,7 @@ class SortApplicationTest {
                 .input(string_2)
                 .isFirstWordNumber(true)
                 .isReverseOrder(true)
-                .expected(string_2_sorted_reverse)
+                .expected(string_2_sorted_reverse+ StringUtils.STRING_NEWLINE)
                 .run();
     }
 
@@ -162,7 +162,7 @@ class SortApplicationTest {
                 .input(string_3)
                 .isFirstWordNumber(false)
                 .isReverseOrder(false)
-                .expected(string_3_sorted_non_number)
+                .expected(string_3_sorted_non_number+ StringUtils.STRING_NEWLINE)
                 .run();
     }
 
@@ -172,7 +172,7 @@ class SortApplicationTest {
                 .input(string_3)
                 .isFirstWordNumber(true)
                 .isReverseOrder(false)
-                .expected(string_3_sorted_number)
+                .expected(string_3_sorted_number+ StringUtils.STRING_NEWLINE)
                 .run();
     }
 
@@ -183,7 +183,7 @@ class SortApplicationTest {
                 .isFirstWordNumber(false)
                 .isReverseOrder(false)
                 .isCaseIndependent(true)
-                .expected(string_4_sorted_indcase)
+                .expected(string_4_sorted_indcase+ StringUtils.STRING_NEWLINE)
                 .run();
     }
 
@@ -194,7 +194,7 @@ class SortApplicationTest {
                 .isFirstWordNumber(false)
                 .isReverseOrder(false)
                 .isCaseIndependent(false)
-                .expected(string_4_sorted_depcase)
+                .expected(string_4_sorted_depcase+ StringUtils.STRING_NEWLINE)
                 .run();
     }
 
