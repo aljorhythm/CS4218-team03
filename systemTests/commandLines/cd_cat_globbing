@@ -1,0 +1,3 @@
+cd resources\catQuotingTest
+cat *.txt
+exit
