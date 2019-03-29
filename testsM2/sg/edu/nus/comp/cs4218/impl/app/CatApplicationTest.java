@@ -38,12 +38,10 @@ class CatApplicationTest {
 
     @Test
     public void testCatFilesThrowExceptionIfFilenameNull() throws Exception {
-        catApplication = mock(CatApplication.class);
-        when(catApplication.catFiles(Mockito.any())).thenCallRealMethod();
-        Exception exception = assertThrows(Exception.class, () -> {
+        catApplication = new CatApplication();
+        assertThrows(Exception.class, () -> {
             catApplication.catFiles((String[]) null);
         });
-        assertTrue(exception.getMessage().contains(ERR_GENERAL));
     }
 
     @Test
