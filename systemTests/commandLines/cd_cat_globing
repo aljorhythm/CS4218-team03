@@ -1,1 +1,2 @@
 cd resources;cat catQuotingTest/*
+exit
