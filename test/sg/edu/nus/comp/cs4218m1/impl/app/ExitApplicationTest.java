@@ -57,22 +57,28 @@ class ExitApplicationTest {
 
     @Test
     void testExitDefaultInputSuccess() {
-        assertThrows(ExitException.class, () -> {
+        Exception actualException = assertThrows(ExitException.class, () -> {
             exitApplication.run(new String[0], mockIs, mockOs);
         });
+        // please add the related exception messages here.
+//        assertEquals(EXIT_SUCCESS, actualException.getMessage());
     }
 
     @Test
     void testExitWithNullStdIn() {
         String[] args = new String[]{};
-        assertThrows(ExitException.class, () ->
+        Exception actualException = assertThrows(ExitException.class, () ->
                 exitApplication.run(args, null, mockOs));
+        // please add the related exception messages here.
+//        assertEquals(NULL_INPUT, actualException.getMessage());
     }
 
     @Test
     void testExitWithNullStdOut() {
         String[] args = new String[]{};
-        assertThrows(ExitException.class, () ->
+        Exception actualException = assertThrows(ExitException.class, () ->
                 exitApplication.run(args, mockIs, null));
+        // please add the related exception messages here.
+//        assertEquals(NULL_OUTPUT, actualException.getMessage());
     }
 }
