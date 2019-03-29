@@ -1,2 +1,2 @@
-echo '2; echo abc
+exit exit; echo abc
 exit
