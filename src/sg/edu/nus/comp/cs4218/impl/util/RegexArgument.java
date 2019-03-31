@@ -3,11 +3,13 @@ package sg.edu.nus.comp.cs4218.impl.util;
 import sg.edu.nus.comp.cs4218.Environment;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.*;
 
@@ -64,7 +66,14 @@ public final class RegexArgument {
                 String subDirGlobPattern = globPattern.replaceFirst(nonGlobAncestors, "");
                 globbedFiles = GlobUtil.glob(Paths.get(nonGlobAncestors), subDirGlobPattern);
             } else {
-                globbedFiles = GlobUtil.glob(Paths.get(Environment.currentDirectory), globPattern);
+                Path currentPath = Paths.get(Environment.currentDirectory);
+                globbedFiles = GlobUtil.glob(currentPath, globPattern);
+                globbedFiles = globbedFiles
+                        .stream()
+                        .map(file -> currentPath
+                                .relativize(Paths.get(file))
+                                .toString())
+                        .collect(Collectors.toList());
             }
         } catch (IOException e) {
             return new LinkedList<>();
