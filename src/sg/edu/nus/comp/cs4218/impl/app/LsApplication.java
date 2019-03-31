@@ -1,5 +1,6 @@
 package sg.edu.nus.comp.cs4218.impl.app;
 
+import sg.edu.nus.comp.cs4218.Environment;
 import sg.edu.nus.comp.cs4218.app.LsInterface;
 import sg.edu.nus.comp.cs4218.exception.LsException;
 import sg.edu.nus.comp.cs4218.impl.util.StringUtils;
@@ -19,11 +20,14 @@ public class LsApplication implements LsInterface {
 
     @Override
     public String listFolderContent(Boolean isFoldersOnly, Boolean isRecursive, String... folderName) throws LsException {
-        if (isFoldersOnly == null || isRecursive == null || folderName == null) {
+        if (isFoldersOnly == null || isRecursive == null) {
             throw new LsException("Input arguments cannot be null!");
         }
+        if (folderName == null || folderName.length == 0) {
+            folderName = new String[]{Environment.currentDirectory};
+        }
         Set<String> foldersContents = new LinkedHashSet();
-        for(String f: folderName) {
+        for (String f : folderName) {
             if ((folderName.length > 1 || isRecursive) && !isFoldersOnly) {
                 foldersContents.add(f + ":");
             }
@@ -31,13 +35,17 @@ public class LsApplication implements LsInterface {
             foldersContents.add(folderContents + StringUtils.STRING_NEWLINE);
         }
         if (folderName.length == 0 && isFoldersOnly) {
-                foldersContents.add(".");
+            foldersContents.add(".");
         }
         String result;
         if (isFoldersOnly) {
-            result = String.join("", foldersContents).trim();
+            result = String
+                    .join("", foldersContents)
+                    .trim();
         } else {
-            result = String.join(StringUtils.STRING_NEWLINE, foldersContents).trim();
+            result = String
+                    .join(StringUtils.STRING_NEWLINE, foldersContents)
+                    .trim();
         }
         return result;
     }
@@ -48,13 +56,13 @@ public class LsApplication implements LsInterface {
             throw new LsException("File does not exist, make sure the path is correct!");
         }
         String result;
-        if(isFoldersOnly) {
+        if (isFoldersOnly) {
             result = file.getPath();
         } else if (file.isDirectory()) {
             String[] content = file.list();
             result = String.join(" ", content);
             if (isRecursive && content.length > 0) {
-                for (String c: content) {
+                for (String c : content) {
                     String recursivePath = folderName + File.separator + c;
                     File subFolder = new File(recursivePath);
                     if (subFolder.isDirectory()) {
@@ -85,7 +93,7 @@ public class LsApplication implements LsInterface {
                 } else {
                     throw new LsException("Unknown option for ls!");
                 }
-            } else{
+            } else {
                 fileNames.add(args[i]);
             }
         }

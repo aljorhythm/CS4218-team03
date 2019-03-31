@@ -2,13 +2,18 @@ package sg.edu.nus.comp.cs4218m1.impl.app;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import sg.edu.nus.comp.cs4218.impl.app.LsApplication;
+import org.junit.jupiter.api.io.TempDir;
+import sg.edu.nus.comp.cs4218.Environment;
 import sg.edu.nus.comp.cs4218.exception.LsException;
+import sg.edu.nus.comp.cs4218.impl.app.LsApplication;
 import sg.edu.nus.comp.cs4218.impl.util.StringUtils;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static sg.edu.nus.comp.cs4218m1.TestUtils.pathToTestDataSubdir;
 
 @SuppressWarnings({"PMD.LongVariable", "PMD.VariableNamingConventions", "PMD.AvoidDuplicateLiterals"})
@@ -166,4 +171,25 @@ class LsApplicationTest {
                 .assertException(LsException.class);
     }
 
+    /**
+     * If no directories are specified list current directory
+     * @param tempPath
+     */
+    @Test
+    void listCurrentDirectory(@TempDir Path tempPath) throws LsException, IOException {
+        String oriWorkingDir = Environment.currentDirectory;
+        Environment.currentDirectory = tempPath.toAbsolutePath().toString();
+        LsApplication app = new LsApplication();
+        String actual = app.listFolderContent(false, false);
+        String expected = "";
+        assertEquals(expected, actual);
+        Path newFile = tempPath.resolve("newFile");
+        newFile.toFile().createNewFile();
+        actual = app.listFolderContent(false, false);
+        expected = String.join(StringUtils.STRING_NEWLINE, new String[]{
+                tempPath.relativize(newFile).toString()
+        });
+        assertEquals(expected, actual);
+        Environment.currentDirectory = oriWorkingDir;
+    }
 }

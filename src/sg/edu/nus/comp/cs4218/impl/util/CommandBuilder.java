@@ -46,10 +46,12 @@ public final class CommandBuilder {//NOPMD
      */
     public static Command parseCommand(String commandString, ApplicationRunner appRunner)
             throws ShellException {
-        if (StringUtils.isBlank(commandString) || commandString.contains(STRING_NEWLINE)) {
+        if (StringUtils.isBlank(commandString)) {
             throw new ShellException(ERR_SYNTAX);
         }
-
+        if (commandString.contains(STRING_NEWLINE)){
+            throw new ShellException(ERR_SYNTAX);
+        }
         List<Command> cmdsForSequence = new LinkedList<>();
         List<CallCommand> callCmdsForPipe = new LinkedList<>();
         List<Command> cmdsForIORedirection = new LinkedList<>();//NOPMD
@@ -119,7 +121,7 @@ public final class CommandBuilder {//NOPMD
                     if (commandSubstring.length() > 1) {
                         commandSubstring = commandSubstring.substring(0);
                     } else {
-                        commandSubstring = null;
+                        commandSubstring = "";
                     }
                     break;
                 case CHAR_PIPE:
