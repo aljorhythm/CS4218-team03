@@ -118,11 +118,11 @@ public final class CommandBuilder {//NOPMD
                     if (tokens.isEmpty()) {
                         throw new ShellException(ERR_SYNTAX);
                     }
-                    if (commandSubstring.length() > 1) {
-                        commandSubstring = commandSubstring.substring(0);
-                    } else {
-                        commandSubstring = "";
-                    }
+//                    if (commandSubstring.length() > 1) {
+//                        commandSubstring = commandSubstring.substring(0);
+//                    } else {
+//                        commandSubstring = "";
+//                    }
                     break;
                 case CHAR_PIPE:
                     if (tokens.isEmpty()) {
