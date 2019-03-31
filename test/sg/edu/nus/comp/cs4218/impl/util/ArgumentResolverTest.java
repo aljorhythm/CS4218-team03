@@ -40,38 +40,6 @@ public class ArgumentResolverTest extends DirectoryStructureTest {
     }
 
     /**
-     * Tests expansion of glob argument
-     *
-     * @throws ShellException
-     */
-    @Test
-    void resolveOneArgumentGlobExpansionAbsoluteWithNoise() throws ShellException {
-        String arg = "asd " + testRootDir + "/*";
-        assertResolveOneArgument(arg, arg);
-    }
-
-    /**
-     * Tests expansion of glob argument
-     *
-     * @throws ShellException
-     */
-    @Test
-    void resolveOneArgumentGlobExpansionRelativeAll(@TempDir Path dir) throws ShellException, IOException {
-        String original = Environment.currentDirectory;
-        Environment.currentDirectory = dir
-                .toAbsolutePath()
-                .toString();
-        createTestFilesFolders(dir);
-        assertResolveOneArgument("subdir/*", new String[]{
-                "subdir/file1",
-                "subdir/file2",
-                "subdir/somedir",
-                "subdir/subsubdir"
-        });
-        Environment.currentDirectory = original;
-    }
-
-    /**
      * Tests expansion of glob argument with multiple positions of asterisks
      *
      * @throws ShellException

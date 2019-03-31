@@ -9,7 +9,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import sg.edu.nus.comp.cs4218.exception.FindException;
-import sg.edu.nus.comp.cs4218.impl.util.StringUtils;
 import sg.edu.nus.comp.cs4218m1.TestUtils;
 
 import java.io.*;
@@ -18,7 +17,6 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.verify;
 
 class FindApplicationTest {
 
@@ -105,71 +103,7 @@ class FindApplicationTest {
         }
     }
 
-    @Test
-    void testFindSingleFolderContentFileExists() throws Exception {
-        String expectedResult = BASIC_FOLDER + File.separator + BASIC_FILE_NAME;
-
-        assertEquals(expectedResult, application.findFolderContent(BASIC_FILE_NAME, BASIC_FOLDER));
-    }
-
-    @Test
-    void testFindMultipleFoldersContentSameFileExists() throws Exception {
-        String[] folders = new String[]{BASIC_FOLDER, ANOTHER_FOLDER};
-        String expectedResult = BASIC_FOLDER + File.separator + NESTED_FOLDER + File.separator + ANOTHER_FILE_NAME
-                + StringUtils.STRING_NEWLINE + ANOTHER_FOLDER + File.separator + ANOTHER_FILE_NAME;
-
-        assertEquals(expectedResult, application.findFolderContent(ANOTHER_FILE_NAME, folders));
-    }
-
-    @Test
-    void testFindMultipleFoldersContentOnlyOneContainsFile() throws Exception {
-        String[] folders = new String[]{BASIC_FOLDER, ANOTHER_FOLDER, EMPTY_FOLDER};
-        String expectedResult = BASIC_FOLDER + File.separator + NUMERIC_FILE_NAME + StringUtils.STRING_NEWLINE +
-                BASIC_FOLDER + File.separator + NUMERIC_FOLDER + File.separator + NUMERIC_FILE_NAME;
-
-        assertEquals(expectedResult, application.findFolderContent(NUMERIC_FILE_NAME, folders));
-    }
-
-    @Test
-    void testFindMultipleFoldersContentFileNotExists() throws Exception {
-        String[] folders = new String[]{BASIC_FOLDER, ANOTHER_FOLDER, EMPTY_FOLDER};
-        String expectedResult = "";
-
-        assertEquals(expectedResult, application.findFolderContent(INVALID_FILE_NAME, folders));
-    }
-
-    @Test
-    void testFindSingleFolderContentMultipleFileExists() throws Exception {
-        String expectedResult = BASIC_FOLDER + File.separator + NUMERIC_FILE_NAME + StringUtils.STRING_NEWLINE +
-                BASIC_FOLDER + File.separator + NUMERIC_FOLDER + File.separator + NUMERIC_FILE_NAME;
-
-        assertEquals(expectedResult, application.findFolderContent(NUMERIC_FILE_NAME, BASIC_FOLDER));
-    }
-
-    @Test
-    void testFindFolderContentFileExistsUsingRegex() throws Exception {
-        String fileRegex = ".+" + BASIC_FILE_NAME;
-        String expectedResult = BASIC_FOLDER + File.separator + NESTED_FOLDER +
-                File.separator + ANOTHER_FILE_NAME;
-
-        assertEquals(expectedResult, application.findFolderContent(fileRegex, BASIC_FOLDER));
-    }
-
-    @Test
-    void testFindFolderContentFileNotExistsUsingRegex() throws Exception {
-        String fileRegex = "test.[txt]+";
-        String expectedResult = "";
-        //Exception actualException = assertThrows(FindException.class, () -> application.findFolderContent(fileRegex, ANOTHER_FOLDER));
-
-        assertEquals(expectedResult, application.findFolderContent(fileRegex, ANOTHER_FOLDER));
-    }
-
-    @Test
-    void testFindFolderNotExistsContent() throws Exception {
-        String expectedResult = "find: " + INVALID_FOLDER + NOT_FOUND_MSG;
-        Exception actualException = assertThrows(FindException.class, () -> application.findFolderContent(BASIC_FILE_NAME, INVALID_FOLDER));
-        assertEquals(expectedResult, actualException.getMessage());
-    }
+    /** Hackathon Start **/
 
     @Test
     void testRunOnlyWithoutFilterInvalid() {
@@ -179,153 +113,7 @@ class FindApplicationTest {
         assertEquals(INVALID_SYN_MSG, actualException.getMessage());
     }
 
-    @Test
-    void testRunOnlyWithoutFolderSpecifiedInvalid() {
-        String[] args = new String[]{FIND_FILTER, BASIC_FILE_NAME};
+    /** Hackathon End **/
 
-        Exception actualException = assertThrows(FindException.class, () -> application.run(args, mockIs, mockOs));
-        assertEquals(INVALID_SYN_MSG, actualException.getMessage());
-    }
-
-    @Test
-    void testRunOnlyWithoutFileSpecifiedInvalid() {
-        String[] args = new String[]{BASIC_FOLDER, ANOTHER_FOLDER, FIND_FILTER};
-
-        Exception actualException = assertThrows(FindException.class, () -> application.run(args, mockIs, mockOs));
-        assertEquals(INVALID_SYN_MSG, actualException.getMessage());
-    }
-
-    @Test
-    void testRunWithoutFolderAndFileSpecifiedInvalid() {
-        String[] args = new String[]{FIND_FILTER};
-
-        Exception actualException = assertThrows(FindException.class, () -> application.run(args, mockIs, mockOs));
-        assertEquals(INVALID_SYN_MSG, actualException.getMessage());
-    }
-
-    @Test
-    void testRunWithoutFolderAndFilterSpecifiedInvalid() {
-        String[] args = new String[]{NUMERIC_FILE_NAME};
-
-        Exception actualException = assertThrows(FindException.class, () -> application.run(args, mockIs, mockOs));
-        assertEquals(INVALID_SYN_MSG, actualException.getMessage());
-    }
-
-    @Test
-    void testRunWithoutFileAndFilterSpecifiedInvalid() {
-        String[] args = new String[]{EMPTY_FOLDER};
-
-        Exception actualException = assertThrows(FindException.class, () -> application.run(args, mockIs, mockOs));
-        assertEquals(INVALID_SYN_MSG, actualException.getMessage());
-    }
-
-    @Test
-    void testRunWithoutAnyArgumentInvalid() {
-        String[] args = new String[]{};
-
-        Exception actualException = assertThrows(FindException.class, () -> application.run(args, mockIs, mockOs));
-        assertEquals(INVALID_SYN_MSG, actualException.getMessage());
-    }
-
-    @Test
-    void testRunWithSingleFolderSingleFileValid() throws Exception {
-        String[] args = new String[]{BASIC_FOLDER, FIND_FILTER, BASIC_FILE_NAME};
-
-        application.run(args, mockIs, mockOs);
-        verify(application, Mockito.times(1))
-                .findFolderContent(BASIC_FILE_NAME, BASIC_FOLDER);
-    }
-
-    @Test
-    void testRunWithMultipleFoldersSingleFileValid() throws Exception {
-        String[] args = new String[]{BASIC_FOLDER, ANOTHER_FOLDER, EMPTY_FOLDER,
-                FIND_FILTER, BASIC_FILE_NAME};
-
-        application.run(args, mockIs, mockOs);
-        verify(application, Mockito.times(1)).findFolderContent(BASIC_FILE_NAME,
-                BASIC_FOLDER, ANOTHER_FOLDER, EMPTY_FOLDER);
-    }
-
-    @Test
-    void testRunWithMultipleFoldersMultipleFilesInvalid() {
-        String[] args = new String[]{BASIC_FOLDER, ANOTHER_FOLDER, FIND_FILTER, BASIC_FILE_NAME,
-                ANOTHER_FILE_NAME};
-
-        Exception actualException = assertThrows(FindException.class, () -> application.run(args, mockIs, mockOs));
-        assertEquals(INVALID_SYN_MSG, actualException.getMessage());
-    }
-
-    @Test
-    void testRunWithSingleFolderMultipleFilesInvalid() {
-        String[] args = new String[]{EMPTY_FOLDER, FIND_FILTER, BASIC_FILE_NAME,
-                ANOTHER_FILE_NAME};
-
-        Exception actualException = assertThrows(FindException.class, () -> application.run(args, mockIs, mockOs));
-        assertEquals(INVALID_SYN_MSG, actualException.getMessage());
-    }
-
-    @Test
-    void testRunWithNullStdoutInvalid() {
-        String[] args = new String[]{ANOTHER_FOLDER, FIND_FILTER, ANOTHER_FILE_NAME};
-
-        Exception actualException = assertThrows(FindException.class, () ->
-                application.run(args, mockIs, null));
-        assertEquals(OUTPUT_ERROR_MSG, actualException.getMessage());
-    }
-
-    @Test
-    void testRunWithNullStdinValid() throws Exception {
-        String[] args = new String[]{BASIC_FOLDER, FIND_FILTER, BASIC_FILE_NAME};
-
-        application.run(args, null, mockOs);
-        verify(application, Mockito.times(1)).findFolderContent(BASIC_FILE_NAME,
-                BASIC_FOLDER);
-    }
-
-    /*********************************************
-     * Set of test cases to verify output result
-     *********************************************/
-    @Test
-    void testRunOutputFileLocationResult() throws Exception {
-        String[] args = new String[]{BASIC_FOLDER, FIND_FILTER, NUMERIC_FILE_NAME};
-        String expectedResult = BASIC_FOLDER + File.separator + NUMERIC_FILE_NAME + StringUtils.STRING_NEWLINE +
-                BASIC_FOLDER + File.separator + NUMERIC_FOLDER + File.separator + NUMERIC_FILE_NAME;
-        mockBos = new ByteArrayOutputStream();
-
-        application.run(args, mockIs, mockBos);
-        assertEquals(expectedResult, new String(mockBos.toByteArray()));
-    }
-
-    @Test
-    void testRunOutputEmptyResult() throws Exception {
-        String[] args = new String[]{BASIC_FOLDER, FIND_FILTER, INVALID_FILE_NAME};
-        String expectedResult = "";
-        mockBos = new ByteArrayOutputStream();
-
-        application.run(args, mockIs, mockBos);
-        assertEquals(expectedResult, new String(mockBos.toByteArray()));
-    }
-
-    @Test
-    void testRunOutputFolderNotExistsResult() throws Exception {
-        String[] args = new String[]{INVALID_FOLDER, FIND_FILTER, BASIC_FILE_NAME};
-        String expectedResult = "find: " + INVALID_FOLDER + NOT_FOUND_MSG;
-        mockBos = new ByteArrayOutputStream();
-
-        Exception actualException = assertThrows(FindException.class, () ->
-                application.run(args, mockIs, mockBos));
-        assertEquals(expectedResult, actualException.getMessage());
-    }
-
-    @Test
-    void testRunOutputMixedResults() throws Exception {
-        String[] args = new String[]{INVALID_FOLDER, BASIC_FOLDER, FIND_FILTER, BASIC_FILE_NAME};
-        String expectedResult = "find: " + INVALID_FOLDER + NOT_FOUND_MSG;
-        mockBos = new ByteArrayOutputStream();
-
-        Exception actualException = assertThrows(FindException.class, () ->
-                application.run(args, mockIs, mockBos));
-        assertEquals(expectedResult, actualException.getMessage());
-    }
 }
 
