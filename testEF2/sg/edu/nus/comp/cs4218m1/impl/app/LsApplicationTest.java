@@ -190,6 +190,14 @@ class LsApplicationTest {
                 tempPath.relativize(newFile).toString()
         });
         assertEquals(expected, actual);
+        Path newDir1 = tempPath.resolve("1");
+        newDir1.toFile().mkdir();
+        Path newFile1 = newDir1.resolve("2");
+        newFile1.toFile().createNewFile();
+        actual = app.listFolderContent(false, false, "1");
+        expected = String.join(StringUtils.STRING_NEWLINE, new String[]{
+                tempPath.relativize(newFile1).toString()
+        });
         Environment.currentDirectory = oriWorkingDir;
     }
 }

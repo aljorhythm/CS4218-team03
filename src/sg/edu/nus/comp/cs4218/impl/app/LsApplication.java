@@ -9,12 +9,15 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHARSET_UTF8;
+import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_FILE_SEP;
 
 public class LsApplication implements LsInterface {
 
@@ -51,7 +54,13 @@ public class LsApplication implements LsInterface {
     }
 
     private String getFolderContent(Boolean isFoldersOnly, Boolean isRecursive, String folderName) throws LsException {
-        File file = new File(folderName);
+        Path path;
+        if(folderName.startsWith(STRING_FILE_SEP)) {
+            path = Paths.get(folderName);
+        } else {
+            path = Paths.get(Environment.currentDirectory).resolve(folderName);
+        }
+        File file = path.toFile();
         if (file == null || !file.exists()) {
             throw new LsException("File does not exist, make sure the path is correct!");
         }
