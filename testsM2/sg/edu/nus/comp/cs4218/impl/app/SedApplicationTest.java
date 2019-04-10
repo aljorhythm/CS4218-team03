@@ -55,6 +55,8 @@ class SedApplicationTest {
     public static final String PATTERN_TO_FIND = "< >";
     public static final String EMPTY_STRING = "";
 
+    static FileOutputStream fos;
+
     public static final int DEF_REPLACE_INDEX = 1;
 
     public static SedApplication sedApplication;
@@ -97,12 +99,14 @@ class SedApplicationTest {
     }
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws FileNotFoundException {
+        fos = new FileOutputStream(FILE_STDOUT_TEST);
         sedApplication = spy(new SedApplication());
     }
 
     @AfterEach
-    void tearDown() {
+    void tearDown() throws IOException {
+        fos.close();
         File file = new File(FILE_STDOUT_TEST);
         if (file.exists()) {
             file.delete();
@@ -118,8 +122,7 @@ class SedApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray(String.format(R_STRING_FORMAT, STRING_ALPHA),
                 UT_FILE_1_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
                 STRING_ALPHA, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
@@ -130,8 +133,7 @@ class SedApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray(String.format(R_STRING_FORMAT, STRING_NUM),
                 UT_FILE_1_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
                 STRING_NUM, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
@@ -142,8 +144,7 @@ class SedApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray(String.format(R_STRING_FORMAT, STRING_NON_ALPHA),
                 UT_FILE_1_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
                 STRING_NON_ALPHA, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
@@ -154,8 +155,7 @@ class SedApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray(String.format(R_STRING_FORMAT, STRING_ALPHA_NUM),
                 UT_FILE_1_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
                 STRING_ALPHA_NUM, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
@@ -166,8 +166,7 @@ class SedApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray(String.format(R_STRING_FORMAT, STRING_ALPNONALP),
                 UT_FILE_1_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
                 STRING_ALPNONALP, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
@@ -178,8 +177,7 @@ class SedApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray(String.format(R_STRING_FORMAT, STRING_NUMNONALP),
                 UT_FILE_1_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
                 STRING_NUMNONALP, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
@@ -190,8 +188,7 @@ class SedApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray(String.format(R_STRING_FORMAT, STRING_ALL_CHAR),
                 UT_FILE_1_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
                 STRING_ALL_CHAR, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
@@ -202,8 +199,7 @@ class SedApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray("s0^0" + STRING_ALPHA + "0",
                 UT_FILE_1_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
                 STRING_ALPHA, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
@@ -214,8 +210,7 @@ class SedApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray("s5^5" + STRING_ALPHA + "5",
                 UT_FILE_1_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
                 STRING_ALPHA, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
@@ -226,8 +221,7 @@ class SedApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray("s9^9" + STRING_ALPHA + "9",
                 UT_FILE_1_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
                 STRING_ALPHA, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
@@ -238,8 +232,7 @@ class SedApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray("sa^a" + STRING_ALPHA + "a",
                 UT_FILE_1_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
                 STRING_ALPHA, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
@@ -250,8 +243,7 @@ class SedApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray("sA^A" + STRING_NUM + "A",
                 UT_FILE_1_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
                 STRING_NUM, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
@@ -262,8 +254,7 @@ class SedApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray("sz^z" + STRING_ALPHA + "z",
                 UT_FILE_1_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
                 STRING_ALPHA, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
@@ -274,8 +265,7 @@ class SedApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray("sZ^Z" + STRING_ALPHA + "Z",
                 UT_FILE_1_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
                 STRING_ALPHA, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
@@ -286,8 +276,7 @@ class SedApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray("s ^ " + STRING_ALPHA + " ",
                 UT_FILE_1_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
                 STRING_ALPHA, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
@@ -298,8 +287,7 @@ class SedApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray("s|^|" + STRING_ALPHA + "|",
                 UT_FILE_1_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
                 STRING_ALPHA, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
@@ -310,8 +298,7 @@ class SedApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray("s*^*" + STRING_ALPHA + CHAR_ASTERISK,
                 UT_FILE_1_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
                 STRING_ALPHA, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
@@ -322,8 +309,7 @@ class SedApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray("s'^'" + STRING_ALPHA + "'",
                 UT_FILE_1_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
                 STRING_ALPHA, DEF_REPLACE_INDEX, UT_FILE_1_NAME);
@@ -334,8 +320,7 @@ class SedApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray("t/^/" + STRING_ALPHA + STRING_FILE_SEP,
                 UT_FILE_1_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         assertThrows(SedException.class, () -> sedApplication.run(args, null, fos));
     }
 
@@ -344,8 +329,7 @@ class SedApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray("S/^/" + STRING_ALPHA + STRING_FILE_SEP,
                 UT_FILE_1_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         assertThrows(SedException.class, () -> sedApplication.run(args, null, fos));
     }
 
@@ -354,8 +338,7 @@ class SedApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray("s//" + STRING_ALPHA + STRING_FILE_SEP,
                 UT_FILE_1_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         assertThrows(SedException.class, () -> sedApplication.run(args, null, fos));
     }
 
@@ -364,8 +347,7 @@ class SedApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray(R_STRING_PART + STRING_ALPHA + "/0",
                 UT_FILE_1_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         assertThrows(SedException.class, () -> sedApplication.run(args, null, fos));
     }
 
@@ -374,8 +356,7 @@ class SedApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray(R_STRING_PART + STRING_ALPHA + "/-1",
                 UT_FILE_1_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         assertThrows(SedException.class, () -> sedApplication.run(args, null, fos));
     }
 
@@ -384,8 +365,7 @@ class SedApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray(R_STRING_PART + STRING_ALPHA + "/-5",
                 UT_FILE_1_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         assertThrows(SedException.class, () -> sedApplication.run(args, null, fos));
     }
 
@@ -394,8 +374,7 @@ class SedApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray(R_STRING_PART + STRING_ALPHA + "/*",
                 UT_FILE_1_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         assertThrows(SedException.class, () -> sedApplication.run(args, null, fos));
     }
 
@@ -404,8 +383,7 @@ class SedApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray(R_STRING_PART + STRING_ALPHA + "/s",
                 UT_FILE_1_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         assertThrows(SedException.class, () -> sedApplication.run(args, null, fos));
     }
 
@@ -414,8 +392,7 @@ class SedApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray(R_STRING_PART + STRING_ALPHA + "// ",
                 UT_FILE_1_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         assertThrows(SedException.class, () -> sedApplication.run(args, null, fos));
     }
 
@@ -425,8 +402,7 @@ class SedApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray(R_STRING_PART + STRING_ALPHA + STRING_FILE_SEP,
                 UT_FILE_1_NAME, UT_FILE_2_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         sedApplication.run(args, null, fos);
         verify(sedApplication, Mockito.times(1)).replaceSubstringInFile(DEFAULT_REGEXP,
                 STRING_ALPHA, -1, UT_FILE_1_NAME);
@@ -438,8 +414,7 @@ class SedApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray(R_STRING_PART + STRING_ALPHA + STRING_FILE_SEP,
                 SED_FOLDER_NAME, UT_FILE_2_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         assertThrows(SedException.class, () -> sedApplication.run(args, null, fos));
     }
 

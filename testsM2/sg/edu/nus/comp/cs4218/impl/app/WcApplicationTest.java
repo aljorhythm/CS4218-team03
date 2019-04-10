@@ -99,6 +99,7 @@ class WcApplicationTest {
     public static final String NEWLINE_CHAR = StringUtils.STRING_NEWLINE;
 
     public static WcApplication wcApplication;
+    static FileOutputStream fos;
 
     public static String pathToProject = System.getProperty("user.dir") + File.separator;
 
@@ -164,12 +165,14 @@ class WcApplicationTest {
     }
 
     @BeforeEach
-    void setUpBeforeEach() {
+    void setUpBeforeEach() throws FileNotFoundException {
+        fos = new FileOutputStream(FILE_STDOUT_TEST);
         wcApplication = spy(new WcApplication());
     }
 
     @AfterEach
-    void tearDownAfterEach() {
+    void tearDownAfterEach() throws IOException {
+        fos.close();
         File file = new File(FILE_STDOUT_TEST);
         if (file.exists()) {
             file.delete();
@@ -184,8 +187,6 @@ class WcApplicationTest {
     void runShowOnlyLineTest() throws Exception {
         String[] args = StringsToArrayHelper.appendStringsToArray(SHOW_LINE, ALL_CHAR_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(false, true, false, ALL_CHAR_NAME);
 
@@ -195,8 +196,7 @@ class WcApplicationTest {
     void runShowOnlyWordTest() throws Exception {
         String[] args = StringsToArrayHelper.appendStringsToArray(SHOW_WORD, ALL_CHAR_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(false, false, true, ALL_CHAR_NAME);
     }
@@ -205,8 +205,7 @@ class WcApplicationTest {
     void runShowOnlyByteTest() throws Exception {
         String[] args = StringsToArrayHelper.appendStringsToArray(SHOW_BYTE, ALL_CHAR_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(true, false, false, ALL_CHAR_NAME);
     }
@@ -215,8 +214,7 @@ class WcApplicationTest {
     void runShowLineAndWordTest() throws Exception {
         String[] args = StringsToArrayHelper.appendStringsToArray(SHOW_LINE, SHOW_WORD, ALL_CHAR_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(false, true, true, ALL_CHAR_NAME);
     }
@@ -227,8 +225,7 @@ class WcApplicationTest {
         // Give the arguments -l and -w in reverse order
         String[] args = StringsToArrayHelper.appendStringsToArray(SHOW_WORD, SHOW_LINE, ALL_CHAR_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(false, true, true, ALL_CHAR_NAME);
     }
@@ -237,8 +234,7 @@ class WcApplicationTest {
     void runShowLineAndWordCombinedTest() throws Exception {
         String[] args = StringsToArrayHelper.appendStringsToArray(SHOW_LINE_WORD, ALL_CHAR_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(false, true, true, ALL_CHAR_NAME);
     }
@@ -247,8 +243,7 @@ class WcApplicationTest {
     void runShowLineAndWordCombinedReverseOrderTest() throws Exception {
         String[] args = StringsToArrayHelper.appendStringsToArray(SHOW_LINE_WORD_R, ALL_CHAR_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(false, true, true, ALL_CHAR_NAME);
     }
@@ -257,8 +252,7 @@ class WcApplicationTest {
     void runShowLineAndByteTest() throws Exception {
         String[] args = StringsToArrayHelper.appendStringsToArray(SHOW_LINE, SHOW_BYTE, ALL_CHAR_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(true, true, false, ALL_CHAR_NAME);
     }
@@ -270,8 +264,7 @@ class WcApplicationTest {
         // Give the arguments -c and -l in reverse order
         String[] args = StringsToArrayHelper.appendStringsToArray(SHOW_BYTE, SHOW_LINE, ALL_CHAR_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(true, true, false, ALL_CHAR_NAME);
     }
@@ -280,8 +273,7 @@ class WcApplicationTest {
     void runShowLineAndByteCombinedTest() throws Exception {
         String[] args = StringsToArrayHelper.appendStringsToArray(SHOW_LINE_BYTE, ALL_CHAR_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(true, true, false, ALL_CHAR_NAME);
     }
@@ -290,8 +282,7 @@ class WcApplicationTest {
     void runShowLineAndByteCombinedReverseOrderTest() throws Exception {
         String[] args = StringsToArrayHelper.appendStringsToArray(SHOW_LINE_BYTE_R, ALL_CHAR_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(true, true, false, ALL_CHAR_NAME);
     }
@@ -300,8 +291,7 @@ class WcApplicationTest {
     void runShowWordAndByteTest() throws Exception {
         String[] args = StringsToArrayHelper.appendStringsToArray(SHOW_WORD, SHOW_BYTE, ALL_CHAR_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(true, false, true, ALL_CHAR_NAME);
     }
@@ -310,8 +300,7 @@ class WcApplicationTest {
     void runShowWordAndByteInReverseOrderTest() throws Exception {
         String[] args = StringsToArrayHelper.appendStringsToArray(SHOW_BYTE, SHOW_WORD, ALL_CHAR_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(true, false, true, ALL_CHAR_NAME);
     }
@@ -320,8 +309,7 @@ class WcApplicationTest {
     void runShowWordAndByteCombinedTest() throws Exception {
         String[] args = StringsToArrayHelper.appendStringsToArray(SHOW_WORD_BYTE, ALL_CHAR_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(true, false, true, ALL_CHAR_NAME);
     }
@@ -330,8 +318,7 @@ class WcApplicationTest {
     void runShowWordAndByteCombinedReverseOrderTest() throws Exception {
         String[] args = StringsToArrayHelper.appendStringsToArray(SHOW_WORD_BYTE_R, ALL_CHAR_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(true, false, true, ALL_CHAR_NAME);
     }
@@ -340,8 +327,7 @@ class WcApplicationTest {
     void runShowAllTest() throws Exception {
         String[] args = StringsToArrayHelper.appendStringsToArray(SHOW_LINE, SHOW_WORD, SHOW_BYTE, ALL_CHAR_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(true, true, true, ALL_CHAR_NAME);
     }
@@ -350,8 +336,7 @@ class WcApplicationTest {
     void runShowAllReverseTest() throws Exception {
         String[] args = StringsToArrayHelper.appendStringsToArray(SHOW_BYTE, SHOW_WORD, SHOW_LINE, ALL_CHAR_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(true, true, true, ALL_CHAR_NAME);
     }
@@ -360,8 +345,7 @@ class WcApplicationTest {
     void runShowAllCombinedTest() throws Exception {
         String[] args = StringsToArrayHelper.appendStringsToArray(SHOW_ALL_COMB_1, ALL_CHAR_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(true, true, true, ALL_CHAR_NAME);
     }
@@ -370,8 +354,7 @@ class WcApplicationTest {
     void runShowAllCombinedTwoTest() throws Exception {
         String[] args = StringsToArrayHelper.appendStringsToArray(SHOW_ALL_COMB_2, ALL_CHAR_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(true, true, true, ALL_CHAR_NAME);
     }
@@ -380,8 +363,7 @@ class WcApplicationTest {
     void runShowAllCombinedOrderThreeTest() throws Exception {
         String[] args = StringsToArrayHelper.appendStringsToArray(SHOW_ALL_COMB_3, ALL_CHAR_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(true, true, true, ALL_CHAR_NAME);
     }
@@ -390,8 +372,7 @@ class WcApplicationTest {
     void runShowAllCombinedOrderFourTest() throws Exception {
         String[] args = StringsToArrayHelper.appendStringsToArray(SHOW_ALL_COMB_4, ALL_CHAR_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(true, true, true, ALL_CHAR_NAME);
     }
@@ -400,8 +381,7 @@ class WcApplicationTest {
     void runShowAllCombinedOrderFiveTest() throws Exception {
         String[] args = StringsToArrayHelper.appendStringsToArray(SHOW_ALL_COMB_5, ALL_CHAR_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(true, true, true, ALL_CHAR_NAME);
     }
@@ -410,8 +390,7 @@ class WcApplicationTest {
     void runShowAllCombinedOrderSixTest() throws Exception {
         String[] args = StringsToArrayHelper.appendStringsToArray(SHOW_ALL_COMB_6, ALL_CHAR_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(true, true, true, ALL_CHAR_NAME);
     }
@@ -421,8 +400,7 @@ class WcApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray(SHOW_BYTE, SHOW_WORD, SHOW_LINE,
                 ALL_CHAR_NAME, WS_OTHERS_NAME, NUM_OTHERS_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(true, true, true,
                 ALL_CHAR_NAME, WS_OTHERS_NAME, NUM_OTHERS_NAME);
@@ -433,8 +411,7 @@ class WcApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray(SHOW_BYTE, SHOW_WORD, SHOW_LINE,
                 ALL_CHAR_NAME, WS_OTHERS_NAME, ALL_CHAR_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(true, true, true,
                 ALL_CHAR_NAME, WS_OTHERS_NAME, ALL_CHAR_NAME);
@@ -446,8 +423,7 @@ class WcApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray(SHOW_BYTE, SHOW_WORD, SHOW_LINE,
                 ALL_CHAR_NAME, WC_FOLDER_NAME_1, ALL_CHAR_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(true, true, true,
                 ALL_CHAR_NAME, WC_FOLDER_NAME_1, ALL_CHAR_NAME);
@@ -459,8 +435,7 @@ class WcApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray(SHOW_ALL_COMB_1, ALL_CHAR_NAME,
                 WS_OTHERS_NAME, NUM_OTHERS_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(true, true, true,
                 ALL_CHAR_NAME, WS_OTHERS_NAME, NUM_OTHERS_NAME);
@@ -471,8 +446,7 @@ class WcApplicationTest {
     void runWithSingleFileArgumentInBetweenOtherArgumentsTest() throws Exception {
         String[] args = StringsToArrayHelper.appendStringsToArray(SHOW_LINE, ALL_CHAR_NAME, SHOW_WORD, SHOW_BYTE);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(false, true, false,
                 ALL_CHAR_NAME, SHOW_WORD, SHOW_BYTE);
@@ -484,8 +458,7 @@ class WcApplicationTest {
     void runWithSingleFileArgumentInFrontOfOtherArgumentsTest() throws Exception {
         String[] args = StringsToArrayHelper.appendStringsToArray(ALL_CHAR_NAME, SHOW_LINE, SHOW_WORD, SHOW_BYTE);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(true, true, true,
                 ALL_CHAR_NAME, SHOW_LINE, SHOW_WORD, SHOW_BYTE);
@@ -498,8 +471,7 @@ class WcApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray(SHOW_LINE, WS_OTHERS_NAME, SHOW_WORD,
                 ALL_CHAR_NAME, SHOW_BYTE);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(false, true, false,
                 WS_OTHERS_NAME, SHOW_WORD, ALL_CHAR_NAME, SHOW_BYTE);
@@ -512,8 +484,7 @@ class WcApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray(WS_OTHERS_NAME,
                 ALL_CHAR_NAME, SHOW_WORD, SHOW_LINE, SHOW_BYTE);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(true, true, true,
                 WS_OTHERS_NAME,
@@ -525,13 +496,13 @@ class WcApplicationTest {
     void runCallCountFromStdinTest() throws Exception {
         String[] args = StringsToArrayHelper.appendStringsToArray(SHOW_WORD, SHOW_LINE, SHOW_BYTE);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
 
         // Create a stdin for to pass to run method
         FileInputStream fis = new FileInputStream(FILE_STDOUT_TEST);
         wcApplication.run(args, fis, fos);
         verify(wcApplication, Mockito.times(1)).countFromStdin(true, true, true, fis);
+        fis.close();
     }
 
     @Test
@@ -540,8 +511,7 @@ class WcApplicationTest {
         String expectedOutput = String.format(THREE_ARG_FORMAT, ALL_CHAR_LC,
                 ALL_CHAR_WC, ALL_CHAR_BC, ALL_CHAR_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
         wcApplication.run(args, null, fos);
 
         // Extract result from stdout file
@@ -554,8 +524,7 @@ class WcApplicationTest {
     void runWithIllegalArgumentInFrontOfOtherArgumentsTest() throws Exception {
         String[] args = StringsToArrayHelper.appendStringsToArray(ILLEGAL_ARGUMENT, SHOW_LINE, SHOW_WORD, SHOW_BYTE, ALL_CHAR_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
 
         // Since the option is illegal, using it will lead to WcException being thrown
         assertThrows(WcException.class, () -> wcApplication.run(args, null, fos));
@@ -566,8 +535,7 @@ class WcApplicationTest {
     void runWithIllegalArgumentNotInFrontOfOtherArgumentsTest() throws Exception {
         String[] args = StringsToArrayHelper.appendStringsToArray(SHOW_LINE, ILLEGAL_ARGUMENT, SHOW_WORD, SHOW_BYTE, ALL_CHAR_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
 
         // Since the option is illegal, using it will lead to WcException being thrown
         assertThrows(WcException.class, () -> wcApplication.run(args, null, fos));
@@ -579,8 +547,7 @@ class WcApplicationTest {
     void runWithIllegalArgumentNotInFrontOfFileInFrontOfOtherArgumentsTest() throws Exception {
         String[] args = StringsToArrayHelper.appendStringsToArray(ALL_CHAR_NAME, ILLEGAL_ARGUMENT, SHOW_LINE, SHOW_WORD, SHOW_BYTE);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
 
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(true, true, true,
@@ -594,8 +561,7 @@ class WcApplicationTest {
     void runWithIllegalArgumentNotInFrontOfFileNotInFrontOfOtherArgumentsTest() throws Exception {
         String[] args = StringsToArrayHelper.appendStringsToArray(ALL_CHAR_NAME, SHOW_LINE, ILLEGAL_ARGUMENT, SHOW_WORD, SHOW_BYTE);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
 
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(true, true, true,
@@ -608,8 +574,7 @@ class WcApplicationTest {
     void runWithIllegalArgumentCombinedInFrontOfFileTest() throws Exception {
         String[] args = StringsToArrayHelper.appendStringsToArray(ILLEGAL_ARG_COMB, ALL_CHAR_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
 
         // Since the option is illegal, using it will lead to WcException being thrown
         assertThrows(WcException.class, () -> wcApplication.run(args, null, fos));
@@ -620,8 +585,7 @@ class WcApplicationTest {
     void runWithRepeatedArgumentSideBySideTest() throws Exception {
         String[] args = StringsToArrayHelper.appendStringsToArray(SHOW_LINE, SHOW_LINE, ALL_CHAR_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
 
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(false, true, false,
@@ -632,8 +596,7 @@ class WcApplicationTest {
     void runWithRepeatedArgumentSeparatedTest() throws Exception {
         String[] args = StringsToArrayHelper.appendStringsToArray(SHOW_LINE, SHOW_BYTE, SHOW_LINE, ALL_CHAR_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
 
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(true, true, false,
@@ -644,8 +607,7 @@ class WcApplicationTest {
     void runWithRepeatedCombinedArgumentSideBySideTest() throws Exception {
         String[] args = StringsToArrayHelper.appendStringsToArray(SHOW_ALL_COMB_1, SHOW_ALL_COMB_1, ALL_CHAR_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
 
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(true, true, true,
@@ -657,8 +619,7 @@ class WcApplicationTest {
         String[] args = StringsToArrayHelper.appendStringsToArray(SHOW_ALL_COMB_1, SHOW_BYTE, SHOW_ALL_COMB_1,
                 ALL_CHAR_NAME);
 
-        // Create the file for run to write into
-        FileOutputStream fos = new FileOutputStream(FILE_STDOUT_TEST);
+        
 
         wcApplication.run(args, null, fos);
         verify(wcApplication, Mockito.times(1)).countFromFiles(true, true, true,
@@ -676,9 +637,12 @@ class WcApplicationTest {
         String expectedOutput = String.format(TWO_ARG_FORMAT, ALPHA_NUM_LC,
                 ALPHA_NUM_WC, ALPHA_NUM_BC);
 
-        String actualOutput = wcApplication.countFromStdin(true, true, true,
-                new FileInputStream(ALPHA_NUM_NAME));
+        FileInputStream fis = new FileInputStream(ALPHA_NUM_NAME);
 
+        String actualOutput = wcApplication.countFromStdin(true, true, true,
+                fis);
+
+        fis.close();
         assertEquals(expectedOutput, actualOutput);
     }
 
@@ -687,9 +651,10 @@ class WcApplicationTest {
         String expectedOutput = String.format(TWO_ARG_FORMAT, ALPHA_WS_LC,
                 ALPHA_WS_WC, ALPHA_WS_BC);
 
-        String actualOutput = wcApplication.countFromStdin(true, true, true,
-                new FileInputStream(ALPHA_WS_NAME));
+        FileInputStream fis = new FileInputStream(ALPHA_WS_NAME);
 
+        String actualOutput = wcApplication.countFromStdin(true, true, true, fis);
+        fis.close();
         assertEquals(expectedOutput, actualOutput);
     }
 
@@ -698,9 +663,10 @@ class WcApplicationTest {
         String expectedOutput = String.format(TWO_ARG_FORMAT, ALPHA_OTHERS_LC,
                 ALPHA_OTHERS_WC, ALPHA_OTHERS_BC);
 
+        FileInputStream fis = new FileInputStream(ALPHA_OTHER_NAME);
         String actualOutput = wcApplication.countFromStdin(true, true, true,
-                new FileInputStream(ALPHA_OTHER_NAME));
-
+                fis);
+        fis.close();
         assertEquals(expectedOutput, actualOutput);
     }
 
@@ -709,9 +675,10 @@ class WcApplicationTest {
         String expectedOutput = String.format(TWO_ARG_FORMAT, NUM_WS_LC,
                 NUM_WS_WC, NUM_WS_BC);
 
+        FileInputStream fis = new FileInputStream(NUM_WS_NAME);
         String actualOutput = wcApplication.countFromStdin(true, true, true,
-                new FileInputStream(NUM_WS_NAME));
-
+                fis);
+        fis.close();
         assertEquals(expectedOutput, actualOutput);
     }
 
@@ -720,9 +687,10 @@ class WcApplicationTest {
         String expectedOutput = String.format(TWO_ARG_FORMAT, NUM_OTHERS_LC,
                 NUM_OTHERS_WC, NUM_OTHERS_BC);
 
+        FileInputStream fis = new FileInputStream(NUM_OTHERS_NAME);
         String actualOutput = wcApplication.countFromStdin(true, true, true,
-                new FileInputStream(NUM_OTHERS_NAME));
-
+                fis);
+        fis.close();
         assertEquals(expectedOutput, actualOutput);
     }
 
@@ -731,9 +699,10 @@ class WcApplicationTest {
         String expectedOutput = String.format(TWO_ARG_FORMAT, WS_OTHERS_LC,
                 WS_OTHERS_WC, WS_OTHERS_BC);
 
+        FileInputStream fis = new FileInputStream(WS_OTHERS_NAME);
         String actualOutput = wcApplication.countFromStdin(true, true, true,
-                new FileInputStream(WS_OTHERS_NAME));
-
+                fis);
+        fis.close();
         assertEquals(expectedOutput, actualOutput);
     }
 
@@ -741,10 +710,10 @@ class WcApplicationTest {
     @Test
     void countFromStdinShowOnlyLineTest() throws Exception {
         String expectedOutput = String.valueOf(ALL_CHAR_LC);
-
+        FileInputStream fis = new FileInputStream(ALL_CHAR_NAME);
         String actualOutput = wcApplication.countFromStdin(false, true, false,
-                new FileInputStream(ALL_CHAR_NAME));
-
+                fis);
+        fis.close();
         assertEquals(expectedOutput, actualOutput);
     }
 
@@ -752,19 +721,20 @@ class WcApplicationTest {
     void countFromStdinShowOnlyWordTest() throws Exception {
         String expectedOutput = String.valueOf(ALL_CHAR_WC);
 
+        FileInputStream fis = new FileInputStream(ALL_CHAR_NAME);
         String actualOutput = wcApplication.countFromStdin(false, false, true,
-                new FileInputStream(ALL_CHAR_NAME));
-
+                fis);
+        fis.close();
         assertEquals(expectedOutput, actualOutput);
     }
 
     @Test
     void countFromStdinShowOnlyByteTest() throws Exception {
         String expectedOutput = String.valueOf(ALL_CHAR_BC);
-
+        FileInputStream fis = new FileInputStream(ALL_CHAR_NAME);
         String actualOutput = wcApplication.countFromStdin(true, false, false,
-                new FileInputStream(ALL_CHAR_NAME));
-
+                fis);
+        fis.close();
         assertEquals(expectedOutput, actualOutput);
     }
 
@@ -772,9 +742,11 @@ class WcApplicationTest {
     void countFromStdinShowLineAndWordTest() throws Exception {
         String expectedOutput = ALL_CHAR_LC + SPACE_CHAR + ALL_CHAR_WC;
 
+        FileInputStream fis = new FileInputStream(ALL_CHAR_NAME);
         String actualOutput = wcApplication.countFromStdin(false, true, true,
-                new FileInputStream(ALL_CHAR_NAME));
+                fis);
 
+        fis.close();
         assertEquals(expectedOutput, actualOutput);
     }
 
@@ -782,9 +754,11 @@ class WcApplicationTest {
     void countFromStdinShowWordAndByteTest() throws Exception {
         String expectedOutput = ALL_CHAR_WC + SPACE_CHAR + ALL_CHAR_BC;
 
+        FileInputStream fis = new FileInputStream(ALL_CHAR_NAME);
         String actualOutput = wcApplication.countFromStdin(true, false, true,
-                new FileInputStream(ALL_CHAR_NAME));
+                fis);
 
+        fis.close();
         assertEquals(expectedOutput, actualOutput);
     }
 
@@ -792,9 +766,10 @@ class WcApplicationTest {
     void countFromStdinShowLineAndByteTest() throws Exception {
         String expectedOutput = ALL_CHAR_LC + SPACE_CHAR + ALL_CHAR_BC;
 
+        FileInputStream fis = new FileInputStream(ALL_CHAR_NAME);
         String actualOutput = wcApplication.countFromStdin(true, true, false,
-                new FileInputStream(ALL_CHAR_NAME));
-
+                fis);
+        fis.close();
         assertEquals(expectedOutput, actualOutput);
     }
 
@@ -803,9 +778,10 @@ class WcApplicationTest {
         String expectedOutput = ALL_CHAR_LC + SPACE_CHAR + ALL_CHAR_WC
                 + SPACE_CHAR + ALL_CHAR_BC;
 
+        FileInputStream fis = new FileInputStream(ALL_CHAR_NAME);
         String actualOutput = wcApplication.countFromStdin(true, true, true,
-                new FileInputStream(ALL_CHAR_NAME));
-
+                fis);
+        fis.close();
         assertEquals(expectedOutput, actualOutput);
     }
 
@@ -813,7 +789,9 @@ class WcApplicationTest {
     void countFromStdinClosedStdinTest() throws Exception {
 
         // Create an inputstream and close it
-        BufferedInputStream bis = new BufferedInputStream(new FileInputStream(ALL_CHAR_NAME));
+        FileInputStream fis = new FileInputStream(ALL_CHAR_NAME);
+        BufferedInputStream bis = new BufferedInputStream(fis);
+        fis.close();
         bis.close();
 
         assertThrows(WcException.class, () -> wcApplication.countFromStdin(true, true, true, bis));

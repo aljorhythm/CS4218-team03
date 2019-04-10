@@ -32,7 +32,7 @@ public final class FileIOTestHelper {
             result.append(currentLine);
             currentLine = reader.readLine();
         }
-
+        reader.close();
         if (result.length() == 0) {
             return "";
         } else {

@@ -248,6 +248,7 @@ class EchoApplicationTest {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME));
             assertEquals(expectedOutput, reader.readLine());
+            reader.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

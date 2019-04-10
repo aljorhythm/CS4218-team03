@@ -42,6 +42,8 @@ public class ShellGrepTest extends ShellTest{
      */
     @AfterAll
     static void resetWorkingDir() {
+        File testFile = new File(FILE_LONG);
+        testFile.delete();
         Environment.currentDirectory = oriWorkingDir;
     }
 
