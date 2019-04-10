@@ -3,6 +3,7 @@ package sg.edu.nus.comp.cs4218.impl.util;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import sg.edu.nus.comp.cs4218.Environment;
+import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
 import sg.edu.nus.comp.cs4218.exception.ShellException;
 
 import java.io.File;
@@ -22,7 +23,7 @@ public class ArgumentResolverTest extends DirectoryStructureTest {
      * @param expectedArr
      * @throws ShellException
      */
-    void assertResolveOneArgument(String arg, String... expectedArr) throws ShellException {
+    void assertResolveOneArgument(String arg, String... expectedArr) throws ShellException, AbstractApplicationException {
         ArgumentResolver argumentResolver = new ArgumentResolver();
         List<String> resolved = argumentResolver.resolveOneArgument(arg, new ApplicationRunner());
         List<String> expected = Arrays.asList(expectedArr);
@@ -35,7 +36,7 @@ public class ArgumentResolverTest extends DirectoryStructureTest {
      * @throws ShellException
      */
     @Test
-    void resolveOneArgumentGlobExpansionAbsolute() throws ShellException {
+    void resolveOneArgumentGlobExpansionAbsolute() throws ShellException, AbstractApplicationException {
         assertResolveOneArgument(testRootDir + "/*", DirectoryStructureTest.allTestRootFiles);
     }
 
@@ -45,7 +46,7 @@ public class ArgumentResolverTest extends DirectoryStructureTest {
      * @throws ShellException
      */
     @Test
-    void resolveOneArgumentGlobExpansionAbsoluteWithNoise() throws ShellException {
+    void resolveOneArgumentGlobExpansionAbsoluteWithNoise() throws ShellException, AbstractApplicationException {
         String arg = "asd " + testRootDir + "/*";
         assertResolveOneArgument(arg, arg);
     }
@@ -56,7 +57,7 @@ public class ArgumentResolverTest extends DirectoryStructureTest {
      * @throws ShellException
      */
     @Test
-    void resolveOneArgumentGlobExpansionRelativeAll(@TempDir Path dir) throws ShellException, IOException {
+    void resolveOneArgumentGlobExpansionRelativeAll(@TempDir Path dir) throws ShellException, IOException, AbstractApplicationException {
         String original = Environment.currentDirectory;
         Environment.currentDirectory = dir
                 .toAbsolutePath()
@@ -77,7 +78,7 @@ public class ArgumentResolverTest extends DirectoryStructureTest {
      * @throws ShellException
      */
     @Test
-    void resolveOneArgumentGlobExpansionRelativeComplex(@TempDir Path dir) throws ShellException, IOException {
+    void resolveOneArgumentGlobExpansionRelativeComplex(@TempDir Path dir) throws ShellException, IOException, AbstractApplicationException {
         String original = Environment.currentDirectory;
         Environment.currentDirectory = dir
                 .toAbsolutePath()
