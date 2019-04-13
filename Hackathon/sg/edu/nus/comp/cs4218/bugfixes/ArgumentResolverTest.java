@@ -1,10 +1,13 @@
-package sg.edu.nus.comp.cs4218.impl.util;
+package sg.edu.nus.comp.cs4218.bugfixes;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import sg.edu.nus.comp.cs4218.Environment;
 import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
 import sg.edu.nus.comp.cs4218.exception.ShellException;
+import sg.edu.nus.comp.cs4218.impl.util.ApplicationRunner;
+import sg.edu.nus.comp.cs4218.impl.util.ArgumentResolver;
+import sg.edu.nus.comp.cs4218.impl.util.DirectoryStructureTest;
 
 import java.io.File;
 import java.io.IOException;
