@@ -1,5 +1,8 @@
 package sg.edu.nus.comp.cs4218.bugfixes;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import sg.edu.nus.comp.cs4218.Environment;
@@ -19,6 +22,49 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ArgumentResolverTest extends DirectoryStructureTest {
+
+    /**
+     * Original working directory before this test class is run
+     */
+    private static String origWorkingDir;
+
+    /**
+     * Working directory where temporary files are created
+     */
+    private static String testWorkingDir;
+
+    /**
+     * Creates directories for tests, sets working directory
+     * @param tempDir
+     * @throws IOException
+     */
+    @BeforeAll
+    public static void createDirectories(@TempDir Path tempDir) throws IOException {
+        origWorkingDir = Environment.currentDirectory;
+        System.out.println("Original dir was:" + Environment.currentDirectory);
+
+        testWorkingDir = tempDir.toString();
+        Environment.currentDirectory = testWorkingDir;
+    }
+
+    /**
+     * Sets working directory to temporary test directory before each test
+     */
+    @BeforeEach
+    public void setWorkingDirectory() {
+        Environment.currentDirectory = testWorkingDir;
+        System.out.println("Current directory set to :" + Environment.currentDirectory);
+    }
+
+    /**
+     * Reverts working directory
+     */
+    @AfterAll
+    public static void revertCurrentDirectory(){
+        Environment.currentDirectory = origWorkingDir;
+        System.out.println("Current directory reverted to :" + Environment.currentDirectory);
+    }
+
     /**
      * Asserts resolution of one argument is correct
      *
