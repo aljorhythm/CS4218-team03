@@ -34,8 +34,8 @@ public class EchoApplication implements EchoInterface {
      */
     @Override
     public void run(String[] args, InputStream stdin, OutputStream stdout) throws EchoException {
-        if(args == null || args.length == 0){
-            throw new EchoException("Empty arguments");
+        if(stdout == null){
+            throw new EchoException("Null OutputStream");
         }
         String result;
         try {
