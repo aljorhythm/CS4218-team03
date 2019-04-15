@@ -101,12 +101,12 @@ public final class CommandBuilder {//NOPMD
                     // add as a separate token on its own
                     tokens.add(String.valueOf(firstChar));
                     if (cmdsForIORedirection.isEmpty()) {
-                        int index = commandSubstring.indexOf(CHAR_SPACE, 2);
-                        if (index < 2) {
-                            tokens.add(commandSubstring.substring(2));
+                        int index = commandSubstring.indexOf(CHAR_SPACE, 1);
+                        if (index < 1) {
+                            tokens.add(commandSubstring.substring(1));
                             commandSubstring = "";
                         } else {
-                            tokens.add(commandSubstring.substring(2, index + 1));
+                            tokens.add(commandSubstring.substring(1, index + 1));
                             commandSubstring = commandSubstring.substring(index + 1);
                         }
                         cmdsForIORedirection.add(new CallCommand(tokens, argumentResolver, appRunner));
@@ -116,7 +116,7 @@ public final class CommandBuilder {//NOPMD
                     if (tokens.isEmpty()) {
                         throw new ShellException(ERR_SYNTAX);
                     }
-                    if (commandSubstring.length() > 1) {
+                    if (commandSubstring.length() >= 1) {
                         commandSubstring = commandSubstring.substring(0);
                     } else {
                         commandSubstring = null;
