@@ -221,20 +221,17 @@ class EchoApplicationTest {
     */
 
     @Test
-    void testRunArgsNullArgThrowException() throws Exception {
-        Throwable thrown = assertThrows(EchoException.class, () -> {
+    void testRunArgsNullArgThrowException() {
+        assertThrows(EchoException.class, () -> {
             application.run(null, stdin, stdout);
         });
-        assertEquals(new EchoException(ERR_EMPTY_ARG).getMessage(), thrown.getMessage());
     }
 
     @Test
     void testRunArgsEmptyArgThrowException() throws Exception {
         String[] emptyArg = new String[0];
-        Throwable thrown = assertThrows(EchoException.class, () -> {
-            application.run(emptyArg, stdin, stdout);
-        });
-        assertEquals(new EchoException(ERR_EMPTY_ARG).getMessage(), thrown.getMessage());
+        application.run(emptyArg, stdin, stdout);
+        assertEquals("", stdout.toString());
     }
 
 
