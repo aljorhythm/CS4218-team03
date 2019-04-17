@@ -30,8 +30,6 @@ public class WcApplication implements WcInterface {
                 IOUtils.closeInputStream(inputStream);
             } catch (IOException e) {
                 throw (WcException) new WcException("IO not working").initCause(e);
-            } catch (ShellException e) {
-                throw (WcException) new WcException("Shell exception").initCause(e);
             }
         }
 

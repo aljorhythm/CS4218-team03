@@ -25,9 +25,9 @@ public final class IOUtils {
      *
      * @param fileName String containing file name.
      * @return InputStream of file opened.
-     * @throws ShellException If file destination is inaccessible.
+     * @throws FileNotFoundException If file destination is inaccessible.
      */
-    public static InputStream openInputStream(String fileName) throws ShellException, FileNotFoundException {
+    public static InputStream openInputStream(String fileName) throws FileNotFoundException {
         String resolvedFileName = resolveFilePath(fileName).toString();
 
         FileInputStream fileInputStream;
@@ -58,13 +58,11 @@ public final class IOUtils {
      * @param inputStream InputStream to be closed.
      * @throws ShellException If inputStream cannot be closed successfully.
      */
-    public static void closeInputStream(InputStream inputStream) throws ShellException, IOException {
+    public static void closeInputStream(InputStream inputStream) throws IOException {
         if (inputStream == System.in || inputStream == null) {
             return;
         }
-
         inputStream.close();
-
     }
 
     /**
@@ -125,8 +123,6 @@ public final class IOUtils {
         if (inputStream == null) {
             throw new IOException(NULL_STREAM);
         }
-
-        String newLine = STRING_NEWLINE;
 
         ByteArrayOutputStream result = new ByteArrayOutputStream();
         byte[] buffer = new byte[1024];

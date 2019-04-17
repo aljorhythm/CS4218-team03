@@ -37,7 +37,6 @@ public class CallCommand implements Command {
     @Override
     public void evaluate(InputStream stdin, OutputStream stdout)
             throws AbstractApplicationException, ShellException {
-        IOException ioException = null;
         if (argsList == null || argsList.isEmpty()) {
             throw new ShellException(ERR_SYNTAX);
         }
@@ -64,7 +63,7 @@ public class CallCommand implements Command {
             try {
                 outputStream.write(STRING_NEWLINE.getBytes());
             } catch (IOException e) {
-                ioException = e;
+                e.printStackTrace();
             }
         }
     }

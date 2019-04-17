@@ -47,39 +47,13 @@ public class CatApplication implements CatInterface {
             throw new CatException(ERR_GENERAL);
         }
 
-        InputStream[] fileInputStreams = new InputStream[fileNames.length];
-        for (int i = 0; i < fileNames.length; i++) {
-            String fileName = fileNames[i];
-            if (new File(fileName).isDirectory()) {
-                throw new CatException(ERR_IS_DIR);
-            }
-            try {
-                InputStream fileInputStream = IOUtils.openInputStream(fileName);
-                fileInputStreams[i] = fileInputStream;
-            } catch (ShellException e) {
-                throw (CatException) new CatException(ERR_RD_FILE).initCause(e);
-            } catch (FileNotFoundException e) {
-                String error = e.getMessage().toLowerCase(Environment.LOCALE);
-                error = error.contains("permission denied") ? ERR_NO_PERM : ERR_RD_FILE;
-                throw (CatException) new CatException(error).initCause(e);
-            }
-        }
-
         String[] outputs = new String[fileNames.length];
 
-        for (int i = 0; i < fileInputStreams.length; i++) {
-            InputStream inputStream = fileInputStreams[i];
-
+        for (int i = 0; i < fileNames.length; i++) {
             try {
+                InputStream inputStream = IOUtils.openInputStream(fileNames[i]);
                 outputs[i] = IOUtils.stringFromInputStream(inputStream);
-            } catch (IOException e) {
-                throw (CatException) new CatException(ERR_RD_FILE).initCause(e);
-            }
-
-            try {
                 IOUtils.closeInputStream(inputStream);
-            } catch (ShellException e) {
-                throw (CatException) new CatException(ERR_RD_FILE).initCause(e);
             } catch (IOException e) {
                 throw (CatException) new CatException(ERR_RD_FILE).initCause(e);
             }
