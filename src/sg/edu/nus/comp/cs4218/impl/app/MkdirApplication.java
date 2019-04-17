@@ -19,6 +19,8 @@ public class MkdirApplication implements MkdirInterface {
             file = new File(folderName[i]);
             if (!file.exists()) {
                 file.mkdirs();
+            } else{
+                throw new MkdirException("Folder already exists!");
             }
         }
     }
