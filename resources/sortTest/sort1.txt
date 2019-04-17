@@ -1,0 +1,13 @@
+0
+0a
+1
+10a
+abcd
+10
+1a
+2
+2a
+aabb
+AABB
+&&**
+ABCD

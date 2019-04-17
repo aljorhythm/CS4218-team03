@@ -26,7 +26,7 @@ class SortApplicationTest {
     static String string_3_sorted_number = String.join(StringUtils.STRING_NEWLINE, new String[]{"1 asd", "2 abc", "3 cde", "10 asdas", "10 sss"});
     static String string_4 = String.join(StringUtils.STRING_NEWLINE, new String[]{"aAa", "aaa", "ccc", "cCc", "bbb"});
     static String string_4_sorted_depcase = String.join(StringUtils.STRING_NEWLINE, new String[]{"aAa","aaa","bbb", "cCc", "ccc"});
-    static String string_4_sorted_indcase = String.join(StringUtils.STRING_NEWLINE, new String[]{"aAa", "aaa", "bbb", "ccc", "cCc"});
+    static String string_4_sorted_indcase = String.join(StringUtils.STRING_NEWLINE, new String[]{"aAa", "aaa", "bbb", "cCc", "ccc"});
 
 
     /**

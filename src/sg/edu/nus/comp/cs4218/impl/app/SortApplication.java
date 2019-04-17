@@ -78,6 +78,9 @@ public class SortApplication implements SortInterface{
         ArrayList<String> files = new ArrayList<>();
         for (String arg : args){
             if (arg.charAt(0) == '-'){
+                if (arg.length() == 1){
+                    throw new SortException("invalid arg");
+                }
                 for (int iterator = 1; iterator < arg.length(); iterator++){
                     if (arg.charAt(iterator) == 'n') {
                         firstWord = true;
@@ -107,7 +110,7 @@ public class SortApplication implements SortInterface{
                 String result = sortFromFiles(firstWord,reverseOrder,caseIndependent,file);
                 stdout.write(result.getBytes());
             }catch (Exception e){
-                throw (SortException) new SortException("").initCause(e);
+                throw (SortException) new SortException("File not exist").initCause(e);
             }
         }
         else {
@@ -169,6 +172,19 @@ public class SortApplication implements SortInterface{
                         return -1;
                     }
                     index++;
+                }
+                index = 0;
+                if (result == 0 && isCaseIndependent){
+                    while (index < wordLength){
+                        char charOfO1 = string1.charAt(index), charOfO2 = string2.charAt(index);
+                        if (charOfO1 > charOfO2) {
+                            return 1;
+                        }
+                        else if (charOfO1 < charOfO2){
+                            return -1;
+                        }
+                        index++;
+                    }
                 }
                 return result;
             }
