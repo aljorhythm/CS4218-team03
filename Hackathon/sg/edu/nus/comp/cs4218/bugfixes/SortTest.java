@@ -1,13 +1,8 @@
 package sg.edu.nus.comp.cs4218.bugfixes;
 
 import org.junit.jupiter.api.Test;
-import sg.edu.nus.comp.cs4218.Shell;
 import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
-import sg.edu.nus.comp.cs4218.exception.EchoException;
-import sg.edu.nus.comp.cs4218.exception.ShellException;
 import sg.edu.nus.comp.cs4218.exception.SortException;
-import sg.edu.nus.comp.cs4218.impl.ShellImpl;
-import sg.edu.nus.comp.cs4218.impl.app.EchoApplication;
 import sg.edu.nus.comp.cs4218.impl.app.SortApplication;
 import sg.edu.nus.comp.cs4218.impl.util.IOUtils;
 
@@ -15,28 +10,27 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.InputStream;
-import java.nio.file.Files;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SortTest {
-    String SORT_PATH = "resources/sortTest/sort1.txt";
-    SortApplication sa = new SortApplication();
+    String sortPATH = "resources/sortTest/sort1.txt";
+    SortApplication sortApplication = new SortApplication();
 
     @Test
     public void sortForUncaughtException(){
         String[] args = {"-n", "sort1.txt"};
         ByteArrayOutputStream stdout = new ByteArrayOutputStream();
-        assertThrows(SortException.class, ()->sa.run(args,System.in, stdout));
+        assertThrows(SortException.class, ()-> sortApplication.run(args, System.in, stdout));
     }
 
     @Test
     public void runFailureInvalidFlagDash() {
-        String[] args = {"-", SORT_PATH};
+        String[] args = {"-", sortPATH};
         ByteArrayOutputStream stdout = new ByteArrayOutputStream();
         assertThrows(SortException.class, () ->
-                sa.run(args, System.in, stdout), "");
+                sortApplication.run(args, System.in, stdout), "");
     }
 
     @Test
@@ -57,8 +51,8 @@ public class SortTest {
                 "aabb" + System.lineSeparator()+
                 "ABCD" + System.lineSeparator()+
                 "abcd";
-        String[] args = {"-f", SORT_PATH};
-        sa.run(args, System.in, stdout);
+        String[] args = {"-f", sortPATH};
+        sortApplication.run(args, System.in, stdout);
         assertEquals(expectedResult,
                 stdout.toString());
     }
