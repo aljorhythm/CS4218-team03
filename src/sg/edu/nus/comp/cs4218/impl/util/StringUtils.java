@@ -106,7 +106,12 @@ public final class StringUtils {
             return false;
         }
         if(str.startsWith("-")) {
-            str = str.substring(1, str.length() - 1);
+            if (str.length() > 1){
+                str = str.substring(1, str.length() - 1);
+            }
+            else {
+                return false;
+            }
         }
         for (int i = 0; i < str.length(); i++) {
             if (!Character.isDigit(str.charAt(i))) {

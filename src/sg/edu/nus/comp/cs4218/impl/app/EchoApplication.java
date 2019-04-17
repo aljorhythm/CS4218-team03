@@ -34,18 +34,17 @@ public class EchoApplication implements EchoInterface {
      */
     @Override
     public void run(String[] args, InputStream stdin, OutputStream stdout) throws EchoException {
-        if(args == null || args.length == 0){
-            throw new EchoException("Empty arguments");
+        if (args == null) {
+            throw new EchoException("Null arguments");
+        }
+        if(stdout == null){
+            throw new EchoException("Null OutputStream");
         }
         String result;
         try {
             result = this.constructResult(args);
-        } catch (AbstractApplicationException e) {
-            throw new EchoException(FAIL_ECHO);//NOPMD
-        }
-
-        if(stdout == null) {
-            return;
+        } catch (EchoException e) {
+            throw e;//NOPMD
         }
 
         try {

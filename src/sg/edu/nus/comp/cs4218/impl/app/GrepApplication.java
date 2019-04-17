@@ -41,8 +41,6 @@ public class GrepApplication implements GrepInterface {
                 IOUtils.closeInputStream(inputStream);
             } catch (IOException e) {
                 throw (GrepException) new GrepException("IO not working").initCause(e);
-            } catch (ShellException e) {
-                throw (GrepException) new GrepException("Shell exception").initCause(e);
             }
         }
         return result.toString().trim();
