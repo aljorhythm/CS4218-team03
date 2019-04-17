@@ -59,7 +59,7 @@ public class FirstCharUnreadTest {
                     ByteArrayOutputStream outstream = new
                             ByteArrayOutputStream();
                     shell.parseAndEvaluate(arg, outstream);
-                    String expectedResult = "4 9 46" + System.lineSeparator();
+                    String expectedResult = "4 9 50" + System.lineSeparator();
                     String actualResult =
                             outstream.toString();
                     assertEquals(expectedResult,

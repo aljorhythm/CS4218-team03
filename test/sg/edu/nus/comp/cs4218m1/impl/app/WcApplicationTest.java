@@ -37,27 +37,27 @@ class WcApplicationTest {
 
     @Test
     void testCountFromStdinDefaultOutPutAllSuccess() throws Exception {
-        assertEquals("2 4 11", wcApp.countFromStdin(true, true, true, defaultIStream));
+        assertEquals("1 4 12", wcApp.countFromStdin(true, true, true, defaultIStream));
     }
 
     @Test
     void testCountFromStdinNoBytessWantedSuccess() throws Exception {
-        assertEquals("2 4", wcApp.countFromStdin(false, true, true, defaultIStream));
+        assertEquals("1 4", wcApp.countFromStdin(false, true, true, defaultIStream));
     }
 
     @Test
     void testCountFromStdinOnlyLinesSuccess() throws Exception {
-        assertEquals("2", wcApp.countFromStdin(false, true, false, defaultIStream));
+        assertEquals("1", wcApp.countFromStdin(false, true, false, defaultIStream));
     }
 
     @Test
     void testCountFromStdinNoWordsWantedSuccess() throws Exception {
-        assertEquals("2 11", wcApp.countFromStdin(true, true, false, defaultIStream));
+        assertEquals("1 12", wcApp.countFromStdin(true, true, false, defaultIStream));
     }
 
     @Test
     void testCountFromStdinOnlyBytesSuccess() throws Exception {
-        assertEquals("11", wcApp.countFromStdin(true, false, false, defaultIStream));
+        assertEquals("12", wcApp.countFromStdin(true, false, false, defaultIStream));
     }
 
     @Test
@@ -67,7 +67,7 @@ class WcApplicationTest {
 
     @Test
     void testCountFromStdinNoLinesWantedSuccess() throws Exception {
-        assertEquals("4 11", wcApp.countFromStdin(true, false, true, defaultIStream));
+        assertEquals("4 12", wcApp.countFromStdin(true, false, true, defaultIStream));
     }
 
     @Test

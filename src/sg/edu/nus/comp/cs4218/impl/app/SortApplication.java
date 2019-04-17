@@ -73,6 +73,7 @@ public class SortApplication implements SortInterface{
         return String.join(StringUtils.STRING_NEWLINE,list.toArray(new String[0]));
     }
 
+    @SuppressWarnings("PMD.ExcessiveMethodLength")
     public void run(String[] args, InputStream stdin, OutputStream stdout) throws SortException {
         if (args == null) {
             throw new SortException("Argument is null!");

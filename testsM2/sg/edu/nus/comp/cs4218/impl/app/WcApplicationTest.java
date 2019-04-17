@@ -74,26 +74,26 @@ class WcApplicationTest {
 
     // WC = Word Count, LC = Line Count, BC = Byte Count
     public static final int ALPHA_NUM_WC = 18;
-    public static final int ALPHA_NUM_LC = 1;
+    public static final int ALPHA_NUM_LC = 0;
     public static final int ALPHA_NUM_BC = 68;
     public static final int ALPHA_WS_WC = 14;
-    public static final int ALPHA_WS_LC = 3;
-    public static final int ALPHA_WS_BC = 99;
+    public static final int ALPHA_WS_LC = 2;
+    public static final int ALPHA_WS_BC = 101;
     public static final int ALPHA_OTHERS_WC = 19;
-    public static final int ALPHA_OTHERS_LC = 1;
+    public static final int ALPHA_OTHERS_LC = 0;
     public static final int ALPHA_OTHERS_BC = 86;
     public static final int NUM_WS_WC = 8;
-    public static final int NUM_WS_LC = 5;
-    public static final int NUM_WS_BC = 33;
+    public static final int NUM_WS_LC = 4;
+    public static final int NUM_WS_BC = 37;
     public static final int NUM_OTHERS_WC = 12;
-    public static final int NUM_OTHERS_LC = 1;
+    public static final int NUM_OTHERS_LC = 0;
     public static final int NUM_OTHERS_BC = 35;
     public static final int WS_OTHERS_WC = 5;
-    public static final int WS_OTHERS_LC = 7;
-    public static final int WS_OTHERS_BC = 31;
+    public static final int WS_OTHERS_LC = 6;
+    public static final int WS_OTHERS_BC = 37;
     public static final int ALL_CHAR_WC = 37;
-    public static final int ALL_CHAR_LC = 5;
-    public static final int ALL_CHAR_BC = 183;
+    public static final int ALL_CHAR_LC = 4;
+    public static final int ALL_CHAR_BC = 187;
 
     public static final String SPACE_CHAR = " ";
     public static final String NEWLINE_CHAR = StringUtils.STRING_NEWLINE;
@@ -696,12 +696,9 @@ class WcApplicationTest {
 
     @Test
     void countFromStdinWhitespaceAndOthersTest() throws Exception {
-        String expectedOutput = String.format(TWO_ARG_FORMAT, WS_OTHERS_LC,
-                WS_OTHERS_WC, WS_OTHERS_BC);
-
+        String expectedOutput = String.format(TWO_ARG_FORMAT, WS_OTHERS_LC, WS_OTHERS_WC, WS_OTHERS_BC);
         FileInputStream fis = new FileInputStream(WS_OTHERS_NAME);
-        String actualOutput = wcApplication.countFromStdin(true, true, true,
-                fis);
+        String actualOutput = wcApplication.countFromStdin(true, true, true, fis);
         fis.close();
         assertEquals(expectedOutput, actualOutput);
     }
@@ -948,11 +945,10 @@ class WcApplicationTest {
 
     @Test
     void countFromMultipleFileShowOnlyByteTest() throws Exception {
-        String expectedOutput = String.format(ONE_ARG_FORMAT, ALL_CHAR_BC, ALL_CHAR_NAME)
-                + NEWLINE_CHAR + String.format(ONE_ARG_FORMAT, ALPHA_WS_BC, ALPHA_WS_NAME)
-                + NEWLINE_CHAR + String.format(ONE_ARG_FORMAT, NUM_WS_BC, NUM_WS_NAME)
-                + NEWLINE_CHAR + String.format(ONE_ARG_FORMAT, calculateTotal(ALL_CHAR_BC,
-                ALPHA_WS_BC, NUM_WS_BC), MULP_FILE_TOTAL);
+        String expectedOutput = String.format(ONE_ARG_FORMAT, ALL_CHAR_BC, ALL_CHAR_NAME) + NEWLINE_CHAR +
+                String.format(ONE_ARG_FORMAT, ALPHA_WS_BC, ALPHA_WS_NAME) + NEWLINE_CHAR +
+                String.format(ONE_ARG_FORMAT, NUM_WS_BC, NUM_WS_NAME) + NEWLINE_CHAR +
+                String.format(ONE_ARG_FORMAT, calculateTotal(ALL_CHAR_BC, ALPHA_WS_BC, NUM_WS_BC), MULP_FILE_TOTAL);
 
         String actualOutput = wcApplication.countFromFiles(true, false, false,
                 ALL_CHAR_NAME, ALPHA_WS_NAME, NUM_WS_NAME);

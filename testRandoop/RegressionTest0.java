@@ -1501,7 +1501,7 @@ public class RegressionTest0 {
         try {
             sortApplication0.run(strArray1, inputStream2, outputStream3);
             fail("Expected exception of type java.lang.NullPointerException; message: null");
-        } catch (java.lang.NullPointerException e) {
+        } catch (sg.edu.nus.comp.cs4218.exception.SortException e) {
         }
     }
 
