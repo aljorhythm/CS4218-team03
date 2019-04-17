@@ -72,8 +72,10 @@ public class MkdirApplicationTest {
      * @throws MkdirException
      */
     @Test
-    void testCreateFolderEmptyInputSuccess() throws MkdirException {
-        mkdirApplication.createFolder("");
+    void testCreateFolderEmptyInputFailure() {
+        assertThrows(MkdirException.class, () -> {
+            mkdirApplication.createFolder("");
+        });
         assertEquals(0, new File(pathToTestDir).list().length);
     }
 

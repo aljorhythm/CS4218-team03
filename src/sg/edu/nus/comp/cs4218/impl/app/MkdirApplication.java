@@ -16,11 +16,17 @@ public class MkdirApplication implements MkdirInterface {
         }
         File file;
         for(int i = 0;i < folderName.length;i++){
+            if (folderName[i].equals("")) {
+                throw new MkdirException("No folder name provided!");
+            }
             file = new File(folderName[i]);
-            if (!file.exists()) {
-                file.mkdirs();
-            } else{
+            if (file.exists()) {
                 throw new MkdirException("Folder already exists!");
+            } else{
+                file.mkdir();
+                if (!file.exists()) {
+                    throw new MkdirException("Parent directory exists!");
+                }
             }
         }
     }

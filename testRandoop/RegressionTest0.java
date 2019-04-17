@@ -2,6 +2,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import sg.edu.nus.comp.cs4218.Environment;
+import sg.edu.nus.comp.cs4218.exception.MkdirException;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,9 +18,15 @@ public class RegressionTest0 {
     private static String origWorkingDir;
 
     @BeforeAll
-    public static void createDirectories() {
+    public static void createDirectories() throws MkdirException {
         origWorkingDir = Environment.currentDirectory;
         System.out.println("Original dir was:" + Environment.currentDirectory);
+        java.lang.String[] strArray = new java.lang.String[] {"Could not read stream", "Exception Caught", "fail_echo",
+                "fail_echo_write", "fail_sed_write", "File doesn't exist", "hi!", "null arguments",
+                "null input file provided", "null output stream provided", "Null Pointer Exception",
+                "Terminate process", "This is a directory", "This is a directory Could not read stream Null Pointer Exception Exception Caught"};
+        sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
+        mkdirApplication.run(strArray, null, null);
     }
 
     /**
@@ -51,7 +58,7 @@ public class RegressionTest0 {
         java.lang.String[] strArray7 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream8 = null;
         java.io.OutputStream outputStream9 = null;
-        mkdirApplication4.run(strArray7, inputStream8, outputStream9);
+        
         try {
             java.lang.String str11 = grepApplication0.grepFromFiles("This is a directory", (java.lang.Boolean) true, (java.lang.Boolean) false, strArray7);
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
@@ -67,9 +74,6 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication0 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication1 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray8 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
-        java.io.InputStream inputStream9 = null;
-        java.io.OutputStream outputStream10 = null;
-        mkdirApplication1.run(strArray8, inputStream9, outputStream10);
         java.io.InputStream inputStream12 = null;
         java.io.OutputStream outputStream13 = null;
         try {
@@ -87,9 +91,6 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.SortApplication sortApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SortApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication1 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray8 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
-        java.io.InputStream inputStream9 = null;
-        java.io.OutputStream outputStream10 = null;
-        mkdirApplication1.run(strArray8, inputStream9, outputStream10);
         java.io.InputStream inputStream12 = null;
         java.io.OutputStream outputStream13 = null;
         try {
@@ -107,9 +108,6 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.SedApplication sedApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SedApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication1 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray8 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
-        java.io.InputStream inputStream9 = null;
-        java.io.OutputStream outputStream10 = null;
-        mkdirApplication1.run(strArray8, inputStream9, outputStream10);
         java.io.InputStream inputStream12 = null;
         java.io.OutputStream outputStream13 = null;
         try {
@@ -127,9 +125,6 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.GrepApplication grepApplication0 = new sg.edu.nus.comp.cs4218.impl.app.GrepApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication4 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray7 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
-        java.io.InputStream inputStream8 = null;
-        java.io.OutputStream outputStream9 = null;
-        mkdirApplication4.run(strArray7, inputStream8, outputStream9);
         try {
             java.lang.String str11 = grepApplication0.grepFromFiles("fail_sed_write", (java.lang.Boolean) false, (java.lang.Boolean) false, strArray7);
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
@@ -146,9 +141,6 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication4 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication6 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray9 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
-        java.io.InputStream inputStream10 = null;
-        java.io.OutputStream outputStream11 = null;
-        mkdirApplication6.run(strArray9, inputStream10, outputStream11);
         java.lang.String str13 = findApplication4.findFolderContent("", strArray9);
         try {
             java.lang.String str14 = grepApplication0.grepFromFiles("File is null.", (java.lang.Boolean) true, (java.lang.Boolean) false, strArray9);
@@ -167,9 +159,6 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication1 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication3 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray6 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
-        java.io.InputStream inputStream7 = null;
-        java.io.OutputStream outputStream8 = null;
-        mkdirApplication3.run(strArray6, inputStream7, outputStream8);
         java.lang.String str10 = findApplication1.findFolderContent("", strArray6);
         java.io.InputStream inputStream11 = null;
         java.io.OutputStream outputStream12 = null;
@@ -229,15 +218,9 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication0 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication2 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray5 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
-        java.io.InputStream inputStream6 = null;
-        java.io.OutputStream outputStream7 = null;
-        mkdirApplication2.run(strArray5, inputStream6, outputStream7);
         java.lang.String str9 = findApplication0.findFolderContent("", strArray5);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication10 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray13 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
-        java.io.InputStream inputStream14 = null;
-        java.io.OutputStream outputStream15 = null;
-        mkdirApplication10.run(strArray13, inputStream14, outputStream15);
         java.io.InputStream inputStream17 = null;
         java.io.OutputStream outputStream18 = null;
         try {
@@ -257,9 +240,6 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.GrepApplication grepApplication0 = new sg.edu.nus.comp.cs4218.impl.app.GrepApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication1 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray8 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
-        java.io.InputStream inputStream9 = null;
-        java.io.OutputStream outputStream10 = null;
-        mkdirApplication1.run(strArray8, inputStream9, outputStream10);
         java.io.InputStream inputStream12 = null;
         java.io.OutputStream outputStream13 = null;
         try {
@@ -277,9 +257,6 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.DateApplication dateApplication0 = new sg.edu.nus.comp.cs4218.impl.app.DateApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication1 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray8 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
-        java.io.InputStream inputStream9 = null;
-        java.io.OutputStream outputStream10 = null;
-        mkdirApplication1.run(strArray8, inputStream9, outputStream10);
         java.io.InputStream inputStream12 = null;
         java.io.OutputStream outputStream13 = null;
         try {
@@ -297,7 +274,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.CatApplication catApplication0 = new sg.edu.nus.comp.cs4218.impl.app.CatApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication1 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray4 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication1.createFolder(strArray4);
+        
         try {
             java.lang.String str6 = catApplication0.catFiles(strArray4);
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
@@ -313,7 +290,6 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication0 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication1 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray4 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication1.createFolder(strArray4);
         java.io.InputStream inputStream6 = null;
         java.io.OutputStream outputStream7 = null;
         try {
@@ -332,9 +308,6 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication1 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication3 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray6 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
-        java.io.InputStream inputStream7 = null;
-        java.io.OutputStream outputStream8 = null;
-        mkdirApplication3.run(strArray6, inputStream7, outputStream8);
         java.lang.String str10 = findApplication1.findFolderContent("", strArray6);
         java.io.InputStream inputStream11 = null;
         java.io.OutputStream outputStream12 = null;
@@ -354,15 +327,9 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication0 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication2 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray5 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
-        java.io.InputStream inputStream6 = null;
-        java.io.OutputStream outputStream7 = null;
-        mkdirApplication2.run(strArray5, inputStream6, outputStream7);
         java.lang.String str9 = findApplication0.findFolderContent("", strArray5);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication11 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray18 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
-        java.io.InputStream inputStream19 = null;
-        java.io.OutputStream outputStream20 = null;
-        mkdirApplication11.run(strArray18, inputStream19, outputStream20);
         try {
             java.lang.String str22 = findApplication0.findFolderContent("File doesn't exist.", strArray18);
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: nonExistentFolder: No such file or directory");
@@ -380,7 +347,6 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.SortApplication sortApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SortApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication1 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray4 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication1.createFolder(strArray4);
         java.io.InputStream inputStream6 = null;
         java.io.OutputStream outputStream7 = null;
         try {
@@ -400,9 +366,6 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication7 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication9 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray12 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
-        java.io.InputStream inputStream13 = null;
-        java.io.OutputStream outputStream14 = null;
-        mkdirApplication9.run(strArray12, inputStream13, outputStream14);
         java.lang.String str16 = findApplication7.findFolderContent("", strArray12);
         java.lang.String str17 = lsApplication4.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray12);
         try {
@@ -422,7 +385,6 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.CatApplication catApplication0 = new sg.edu.nus.comp.cs4218.impl.app.CatApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication1 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray4 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication1.createFolder(strArray4);
         java.io.InputStream inputStream6 = null;
         java.io.OutputStream outputStream7 = null;
         try {
@@ -453,9 +415,6 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.SortApplication sortApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SortApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication4 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray11 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
-        java.io.InputStream inputStream12 = null;
-        java.io.OutputStream outputStream13 = null;
-        mkdirApplication4.run(strArray11, inputStream12, outputStream13);
         try {
             java.lang.String str15 = sortApplication0.sortFromFiles((java.lang.Boolean) false, (java.lang.Boolean) true, (java.lang.Boolean) true, strArray11);
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
@@ -472,14 +431,10 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication3 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication5 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray8 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
-        java.io.InputStream inputStream9 = null;
-        java.io.OutputStream outputStream10 = null;
-        mkdirApplication5.run(strArray8, inputStream9, outputStream10);
         java.lang.String str12 = findApplication3.findFolderContent("", strArray8);
         java.lang.String str13 = lsApplication0.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray8);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication14 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray17 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication14.createFolder(strArray17);
         java.io.InputStream inputStream19 = null;
         java.io.OutputStream outputStream20 = null;
         try {
@@ -510,9 +465,6 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication4 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication6 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray9 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
-        java.io.InputStream inputStream10 = null;
-        java.io.OutputStream outputStream11 = null;
-        mkdirApplication6.run(strArray9, inputStream10, outputStream11);
         java.lang.String str13 = findApplication4.findFolderContent("", strArray9);
         java.lang.String str14 = lsApplication1.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray9);
         java.io.InputStream inputStream15 = null;
@@ -534,9 +486,6 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.GrepApplication grepApplication0 = new sg.edu.nus.comp.cs4218.impl.app.GrepApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication4 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray7 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
-        java.io.InputStream inputStream8 = null;
-        java.io.OutputStream outputStream9 = null;
-        mkdirApplication4.run(strArray7, inputStream8, outputStream9);
         try {
             java.lang.String str11 = grepApplication0.grepFromFiles("fail_echo_write", (java.lang.Boolean) false, (java.lang.Boolean) false, strArray7);
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
@@ -579,9 +528,6 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication1 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication4 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray7 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
-        java.io.InputStream inputStream8 = null;
-        java.io.OutputStream outputStream9 = null;
-        mkdirApplication4.run(strArray7, inputStream8, outputStream9);
         java.lang.String str11 = lsApplication1.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray7);
         try {
             java.lang.String str12 = catApplication0.catFiles(strArray7);
@@ -599,21 +545,12 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.CatApplication catApplication0 = new sg.edu.nus.comp.cs4218.impl.app.CatApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication1 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray8 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
-        java.io.InputStream inputStream9 = null;
-        java.io.OutputStream outputStream10 = null;
-        mkdirApplication1.run(strArray8, inputStream9, outputStream10);
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication12 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication15 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication17 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray20 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
-        java.io.InputStream inputStream21 = null;
-        java.io.OutputStream outputStream22 = null;
-        mkdirApplication17.run(strArray20, inputStream21, outputStream22);
         java.lang.String str24 = findApplication15.findFolderContent("", strArray20);
         java.lang.String str25 = lsApplication12.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray20);
-        java.io.InputStream inputStream26 = null;
-        java.io.OutputStream outputStream27 = null;
-        mkdirApplication1.run(strArray20, inputStream26, outputStream27);
         try {
             java.lang.String str29 = catApplication0.catFiles(strArray20);
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
@@ -634,9 +571,6 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication4 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication6 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray9 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
-        java.io.InputStream inputStream10 = null;
-        java.io.OutputStream outputStream11 = null;
-        mkdirApplication6.run(strArray9, inputStream10, outputStream11);
         java.lang.String str13 = findApplication4.findFolderContent("", strArray9);
         java.lang.String str14 = lsApplication1.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray9);
         java.io.InputStream inputStream15 = null;
@@ -659,9 +593,6 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication1 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication4 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray7 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
-        java.io.InputStream inputStream8 = null;
-        java.io.OutputStream outputStream9 = null;
-        mkdirApplication4.run(strArray7, inputStream8, outputStream9);
         java.lang.String str11 = lsApplication1.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray7);
         java.io.InputStream inputStream12 = null;
         java.io.OutputStream outputStream13 = null;
@@ -682,21 +613,13 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.EchoApplication echoApplication1 = new sg.edu.nus.comp.cs4218.impl.app.EchoApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication2 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray9 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
-        java.io.InputStream inputStream10 = null;
-        java.io.OutputStream outputStream11 = null;
-        mkdirApplication2.run(strArray9, inputStream10, outputStream11);
+
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication13 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication16 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication18 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray21 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
-        java.io.InputStream inputStream22 = null;
-        java.io.OutputStream outputStream23 = null;
-        mkdirApplication18.run(strArray21, inputStream22, outputStream23);
         java.lang.String str25 = findApplication16.findFolderContent("", strArray21);
         java.lang.String str26 = lsApplication13.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray21);
-        java.io.InputStream inputStream27 = null;
-        java.io.OutputStream outputStream28 = null;
-        mkdirApplication2.run(strArray21, inputStream27, outputStream28);
         java.lang.String str30 = echoApplication1.constructResult(strArray21);
         java.io.InputStream inputStream31 = null;
         java.io.OutputStream outputStream32 = null;
@@ -721,9 +644,6 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication4 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication6 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray9 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
-        java.io.InputStream inputStream10 = null;
-        java.io.OutputStream outputStream11 = null;
-        mkdirApplication6.run(strArray9, inputStream10, outputStream11);
         java.lang.String str13 = findApplication4.findFolderContent("", strArray9);
         java.lang.String str14 = lsApplication1.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray9);
         java.io.InputStream inputStream15 = null;
@@ -758,21 +678,12 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.EchoApplication echoApplication1 = new sg.edu.nus.comp.cs4218.impl.app.EchoApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication2 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray9 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
-        java.io.InputStream inputStream10 = null;
-        java.io.OutputStream outputStream11 = null;
-        mkdirApplication2.run(strArray9, inputStream10, outputStream11);
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication13 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication16 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication18 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray21 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
-        java.io.InputStream inputStream22 = null;
-        java.io.OutputStream outputStream23 = null;
-        mkdirApplication18.run(strArray21, inputStream22, outputStream23);
         java.lang.String str25 = findApplication16.findFolderContent("", strArray21);
         java.lang.String str26 = lsApplication13.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray21);
-        java.io.InputStream inputStream27 = null;
-        java.io.OutputStream outputStream28 = null;
-        mkdirApplication2.run(strArray21, inputStream27, outputStream28);
         java.lang.String str30 = echoApplication1.constructResult(strArray21);
         java.io.InputStream inputStream31 = null;
         java.io.OutputStream outputStream32 = null;
@@ -796,17 +707,11 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication3 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication5 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray8 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
-        java.io.InputStream inputStream9 = null;
-        java.io.OutputStream outputStream10 = null;
-        mkdirApplication5.run(strArray8, inputStream9, outputStream10);
         java.lang.String str12 = findApplication3.findFolderContent("", strArray8);
         java.lang.String str13 = lsApplication0.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray8);
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication14 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication16 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray19 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
-        java.io.InputStream inputStream20 = null;
-        java.io.OutputStream outputStream21 = null;
-        mkdirApplication16.run(strArray19, inputStream20, outputStream21);
         java.lang.String str23 = findApplication14.findFolderContent("", strArray19);
         java.io.InputStream inputStream24 = null;
         java.io.OutputStream outputStream25 = null;
@@ -830,7 +735,6 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication4 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication6 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray9 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication6.createFolder(strArray9);
         java.lang.String str11 = findApplication4.findFolderContent("fail_sed_write", strArray9);
         try {
             java.lang.String str12 = wcApplication0.countFromFiles((java.lang.Boolean) false, (java.lang.Boolean) false, (java.lang.Boolean) false, strArray9);
@@ -851,19 +755,19 @@ public class RegressionTest0 {
         java.lang.String[] strArray9 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream10 = null;
         java.io.OutputStream outputStream11 = null;
-        mkdirApplication2.run(strArray9, inputStream10, outputStream11);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication13 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication16 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication18 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray21 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream22 = null;
         java.io.OutputStream outputStream23 = null;
-        mkdirApplication18.run(strArray21, inputStream22, outputStream23);
+        
         java.lang.String str25 = findApplication16.findFolderContent("", strArray21);
         java.lang.String str26 = lsApplication13.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray21);
         java.io.InputStream inputStream27 = null;
         java.io.OutputStream outputStream28 = null;
-        mkdirApplication2.run(strArray21, inputStream27, outputStream28);
+        
         java.lang.String str30 = echoApplication1.constructResult(strArray21);
         java.io.InputStream inputStream31 = null;
         java.io.OutputStream outputStream32 = null;
@@ -899,9 +803,6 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.GrepApplication grepApplication0 = new sg.edu.nus.comp.cs4218.impl.app.GrepApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication4 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray7 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
-        java.io.InputStream inputStream8 = null;
-        java.io.OutputStream outputStream9 = null;
-        mkdirApplication4.run(strArray7, inputStream8, outputStream9);
         try {
             java.lang.String str11 = grepApplication0.grepFromFiles("null arguments", (java.lang.Boolean) true, (java.lang.Boolean) true, strArray7);
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
@@ -999,12 +900,12 @@ public class RegressionTest0 {
         java.lang.String[] strArray8 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream9 = null;
         java.io.OutputStream outputStream10 = null;
-        mkdirApplication1.run(strArray8, inputStream9, outputStream10);
+        
         java.lang.Class<?> wildcardClass12 = mkdirApplication1.getClass();
         java.lang.String[] strArray17 = new java.lang.String[] { "This is a directory", "Could not read stream", "Null Pointer Exception", "Exception Caught" };
         java.io.InputStream inputStream18 = null;
         java.io.OutputStream outputStream19 = null;
-        mkdirApplication1.run(strArray17, inputStream18, outputStream19);
+        
         java.io.InputStream inputStream21 = null;
         java.io.OutputStream outputStream22 = null;
         try {
@@ -1028,7 +929,7 @@ public class RegressionTest0 {
         java.lang.String[] strArray7 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream8 = null;
         java.io.OutputStream outputStream9 = null;
-        mkdirApplication4.run(strArray7, inputStream8, outputStream9);
+        
         java.lang.String str11 = findApplication2.findFolderContent("", strArray7);
         java.io.InputStream inputStream12 = null;
         java.io.OutputStream outputStream13 = null;
@@ -1052,7 +953,7 @@ public class RegressionTest0 {
         java.lang.String[] strArray8 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream9 = null;
         java.io.OutputStream outputStream10 = null;
-        mkdirApplication5.run(strArray8, inputStream9, outputStream10);
+        
         java.lang.String str12 = findApplication3.findFolderContent("", strArray8);
         java.lang.String str13 = lsApplication0.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray8);
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication14 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
@@ -1060,25 +961,25 @@ public class RegressionTest0 {
         java.lang.String[] strArray19 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream20 = null;
         java.io.OutputStream outputStream21 = null;
-        mkdirApplication16.run(strArray19, inputStream20, outputStream21);
+        
         java.lang.String str23 = findApplication14.findFolderContent("", strArray19);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication25 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray32 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream33 = null;
         java.io.OutputStream outputStream34 = null;
-        mkdirApplication25.run(strArray32, inputStream33, outputStream34);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication36 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication39 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication41 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray44 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream45 = null;
         java.io.OutputStream outputStream46 = null;
-        mkdirApplication41.run(strArray44, inputStream45, outputStream46);
+        
         java.lang.String str48 = findApplication39.findFolderContent("", strArray44);
         java.lang.String str49 = lsApplication36.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray44);
         java.io.InputStream inputStream50 = null;
         java.io.OutputStream outputStream51 = null;
-        mkdirApplication25.run(strArray44, inputStream50, outputStream51);
+        
         java.lang.String str53 = findApplication14.findFolderContent("Could not read stream", strArray44);
         java.io.InputStream inputStream54 = null;
         java.io.OutputStream outputStream55 = null;
@@ -1124,7 +1025,7 @@ public class RegressionTest0 {
         java.lang.String[] strArray6 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream7 = null;
         java.io.OutputStream outputStream8 = null;
-        mkdirApplication3.run(strArray6, inputStream7, outputStream8);
+        
         java.lang.String str10 = findApplication1.findFolderContent("", strArray6);
         java.io.InputStream inputStream11 = null;
         java.io.OutputStream outputStream12 = null;
@@ -1144,7 +1045,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.SedApplication sedApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SedApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication1 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray4 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication1.createFolder(strArray4);
+        
         java.io.InputStream inputStream6 = null;
         java.io.OutputStream outputStream7 = null;
         try {
@@ -1175,43 +1076,43 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.SortApplication sortApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SortApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication4 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray7 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication4.createFolder(strArray7);
+        
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication9 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray12 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream13 = null;
         java.io.OutputStream outputStream14 = null;
-        mkdirApplication9.run(strArray12, inputStream13, outputStream14);
+        
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication16 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication18 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray21 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream22 = null;
         java.io.OutputStream outputStream23 = null;
-        mkdirApplication18.run(strArray21, inputStream22, outputStream23);
+        
         java.lang.String str25 = findApplication16.findFolderContent("", strArray21);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication27 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray34 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream35 = null;
         java.io.OutputStream outputStream36 = null;
-        mkdirApplication27.run(strArray34, inputStream35, outputStream36);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication38 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication41 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication43 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray46 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream47 = null;
         java.io.OutputStream outputStream48 = null;
-        mkdirApplication43.run(strArray46, inputStream47, outputStream48);
+        
         java.lang.String str50 = findApplication41.findFolderContent("", strArray46);
         java.lang.String str51 = lsApplication38.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray46);
         java.io.InputStream inputStream52 = null;
         java.io.OutputStream outputStream53 = null;
-        mkdirApplication27.run(strArray46, inputStream52, outputStream53);
+        
         java.lang.String str55 = findApplication16.findFolderContent("Could not read stream", strArray46);
         java.io.InputStream inputStream56 = null;
         java.io.OutputStream outputStream57 = null;
-        mkdirApplication9.run(strArray46, inputStream56, outputStream57);
+        
         java.io.InputStream inputStream59 = null;
         java.io.OutputStream outputStream60 = null;
-        mkdirApplication4.run(strArray46, inputStream59, outputStream60);
+        
         try {
             java.lang.String str62 = sortApplication0.sortFromFiles((java.lang.Boolean) true, (java.lang.Boolean) false, (java.lang.Boolean) true, strArray46);
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
@@ -1245,7 +1146,7 @@ public class RegressionTest0 {
         java.lang.String[] strArray9 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream10 = null;
         java.io.OutputStream outputStream11 = null;
-        mkdirApplication2.run(strArray9, inputStream10, outputStream11);
+        
         try {
             java.lang.String str13 = findApplication0.findFolderContent("", strArray9);
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.FindException; message: find: nonExistentFolder: No such file or directory");
@@ -1264,7 +1165,7 @@ public class RegressionTest0 {
         java.lang.String[] strArray9 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream10 = null;
         java.io.OutputStream outputStream11 = null;
-        mkdirApplication2.run(strArray9, inputStream10, outputStream11);
+        
         java.io.InputStream inputStream13 = null;
         java.io.OutputStream outputStream14 = null;
         try {
@@ -1284,32 +1185,32 @@ public class RegressionTest0 {
         java.lang.String[] strArray6 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream7 = null;
         java.io.OutputStream outputStream8 = null;
-        mkdirApplication3.run(strArray6, inputStream7, outputStream8);
+        
         java.lang.String str10 = lsApplication0.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray6);
         sg.edu.nus.comp.cs4218.impl.app.EchoApplication echoApplication11 = new sg.edu.nus.comp.cs4218.impl.app.EchoApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication12 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray19 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream20 = null;
         java.io.OutputStream outputStream21 = null;
-        mkdirApplication12.run(strArray19, inputStream20, outputStream21);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication23 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication26 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication28 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray31 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream32 = null;
         java.io.OutputStream outputStream33 = null;
-        mkdirApplication28.run(strArray31, inputStream32, outputStream33);
+        
         java.lang.String str35 = findApplication26.findFolderContent("", strArray31);
         java.lang.String str36 = lsApplication23.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray31);
         java.io.InputStream inputStream37 = null;
         java.io.OutputStream outputStream38 = null;
-        mkdirApplication12.run(strArray31, inputStream37, outputStream38);
+        
         java.lang.String str40 = echoApplication11.constructResult(strArray31);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication41 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray48 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream49 = null;
         java.io.OutputStream outputStream50 = null;
-        mkdirApplication41.run(strArray48, inputStream49, outputStream50);
+        
         java.io.InputStream inputStream52 = null;
         java.io.InputStream inputStream55 = null;
         java.io.OutputStream outputStream56 = null;
@@ -1336,7 +1237,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication1 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication3 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray6 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication3.createFolder(strArray6);
+        
         java.lang.String str8 = findApplication1.findFolderContent("fail_sed_write", strArray6);
         java.io.InputStream inputStream9 = null;
         java.io.OutputStream outputStream10 = null;
@@ -1358,19 +1259,19 @@ public class RegressionTest0 {
         java.lang.String[] strArray8 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream9 = null;
         java.io.OutputStream outputStream10 = null;
-        mkdirApplication1.run(strArray8, inputStream9, outputStream10);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication12 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication15 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication17 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray20 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream21 = null;
         java.io.OutputStream outputStream22 = null;
-        mkdirApplication17.run(strArray20, inputStream21, outputStream22);
+        
         java.lang.String str24 = findApplication15.findFolderContent("", strArray20);
         java.lang.String str25 = lsApplication12.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray20);
         java.io.InputStream inputStream26 = null;
         java.io.OutputStream outputStream27 = null;
-        mkdirApplication1.run(strArray20, inputStream26, outputStream27);
+        
         java.io.InputStream inputStream29 = null;
         java.io.OutputStream outputStream30 = null;
         try {
@@ -1406,25 +1307,25 @@ public class RegressionTest0 {
         java.lang.String[] strArray8 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream9 = null;
         java.io.OutputStream outputStream10 = null;
-        mkdirApplication1.run(strArray8, inputStream9, outputStream10);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication12 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication15 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication17 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray20 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream21 = null;
         java.io.OutputStream outputStream22 = null;
-        mkdirApplication17.run(strArray20, inputStream21, outputStream22);
+        
         java.lang.String str24 = findApplication15.findFolderContent("", strArray20);
         java.lang.String str25 = lsApplication12.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray20);
         java.io.InputStream inputStream26 = null;
         java.io.OutputStream outputStream27 = null;
-        mkdirApplication1.run(strArray20, inputStream26, outputStream27);
+        
         java.lang.String str29 = echoApplication0.constructResult(strArray20);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication30 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray37 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream38 = null;
         java.io.OutputStream outputStream39 = null;
-        mkdirApplication30.run(strArray37, inputStream38, outputStream39);
+        
         java.io.InputStream inputStream41 = null;
         java.lang.String[] strArray44 = null;
         try {
@@ -1449,33 +1350,33 @@ public class RegressionTest0 {
         java.lang.String[] strArray7 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream8 = null;
         java.io.OutputStream outputStream9 = null;
-        mkdirApplication4.run(strArray7, inputStream8, outputStream9);
+        
         sg.edu.nus.comp.cs4218.impl.app.EchoApplication echoApplication11 = new sg.edu.nus.comp.cs4218.impl.app.EchoApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication12 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray19 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream20 = null;
         java.io.OutputStream outputStream21 = null;
-        mkdirApplication12.run(strArray19, inputStream20, outputStream21);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication23 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication26 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication28 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray31 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream32 = null;
         java.io.OutputStream outputStream33 = null;
-        mkdirApplication28.run(strArray31, inputStream32, outputStream33);
+        
         java.lang.String str35 = findApplication26.findFolderContent("", strArray31);
         java.lang.String str36 = lsApplication23.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray31);
         java.io.InputStream inputStream37 = null;
         java.io.OutputStream outputStream38 = null;
-        mkdirApplication12.run(strArray31, inputStream37, outputStream38);
+        
         java.lang.String str40 = echoApplication11.constructResult(strArray31);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication41 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray48 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream49 = null;
         java.io.OutputStream outputStream50 = null;
-        mkdirApplication41.run(strArray48, inputStream49, outputStream50);
+        
         java.io.InputStream inputStream52 = null;
-        mkdirApplication4.createFolder(strArray48);
+        
         try {
             java.lang.String str56 = grepApplication0.grepFromFiles("Could not write to output stream", (java.lang.Boolean) false, (java.lang.Boolean) true, strArray48);
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
@@ -1514,33 +1415,33 @@ public class RegressionTest0 {
         java.lang.String[] strArray4 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream5 = null;
         java.io.OutputStream outputStream6 = null;
-        mkdirApplication1.run(strArray4, inputStream5, outputStream6);
+        
         sg.edu.nus.comp.cs4218.impl.app.EchoApplication echoApplication8 = new sg.edu.nus.comp.cs4218.impl.app.EchoApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication9 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray16 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream17 = null;
         java.io.OutputStream outputStream18 = null;
-        mkdirApplication9.run(strArray16, inputStream17, outputStream18);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication20 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication23 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication25 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray28 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream29 = null;
         java.io.OutputStream outputStream30 = null;
-        mkdirApplication25.run(strArray28, inputStream29, outputStream30);
+        
         java.lang.String str32 = findApplication23.findFolderContent("", strArray28);
         java.lang.String str33 = lsApplication20.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray28);
         java.io.InputStream inputStream34 = null;
         java.io.OutputStream outputStream35 = null;
-        mkdirApplication9.run(strArray28, inputStream34, outputStream35);
+        
         java.lang.String str37 = echoApplication8.constructResult(strArray28);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication38 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray45 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream46 = null;
         java.io.OutputStream outputStream47 = null;
-        mkdirApplication38.run(strArray45, inputStream46, outputStream47);
+        
         java.io.InputStream inputStream49 = null;
-        mkdirApplication1.createFolder(strArray45);
+        
         java.io.InputStream inputStream53 = null;
         java.io.OutputStream outputStream54 = null;
         try {
@@ -1564,43 +1465,43 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.WcApplication wcApplication0 = new sg.edu.nus.comp.cs4218.impl.app.WcApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication1 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray4 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication1.createFolder(strArray4);
+        
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication6 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray9 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream10 = null;
         java.io.OutputStream outputStream11 = null;
-        mkdirApplication6.run(strArray9, inputStream10, outputStream11);
+        
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication13 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication15 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray18 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream19 = null;
         java.io.OutputStream outputStream20 = null;
-        mkdirApplication15.run(strArray18, inputStream19, outputStream20);
+        
         java.lang.String str22 = findApplication13.findFolderContent("", strArray18);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication24 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray31 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream32 = null;
         java.io.OutputStream outputStream33 = null;
-        mkdirApplication24.run(strArray31, inputStream32, outputStream33);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication35 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication38 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication40 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray43 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream44 = null;
         java.io.OutputStream outputStream45 = null;
-        mkdirApplication40.run(strArray43, inputStream44, outputStream45);
+        
         java.lang.String str47 = findApplication38.findFolderContent("", strArray43);
         java.lang.String str48 = lsApplication35.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray43);
         java.io.InputStream inputStream49 = null;
         java.io.OutputStream outputStream50 = null;
-        mkdirApplication24.run(strArray43, inputStream49, outputStream50);
+        
         java.lang.String str52 = findApplication13.findFolderContent("Could not read stream", strArray43);
         java.io.InputStream inputStream53 = null;
         java.io.OutputStream outputStream54 = null;
-        mkdirApplication6.run(strArray43, inputStream53, outputStream54);
+        
         java.io.InputStream inputStream56 = null;
         java.io.OutputStream outputStream57 = null;
-        mkdirApplication1.run(strArray43, inputStream56, outputStream57);
+        
         java.io.InputStream inputStream59 = null;
         java.io.OutputStream outputStream60 = null;
         try {
@@ -1651,43 +1552,43 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.SedApplication sedApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SedApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication1 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray4 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication1.createFolder(strArray4);
+        
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication6 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray9 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream10 = null;
         java.io.OutputStream outputStream11 = null;
-        mkdirApplication6.run(strArray9, inputStream10, outputStream11);
+        
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication13 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication15 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray18 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream19 = null;
         java.io.OutputStream outputStream20 = null;
-        mkdirApplication15.run(strArray18, inputStream19, outputStream20);
+        
         java.lang.String str22 = findApplication13.findFolderContent("", strArray18);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication24 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray31 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream32 = null;
         java.io.OutputStream outputStream33 = null;
-        mkdirApplication24.run(strArray31, inputStream32, outputStream33);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication35 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication38 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication40 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray43 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream44 = null;
         java.io.OutputStream outputStream45 = null;
-        mkdirApplication40.run(strArray43, inputStream44, outputStream45);
+        
         java.lang.String str47 = findApplication38.findFolderContent("", strArray43);
         java.lang.String str48 = lsApplication35.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray43);
         java.io.InputStream inputStream49 = null;
         java.io.OutputStream outputStream50 = null;
-        mkdirApplication24.run(strArray43, inputStream49, outputStream50);
+        
         java.lang.String str52 = findApplication13.findFolderContent("Could not read stream", strArray43);
         java.io.InputStream inputStream53 = null;
         java.io.OutputStream outputStream54 = null;
-        mkdirApplication6.run(strArray43, inputStream53, outputStream54);
+        
         java.io.InputStream inputStream56 = null;
         java.io.OutputStream outputStream57 = null;
-        mkdirApplication1.run(strArray43, inputStream56, outputStream57);
+        
         java.io.InputStream inputStream59 = null;
         java.io.OutputStream outputStream60 = null;
         try {
@@ -1715,7 +1616,7 @@ public class RegressionTest0 {
         java.lang.String[] strArray4 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream5 = null;
         java.io.OutputStream outputStream6 = null;
-        mkdirApplication1.run(strArray4, inputStream5, outputStream6);
+        
         java.io.InputStream inputStream8 = null;
         java.io.OutputStream outputStream9 = null;
         try {
@@ -1747,47 +1648,47 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication1 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication3 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray6 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication3.createFolder(strArray6);
+        
         java.lang.String str8 = findApplication1.findFolderContent("fail_sed_write", strArray6);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication10 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray13 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication10.createFolder(strArray13);
+        
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication15 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray18 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream19 = null;
         java.io.OutputStream outputStream20 = null;
-        mkdirApplication15.run(strArray18, inputStream19, outputStream20);
+        
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication22 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication24 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray27 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream28 = null;
         java.io.OutputStream outputStream29 = null;
-        mkdirApplication24.run(strArray27, inputStream28, outputStream29);
+        
         java.lang.String str31 = findApplication22.findFolderContent("", strArray27);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication33 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray40 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream41 = null;
         java.io.OutputStream outputStream42 = null;
-        mkdirApplication33.run(strArray40, inputStream41, outputStream42);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication44 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication47 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication49 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray52 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream53 = null;
         java.io.OutputStream outputStream54 = null;
-        mkdirApplication49.run(strArray52, inputStream53, outputStream54);
+        
         java.lang.String str56 = findApplication47.findFolderContent("", strArray52);
         java.lang.String str57 = lsApplication44.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray52);
         java.io.InputStream inputStream58 = null;
         java.io.OutputStream outputStream59 = null;
-        mkdirApplication33.run(strArray52, inputStream58, outputStream59);
+        
         java.lang.String str61 = findApplication22.findFolderContent("Could not read stream", strArray52);
         java.io.InputStream inputStream62 = null;
         java.io.OutputStream outputStream63 = null;
-        mkdirApplication15.run(strArray52, inputStream62, outputStream63);
+        
         java.io.InputStream inputStream65 = null;
         java.io.OutputStream outputStream66 = null;
-        mkdirApplication10.run(strArray52, inputStream65, outputStream66);
+        
         java.lang.Class<?> wildcardClass68 = strArray52.getClass();
         java.lang.String str69 = findApplication1.findFolderContent("", strArray52);
         java.io.InputStream inputStream70 = null;
@@ -1819,7 +1720,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.WcApplication wcApplication0 = new sg.edu.nus.comp.cs4218.impl.app.WcApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication1 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray4 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication1.createFolder(strArray4);
+        
         java.io.InputStream inputStream6 = null;
         java.io.OutputStream outputStream7 = null;
         try {
@@ -1839,19 +1740,19 @@ public class RegressionTest0 {
         java.lang.String[] strArray8 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream9 = null;
         java.io.OutputStream outputStream10 = null;
-        mkdirApplication1.run(strArray8, inputStream9, outputStream10);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication12 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication15 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication17 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray20 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream21 = null;
         java.io.OutputStream outputStream22 = null;
-        mkdirApplication17.run(strArray20, inputStream21, outputStream22);
+        
         java.lang.String str24 = findApplication15.findFolderContent("", strArray20);
         java.lang.String str25 = lsApplication12.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray20);
         java.io.InputStream inputStream26 = null;
         java.io.OutputStream outputStream27 = null;
-        mkdirApplication1.run(strArray20, inputStream26, outputStream27);
+        
         java.io.InputStream inputStream29 = null;
         java.io.OutputStream outputStream30 = null;
         try {
@@ -1887,7 +1788,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication1 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication3 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray6 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication3.createFolder(strArray6);
+        
         java.lang.String str8 = findApplication1.findFolderContent("fail_sed_write", strArray6);
         java.io.InputStream inputStream9 = null;
         java.io.OutputStream outputStream10 = null;
@@ -1910,30 +1811,30 @@ public class RegressionTest0 {
         java.lang.String[] strArray9 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream10 = null;
         java.io.OutputStream outputStream11 = null;
-        mkdirApplication2.run(strArray9, inputStream10, outputStream11);
+        
         java.lang.Class<?> wildcardClass13 = mkdirApplication2.getClass();
         sg.edu.nus.comp.cs4218.impl.app.EchoApplication echoApplication14 = new sg.edu.nus.comp.cs4218.impl.app.EchoApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication15 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray22 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream23 = null;
         java.io.OutputStream outputStream24 = null;
-        mkdirApplication15.run(strArray22, inputStream23, outputStream24);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication26 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication29 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication31 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray34 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream35 = null;
         java.io.OutputStream outputStream36 = null;
-        mkdirApplication31.run(strArray34, inputStream35, outputStream36);
+        
         java.lang.String str38 = findApplication29.findFolderContent("", strArray34);
         java.lang.String str39 = lsApplication26.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray34);
         java.io.InputStream inputStream40 = null;
         java.io.OutputStream outputStream41 = null;
-        mkdirApplication15.run(strArray34, inputStream40, outputStream41);
+        
         java.lang.String str43 = echoApplication14.constructResult(strArray34);
         java.io.InputStream inputStream44 = null;
         java.io.OutputStream outputStream45 = null;
-        mkdirApplication2.run(strArray34, inputStream44, outputStream45);
+        
         java.io.InputStream inputStream47 = null;
         java.io.OutputStream outputStream48 = null;
         try {
@@ -1958,7 +1859,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.GrepApplication grepApplication0 = new sg.edu.nus.comp.cs4218.impl.app.GrepApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication1 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray4 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication1.createFolder(strArray4);
+        
         java.io.InputStream inputStream6 = null;
         java.io.OutputStream outputStream7 = null;
         try {
@@ -1994,15 +1895,15 @@ public class RegressionTest0 {
         java.lang.String[] strArray7 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream8 = null;
         java.io.OutputStream outputStream9 = null;
-        mkdirApplication4.run(strArray7, inputStream8, outputStream9);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication11 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication14 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray17 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream18 = null;
         java.io.OutputStream outputStream19 = null;
-        mkdirApplication14.run(strArray17, inputStream18, outputStream19);
+        
         java.lang.String str21 = lsApplication11.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray17);
-        mkdirApplication4.createFolder(strArray17);
+        
         java.lang.String str23 = lsApplication1.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray17);
         java.io.InputStream inputStream24 = null;
         java.io.OutputStream outputStream25 = null;
@@ -2026,7 +1927,7 @@ public class RegressionTest0 {
         java.lang.String[] strArray6 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream7 = null;
         java.io.OutputStream outputStream8 = null;
-        mkdirApplication3.run(strArray6, inputStream7, outputStream8);
+        
         java.lang.String str10 = lsApplication0.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray6);
         java.lang.String[] strArray13 = null;
         try {
@@ -2075,15 +1976,15 @@ public class RegressionTest0 {
         java.lang.String[] strArray8 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream9 = null;
         java.io.OutputStream outputStream10 = null;
-        mkdirApplication5.run(strArray8, inputStream9, outputStream10);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication12 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication15 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray18 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream19 = null;
         java.io.OutputStream outputStream20 = null;
-        mkdirApplication15.run(strArray18, inputStream19, outputStream20);
+        
         java.lang.String str22 = lsApplication12.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray18);
-        mkdirApplication5.createFolder(strArray18);
+        
         try {
             java.lang.String str24 = sortApplication0.sortFromFiles((java.lang.Boolean) false, (java.lang.Boolean) false, (java.lang.Boolean) false, strArray18);
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
@@ -2117,20 +2018,20 @@ public class RegressionTest0 {
         java.lang.String[] strArray11 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream12 = null;
         java.io.OutputStream outputStream13 = null;
-        mkdirApplication4.run(strArray11, inputStream12, outputStream13);
+        
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication15 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray22 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream23 = null;
         java.io.OutputStream outputStream24 = null;
-        mkdirApplication15.run(strArray22, inputStream23, outputStream24);
+        
         java.lang.Class<?> wildcardClass26 = mkdirApplication15.getClass();
         java.lang.String[] strArray31 = new java.lang.String[] { "This is a directory", "Could not read stream", "Null Pointer Exception", "Exception Caught" };
         java.io.InputStream inputStream32 = null;
         java.io.OutputStream outputStream33 = null;
-        mkdirApplication15.run(strArray31, inputStream32, outputStream33);
+        
         java.io.InputStream inputStream35 = null;
         java.io.OutputStream outputStream36 = null;
-        mkdirApplication4.run(strArray31, inputStream35, outputStream36);
+        
         try {
             java.lang.String str38 = grepApplication0.grepFromFiles("", (java.lang.Boolean) false, (java.lang.Boolean) false, strArray31);
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
@@ -2151,50 +2052,50 @@ public class RegressionTest0 {
         java.lang.String[] strArray5 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream6 = null;
         java.io.OutputStream outputStream7 = null;
-        mkdirApplication2.run(strArray5, inputStream6, outputStream7);
+        
         java.lang.String str9 = findApplication0.findFolderContent("", strArray5);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication11 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray18 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream19 = null;
         java.io.OutputStream outputStream20 = null;
-        mkdirApplication11.run(strArray18, inputStream19, outputStream20);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication22 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication25 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication27 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray30 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream31 = null;
         java.io.OutputStream outputStream32 = null;
-        mkdirApplication27.run(strArray30, inputStream31, outputStream32);
+        
         java.lang.String str34 = findApplication25.findFolderContent("", strArray30);
         java.lang.String str35 = lsApplication22.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray30);
         java.io.InputStream inputStream36 = null;
         java.io.OutputStream outputStream37 = null;
-        mkdirApplication11.run(strArray30, inputStream36, outputStream37);
+        
         java.lang.String str39 = findApplication0.findFolderContent("Could not read stream", strArray30);
         sg.edu.nus.comp.cs4218.impl.app.EchoApplication echoApplication40 = new sg.edu.nus.comp.cs4218.impl.app.EchoApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication41 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray48 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream49 = null;
         java.io.OutputStream outputStream50 = null;
-        mkdirApplication41.run(strArray48, inputStream49, outputStream50);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication52 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication55 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication57 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray60 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream61 = null;
         java.io.OutputStream outputStream62 = null;
-        mkdirApplication57.run(strArray60, inputStream61, outputStream62);
+        
         java.lang.String str64 = findApplication55.findFolderContent("", strArray60);
         java.lang.String str65 = lsApplication52.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray60);
         java.io.InputStream inputStream66 = null;
         java.io.OutputStream outputStream67 = null;
-        mkdirApplication41.run(strArray60, inputStream66, outputStream67);
+        
         java.lang.String str69 = echoApplication40.constructResult(strArray60);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication70 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray77 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream78 = null;
         java.io.OutputStream outputStream79 = null;
-        mkdirApplication70.run(strArray77, inputStream78, outputStream79);
+        
         java.io.InputStream inputStream84 = null;
         java.io.OutputStream outputStream85 = null;
         try {
@@ -2280,22 +2181,22 @@ public class RegressionTest0 {
         java.lang.String[] strArray6 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream7 = null;
         java.io.OutputStream outputStream8 = null;
-        mkdirApplication3.run(strArray6, inputStream7, outputStream8);
+        
         java.lang.String str10 = findApplication1.findFolderContent("", strArray6);
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication12 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication14 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray17 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream18 = null;
         java.io.OutputStream outputStream19 = null;
-        mkdirApplication14.run(strArray17, inputStream18, outputStream19);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication21 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication24 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray27 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream28 = null;
         java.io.OutputStream outputStream29 = null;
-        mkdirApplication24.run(strArray27, inputStream28, outputStream29);
+        
         java.lang.String str31 = lsApplication21.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray27);
-        mkdirApplication14.createFolder(strArray27);
+        
         java.lang.String str33 = findApplication12.findFolderContent("null output stream provided fail_echo_write", strArray27);
         java.lang.Class<?> wildcardClass34 = strArray27.getClass();
         java.lang.String str35 = findApplication1.findFolderContent("null output stream provided fail_echo_write", strArray27);
@@ -2337,43 +2238,43 @@ public class RegressionTest0 {
         java.lang.Class<?> wildcardClass1 = sortApplication0.getClass();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication5 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray8 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication5.createFolder(strArray8);
+        
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication10 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray13 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream14 = null;
         java.io.OutputStream outputStream15 = null;
-        mkdirApplication10.run(strArray13, inputStream14, outputStream15);
+        
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication17 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication19 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray22 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream23 = null;
         java.io.OutputStream outputStream24 = null;
-        mkdirApplication19.run(strArray22, inputStream23, outputStream24);
+        
         java.lang.String str26 = findApplication17.findFolderContent("", strArray22);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication28 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray35 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream36 = null;
         java.io.OutputStream outputStream37 = null;
-        mkdirApplication28.run(strArray35, inputStream36, outputStream37);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication39 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication42 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication44 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray47 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream48 = null;
         java.io.OutputStream outputStream49 = null;
-        mkdirApplication44.run(strArray47, inputStream48, outputStream49);
+        
         java.lang.String str51 = findApplication42.findFolderContent("", strArray47);
         java.lang.String str52 = lsApplication39.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray47);
         java.io.InputStream inputStream53 = null;
         java.io.OutputStream outputStream54 = null;
-        mkdirApplication28.run(strArray47, inputStream53, outputStream54);
+        
         java.lang.String str56 = findApplication17.findFolderContent("Could not read stream", strArray47);
         java.io.InputStream inputStream57 = null;
         java.io.OutputStream outputStream58 = null;
-        mkdirApplication10.run(strArray47, inputStream57, outputStream58);
+        
         java.io.InputStream inputStream60 = null;
         java.io.OutputStream outputStream61 = null;
-        mkdirApplication5.run(strArray47, inputStream60, outputStream61);
+        
         try {
             java.lang.String str63 = sortApplication0.sortFromFiles((java.lang.Boolean) true, (java.lang.Boolean) false, (java.lang.Boolean) true, strArray47);
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
@@ -2402,12 +2303,12 @@ public class RegressionTest0 {
         java.lang.String[] strArray10 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream11 = null;
         java.io.OutputStream outputStream12 = null;
-        mkdirApplication3.run(strArray10, inputStream11, outputStream12);
+        
         java.lang.Class<?> wildcardClass14 = mkdirApplication3.getClass();
         java.lang.String[] strArray19 = new java.lang.String[] { "This is a directory", "Could not read stream", "Null Pointer Exception", "Exception Caught" };
         java.io.InputStream inputStream20 = null;
         java.io.OutputStream outputStream21 = null;
-        mkdirApplication3.run(strArray19, inputStream20, outputStream21);
+        
         java.io.InputStream inputStream23 = null;
         java.io.OutputStream outputStream24 = null;
         try {
@@ -2440,25 +2341,25 @@ public class RegressionTest0 {
         java.lang.String[] strArray12 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream13 = null;
         java.io.OutputStream outputStream14 = null;
-        mkdirApplication5.run(strArray12, inputStream13, outputStream14);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication16 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication19 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication21 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray24 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream25 = null;
         java.io.OutputStream outputStream26 = null;
-        mkdirApplication21.run(strArray24, inputStream25, outputStream26);
+        
         java.lang.String str28 = findApplication19.findFolderContent("", strArray24);
         java.lang.String str29 = lsApplication16.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray24);
         java.io.InputStream inputStream30 = null;
         java.io.OutputStream outputStream31 = null;
-        mkdirApplication5.run(strArray24, inputStream30, outputStream31);
+        
         java.lang.String str33 = echoApplication4.constructResult(strArray24);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication34 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray41 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream42 = null;
         java.io.OutputStream outputStream43 = null;
-        mkdirApplication34.run(strArray41, inputStream42, outputStream43);
+        
         try {
             java.lang.String str48 = grepApplication0.grepFromFiles("Could not read stream", (java.lang.Boolean) true, (java.lang.Boolean) true, strArray41);
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
@@ -2482,35 +2383,35 @@ public class RegressionTest0 {
         java.lang.String[] strArray5 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream6 = null;
         java.io.OutputStream outputStream7 = null;
-        mkdirApplication2.run(strArray5, inputStream6, outputStream7);
+        
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication9 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication11 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray14 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream15 = null;
         java.io.OutputStream outputStream16 = null;
-        mkdirApplication11.run(strArray14, inputStream15, outputStream16);
+        
         java.lang.String str18 = findApplication9.findFolderContent("", strArray14);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication20 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray27 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream28 = null;
         java.io.OutputStream outputStream29 = null;
-        mkdirApplication20.run(strArray27, inputStream28, outputStream29);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication31 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication34 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication36 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray39 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream40 = null;
         java.io.OutputStream outputStream41 = null;
-        mkdirApplication36.run(strArray39, inputStream40, outputStream41);
+        
         java.lang.String str43 = findApplication34.findFolderContent("", strArray39);
         java.lang.String str44 = lsApplication31.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray39);
         java.io.InputStream inputStream45 = null;
         java.io.OutputStream outputStream46 = null;
-        mkdirApplication20.run(strArray39, inputStream45, outputStream46);
+        
         java.lang.String str48 = findApplication9.findFolderContent("Could not read stream", strArray39);
         java.io.InputStream inputStream49 = null;
         java.io.OutputStream outputStream50 = null;
-        mkdirApplication2.run(strArray39, inputStream49, outputStream50);
+        
         java.io.InputStream inputStream52 = null;
         java.io.OutputStream outputStream53 = null;
         try {
@@ -2540,15 +2441,15 @@ public class RegressionTest0 {
         java.lang.String[] strArray10 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream11 = null;
         java.io.OutputStream outputStream12 = null;
-        mkdirApplication7.run(strArray10, inputStream11, outputStream12);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication14 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication17 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray20 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream21 = null;
         java.io.OutputStream outputStream22 = null;
-        mkdirApplication17.run(strArray20, inputStream21, outputStream22);
+        
         java.lang.String str24 = lsApplication14.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray20);
-        mkdirApplication7.createFolder(strArray20);
+        
         java.lang.String str26 = lsApplication4.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray20);
         try {
             java.lang.String str27 = grepApplication0.grepFromFiles("null arguments", (java.lang.Boolean) false, (java.lang.Boolean) false, strArray20);
@@ -2571,21 +2472,21 @@ public class RegressionTest0 {
         java.lang.String[] strArray6 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream7 = null;
         java.io.OutputStream outputStream8 = null;
-        mkdirApplication3.run(strArray6, inputStream7, outputStream8);
+        
         java.lang.String str10 = findApplication1.findFolderContent("", strArray6);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication12 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray15 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream16 = null;
         java.io.OutputStream outputStream17 = null;
-        mkdirApplication12.run(strArray15, inputStream16, outputStream17);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication19 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication22 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray25 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream26 = null;
         java.io.OutputStream outputStream27 = null;
-        mkdirApplication22.run(strArray25, inputStream26, outputStream27);
+        
         java.lang.String str29 = lsApplication19.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray25);
-        mkdirApplication12.createFolder(strArray25);
+        
         java.lang.String str31 = findApplication1.findFolderContent("null input file provided", strArray25);
         java.io.InputStream inputStream32 = null;
         java.io.OutputStream outputStream33 = null;
@@ -2633,25 +2534,25 @@ public class RegressionTest0 {
         java.lang.String[] strArray6 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream7 = null;
         java.io.OutputStream outputStream8 = null;
-        mkdirApplication3.run(strArray6, inputStream7, outputStream8);
+        
         java.lang.String str10 = findApplication1.findFolderContent("", strArray6);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication12 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray19 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream20 = null;
         java.io.OutputStream outputStream21 = null;
-        mkdirApplication12.run(strArray19, inputStream20, outputStream21);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication23 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication26 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication28 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray31 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream32 = null;
         java.io.OutputStream outputStream33 = null;
-        mkdirApplication28.run(strArray31, inputStream32, outputStream33);
+        
         java.lang.String str35 = findApplication26.findFolderContent("", strArray31);
         java.lang.String str36 = lsApplication23.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray31);
         java.io.InputStream inputStream37 = null;
         java.io.OutputStream outputStream38 = null;
-        mkdirApplication12.run(strArray31, inputStream37, outputStream38);
+        
         java.lang.String str40 = findApplication1.findFolderContent("Could not read stream", strArray31);
         java.io.InputStream inputStream41 = null;
         java.io.OutputStream outputStream42 = null;
@@ -2678,53 +2579,53 @@ public class RegressionTest0 {
         java.lang.String[] strArray6 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream7 = null;
         java.io.OutputStream outputStream8 = null;
-        mkdirApplication3.run(strArray6, inputStream7, outputStream8);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication10 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication13 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray16 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream17 = null;
         java.io.OutputStream outputStream18 = null;
-        mkdirApplication13.run(strArray16, inputStream17, outputStream18);
+        
         java.lang.String str20 = lsApplication10.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray16);
-        mkdirApplication3.createFolder(strArray16);
+        
         java.lang.String str22 = lsApplication0.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray16);
         sg.edu.nus.comp.cs4218.impl.app.EchoApplication echoApplication23 = new sg.edu.nus.comp.cs4218.impl.app.EchoApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication24 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray31 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream32 = null;
         java.io.OutputStream outputStream33 = null;
-        mkdirApplication24.run(strArray31, inputStream32, outputStream33);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication35 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication38 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication40 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray43 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream44 = null;
         java.io.OutputStream outputStream45 = null;
-        mkdirApplication40.run(strArray43, inputStream44, outputStream45);
+        
         java.lang.String str47 = findApplication38.findFolderContent("", strArray43);
         java.lang.String str48 = lsApplication35.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray43);
         java.io.InputStream inputStream49 = null;
         java.io.OutputStream outputStream50 = null;
-        mkdirApplication24.run(strArray43, inputStream49, outputStream50);
+        
         java.lang.String str52 = echoApplication23.constructResult(strArray43);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication53 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray60 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream61 = null;
         java.io.OutputStream outputStream62 = null;
-        mkdirApplication53.run(strArray60, inputStream61, outputStream62);
+        
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication64 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray71 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream72 = null;
         java.io.OutputStream outputStream73 = null;
-        mkdirApplication64.run(strArray71, inputStream72, outputStream73);
+        
         java.lang.Class<?> wildcardClass75 = mkdirApplication64.getClass();
         java.lang.String[] strArray80 = new java.lang.String[] { "This is a directory", "Could not read stream", "Null Pointer Exception", "Exception Caught" };
         java.io.InputStream inputStream81 = null;
         java.io.OutputStream outputStream82 = null;
-        mkdirApplication64.run(strArray80, inputStream81, outputStream82);
+        
         java.io.InputStream inputStream84 = null;
         java.io.OutputStream outputStream85 = null;
-        mkdirApplication53.run(strArray80, inputStream84, outputStream85);
+        
         java.io.InputStream inputStream90 = null;
         java.io.OutputStream outputStream91 = null;
         try {
@@ -2808,39 +2709,39 @@ public class RegressionTest0 {
         java.lang.String[] strArray8 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream9 = null;
         java.io.OutputStream outputStream10 = null;
-        mkdirApplication1.run(strArray8, inputStream9, outputStream10);
+        
         java.lang.Class<?> wildcardClass12 = mkdirApplication1.getClass();
         java.lang.Class<?> wildcardClass13 = mkdirApplication1.getClass();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication14 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray17 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream18 = null;
         java.io.OutputStream outputStream19 = null;
-        mkdirApplication14.run(strArray17, inputStream18, outputStream19);
+        
         sg.edu.nus.comp.cs4218.impl.app.EchoApplication echoApplication21 = new sg.edu.nus.comp.cs4218.impl.app.EchoApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication22 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray29 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream30 = null;
         java.io.OutputStream outputStream31 = null;
-        mkdirApplication22.run(strArray29, inputStream30, outputStream31);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication33 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication36 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication38 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray41 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream42 = null;
         java.io.OutputStream outputStream43 = null;
-        mkdirApplication38.run(strArray41, inputStream42, outputStream43);
+        
         java.lang.String str45 = findApplication36.findFolderContent("", strArray41);
         java.lang.String str46 = lsApplication33.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray41);
         java.io.InputStream inputStream47 = null;
         java.io.OutputStream outputStream48 = null;
-        mkdirApplication22.run(strArray41, inputStream47, outputStream48);
+        
         java.lang.String str50 = echoApplication21.constructResult(strArray41);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication51 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray58 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream59 = null;
         java.io.OutputStream outputStream60 = null;
-        mkdirApplication51.run(strArray58, inputStream59, outputStream60);
-        mkdirApplication14.createFolder(strArray58);
+        
+        
         java.io.InputStream inputStream69 = null;
         java.io.OutputStream outputStream70 = null;
         try {
@@ -2899,15 +2800,15 @@ public class RegressionTest0 {
         java.lang.String[] strArray7 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream8 = null;
         java.io.OutputStream outputStream9 = null;
-        mkdirApplication4.run(strArray7, inputStream8, outputStream9);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication11 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication14 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray17 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream18 = null;
         java.io.OutputStream outputStream19 = null;
-        mkdirApplication14.run(strArray17, inputStream18, outputStream19);
+        
         java.lang.String str21 = lsApplication11.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray17);
-        mkdirApplication4.createFolder(strArray17);
+        
         java.lang.String str23 = findApplication2.findFolderContent("null output stream provided fail_echo_write", strArray17);
         try {
             java.lang.String str24 = catApplication0.catFiles(strArray17);
@@ -2933,22 +2834,22 @@ public class RegressionTest0 {
         java.lang.String[] strArray8 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream9 = null;
         java.io.OutputStream outputStream10 = null;
-        mkdirApplication5.run(strArray8, inputStream9, outputStream10);
+        
         java.lang.String str12 = findApplication3.findFolderContent("", strArray8);
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication14 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication16 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray19 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream20 = null;
         java.io.OutputStream outputStream21 = null;
-        mkdirApplication16.run(strArray19, inputStream20, outputStream21);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication23 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication26 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray29 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream30 = null;
         java.io.OutputStream outputStream31 = null;
-        mkdirApplication26.run(strArray29, inputStream30, outputStream31);
+        
         java.lang.String str33 = lsApplication23.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray29);
-        mkdirApplication16.createFolder(strArray29);
+        
         java.lang.String str35 = findApplication14.findFolderContent("null output stream provided fail_echo_write", strArray29);
         java.lang.Class<?> wildcardClass36 = strArray29.getClass();
         java.lang.String str37 = findApplication3.findFolderContent("null output stream provided fail_echo_write", strArray29);
@@ -2981,26 +2882,26 @@ public class RegressionTest0 {
         java.lang.String[] strArray10 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream11 = null;
         java.io.OutputStream outputStream12 = null;
-        mkdirApplication7.run(strArray10, inputStream11, outputStream12);
+        
         java.lang.String str14 = lsApplication4.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray10);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication17 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray24 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream25 = null;
         java.io.OutputStream outputStream26 = null;
-        mkdirApplication17.run(strArray24, inputStream25, outputStream26);
+        
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication28 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray35 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream36 = null;
         java.io.OutputStream outputStream37 = null;
-        mkdirApplication28.run(strArray35, inputStream36, outputStream37);
+        
         java.lang.Class<?> wildcardClass39 = mkdirApplication28.getClass();
         java.lang.String[] strArray44 = new java.lang.String[] { "This is a directory", "Could not read stream", "Null Pointer Exception", "Exception Caught" };
         java.io.InputStream inputStream45 = null;
         java.io.OutputStream outputStream46 = null;
-        mkdirApplication28.run(strArray44, inputStream45, outputStream46);
+        
         java.io.InputStream inputStream48 = null;
         java.io.OutputStream outputStream49 = null;
-        mkdirApplication17.run(strArray44, inputStream48, outputStream49);
+        
         java.lang.String str51 = lsApplication4.listFolderContent((java.lang.Boolean) true, (java.lang.Boolean) true, strArray44);
         try {
             java.lang.String str52 = wcApplication0.countFromFiles((java.lang.Boolean) false, (java.lang.Boolean) false, (java.lang.Boolean) true, strArray44);
@@ -3026,15 +2927,15 @@ public class RegressionTest0 {
         java.lang.String[] strArray6 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream7 = null;
         java.io.OutputStream outputStream8 = null;
-        mkdirApplication3.run(strArray6, inputStream7, outputStream8);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication10 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication13 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray16 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream17 = null;
         java.io.OutputStream outputStream18 = null;
-        mkdirApplication13.run(strArray16, inputStream17, outputStream18);
+        
         java.lang.String str20 = lsApplication10.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray16);
-        mkdirApplication3.createFolder(strArray16);
+        
         java.lang.String str22 = findApplication1.findFolderContent("null output stream provided fail_echo_write", strArray16);
         java.lang.Class<?> wildcardClass23 = strArray16.getClass();
         try {
@@ -3057,34 +2958,34 @@ public class RegressionTest0 {
         java.lang.Class<?> wildcardClass1 = sortApplication0.getClass();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication2 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray5 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication2.createFolder(strArray5);
+        
         sg.edu.nus.comp.cs4218.impl.app.EchoApplication echoApplication7 = new sg.edu.nus.comp.cs4218.impl.app.EchoApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication8 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray15 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream16 = null;
         java.io.OutputStream outputStream17 = null;
-        mkdirApplication8.run(strArray15, inputStream16, outputStream17);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication19 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication22 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication24 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray27 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream28 = null;
         java.io.OutputStream outputStream29 = null;
-        mkdirApplication24.run(strArray27, inputStream28, outputStream29);
+        
         java.lang.String str31 = findApplication22.findFolderContent("", strArray27);
         java.lang.String str32 = lsApplication19.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray27);
         java.io.InputStream inputStream33 = null;
         java.io.OutputStream outputStream34 = null;
-        mkdirApplication8.run(strArray27, inputStream33, outputStream34);
+        
         java.lang.String str36 = echoApplication7.constructResult(strArray27);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication37 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray44 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream45 = null;
         java.io.OutputStream outputStream46 = null;
-        mkdirApplication37.run(strArray44, inputStream45, outputStream46);
+        
         java.io.InputStream inputStream51 = null;
         java.io.OutputStream outputStream52 = null;
-        mkdirApplication2.run(strArray44, inputStream51, outputStream52);
+        
         java.io.InputStream inputStream54 = null;
         java.io.OutputStream outputStream55 = null;
         try {
@@ -3112,47 +3013,47 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication5 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication7 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray10 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication7.createFolder(strArray10);
+        
         java.lang.String str12 = findApplication5.findFolderContent("fail_sed_write", strArray10);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication14 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray17 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication14.createFolder(strArray17);
+        
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication19 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray22 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream23 = null;
         java.io.OutputStream outputStream24 = null;
-        mkdirApplication19.run(strArray22, inputStream23, outputStream24);
+        
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication26 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication28 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray31 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream32 = null;
         java.io.OutputStream outputStream33 = null;
-        mkdirApplication28.run(strArray31, inputStream32, outputStream33);
+        
         java.lang.String str35 = findApplication26.findFolderContent("", strArray31);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication37 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray44 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream45 = null;
         java.io.OutputStream outputStream46 = null;
-        mkdirApplication37.run(strArray44, inputStream45, outputStream46);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication48 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication51 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication53 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray56 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream57 = null;
         java.io.OutputStream outputStream58 = null;
-        mkdirApplication53.run(strArray56, inputStream57, outputStream58);
+        
         java.lang.String str60 = findApplication51.findFolderContent("", strArray56);
         java.lang.String str61 = lsApplication48.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray56);
         java.io.InputStream inputStream62 = null;
         java.io.OutputStream outputStream63 = null;
-        mkdirApplication37.run(strArray56, inputStream62, outputStream63);
+        
         java.lang.String str65 = findApplication26.findFolderContent("Could not read stream", strArray56);
         java.io.InputStream inputStream66 = null;
         java.io.OutputStream outputStream67 = null;
-        mkdirApplication19.run(strArray56, inputStream66, outputStream67);
+        
         java.io.InputStream inputStream69 = null;
         java.io.OutputStream outputStream70 = null;
-        mkdirApplication14.run(strArray56, inputStream69, outputStream70);
+        
         java.lang.Class<?> wildcardClass72 = strArray56.getClass();
         java.lang.String str73 = findApplication5.findFolderContent("", strArray56);
         java.lang.String str74 = findApplication3.findFolderContent("", strArray56);
@@ -3189,19 +3090,19 @@ public class RegressionTest0 {
         java.lang.String[] strArray5 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream6 = null;
         java.io.OutputStream outputStream7 = null;
-        mkdirApplication2.run(strArray5, inputStream6, outputStream7);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication9 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication12 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray15 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream16 = null;
         java.io.OutputStream outputStream17 = null;
-        mkdirApplication12.run(strArray15, inputStream16, outputStream17);
+        
         java.lang.String str19 = lsApplication9.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray15);
-        mkdirApplication2.createFolder(strArray15);
+        
         java.lang.String[] strArray24 = new java.lang.String[] { "null output stream provided", "null arguments", "null output stream provided" };
         java.io.InputStream inputStream25 = null;
         java.io.OutputStream outputStream26 = null;
-        mkdirApplication2.run(strArray24, inputStream25, outputStream26);
+        
         java.io.InputStream inputStream28 = null;
         java.io.OutputStream outputStream29 = null;
         try {
@@ -3262,15 +3163,15 @@ public class RegressionTest0 {
         java.lang.String[] strArray6 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream7 = null;
         java.io.OutputStream outputStream8 = null;
-        mkdirApplication3.run(strArray6, inputStream7, outputStream8);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication10 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication13 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray16 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream17 = null;
         java.io.OutputStream outputStream18 = null;
-        mkdirApplication13.run(strArray16, inputStream17, outputStream18);
+        
         java.lang.String str20 = lsApplication10.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray16);
-        mkdirApplication3.createFolder(strArray16);
+        
         java.lang.String str22 = findApplication1.findFolderContent("null output stream provided fail_echo_write", strArray16);
         java.lang.Class<?> wildcardClass23 = strArray16.getClass();
         java.io.InputStream inputStream24 = null;
@@ -3297,41 +3198,41 @@ public class RegressionTest0 {
         java.lang.String[] strArray9 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream10 = null;
         java.io.OutputStream outputStream11 = null;
-        mkdirApplication2.run(strArray9, inputStream10, outputStream11);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication13 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication16 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication18 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray21 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream22 = null;
         java.io.OutputStream outputStream23 = null;
-        mkdirApplication18.run(strArray21, inputStream22, outputStream23);
+        
         java.lang.String str25 = findApplication16.findFolderContent("", strArray21);
         java.lang.String str26 = lsApplication13.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray21);
         java.io.InputStream inputStream27 = null;
         java.io.OutputStream outputStream28 = null;
-        mkdirApplication2.run(strArray21, inputStream27, outputStream28);
+        
         java.lang.String str30 = echoApplication1.constructResult(strArray21);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication31 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray38 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream39 = null;
         java.io.OutputStream outputStream40 = null;
-        mkdirApplication31.run(strArray38, inputStream39, outputStream40);
+        
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication42 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray49 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream50 = null;
         java.io.OutputStream outputStream51 = null;
-        mkdirApplication42.run(strArray49, inputStream50, outputStream51);
+        
         java.lang.Class<?> wildcardClass53 = mkdirApplication42.getClass();
         java.lang.String[] strArray58 = new java.lang.String[] { "This is a directory", "Could not read stream", "Null Pointer Exception", "Exception Caught" };
         java.io.InputStream inputStream59 = null;
         java.io.OutputStream outputStream60 = null;
-        mkdirApplication42.run(strArray58, inputStream59, outputStream60);
+        
         java.io.InputStream inputStream62 = null;
         java.io.OutputStream outputStream63 = null;
-        mkdirApplication31.run(strArray58, inputStream62, outputStream63);
+        
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication68 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray71 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication68.createFolder(strArray71);
+        
         java.lang.String str73 = echoApplication1.constructResult(strArray71);
         java.io.InputStream inputStream74 = null;
         java.io.OutputStream outputStream75 = null;
@@ -3388,32 +3289,32 @@ public class RegressionTest0 {
         java.lang.String[] strArray5 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream6 = null;
         java.io.OutputStream outputStream7 = null;
-        mkdirApplication2.run(strArray5, inputStream6, outputStream7);
+        
         java.lang.String str9 = findApplication0.findFolderContent("", strArray5);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication11 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray14 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream15 = null;
         java.io.OutputStream outputStream16 = null;
-        mkdirApplication11.run(strArray14, inputStream15, outputStream16);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication18 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication21 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray24 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream25 = null;
         java.io.OutputStream outputStream26 = null;
-        mkdirApplication21.run(strArray24, inputStream25, outputStream26);
+        
         java.lang.String str28 = lsApplication18.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray24);
-        mkdirApplication11.createFolder(strArray24);
+        
         java.lang.String str30 = findApplication0.findFolderContent("null input file provided", strArray24);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication31 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray38 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream39 = null;
         java.io.OutputStream outputStream40 = null;
-        mkdirApplication31.run(strArray38, inputStream39, outputStream40);
+        
         java.lang.Class<?> wildcardClass42 = mkdirApplication31.getClass();
         java.lang.String[] strArray47 = new java.lang.String[] { "This is a directory", "Could not read stream", "Null Pointer Exception", "Exception Caught" };
         java.io.InputStream inputStream48 = null;
         java.io.OutputStream outputStream49 = null;
-        mkdirApplication31.run(strArray47, inputStream48, outputStream49);
+        
         java.io.InputStream inputStream51 = null;
         java.io.OutputStream outputStream52 = null;
         try {
@@ -3455,36 +3356,36 @@ public class RegressionTest0 {
         java.lang.String[] strArray10 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream11 = null;
         java.io.OutputStream outputStream12 = null;
-        mkdirApplication7.run(strArray10, inputStream11, outputStream12);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication14 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication17 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray20 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream21 = null;
         java.io.OutputStream outputStream22 = null;
-        mkdirApplication17.run(strArray20, inputStream21, outputStream22);
+        
         java.lang.String str24 = lsApplication14.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray20);
-        mkdirApplication7.createFolder(strArray20);
+        
         java.lang.String str26 = lsApplication4.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray20);
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication29 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication31 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray34 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream35 = null;
         java.io.OutputStream outputStream36 = null;
-        mkdirApplication31.run(strArray34, inputStream35, outputStream36);
+        
         java.lang.String str38 = findApplication29.findFolderContent("", strArray34);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication40 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray43 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream44 = null;
         java.io.OutputStream outputStream45 = null;
-        mkdirApplication40.run(strArray43, inputStream44, outputStream45);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication47 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication50 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray53 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream54 = null;
         java.io.OutputStream outputStream55 = null;
-        mkdirApplication50.run(strArray53, inputStream54, outputStream55);
+        
         java.lang.String str57 = lsApplication47.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray53);
-        mkdirApplication40.createFolder(strArray53);
+        
         java.lang.String str59 = findApplication29.findFolderContent("null input file provided", strArray53);
         java.lang.String str60 = lsApplication4.listFolderContent((java.lang.Boolean) true, (java.lang.Boolean) true, strArray53);
         try {
@@ -3514,54 +3415,54 @@ public class RegressionTest0 {
         java.lang.String[] strArray5 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream6 = null;
         java.io.OutputStream outputStream7 = null;
-        mkdirApplication2.run(strArray5, inputStream6, outputStream7);
+        
         java.lang.String str9 = findApplication0.findFolderContent("", strArray5);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication11 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray18 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream19 = null;
         java.io.OutputStream outputStream20 = null;
-        mkdirApplication11.run(strArray18, inputStream19, outputStream20);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication22 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication25 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication27 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray30 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream31 = null;
         java.io.OutputStream outputStream32 = null;
-        mkdirApplication27.run(strArray30, inputStream31, outputStream32);
+        
         java.lang.String str34 = findApplication25.findFolderContent("", strArray30);
         java.lang.String str35 = lsApplication22.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray30);
         java.io.InputStream inputStream36 = null;
         java.io.OutputStream outputStream37 = null;
-        mkdirApplication11.run(strArray30, inputStream36, outputStream37);
+        
         java.lang.String str39 = findApplication0.findFolderContent("Could not read stream", strArray30);
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication40 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication42 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray45 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream46 = null;
         java.io.OutputStream outputStream47 = null;
-        mkdirApplication42.run(strArray45, inputStream46, outputStream47);
+        
         java.lang.String str49 = findApplication40.findFolderContent("", strArray45);
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication51 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication53 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray56 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream57 = null;
         java.io.OutputStream outputStream58 = null;
-        mkdirApplication53.run(strArray56, inputStream57, outputStream58);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication60 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication63 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray66 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream67 = null;
         java.io.OutputStream outputStream68 = null;
-        mkdirApplication63.run(strArray66, inputStream67, outputStream68);
+        
         java.lang.String str70 = lsApplication60.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray66);
-        mkdirApplication53.createFolder(strArray66);
+        
         java.lang.String str72 = findApplication51.findFolderContent("null output stream provided fail_echo_write", strArray66);
         java.lang.Class<?> wildcardClass73 = strArray66.getClass();
         java.lang.String str74 = findApplication40.findFolderContent("null output stream provided fail_echo_write", strArray66);
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication76 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication78 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray81 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication78.createFolder(strArray81);
+        
         java.lang.String str83 = findApplication76.findFolderContent("fail_sed_write", strArray81);
         java.lang.String str84 = findApplication40.findFolderContent("null output stream provided\r\nfail_echo_write", strArray81);
         java.io.InputStream inputStream85 = null;
@@ -3601,20 +3502,20 @@ public class RegressionTest0 {
         java.lang.String[] strArray9 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream10 = null;
         java.io.OutputStream outputStream11 = null;
-        mkdirApplication2.run(strArray9, inputStream10, outputStream11);
+        
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication13 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray20 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream21 = null;
         java.io.OutputStream outputStream22 = null;
-        mkdirApplication13.run(strArray20, inputStream21, outputStream22);
+        
         java.lang.Class<?> wildcardClass24 = mkdirApplication13.getClass();
         java.lang.String[] strArray29 = new java.lang.String[] { "This is a directory", "Could not read stream", "Null Pointer Exception", "Exception Caught" };
         java.io.InputStream inputStream30 = null;
         java.io.OutputStream outputStream31 = null;
-        mkdirApplication13.run(strArray29, inputStream30, outputStream31);
+        
         java.io.InputStream inputStream33 = null;
         java.io.OutputStream outputStream34 = null;
-        mkdirApplication2.run(strArray29, inputStream33, outputStream34);
+        
         try {
             java.lang.String str36 = catApplication0.catFiles(strArray29);
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.CatException; message: cat: This is a directory");
@@ -3662,29 +3563,29 @@ public class RegressionTest0 {
         java.lang.String[] strArray6 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream7 = null;
         java.io.OutputStream outputStream8 = null;
-        mkdirApplication3.run(strArray6, inputStream7, outputStream8);
+        
         java.lang.String str10 = findApplication1.findFolderContent("", strArray6);
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication12 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication14 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray17 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream18 = null;
         java.io.OutputStream outputStream19 = null;
-        mkdirApplication14.run(strArray17, inputStream18, outputStream19);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication21 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication24 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray27 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream28 = null;
         java.io.OutputStream outputStream29 = null;
-        mkdirApplication24.run(strArray27, inputStream28, outputStream29);
+        
         java.lang.String str31 = lsApplication21.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray27);
-        mkdirApplication14.createFolder(strArray27);
+        
         java.lang.String str33 = findApplication12.findFolderContent("null output stream provided fail_echo_write", strArray27);
         java.lang.Class<?> wildcardClass34 = strArray27.getClass();
         java.lang.String str35 = findApplication1.findFolderContent("null output stream provided fail_echo_write", strArray27);
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication37 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication39 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray42 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication39.createFolder(strArray42);
+        
         java.lang.String str44 = findApplication37.findFolderContent("fail_sed_write", strArray42);
         java.lang.String str45 = findApplication1.findFolderContent("null output stream provided\r\nfail_echo_write", strArray42);
         java.io.InputStream inputStream46 = null;
@@ -3756,25 +3657,25 @@ public class RegressionTest0 {
         java.lang.String[] strArray8 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream9 = null;
         java.io.OutputStream outputStream10 = null;
-        mkdirApplication1.run(strArray8, inputStream9, outputStream10);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication12 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication15 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication17 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray20 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream21 = null;
         java.io.OutputStream outputStream22 = null;
-        mkdirApplication17.run(strArray20, inputStream21, outputStream22);
+        
         java.lang.String str24 = findApplication15.findFolderContent("", strArray20);
         java.lang.String str25 = lsApplication12.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray20);
         java.io.InputStream inputStream26 = null;
         java.io.OutputStream outputStream27 = null;
-        mkdirApplication1.run(strArray20, inputStream26, outputStream27);
+        
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication29 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray32 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication29.createFolder(strArray32);
+        
         java.io.InputStream inputStream34 = null;
         java.io.OutputStream outputStream35 = null;
-        mkdirApplication1.run(strArray32, inputStream34, outputStream35);
+        
         java.io.InputStream inputStream37 = null;
         java.io.OutputStream outputStream38 = null;
         try {
@@ -3835,15 +3736,15 @@ public class RegressionTest0 {
         java.lang.String[] strArray8 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream9 = null;
         java.io.OutputStream outputStream10 = null;
-        mkdirApplication1.run(strArray8, inputStream9, outputStream10);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication12 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication15 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray18 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream19 = null;
         java.io.OutputStream outputStream20 = null;
-        mkdirApplication15.run(strArray18, inputStream19, outputStream20);
+        
         java.lang.String str22 = lsApplication12.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray18);
-        mkdirApplication1.createFolder(strArray18);
+        
         java.io.InputStream inputStream24 = null;
         java.io.OutputStream outputStream25 = null;
         try {
@@ -3901,22 +3802,22 @@ public class RegressionTest0 {
         java.lang.String[] strArray8 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream9 = null;
         java.io.OutputStream outputStream10 = null;
-        mkdirApplication5.run(strArray8, inputStream9, outputStream10);
+        
         java.lang.String str12 = findApplication3.findFolderContent("", strArray8);
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication14 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication16 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray19 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream20 = null;
         java.io.OutputStream outputStream21 = null;
-        mkdirApplication16.run(strArray19, inputStream20, outputStream21);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication23 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication26 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray29 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream30 = null;
         java.io.OutputStream outputStream31 = null;
-        mkdirApplication26.run(strArray29, inputStream30, outputStream31);
+        
         java.lang.String str33 = lsApplication23.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray29);
-        mkdirApplication16.createFolder(strArray29);
+        
         java.lang.String str35 = findApplication14.findFolderContent("null output stream provided fail_echo_write", strArray29);
         java.lang.Class<?> wildcardClass36 = strArray29.getClass();
         java.lang.String str37 = findApplication3.findFolderContent("null output stream provided fail_echo_write", strArray29);
@@ -3948,12 +3849,12 @@ public class RegressionTest0 {
         java.lang.String[] strArray9 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream10 = null;
         java.io.OutputStream outputStream11 = null;
-        mkdirApplication6.run(strArray9, inputStream10, outputStream11);
+        
         java.lang.String str13 = findApplication4.findFolderContent("", strArray9);
         java.lang.String str14 = lsApplication1.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray9);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication17 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray20 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication17.createFolder(strArray20);
+        
         java.lang.String str22 = lsApplication1.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) true, strArray20);
         java.io.InputStream inputStream23 = null;
         java.io.OutputStream outputStream24 = null;
@@ -3978,40 +3879,40 @@ public class RegressionTest0 {
         java.lang.String[] strArray6 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream7 = null;
         java.io.OutputStream outputStream8 = null;
-        mkdirApplication3.run(strArray6, inputStream7, outputStream8);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication10 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication13 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray16 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream17 = null;
         java.io.OutputStream outputStream18 = null;
-        mkdirApplication13.run(strArray16, inputStream17, outputStream18);
+        
         java.lang.String str20 = lsApplication10.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray16);
-        mkdirApplication3.createFolder(strArray16);
+        
         java.lang.String str22 = lsApplication0.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray16);
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication23 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication25 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray28 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream29 = null;
         java.io.OutputStream outputStream30 = null;
-        mkdirApplication25.run(strArray28, inputStream29, outputStream30);
+        
         java.lang.String str32 = findApplication23.findFolderContent("", strArray28);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication34 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray41 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream42 = null;
         java.io.OutputStream outputStream43 = null;
-        mkdirApplication34.run(strArray41, inputStream42, outputStream43);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication45 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication48 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication50 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray53 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream54 = null;
         java.io.OutputStream outputStream55 = null;
-        mkdirApplication50.run(strArray53, inputStream54, outputStream55);
+        
         java.lang.String str57 = findApplication48.findFolderContent("", strArray53);
         java.lang.String str58 = lsApplication45.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray53);
         java.io.InputStream inputStream59 = null;
         java.io.OutputStream outputStream60 = null;
-        mkdirApplication34.run(strArray53, inputStream59, outputStream60);
+        
         java.lang.String str62 = findApplication23.findFolderContent("Could not read stream", strArray53);
         java.io.InputStream inputStream63 = null;
         java.io.OutputStream outputStream64 = null;
@@ -4052,34 +3953,34 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.SedApplication sedApplication0 = new sg.edu.nus.comp.cs4218.impl.app.SedApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication1 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray4 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication1.createFolder(strArray4);
+        
         sg.edu.nus.comp.cs4218.impl.app.EchoApplication echoApplication6 = new sg.edu.nus.comp.cs4218.impl.app.EchoApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication7 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray14 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream15 = null;
         java.io.OutputStream outputStream16 = null;
-        mkdirApplication7.run(strArray14, inputStream15, outputStream16);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication18 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication21 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication23 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray26 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream27 = null;
         java.io.OutputStream outputStream28 = null;
-        mkdirApplication23.run(strArray26, inputStream27, outputStream28);
+        
         java.lang.String str30 = findApplication21.findFolderContent("", strArray26);
         java.lang.String str31 = lsApplication18.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray26);
         java.io.InputStream inputStream32 = null;
         java.io.OutputStream outputStream33 = null;
-        mkdirApplication7.run(strArray26, inputStream32, outputStream33);
+        
         java.lang.String str35 = echoApplication6.constructResult(strArray26);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication36 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray43 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream44 = null;
         java.io.OutputStream outputStream45 = null;
-        mkdirApplication36.run(strArray43, inputStream44, outputStream45);
+        
         java.io.InputStream inputStream50 = null;
         java.io.OutputStream outputStream51 = null;
-        mkdirApplication1.run(strArray43, inputStream50, outputStream51);
+        
         java.lang.Class<?> wildcardClass53 = strArray43.getClass();
         java.io.InputStream inputStream54 = null;
         java.io.OutputStream outputStream55 = null;
@@ -4119,7 +4020,7 @@ public class RegressionTest0 {
         java.lang.String[] strArray8 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream9 = null;
         java.io.OutputStream outputStream10 = null;
-        mkdirApplication1.run(strArray8, inputStream9, outputStream10);
+        
         java.io.InputStream inputStream12 = null;
         java.io.OutputStream outputStream13 = null;
         try {
@@ -4151,60 +4052,60 @@ public class RegressionTest0 {
         java.lang.String[] strArray9 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream10 = null;
         java.io.OutputStream outputStream11 = null;
-        mkdirApplication2.run(strArray9, inputStream10, outputStream11);
+        
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication13 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray16 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream17 = null;
         java.io.OutputStream outputStream18 = null;
-        mkdirApplication13.run(strArray16, inputStream17, outputStream18);
+        
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication20 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication22 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray25 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication22.createFolder(strArray25);
+        
         java.lang.String str27 = findApplication20.findFolderContent("fail_sed_write", strArray25);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication29 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray32 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication29.createFolder(strArray32);
+        
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication34 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray37 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream38 = null;
         java.io.OutputStream outputStream39 = null;
-        mkdirApplication34.run(strArray37, inputStream38, outputStream39);
+        
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication41 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication43 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray46 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream47 = null;
         java.io.OutputStream outputStream48 = null;
-        mkdirApplication43.run(strArray46, inputStream47, outputStream48);
+        
         java.lang.String str50 = findApplication41.findFolderContent("", strArray46);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication52 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray59 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream60 = null;
         java.io.OutputStream outputStream61 = null;
-        mkdirApplication52.run(strArray59, inputStream60, outputStream61);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication63 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication66 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication68 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray71 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream72 = null;
         java.io.OutputStream outputStream73 = null;
-        mkdirApplication68.run(strArray71, inputStream72, outputStream73);
+        
         java.lang.String str75 = findApplication66.findFolderContent("", strArray71);
         java.lang.String str76 = lsApplication63.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray71);
         java.io.InputStream inputStream77 = null;
         java.io.OutputStream outputStream78 = null;
-        mkdirApplication52.run(strArray71, inputStream77, outputStream78);
+        
         java.lang.String str80 = findApplication41.findFolderContent("Could not read stream", strArray71);
         java.io.InputStream inputStream81 = null;
         java.io.OutputStream outputStream82 = null;
-        mkdirApplication34.run(strArray71, inputStream81, outputStream82);
+        
         java.io.InputStream inputStream84 = null;
         java.io.OutputStream outputStream85 = null;
-        mkdirApplication29.run(strArray71, inputStream84, outputStream85);
+        
         java.lang.Class<?> wildcardClass87 = strArray71.getClass();
         java.lang.String str88 = findApplication20.findFolderContent("", strArray71);
-        mkdirApplication13.createFolder(strArray71);
-        mkdirApplication2.createFolder(strArray71);
+        
+        
         java.lang.String str91 = findApplication0.findFolderContent("Exception Caught", strArray71);
         java.lang.String[] strArray93 = null;
         try {
@@ -4239,47 +4140,47 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication2 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication4 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray7 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication4.createFolder(strArray7);
+        
         java.lang.String str9 = findApplication2.findFolderContent("fail_sed_write", strArray7);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication11 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray14 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication11.createFolder(strArray14);
+        
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication16 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray19 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream20 = null;
         java.io.OutputStream outputStream21 = null;
-        mkdirApplication16.run(strArray19, inputStream20, outputStream21);
+        
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication23 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication25 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray28 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream29 = null;
         java.io.OutputStream outputStream30 = null;
-        mkdirApplication25.run(strArray28, inputStream29, outputStream30);
+        
         java.lang.String str32 = findApplication23.findFolderContent("", strArray28);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication34 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray41 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream42 = null;
         java.io.OutputStream outputStream43 = null;
-        mkdirApplication34.run(strArray41, inputStream42, outputStream43);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication45 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication48 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication50 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray53 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream54 = null;
         java.io.OutputStream outputStream55 = null;
-        mkdirApplication50.run(strArray53, inputStream54, outputStream55);
+        
         java.lang.String str57 = findApplication48.findFolderContent("", strArray53);
         java.lang.String str58 = lsApplication45.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray53);
         java.io.InputStream inputStream59 = null;
         java.io.OutputStream outputStream60 = null;
-        mkdirApplication34.run(strArray53, inputStream59, outputStream60);
+        
         java.lang.String str62 = findApplication23.findFolderContent("Could not read stream", strArray53);
         java.io.InputStream inputStream63 = null;
         java.io.OutputStream outputStream64 = null;
-        mkdirApplication16.run(strArray53, inputStream63, outputStream64);
+        
         java.io.InputStream inputStream66 = null;
         java.io.OutputStream outputStream67 = null;
-        mkdirApplication11.run(strArray53, inputStream66, outputStream67);
+        
         java.lang.Class<?> wildcardClass69 = strArray53.getClass();
         java.lang.String str70 = findApplication2.findFolderContent("", strArray53);
         java.io.InputStream inputStream71 = null;
@@ -4315,41 +4216,41 @@ public class RegressionTest0 {
         java.lang.String[] strArray7 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream8 = null;
         java.io.OutputStream outputStream9 = null;
-        mkdirApplication4.run(strArray7, inputStream8, outputStream9);
+        
         java.lang.String str11 = lsApplication1.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray7);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication14 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray21 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream22 = null;
         java.io.OutputStream outputStream23 = null;
-        mkdirApplication14.run(strArray21, inputStream22, outputStream23);
+        
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication25 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray32 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream33 = null;
         java.io.OutputStream outputStream34 = null;
-        mkdirApplication25.run(strArray32, inputStream33, outputStream34);
+        
         java.lang.Class<?> wildcardClass36 = mkdirApplication25.getClass();
         java.lang.String[] strArray41 = new java.lang.String[] { "This is a directory", "Could not read stream", "Null Pointer Exception", "Exception Caught" };
         java.io.InputStream inputStream42 = null;
         java.io.OutputStream outputStream43 = null;
-        mkdirApplication25.run(strArray41, inputStream42, outputStream43);
+        
         java.io.InputStream inputStream45 = null;
         java.io.OutputStream outputStream46 = null;
-        mkdirApplication14.run(strArray41, inputStream45, outputStream46);
+        
         java.lang.String str48 = lsApplication1.listFolderContent((java.lang.Boolean) true, (java.lang.Boolean) true, strArray41);
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication51 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication54 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray57 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream58 = null;
         java.io.OutputStream outputStream59 = null;
-        mkdirApplication54.run(strArray57, inputStream58, outputStream59);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication61 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication64 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray67 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream68 = null;
         java.io.OutputStream outputStream69 = null;
-        mkdirApplication64.run(strArray67, inputStream68, outputStream69);
+        
         java.lang.String str71 = lsApplication61.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray67);
-        mkdirApplication54.createFolder(strArray67);
+        
         java.lang.String str73 = lsApplication51.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray67);
         java.lang.String str74 = lsApplication1.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) true, strArray67);
         java.io.InputStream inputStream75 = null;
@@ -4383,25 +4284,25 @@ public class RegressionTest0 {
         java.lang.String[] strArray9 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream10 = null;
         java.io.OutputStream outputStream11 = null;
-        mkdirApplication2.run(strArray9, inputStream10, outputStream11);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication13 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication16 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication18 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray21 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream22 = null;
         java.io.OutputStream outputStream23 = null;
-        mkdirApplication18.run(strArray21, inputStream22, outputStream23);
+        
         java.lang.String str25 = findApplication16.findFolderContent("", strArray21);
         java.lang.String str26 = lsApplication13.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray21);
         java.io.InputStream inputStream27 = null;
         java.io.OutputStream outputStream28 = null;
-        mkdirApplication2.run(strArray21, inputStream27, outputStream28);
+        
         java.lang.String str30 = echoApplication1.constructResult(strArray21);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication31 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray38 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream39 = null;
         java.io.OutputStream outputStream40 = null;
-        mkdirApplication31.run(strArray38, inputStream39, outputStream40);
+        
         java.io.InputStream inputStream45 = null;
         java.io.OutputStream outputStream46 = null;
         try {
@@ -4428,15 +4329,15 @@ public class RegressionTest0 {
         java.lang.String[] strArray10 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream11 = null;
         java.io.OutputStream outputStream12 = null;
-        mkdirApplication3.run(strArray10, inputStream11, outputStream12);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication14 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication17 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray20 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream21 = null;
         java.io.OutputStream outputStream22 = null;
-        mkdirApplication17.run(strArray20, inputStream21, outputStream22);
+        
         java.lang.String str24 = lsApplication14.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray20);
-        mkdirApplication3.createFolder(strArray20);
+        
         java.io.InputStream inputStream26 = null;
         java.io.OutputStream outputStream27 = null;
         try {
@@ -4460,58 +4361,58 @@ public class RegressionTest0 {
         java.lang.String[] strArray4 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream5 = null;
         java.io.OutputStream outputStream6 = null;
-        mkdirApplication1.run(strArray4, inputStream5, outputStream6);
+        
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication8 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication10 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication12 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray15 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication12.createFolder(strArray15);
+        
         java.lang.String str17 = findApplication10.findFolderContent("fail_sed_write", strArray15);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication19 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray22 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication19.createFolder(strArray22);
+        
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication24 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray27 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream28 = null;
         java.io.OutputStream outputStream29 = null;
-        mkdirApplication24.run(strArray27, inputStream28, outputStream29);
+        
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication31 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication33 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray36 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream37 = null;
         java.io.OutputStream outputStream38 = null;
-        mkdirApplication33.run(strArray36, inputStream37, outputStream38);
+        
         java.lang.String str40 = findApplication31.findFolderContent("", strArray36);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication42 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray49 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream50 = null;
         java.io.OutputStream outputStream51 = null;
-        mkdirApplication42.run(strArray49, inputStream50, outputStream51);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication53 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication56 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication58 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray61 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream62 = null;
         java.io.OutputStream outputStream63 = null;
-        mkdirApplication58.run(strArray61, inputStream62, outputStream63);
+        
         java.lang.String str65 = findApplication56.findFolderContent("", strArray61);
         java.lang.String str66 = lsApplication53.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray61);
         java.io.InputStream inputStream67 = null;
         java.io.OutputStream outputStream68 = null;
-        mkdirApplication42.run(strArray61, inputStream67, outputStream68);
+        
         java.lang.String str70 = findApplication31.findFolderContent("Could not read stream", strArray61);
         java.io.InputStream inputStream71 = null;
         java.io.OutputStream outputStream72 = null;
-        mkdirApplication24.run(strArray61, inputStream71, outputStream72);
+        
         java.io.InputStream inputStream74 = null;
         java.io.OutputStream outputStream75 = null;
-        mkdirApplication19.run(strArray61, inputStream74, outputStream75);
+        
         java.lang.Class<?> wildcardClass77 = strArray61.getClass();
         java.lang.String str78 = findApplication10.findFolderContent("", strArray61);
         java.lang.String str79 = findApplication8.findFolderContent("", strArray61);
         java.io.InputStream inputStream80 = null;
         java.io.OutputStream outputStream81 = null;
-        mkdirApplication1.run(strArray61, inputStream80, outputStream81);
+        
         java.io.InputStream inputStream83 = null;
         java.io.OutputStream outputStream84 = null;
         try {
@@ -4561,26 +4462,26 @@ public class RegressionTest0 {
         java.lang.String[] strArray10 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream11 = null;
         java.io.OutputStream outputStream12 = null;
-        mkdirApplication7.run(strArray10, inputStream11, outputStream12);
+        
         java.lang.String str14 = lsApplication4.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray10);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication17 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray24 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream25 = null;
         java.io.OutputStream outputStream26 = null;
-        mkdirApplication17.run(strArray24, inputStream25, outputStream26);
+        
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication28 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray35 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream36 = null;
         java.io.OutputStream outputStream37 = null;
-        mkdirApplication28.run(strArray35, inputStream36, outputStream37);
+        
         java.lang.Class<?> wildcardClass39 = mkdirApplication28.getClass();
         java.lang.String[] strArray44 = new java.lang.String[] { "This is a directory", "Could not read stream", "Null Pointer Exception", "Exception Caught" };
         java.io.InputStream inputStream45 = null;
         java.io.OutputStream outputStream46 = null;
-        mkdirApplication28.run(strArray44, inputStream45, outputStream46);
+        
         java.io.InputStream inputStream48 = null;
         java.io.OutputStream outputStream49 = null;
-        mkdirApplication17.run(strArray44, inputStream48, outputStream49);
+        
         java.lang.String str51 = lsApplication4.listFolderContent((java.lang.Boolean) true, (java.lang.Boolean) true, strArray44);
         java.io.InputStream inputStream52 = null;
         java.io.OutputStream outputStream53 = null;
@@ -4664,54 +4565,54 @@ public class RegressionTest0 {
         java.lang.String[] strArray8 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream9 = null;
         java.io.OutputStream outputStream10 = null;
-        mkdirApplication1.run(strArray8, inputStream9, outputStream10);
+        
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication12 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray19 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream20 = null;
         java.io.OutputStream outputStream21 = null;
-        mkdirApplication12.run(strArray19, inputStream20, outputStream21);
+        
         java.lang.Class<?> wildcardClass23 = mkdirApplication12.getClass();
         java.lang.String[] strArray28 = new java.lang.String[] { "This is a directory", "Could not read stream", "Null Pointer Exception", "Exception Caught" };
         java.io.InputStream inputStream29 = null;
         java.io.OutputStream outputStream30 = null;
-        mkdirApplication12.run(strArray28, inputStream29, outputStream30);
+        
         java.io.InputStream inputStream32 = null;
         java.io.OutputStream outputStream33 = null;
-        mkdirApplication1.run(strArray28, inputStream32, outputStream33);
+        
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication35 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray38 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream39 = null;
         java.io.OutputStream outputStream40 = null;
-        mkdirApplication35.run(strArray38, inputStream39, outputStream40);
+        
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication42 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication44 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray47 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream48 = null;
         java.io.OutputStream outputStream49 = null;
-        mkdirApplication44.run(strArray47, inputStream48, outputStream49);
+        
         java.lang.String str51 = findApplication42.findFolderContent("", strArray47);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication53 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray60 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream61 = null;
         java.io.OutputStream outputStream62 = null;
-        mkdirApplication53.run(strArray60, inputStream61, outputStream62);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication64 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication67 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication69 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray72 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream73 = null;
         java.io.OutputStream outputStream74 = null;
-        mkdirApplication69.run(strArray72, inputStream73, outputStream74);
+        
         java.lang.String str76 = findApplication67.findFolderContent("", strArray72);
         java.lang.String str77 = lsApplication64.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray72);
         java.io.InputStream inputStream78 = null;
         java.io.OutputStream outputStream79 = null;
-        mkdirApplication53.run(strArray72, inputStream78, outputStream79);
+        
         java.lang.String str81 = findApplication42.findFolderContent("Could not read stream", strArray72);
         java.io.InputStream inputStream82 = null;
         java.io.OutputStream outputStream83 = null;
-        mkdirApplication35.run(strArray72, inputStream82, outputStream83);
-        mkdirApplication1.createFolder(strArray72);
+        
+        
         java.io.InputStream inputStream86 = null;
         java.io.OutputStream outputStream87 = null;
         try {
@@ -4742,12 +4643,12 @@ public class RegressionTest0 {
         java.lang.String[] strArray8 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream9 = null;
         java.io.OutputStream outputStream10 = null;
-        mkdirApplication1.run(strArray8, inputStream9, outputStream10);
+        
         java.lang.Class<?> wildcardClass12 = mkdirApplication1.getClass();
         java.lang.String[] strArray17 = new java.lang.String[] { "This is a directory", "Could not read stream", "Null Pointer Exception", "Exception Caught" };
         java.io.InputStream inputStream18 = null;
         java.io.OutputStream outputStream19 = null;
-        mkdirApplication1.run(strArray17, inputStream18, outputStream19);
+        
         java.io.InputStream inputStream21 = null;
         java.io.OutputStream outputStream22 = null;
         try {
@@ -4771,7 +4672,7 @@ public class RegressionTest0 {
         java.lang.String[] strArray8 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream9 = null;
         java.io.OutputStream outputStream10 = null;
-        mkdirApplication5.run(strArray8, inputStream9, outputStream10);
+        
         java.lang.String str12 = lsApplication2.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray8);
         java.io.InputStream inputStream13 = null;
         java.io.OutputStream outputStream14 = null;
@@ -4800,43 +4701,43 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.CdApplication cdApplication0 = new sg.edu.nus.comp.cs4218.impl.app.CdApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication1 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray4 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication1.createFolder(strArray4);
+        
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication6 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray9 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream10 = null;
         java.io.OutputStream outputStream11 = null;
-        mkdirApplication6.run(strArray9, inputStream10, outputStream11);
+        
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication13 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication15 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray18 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream19 = null;
         java.io.OutputStream outputStream20 = null;
-        mkdirApplication15.run(strArray18, inputStream19, outputStream20);
+        
         java.lang.String str22 = findApplication13.findFolderContent("", strArray18);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication24 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray31 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream32 = null;
         java.io.OutputStream outputStream33 = null;
-        mkdirApplication24.run(strArray31, inputStream32, outputStream33);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication35 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication38 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication40 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray43 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream44 = null;
         java.io.OutputStream outputStream45 = null;
-        mkdirApplication40.run(strArray43, inputStream44, outputStream45);
+        
         java.lang.String str47 = findApplication38.findFolderContent("", strArray43);
         java.lang.String str48 = lsApplication35.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray43);
         java.io.InputStream inputStream49 = null;
         java.io.OutputStream outputStream50 = null;
-        mkdirApplication24.run(strArray43, inputStream49, outputStream50);
+        
         java.lang.String str52 = findApplication13.findFolderContent("Could not read stream", strArray43);
         java.io.InputStream inputStream53 = null;
         java.io.OutputStream outputStream54 = null;
-        mkdirApplication6.run(strArray43, inputStream53, outputStream54);
+        
         java.io.InputStream inputStream56 = null;
         java.io.OutputStream outputStream57 = null;
-        mkdirApplication1.run(strArray43, inputStream56, outputStream57);
+        
         java.io.InputStream inputStream59 = null;
         java.io.OutputStream outputStream60 = null;
         try {
@@ -4876,7 +4777,7 @@ public class RegressionTest0 {
         java.lang.String[] strArray5 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream6 = null;
         java.io.OutputStream outputStream7 = null;
-        mkdirApplication2.run(strArray5, inputStream6, outputStream7);
+        
         java.lang.String str9 = findApplication0.findFolderContent("", strArray5);
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication11 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication14 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
@@ -4884,37 +4785,37 @@ public class RegressionTest0 {
         java.lang.String[] strArray19 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream20 = null;
         java.io.OutputStream outputStream21 = null;
-        mkdirApplication16.run(strArray19, inputStream20, outputStream21);
+        
         java.lang.String str23 = findApplication14.findFolderContent("", strArray19);
         java.lang.String str24 = lsApplication11.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray19);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication27 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray30 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication27.createFolder(strArray30);
+        
         java.lang.String str32 = lsApplication11.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) true, strArray30);
         java.lang.String str33 = findApplication0.findFolderContent("hi!", strArray30);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication34 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray41 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream42 = null;
         java.io.OutputStream outputStream43 = null;
-        mkdirApplication34.run(strArray41, inputStream42, outputStream43);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication45 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication48 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication50 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray53 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream54 = null;
         java.io.OutputStream outputStream55 = null;
-        mkdirApplication50.run(strArray53, inputStream54, outputStream55);
+        
         java.lang.String str57 = findApplication48.findFolderContent("", strArray53);
         java.lang.String str58 = lsApplication45.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray53);
         java.io.InputStream inputStream59 = null;
         java.io.OutputStream outputStream60 = null;
-        mkdirApplication34.run(strArray53, inputStream59, outputStream60);
+        
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication62 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray65 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication62.createFolder(strArray65);
+        
         java.io.InputStream inputStream67 = null;
         java.io.OutputStream outputStream68 = null;
-        mkdirApplication34.run(strArray65, inputStream67, outputStream68);
+        
         java.io.InputStream inputStream70 = null;
         java.io.OutputStream outputStream71 = null;
         try {
@@ -4980,34 +4881,34 @@ public class RegressionTest0 {
         java.lang.String[] strArray9 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream10 = null;
         java.io.OutputStream outputStream11 = null;
-        mkdirApplication2.run(strArray9, inputStream10, outputStream11);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication13 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication16 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication18 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray21 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream22 = null;
         java.io.OutputStream outputStream23 = null;
-        mkdirApplication18.run(strArray21, inputStream22, outputStream23);
+        
         java.lang.String str25 = findApplication16.findFolderContent("", strArray21);
         java.lang.String str26 = lsApplication13.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray21);
         java.io.InputStream inputStream27 = null;
         java.io.OutputStream outputStream28 = null;
-        mkdirApplication2.run(strArray21, inputStream27, outputStream28);
+        
         java.lang.String str30 = echoApplication1.constructResult(strArray21);
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication31 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication33 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray36 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream37 = null;
         java.io.OutputStream outputStream38 = null;
-        mkdirApplication33.run(strArray36, inputStream37, outputStream38);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication40 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication43 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray46 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream47 = null;
         java.io.OutputStream outputStream48 = null;
-        mkdirApplication43.run(strArray46, inputStream47, outputStream48);
+        
         java.lang.String str50 = lsApplication40.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray46);
-        mkdirApplication33.createFolder(strArray46);
+        
         java.lang.String str52 = findApplication31.findFolderContent("null output stream provided fail_echo_write", strArray46);
         java.io.InputStream inputStream56 = null;
         java.io.OutputStream outputStream57 = null;
@@ -5034,34 +4935,34 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.DateApplication dateApplication0 = new sg.edu.nus.comp.cs4218.impl.app.DateApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication1 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray4 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication1.createFolder(strArray4);
+        
         sg.edu.nus.comp.cs4218.impl.app.EchoApplication echoApplication6 = new sg.edu.nus.comp.cs4218.impl.app.EchoApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication7 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray14 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream15 = null;
         java.io.OutputStream outputStream16 = null;
-        mkdirApplication7.run(strArray14, inputStream15, outputStream16);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication18 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication21 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication23 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray26 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream27 = null;
         java.io.OutputStream outputStream28 = null;
-        mkdirApplication23.run(strArray26, inputStream27, outputStream28);
+        
         java.lang.String str30 = findApplication21.findFolderContent("", strArray26);
         java.lang.String str31 = lsApplication18.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray26);
         java.io.InputStream inputStream32 = null;
         java.io.OutputStream outputStream33 = null;
-        mkdirApplication7.run(strArray26, inputStream32, outputStream33);
+        
         java.lang.String str35 = echoApplication6.constructResult(strArray26);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication36 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray43 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream44 = null;
         java.io.OutputStream outputStream45 = null;
-        mkdirApplication36.run(strArray43, inputStream44, outputStream45);
+        
         java.io.InputStream inputStream50 = null;
         java.io.OutputStream outputStream51 = null;
-        mkdirApplication1.run(strArray43, inputStream50, outputStream51);
+        
         java.lang.Class<?> wildcardClass53 = strArray43.getClass();
         java.io.InputStream inputStream54 = null;
         java.io.OutputStream outputStream55 = null;
@@ -5088,34 +4989,34 @@ public class RegressionTest0 {
         java.lang.Class<?> wildcardClass1 = sortApplication0.getClass();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication5 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray8 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication5.createFolder(strArray8);
+        
         sg.edu.nus.comp.cs4218.impl.app.EchoApplication echoApplication10 = new sg.edu.nus.comp.cs4218.impl.app.EchoApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication11 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray18 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream19 = null;
         java.io.OutputStream outputStream20 = null;
-        mkdirApplication11.run(strArray18, inputStream19, outputStream20);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication22 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication25 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication27 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray30 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream31 = null;
         java.io.OutputStream outputStream32 = null;
-        mkdirApplication27.run(strArray30, inputStream31, outputStream32);
+        
         java.lang.String str34 = findApplication25.findFolderContent("", strArray30);
         java.lang.String str35 = lsApplication22.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray30);
         java.io.InputStream inputStream36 = null;
         java.io.OutputStream outputStream37 = null;
-        mkdirApplication11.run(strArray30, inputStream36, outputStream37);
+        
         java.lang.String str39 = echoApplication10.constructResult(strArray30);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication40 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray47 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream48 = null;
         java.io.OutputStream outputStream49 = null;
-        mkdirApplication40.run(strArray47, inputStream48, outputStream49);
+        
         java.io.InputStream inputStream54 = null;
         java.io.OutputStream outputStream55 = null;
-        mkdirApplication5.run(strArray47, inputStream54, outputStream55);
+        
         try {
             java.lang.String str57 = sortApplication0.sortFromFiles((java.lang.Boolean) true, (java.lang.Boolean) true, (java.lang.Boolean) false, strArray47);
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
@@ -5143,38 +5044,38 @@ public class RegressionTest0 {
         java.lang.String[] strArray12 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream13 = null;
         java.io.OutputStream outputStream14 = null;
-        mkdirApplication5.run(strArray12, inputStream13, outputStream14);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication16 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication19 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication21 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray24 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream25 = null;
         java.io.OutputStream outputStream26 = null;
-        mkdirApplication21.run(strArray24, inputStream25, outputStream26);
+        
         java.lang.String str28 = findApplication19.findFolderContent("", strArray24);
         java.lang.String str29 = lsApplication16.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray24);
         java.io.InputStream inputStream30 = null;
         java.io.OutputStream outputStream31 = null;
-        mkdirApplication5.run(strArray24, inputStream30, outputStream31);
+        
         java.lang.String str33 = echoApplication4.constructResult(strArray24);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication34 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray41 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream42 = null;
         java.io.OutputStream outputStream43 = null;
-        mkdirApplication34.run(strArray41, inputStream42, outputStream43);
+        
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication45 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray52 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream53 = null;
         java.io.OutputStream outputStream54 = null;
-        mkdirApplication45.run(strArray52, inputStream53, outputStream54);
+        
         java.lang.Class<?> wildcardClass56 = mkdirApplication45.getClass();
         java.lang.String[] strArray61 = new java.lang.String[] { "This is a directory", "Could not read stream", "Null Pointer Exception", "Exception Caught" };
         java.io.InputStream inputStream62 = null;
         java.io.OutputStream outputStream63 = null;
-        mkdirApplication45.run(strArray61, inputStream62, outputStream63);
+        
         java.io.InputStream inputStream65 = null;
         java.io.OutputStream outputStream66 = null;
-        mkdirApplication34.run(strArray61, inputStream65, outputStream66);
+        
         java.lang.String str71 = findApplication2.findFolderContent("fail_echo_write hi!", strArray61);
         java.io.InputStream inputStream72 = null;
         java.io.OutputStream outputStream73 = null;
@@ -5207,34 +5108,34 @@ public class RegressionTest0 {
         java.lang.String[] strArray11 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream12 = null;
         java.io.OutputStream outputStream13 = null;
-        mkdirApplication4.run(strArray11, inputStream12, outputStream13);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication15 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication18 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication20 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray23 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream24 = null;
         java.io.OutputStream outputStream25 = null;
-        mkdirApplication20.run(strArray23, inputStream24, outputStream25);
+        
         java.lang.String str27 = findApplication18.findFolderContent("", strArray23);
         java.lang.String str28 = lsApplication15.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray23);
         java.io.InputStream inputStream29 = null;
         java.io.OutputStream outputStream30 = null;
-        mkdirApplication4.run(strArray23, inputStream29, outputStream30);
+        
         java.lang.String str32 = echoApplication3.constructResult(strArray23);
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication33 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication35 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray38 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream39 = null;
         java.io.OutputStream outputStream40 = null;
-        mkdirApplication35.run(strArray38, inputStream39, outputStream40);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication42 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication45 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray48 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream49 = null;
         java.io.OutputStream outputStream50 = null;
-        mkdirApplication45.run(strArray48, inputStream49, outputStream50);
+        
         java.lang.String str52 = lsApplication42.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray48);
-        mkdirApplication35.createFolder(strArray48);
+        
         java.lang.String str54 = findApplication33.findFolderContent("null output stream provided fail_echo_write", strArray48);
         java.io.InputStream inputStream58 = null;
         java.io.OutputStream outputStream59 = null;
@@ -5277,41 +5178,41 @@ public class RegressionTest0 {
         java.lang.String[] strArray10 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream11 = null;
         java.io.OutputStream outputStream12 = null;
-        mkdirApplication3.run(strArray10, inputStream11, outputStream12);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication14 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication17 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication19 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray22 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream23 = null;
         java.io.OutputStream outputStream24 = null;
-        mkdirApplication19.run(strArray22, inputStream23, outputStream24);
+        
         java.lang.String str26 = findApplication17.findFolderContent("", strArray22);
         java.lang.String str27 = lsApplication14.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray22);
         java.io.InputStream inputStream28 = null;
         java.io.OutputStream outputStream29 = null;
-        mkdirApplication3.run(strArray22, inputStream28, outputStream29);
+        
         java.lang.String str31 = echoApplication2.constructResult(strArray22);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication32 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray39 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream40 = null;
         java.io.OutputStream outputStream41 = null;
-        mkdirApplication32.run(strArray39, inputStream40, outputStream41);
+        
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication43 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray50 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream51 = null;
         java.io.OutputStream outputStream52 = null;
-        mkdirApplication43.run(strArray50, inputStream51, outputStream52);
+        
         java.lang.Class<?> wildcardClass54 = mkdirApplication43.getClass();
         java.lang.String[] strArray59 = new java.lang.String[] { "This is a directory", "Could not read stream", "Null Pointer Exception", "Exception Caught" };
         java.io.InputStream inputStream60 = null;
         java.io.OutputStream outputStream61 = null;
-        mkdirApplication43.run(strArray59, inputStream60, outputStream61);
+        
         java.io.InputStream inputStream63 = null;
         java.io.OutputStream outputStream64 = null;
-        mkdirApplication32.run(strArray59, inputStream63, outputStream64);
+        
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication69 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray72 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication69.createFolder(strArray72);
+        
         java.lang.String str74 = echoApplication2.constructResult(strArray72);
         java.io.InputStream inputStream75 = null;
         java.io.OutputStream outputStream76 = null;
@@ -5344,19 +5245,19 @@ public class RegressionTest0 {
         java.lang.String[] strArray12 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream13 = null;
         java.io.OutputStream outputStream14 = null;
-        mkdirApplication5.run(strArray12, inputStream13, outputStream14);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication16 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication19 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication21 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray24 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream25 = null;
         java.io.OutputStream outputStream26 = null;
-        mkdirApplication21.run(strArray24, inputStream25, outputStream26);
+        
         java.lang.String str28 = findApplication19.findFolderContent("", strArray24);
         java.lang.String str29 = lsApplication16.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray24);
         java.io.InputStream inputStream30 = null;
         java.io.OutputStream outputStream31 = null;
-        mkdirApplication5.run(strArray24, inputStream30, outputStream31);
+        
         try {
             java.lang.String str33 = sortApplication0.sortFromFiles((java.lang.Boolean) true, (java.lang.Boolean) true, (java.lang.Boolean) true, strArray24);
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
@@ -5379,36 +5280,36 @@ public class RegressionTest0 {
         java.lang.String[] strArray7 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream8 = null;
         java.io.OutputStream outputStream9 = null;
-        mkdirApplication4.run(strArray7, inputStream8, outputStream9);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication11 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication14 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray17 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream18 = null;
         java.io.OutputStream outputStream19 = null;
-        mkdirApplication14.run(strArray17, inputStream18, outputStream19);
+        
         java.lang.String str21 = lsApplication11.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray17);
-        mkdirApplication4.createFolder(strArray17);
+        
         java.lang.String str23 = lsApplication1.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray17);
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication26 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication28 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray31 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream32 = null;
         java.io.OutputStream outputStream33 = null;
-        mkdirApplication28.run(strArray31, inputStream32, outputStream33);
+        
         java.lang.String str35 = findApplication26.findFolderContent("", strArray31);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication37 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray40 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream41 = null;
         java.io.OutputStream outputStream42 = null;
-        mkdirApplication37.run(strArray40, inputStream41, outputStream42);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication44 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication47 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray50 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream51 = null;
         java.io.OutputStream outputStream52 = null;
-        mkdirApplication47.run(strArray50, inputStream51, outputStream52);
+        
         java.lang.String str54 = lsApplication44.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray50);
-        mkdirApplication37.createFolder(strArray50);
+        
         java.lang.String str56 = findApplication26.findFolderContent("null input file provided", strArray50);
         java.lang.String str57 = lsApplication1.listFolderContent((java.lang.Boolean) true, (java.lang.Boolean) true, strArray50);
         java.io.InputStream inputStream58 = null;
@@ -5454,32 +5355,32 @@ public class RegressionTest0 {
         java.lang.String[] strArray5 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream6 = null;
         java.io.OutputStream outputStream7 = null;
-        mkdirApplication2.run(strArray5, inputStream6, outputStream7);
+        
         sg.edu.nus.comp.cs4218.impl.app.EchoApplication echoApplication9 = new sg.edu.nus.comp.cs4218.impl.app.EchoApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication10 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray17 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream18 = null;
         java.io.OutputStream outputStream19 = null;
-        mkdirApplication10.run(strArray17, inputStream18, outputStream19);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication21 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication24 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication26 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray29 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream30 = null;
         java.io.OutputStream outputStream31 = null;
-        mkdirApplication26.run(strArray29, inputStream30, outputStream31);
+        
         java.lang.String str33 = findApplication24.findFolderContent("", strArray29);
         java.lang.String str34 = lsApplication21.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray29);
         java.io.InputStream inputStream35 = null;
         java.io.OutputStream outputStream36 = null;
-        mkdirApplication10.run(strArray29, inputStream35, outputStream36);
+        
         java.lang.String str38 = echoApplication9.constructResult(strArray29);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication39 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray46 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream47 = null;
         java.io.OutputStream outputStream48 = null;
-        mkdirApplication39.run(strArray46, inputStream47, outputStream48);
-        mkdirApplication2.createFolder(strArray46);
+        
+        
         java.io.InputStream inputStream57 = null;
         java.io.OutputStream outputStream58 = null;
         try {
@@ -5505,24 +5406,24 @@ public class RegressionTest0 {
         java.lang.String[] strArray11 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream12 = null;
         java.io.OutputStream outputStream13 = null;
-        mkdirApplication4.run(strArray11, inputStream12, outputStream13);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication15 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication18 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication20 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray23 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream24 = null;
         java.io.OutputStream outputStream25 = null;
-        mkdirApplication20.run(strArray23, inputStream24, outputStream25);
+        
         java.lang.String str27 = findApplication18.findFolderContent("", strArray23);
         java.lang.String str28 = lsApplication15.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray23);
         java.io.InputStream inputStream29 = null;
         java.io.OutputStream outputStream30 = null;
-        mkdirApplication4.run(strArray23, inputStream29, outputStream30);
+        
         java.lang.Class<?> wildcardClass32 = mkdirApplication4.getClass();
         java.lang.String[] strArray34 = new java.lang.String[] { "This is a directory Could not read stream Null Pointer Exception Exception Caught" };
         java.io.InputStream inputStream35 = null;
         java.io.OutputStream outputStream36 = null;
-        mkdirApplication4.run(strArray34, inputStream35, outputStream36);
+        
         try {
             java.lang.String str38 = sortApplication0.sortFromFiles((java.lang.Boolean) false, (java.lang.Boolean) false, (java.lang.Boolean) true, strArray34);
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
@@ -5543,7 +5444,7 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.GrepApplication grepApplication0 = new sg.edu.nus.comp.cs4218.impl.app.GrepApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication4 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray7 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication4.createFolder(strArray7);
+        
         try {
             java.lang.String str9 = grepApplication0.grepFromFiles("fail_echo_empty_params", (java.lang.Boolean) true, (java.lang.Boolean) false, strArray7);
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
@@ -5561,27 +5462,27 @@ public class RegressionTest0 {
         java.lang.String[] strArray11 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream12 = null;
         java.io.OutputStream outputStream13 = null;
-        mkdirApplication4.run(strArray11, inputStream12, outputStream13);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication15 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication18 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication20 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray23 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream24 = null;
         java.io.OutputStream outputStream25 = null;
-        mkdirApplication20.run(strArray23, inputStream24, outputStream25);
+        
         java.lang.String str27 = findApplication18.findFolderContent("", strArray23);
         java.lang.String str28 = lsApplication15.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray23);
         java.io.InputStream inputStream29 = null;
         java.io.OutputStream outputStream30 = null;
-        mkdirApplication4.run(strArray23, inputStream29, outputStream30);
+        
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication32 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray35 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication32.createFolder(strArray35);
+        
         java.io.InputStream inputStream37 = null;
         java.io.OutputStream outputStream38 = null;
-        mkdirApplication4.run(strArray35, inputStream37, outputStream38);
+        
         java.lang.String[] strArray45 = new java.lang.String[] { "null input file provided", "This is a directory\r\nCould not read stream\r\nNull Pointer Exception\r\nException Caught", "fail_sed_write", "null output stream provided", "Exception Caught" };
-        mkdirApplication4.createFolder(strArray45);
+        
         try {
             java.lang.String str47 = sortApplication0.sortFromFiles((java.lang.Boolean) false, (java.lang.Boolean) false, (java.lang.Boolean) true, strArray45);
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.SortException; message: sort: File not found!");
@@ -5636,7 +5537,7 @@ public class RegressionTest0 {
         java.lang.String[] strArray10 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream11 = null;
         java.io.OutputStream outputStream12 = null;
-        mkdirApplication7.run(strArray10, inputStream11, outputStream12);
+        
         java.lang.String str14 = findApplication5.findFolderContent("", strArray10);
         java.lang.String str15 = lsApplication2.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray10);
         java.io.InputStream inputStream16 = null;
@@ -5685,34 +5586,34 @@ public class RegressionTest0 {
         sg.edu.nus.comp.cs4218.impl.app.WcApplication wcApplication0 = new sg.edu.nus.comp.cs4218.impl.app.WcApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication4 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray7 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication4.createFolder(strArray7);
+        
         sg.edu.nus.comp.cs4218.impl.app.EchoApplication echoApplication9 = new sg.edu.nus.comp.cs4218.impl.app.EchoApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication10 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray17 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream18 = null;
         java.io.OutputStream outputStream19 = null;
-        mkdirApplication10.run(strArray17, inputStream18, outputStream19);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication21 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication24 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication26 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray29 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream30 = null;
         java.io.OutputStream outputStream31 = null;
-        mkdirApplication26.run(strArray29, inputStream30, outputStream31);
+        
         java.lang.String str33 = findApplication24.findFolderContent("", strArray29);
         java.lang.String str34 = lsApplication21.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray29);
         java.io.InputStream inputStream35 = null;
         java.io.OutputStream outputStream36 = null;
-        mkdirApplication10.run(strArray29, inputStream35, outputStream36);
+        
         java.lang.String str38 = echoApplication9.constructResult(strArray29);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication39 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray46 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream47 = null;
         java.io.OutputStream outputStream48 = null;
-        mkdirApplication39.run(strArray46, inputStream47, outputStream48);
+        
         java.io.InputStream inputStream53 = null;
         java.io.OutputStream outputStream54 = null;
-        mkdirApplication4.run(strArray46, inputStream53, outputStream54);
+        
         try {
             java.lang.String str56 = wcApplication0.countFromFiles((java.lang.Boolean) false, (java.lang.Boolean) true, (java.lang.Boolean) true, strArray46);
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.WcException; message: wc: IO not working");
@@ -5737,7 +5638,7 @@ public class RegressionTest0 {
         java.lang.String[] strArray9 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream10 = null;
         java.io.OutputStream outputStream11 = null;
-        mkdirApplication6.run(strArray9, inputStream10, outputStream11);
+        
         java.lang.String str13 = findApplication4.findFolderContent("", strArray9);
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication15 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication18 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
@@ -5745,12 +5646,12 @@ public class RegressionTest0 {
         java.lang.String[] strArray23 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream24 = null;
         java.io.OutputStream outputStream25 = null;
-        mkdirApplication20.run(strArray23, inputStream24, outputStream25);
+        
         java.lang.String str27 = findApplication18.findFolderContent("", strArray23);
         java.lang.String str28 = lsApplication15.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray23);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication31 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray34 = new java.lang.String[] { "fail_echo_write", "hi!" };
-        mkdirApplication31.createFolder(strArray34);
+        
         java.lang.String str36 = lsApplication15.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) true, strArray34);
         java.lang.String str37 = findApplication4.findFolderContent("hi!", strArray34);
         try {
@@ -5791,7 +5692,7 @@ public class RegressionTest0 {
         java.lang.String[] strArray6 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream7 = null;
         java.io.OutputStream outputStream8 = null;
-        mkdirApplication3.run(strArray6, inputStream7, outputStream8);
+        
         java.lang.String str10 = findApplication1.findFolderContent("", strArray6);
         java.lang.Class<?> wildcardClass11 = strArray6.getClass();
         java.io.InputStream inputStream12 = null;
@@ -5816,19 +5717,19 @@ public class RegressionTest0 {
         java.lang.String[] strArray9 = new java.lang.String[] { "Terminate process.", "fail_echo", "File doesn't exist.", "fail_echo", "", "File doesn't exist." };
         java.io.InputStream inputStream10 = null;
         java.io.OutputStream outputStream11 = null;
-        mkdirApplication2.run(strArray9, inputStream10, outputStream11);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication13 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication16 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication18 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray21 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream22 = null;
         java.io.OutputStream outputStream23 = null;
-        mkdirApplication18.run(strArray21, inputStream22, outputStream23);
+        
         java.lang.String str25 = findApplication16.findFolderContent("", strArray21);
         java.lang.String str26 = lsApplication13.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray21);
         java.io.InputStream inputStream27 = null;
         java.io.OutputStream outputStream28 = null;
-        mkdirApplication2.run(strArray21, inputStream27, outputStream28);
+        
         java.lang.String str30 = echoApplication1.constructResult(strArray21);
         java.io.InputStream inputStream31 = null;
         java.io.OutputStream outputStream32 = null;
@@ -5853,7 +5754,7 @@ public class RegressionTest0 {
         java.lang.String[] strArray5 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream6 = null;
         java.io.OutputStream outputStream7 = null;
-        mkdirApplication2.run(strArray5, inputStream6, outputStream7);
+        
         java.lang.String str9 = findApplication0.findFolderContent("", strArray5);
         java.lang.Class<?> wildcardClass10 = findApplication0.getClass();
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication11 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
@@ -5861,36 +5762,36 @@ public class RegressionTest0 {
         java.lang.String[] strArray17 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream18 = null;
         java.io.OutputStream outputStream19 = null;
-        mkdirApplication14.run(strArray17, inputStream18, outputStream19);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication21 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication24 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray27 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream28 = null;
         java.io.OutputStream outputStream29 = null;
-        mkdirApplication24.run(strArray27, inputStream28, outputStream29);
+        
         java.lang.String str31 = lsApplication21.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray27);
-        mkdirApplication14.createFolder(strArray27);
+        
         java.lang.String str33 = lsApplication11.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray27);
         sg.edu.nus.comp.cs4218.impl.app.FindApplication findApplication36 = new sg.edu.nus.comp.cs4218.impl.app.FindApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication38 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray41 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream42 = null;
         java.io.OutputStream outputStream43 = null;
-        mkdirApplication38.run(strArray41, inputStream42, outputStream43);
+        
         java.lang.String str45 = findApplication36.findFolderContent("", strArray41);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication47 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray50 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream51 = null;
         java.io.OutputStream outputStream52 = null;
-        mkdirApplication47.run(strArray50, inputStream51, outputStream52);
+        
         sg.edu.nus.comp.cs4218.impl.app.LsApplication lsApplication54 = new sg.edu.nus.comp.cs4218.impl.app.LsApplication();
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication57 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray60 = new java.lang.String[] { "null output stream provided", "fail_echo_write" };
         java.io.InputStream inputStream61 = null;
         java.io.OutputStream outputStream62 = null;
-        mkdirApplication57.run(strArray60, inputStream61, outputStream62);
+        
         java.lang.String str64 = lsApplication54.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray60);
-        mkdirApplication47.createFolder(strArray60);
+        
         java.lang.String str66 = findApplication36.findFolderContent("null input file provided", strArray60);
         java.lang.String str67 = lsApplication11.listFolderContent((java.lang.Boolean) true, (java.lang.Boolean) true, strArray60);
         java.io.InputStream inputStream68 = null;
