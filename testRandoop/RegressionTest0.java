@@ -1311,8 +1311,6 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream50 = null;
         mkdirApplication41.run(strArray48, inputStream49, outputStream50);
         java.io.InputStream inputStream52 = null;
-        java.io.OutputStream outputStream53 = null;
-        echoApplication11.run(strArray48, inputStream52, outputStream53);
         java.io.InputStream inputStream55 = null;
         java.io.OutputStream outputStream56 = null;
         try {
@@ -1428,8 +1426,6 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream39 = null;
         mkdirApplication30.run(strArray37, inputStream38, outputStream39);
         java.io.InputStream inputStream41 = null;
-        java.io.OutputStream outputStream42 = null;
-        echoApplication0.run(strArray37, inputStream41, outputStream42);
         java.lang.String[] strArray44 = null;
         try {
             java.lang.String str45 = echoApplication0.constructResult(strArray44);
@@ -1479,8 +1475,6 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream50 = null;
         mkdirApplication41.run(strArray48, inputStream49, outputStream50);
         java.io.InputStream inputStream52 = null;
-        java.io.OutputStream outputStream53 = null;
-        echoApplication11.run(strArray48, inputStream52, outputStream53);
         mkdirApplication4.createFolder(strArray48);
         try {
             java.lang.String str56 = grepApplication0.grepFromFiles("Could not write to output stream", (java.lang.Boolean) false, (java.lang.Boolean) true, strArray48);
@@ -1546,8 +1540,6 @@ public class RegressionTest0 {
         java.io.OutputStream outputStream47 = null;
         mkdirApplication38.run(strArray45, inputStream46, outputStream47);
         java.io.InputStream inputStream49 = null;
-        java.io.OutputStream outputStream50 = null;
-        echoApplication8.run(strArray45, inputStream49, outputStream50);
         mkdirApplication1.createFolder(strArray45);
         java.io.InputStream inputStream53 = null;
         java.io.OutputStream outputStream54 = null;
@@ -2203,9 +2195,6 @@ public class RegressionTest0 {
         java.io.InputStream inputStream78 = null;
         java.io.OutputStream outputStream79 = null;
         mkdirApplication70.run(strArray77, inputStream78, outputStream79);
-        java.io.InputStream inputStream81 = null;
-        java.io.OutputStream outputStream82 = null;
-        echoApplication40.run(strArray77, inputStream81, outputStream82);
         java.io.InputStream inputStream84 = null;
         java.io.OutputStream outputStream85 = null;
         try {
@@ -2470,9 +2459,6 @@ public class RegressionTest0 {
         java.io.InputStream inputStream42 = null;
         java.io.OutputStream outputStream43 = null;
         mkdirApplication34.run(strArray41, inputStream42, outputStream43);
-        java.io.InputStream inputStream45 = null;
-        java.io.OutputStream outputStream46 = null;
-        echoApplication4.run(strArray41, inputStream45, outputStream46);
         try {
             java.lang.String str48 = grepApplication0.grepFromFiles("Could not read stream", (java.lang.Boolean) true, (java.lang.Boolean) true, strArray41);
             fail("Expected exception of type sg.edu.nus.comp.cs4218.exception.GrepException; message: grep: IO not working");
@@ -2739,9 +2725,6 @@ public class RegressionTest0 {
         java.io.InputStream inputStream84 = null;
         java.io.OutputStream outputStream85 = null;
         mkdirApplication53.run(strArray80, inputStream84, outputStream85);
-        java.io.InputStream inputStream87 = null;
-        java.io.OutputStream outputStream88 = null;
-        echoApplication23.run(strArray80, inputStream87, outputStream88);
         java.io.InputStream inputStream90 = null;
         java.io.OutputStream outputStream91 = null;
         try {
@@ -2857,13 +2840,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream59 = null;
         java.io.OutputStream outputStream60 = null;
         mkdirApplication51.run(strArray58, inputStream59, outputStream60);
-        java.io.InputStream inputStream62 = null;
-        java.io.OutputStream outputStream63 = null;
-        echoApplication21.run(strArray58, inputStream62, outputStream63);
         mkdirApplication14.createFolder(strArray58);
-        java.io.InputStream inputStream66 = null;
-        java.io.OutputStream outputStream67 = null;
-        mkdirApplication1.run(strArray58, inputStream66, outputStream67);
         java.io.InputStream inputStream69 = null;
         java.io.OutputStream outputStream70 = null;
         try {
@@ -3105,9 +3082,6 @@ public class RegressionTest0 {
         java.io.InputStream inputStream45 = null;
         java.io.OutputStream outputStream46 = null;
         mkdirApplication37.run(strArray44, inputStream45, outputStream46);
-        java.io.InputStream inputStream48 = null;
-        java.io.OutputStream outputStream49 = null;
-        echoApplication7.run(strArray44, inputStream48, outputStream49);
         java.io.InputStream inputStream51 = null;
         java.io.OutputStream outputStream52 = null;
         mkdirApplication2.run(strArray44, inputStream51, outputStream52);
@@ -3355,9 +3329,6 @@ public class RegressionTest0 {
         java.io.InputStream inputStream62 = null;
         java.io.OutputStream outputStream63 = null;
         mkdirApplication31.run(strArray58, inputStream62, outputStream63);
-        java.io.InputStream inputStream65 = null;
-        java.io.OutputStream outputStream66 = null;
-        echoApplication1.run(strArray58, inputStream65, outputStream66);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication68 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray71 = new java.lang.String[] { "fail_echo_write", "hi!" };
         mkdirApplication68.createFolder(strArray71);
@@ -4106,9 +4077,6 @@ public class RegressionTest0 {
         java.io.InputStream inputStream44 = null;
         java.io.OutputStream outputStream45 = null;
         mkdirApplication36.run(strArray43, inputStream44, outputStream45);
-        java.io.InputStream inputStream47 = null;
-        java.io.OutputStream outputStream48 = null;
-        echoApplication6.run(strArray43, inputStream47, outputStream48);
         java.io.InputStream inputStream50 = null;
         java.io.OutputStream outputStream51 = null;
         mkdirApplication1.run(strArray43, inputStream50, outputStream51);
@@ -4434,9 +4402,6 @@ public class RegressionTest0 {
         java.io.InputStream inputStream39 = null;
         java.io.OutputStream outputStream40 = null;
         mkdirApplication31.run(strArray38, inputStream39, outputStream40);
-        java.io.InputStream inputStream42 = null;
-        java.io.OutputStream outputStream43 = null;
-        echoApplication1.run(strArray38, inputStream42, outputStream43);
         java.io.InputStream inputStream45 = null;
         java.io.OutputStream outputStream46 = null;
         try {
@@ -5044,9 +5009,6 @@ public class RegressionTest0 {
         java.lang.String str50 = lsApplication40.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray46);
         mkdirApplication33.createFolder(strArray46);
         java.lang.String str52 = findApplication31.findFolderContent("null output stream provided fail_echo_write", strArray46);
-        java.io.InputStream inputStream53 = null;
-        java.io.OutputStream outputStream54 = null;
-        echoApplication1.run(strArray46, inputStream53, outputStream54);
         java.io.InputStream inputStream56 = null;
         java.io.OutputStream outputStream57 = null;
         try {
@@ -5097,9 +5059,6 @@ public class RegressionTest0 {
         java.io.InputStream inputStream44 = null;
         java.io.OutputStream outputStream45 = null;
         mkdirApplication36.run(strArray43, inputStream44, outputStream45);
-        java.io.InputStream inputStream47 = null;
-        java.io.OutputStream outputStream48 = null;
-        echoApplication6.run(strArray43, inputStream47, outputStream48);
         java.io.InputStream inputStream50 = null;
         java.io.OutputStream outputStream51 = null;
         mkdirApplication1.run(strArray43, inputStream50, outputStream51);
@@ -5154,9 +5113,6 @@ public class RegressionTest0 {
         java.io.InputStream inputStream48 = null;
         java.io.OutputStream outputStream49 = null;
         mkdirApplication40.run(strArray47, inputStream48, outputStream49);
-        java.io.InputStream inputStream51 = null;
-        java.io.OutputStream outputStream52 = null;
-        echoApplication10.run(strArray47, inputStream51, outputStream52);
         java.io.InputStream inputStream54 = null;
         java.io.OutputStream outputStream55 = null;
         mkdirApplication5.run(strArray47, inputStream54, outputStream55);
@@ -5219,9 +5175,6 @@ public class RegressionTest0 {
         java.io.InputStream inputStream65 = null;
         java.io.OutputStream outputStream66 = null;
         mkdirApplication34.run(strArray61, inputStream65, outputStream66);
-        java.io.InputStream inputStream68 = null;
-        java.io.OutputStream outputStream69 = null;
-        echoApplication4.run(strArray61, inputStream68, outputStream69);
         java.lang.String str71 = findApplication2.findFolderContent("fail_echo_write hi!", strArray61);
         java.io.InputStream inputStream72 = null;
         java.io.OutputStream outputStream73 = null;
@@ -5283,9 +5236,6 @@ public class RegressionTest0 {
         java.lang.String str52 = lsApplication42.listFolderContent((java.lang.Boolean) false, (java.lang.Boolean) false, strArray48);
         mkdirApplication35.createFolder(strArray48);
         java.lang.String str54 = findApplication33.findFolderContent("null output stream provided fail_echo_write", strArray48);
-        java.io.InputStream inputStream55 = null;
-        java.io.OutputStream outputStream56 = null;
-        echoApplication3.run(strArray48, inputStream55, outputStream56);
         java.io.InputStream inputStream58 = null;
         java.io.OutputStream outputStream59 = null;
         try {
@@ -5359,9 +5309,6 @@ public class RegressionTest0 {
         java.io.InputStream inputStream63 = null;
         java.io.OutputStream outputStream64 = null;
         mkdirApplication32.run(strArray59, inputStream63, outputStream64);
-        java.io.InputStream inputStream66 = null;
-        java.io.OutputStream outputStream67 = null;
-        echoApplication2.run(strArray59, inputStream66, outputStream67);
         sg.edu.nus.comp.cs4218.impl.app.MkdirApplication mkdirApplication69 = new sg.edu.nus.comp.cs4218.impl.app.MkdirApplication();
         java.lang.String[] strArray72 = new java.lang.String[] { "fail_echo_write", "hi!" };
         mkdirApplication69.createFolder(strArray72);
@@ -5532,13 +5479,7 @@ public class RegressionTest0 {
         java.io.InputStream inputStream47 = null;
         java.io.OutputStream outputStream48 = null;
         mkdirApplication39.run(strArray46, inputStream47, outputStream48);
-        java.io.InputStream inputStream50 = null;
-        java.io.OutputStream outputStream51 = null;
-        echoApplication9.run(strArray46, inputStream50, outputStream51);
         mkdirApplication2.createFolder(strArray46);
-        java.io.InputStream inputStream54 = null;
-        java.io.OutputStream outputStream55 = null;
-        echoApplication1.run(strArray46, inputStream54, outputStream55);
         java.io.InputStream inputStream57 = null;
         java.io.OutputStream outputStream58 = null;
         try {
@@ -5769,9 +5710,6 @@ public class RegressionTest0 {
         java.io.InputStream inputStream47 = null;
         java.io.OutputStream outputStream48 = null;
         mkdirApplication39.run(strArray46, inputStream47, outputStream48);
-        java.io.InputStream inputStream50 = null;
-        java.io.OutputStream outputStream51 = null;
-        echoApplication9.run(strArray46, inputStream50, outputStream51);
         java.io.InputStream inputStream53 = null;
         java.io.OutputStream outputStream54 = null;
         mkdirApplication4.run(strArray46, inputStream53, outputStream54);
