@@ -46,4 +46,15 @@ public class WcTest {
         assertEquals(expectedResult, stdout.toString());
     }
 
+    // wc --
+    @Test
+    public void runSuccessTwoDash() throws WcException, IOException {
+        ByteArrayOutputStream stdout = new ByteArrayOutputStream();
+        InputStream stdin = IOUtils.stringToInputStream("");
+        String expectedResult = "0 1 52 " + testPath1;
+        String[] args = {"--", testPath1};
+        wcApp.run(args, stdin, stdout);
+        assertEquals(expectedResult, stdout.toString());
+    }
+
 }

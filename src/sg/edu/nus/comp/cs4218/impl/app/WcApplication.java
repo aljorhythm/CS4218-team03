@@ -99,6 +99,8 @@ public class WcApplication implements WcInterface {
                         isLines = true;
                     } else if (args[i].charAt(j) == 'w') {
                         isWords = true;
+                    } else if (args[i].charAt(j) == '-') {
+
                     }
                     else {
                         throw new WcException("Unknown option for wc!");
