@@ -75,7 +75,7 @@ public class SortApplication implements SortInterface{
 
     public void run(String[] args, InputStream stdin, OutputStream stdout) throws SortException {
         if (args == null) {
-            throw new SortException("args is null!");
+            throw new SortException("Argument is null!");
         }
         boolean firstWord = false,reverseOrder = false, caseIndependent = false, useFile = false;
         ArrayList<String> files = new ArrayList<>();
