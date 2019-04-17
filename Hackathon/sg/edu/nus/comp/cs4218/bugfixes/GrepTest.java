@@ -31,4 +31,13 @@ public class GrepTest {
         assertThrows(GrepException.class, () -> grepApp.run(args, stdin, stdout));
     }
 
+    @Test
+    public void runInvalidFlagAfterValidOne() throws IOException {
+        ByteArrayOutputStream stdout = new ByteArrayOutputStream();
+        InputStream stdin = IOUtils.stringToInputStream("");
+        String[] args = {"-ia", ".*LINE.*", "file1"};
+        assertThrows(GrepException.class, () ->
+                grepApp.run(args, stdin, stdout), "");
+    }
+
 }
