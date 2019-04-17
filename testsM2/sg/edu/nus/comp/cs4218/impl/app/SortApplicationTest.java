@@ -15,6 +15,7 @@ import sg.edu.nus.comp.cs4218.impl.StringsToArrayHelper;
 import sg.edu.nus.comp.cs4218.impl.util.StringUtils;
 import sg.edu.nus.comp.cs4218m1.TestUtils;
 
+import javax.print.DocFlavor;
 import java.io.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -47,6 +48,7 @@ public class SortApplicationTest {
     public static final String NUMERIC_CASE_ALL_CHAR = RESOURCE_DIR+File.separator+"numericCaseAllChar.txt";
     public static final String ALL_OPTION_ALL_CHAR = RESOURCE_DIR+File.separator+"allOptionAllChar.txt";
     public static final String REVERSE_CASE_ALL_CHAR = RESOURCE_DIR+File.separator+"reverseCaseAllChar.txt";
+    public static final String CASE_ALL_CHAR = RESOURCE_DIR+File.separator+"caseAllChar.txt";
 
     public static final String ALL_CHAR = "a\nA\nb\n10\n0\n2\n$\n#\n%\n"
             + "\nabc8\nabc5\nABCD\nABC9";
@@ -668,10 +670,12 @@ public class SortApplicationTest {
 
     @Test
     void sortFromFilesCaseInsensitiveOnlyTest() throws Exception {
-        String[] toSort = FileIOTestHelper.extractAsStringArray(ALL_CHAR_NAME);
-        SortApplicationSortingHelper sortingHelper = new SortApplicationSortingHelper(toSort, false,
-                false, true);
-        String expectedOutput = sortingHelper.sort();
+        String[] toSort = FileIOTestHelper.extractAsStringArray(CASE_ALL_CHAR);
+        String expectedOutput = "";
+        for (String str : toSort){
+            expectedOutput = expectedOutput + str + StringUtils.STRING_NEWLINE;
+        }
+        expectedOutput = expectedOutput.substring(0,expectedOutput.length()-2);
         String actualOutput = sortApplication.sortFromFiles(false,
                 false, true, ALL_CHAR_NAME);
 
@@ -693,10 +697,11 @@ public class SortApplicationTest {
 
     @Test
     void sortFromFilesReversedAndCaseInsensitiveTest() throws Exception {
-        String[] toSort = FileIOTestHelper.extractAsStringArray(ALL_CHAR_NAME);
-        SortApplicationSortingHelper sortingHelper = new SortApplicationSortingHelper(toSort, false,
-                true, true);
-        String expectedOutput = sortingHelper.sort();
+        String[] toSort = FileIOTestHelper.extractAsStringArray(REVERSE_CASE_ALL_CHAR);
+        String expectedOutput = "";
+        for (String str : toSort){
+            expectedOutput = expectedOutput + str + StringUtils.STRING_NEWLINE;
+        }
         String actualOutput = sortApplication.sortFromFiles(false,
                 true, true, ALL_CHAR_NAME);
 
@@ -903,10 +908,12 @@ public class SortApplicationTest {
 
     @Test
     void sortFromStdinCaseInsensitiveOnlyTest() throws Exception {
-        String[] toSort = FileIOTestHelper.extractAsStringArray(ALL_CHAR_NAME);
-        SortApplicationSortingHelper sortingHelper = new SortApplicationSortingHelper(toSort, false,
-                false, true);
-        String expectedOutput = sortingHelper.sort();
+        String[] toSort = FileIOTestHelper.extractAsStringArray(CASE_ALL_CHAR);
+        String expectedOutput = "";
+        for (String str : toSort){
+            expectedOutput = expectedOutput + str + StringUtils.STRING_NEWLINE;
+        }
+        expectedOutput = expectedOutput.substring(0,expectedOutput.length()-2);
 
         // Open an InputStream to act as stdin
         FileInputStream fis = new FileInputStream(ALL_CHAR_NAME);

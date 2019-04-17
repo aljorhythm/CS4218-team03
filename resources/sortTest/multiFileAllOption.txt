@@ -8,10 +8,10 @@ abc8
 abc8
 abc5
 abc5
-A
+a
 a
 A
-a
+A
 99
 33
 11

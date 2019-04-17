@@ -3,8 +3,8 @@ ABCD
 ABC9
 abc8
 abc5
-A
 a
+A
 2
 10
 0
