@@ -57,4 +57,13 @@ public class WcTest {
         assertEquals(expectedResult, stdout.toString());
     }
 
+    // wc: Directory
+    @Test
+    public void runThrowsExceptionDirectory() throws IOException {
+        ByteArrayOutputStream stdout = new ByteArrayOutputStream();
+        InputStream stdin = IOUtils.stringToInputStream("");
+        String[] args = {"hackathon_tests" + File.separator + "resources" + File.separator + "wcTest"};
+        WcException exception = assertThrows(WcException.class, () -> wcApp.run(args, stdin, stdout));
+        assertTrue(exception.getMessage().contains("not found"));
+    }
 }

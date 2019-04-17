@@ -30,7 +30,7 @@ public class WcApplication implements WcInterface {
                 }
                 IOUtils.closeInputStream(inputStream);
             } catch (IOException e) {
-                throw (WcException) new WcException("IO not working").initCause(e);
+                throw (WcException) new WcException("File not found!").initCause(e);
             }
         }
 
@@ -125,7 +125,6 @@ public class WcApplication implements WcInterface {
             String[] fileNamesArray = fileNames.toArray(new String[0]);
             result = countFromFiles(isBytes, isLines, isWords, fileNamesArray);
         }
-
         try {
             stdout.write(result.getBytes(CHARSET_UTF8));
         } catch (IOException e) {
@@ -161,7 +160,7 @@ public class WcApplication implements WcInterface {
                     }
                 }
             } catch (IOException e) {
-                throw (WcException) new WcException("IO not working").initCause(e);
+                throw (WcException) new WcException("Problem reading the result!").initCause(e);
             }
 
         }
