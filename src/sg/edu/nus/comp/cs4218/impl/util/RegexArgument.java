@@ -4,6 +4,7 @@ import sg.edu.nus.comp.cs4218.Environment;
 
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -58,6 +59,15 @@ public final class RegexArgument {
     public List<String> globFiles() {
         List<String> globbedFiles;
         String globPattern = plaintext.toString();
+
+        if(globPattern.equals(STRING_CURR_DIR)) {
+            globbedFiles = new ArrayList<>();
+            globbedFiles.add(Environment.currentDirectory);
+            return globbedFiles;
+        }
+        if(!globPattern.contains(STRING_ASTERISK)){
+            return Arrays.asList(new String[]{globPattern});
+        }
         try {
             if (globPattern.startsWith(STRING_FILE_SEP)) {
                 String nonGlobAncestors = getNonGlobAncestors(globPattern);

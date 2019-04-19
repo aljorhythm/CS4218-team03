@@ -6,7 +6,6 @@ import sg.edu.nus.comp.cs4218.exception.ShellException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -182,8 +181,7 @@ public class ArgumentResolver {
         return parsedArgsSegment
                 .stream()
                 .flatMap(regexArgument -> {
-                    String plain = regexArgument.toString();
-                    List<String> ret = plain.contains(STRING_ASTERISK) ? regexArgument.globFiles() : Arrays.asList(new String[]{plain});
+                    List<String> ret = regexArgument.globFiles();
                     return ret.stream();
                 })
                 .collect(Collectors.toList());
