@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.CHARSET_UTF8;
+import static sg.edu.nus.comp.cs4218.impl.util.StringUtils.STRING_NEWLINE;
 
 public class WcApplication implements WcInterface {
 
@@ -29,7 +30,7 @@ public class WcApplication implements WcInterface {
                 }
                 IOUtils.closeInputStream(inputStream);
             } catch (IOException e) {
-                throw (WcException) new WcException("IO not working").initCause(e);
+                throw (WcException) new WcException("File not found!").initCause(e);
             }
         }
 
@@ -46,20 +47,28 @@ public class WcApplication implements WcInterface {
         int numberOfBytes = 0;
         BufferedReader reader = new BufferedReader(new InputStreamReader(stdin));
         try {
-            for (String line; (line = reader.readLine()) != null; ) {
-                numberOfLines += 1;
-                numberOfBytes += line.getBytes().length;
-                String[] words = line.split(" ");
-                for (String w : words) {
-                    if (!"".equals(w) && !"\t".equals(w)) {
+            int character;
+            boolean atWord = false;
+            while ((character = reader.read()) != -1) {
+                char actualByte = (char) character;
+                if (actualByte != '\r') {
+                    numberOfBytes += 1;
+                }
+                if (actualByte == '\n') {
+                    numberOfLines += 1;
+                }
+                if (actualByte == ' ' || actualByte == '\t' || actualByte == '\n' || actualByte == '\r') {
+                    atWord = false;
+                } else {
+                    if (!atWord) {
                         numberOfWords += 1;
+                        atWord = true;
                     }
                 }
             }
         } catch (IOException e) {
             throw (WcException) new WcException("Could not read file!").initCause(e);
         }
-
         String result = "";
         if (isLines) {
             result += numberOfLines + " ";
@@ -90,6 +99,8 @@ public class WcApplication implements WcInterface {
                         isLines = true;
                     } else if (args[i].charAt(j) == 'w') {
                         isWords = true;
+                    } else if (args[i].charAt(j) == '-') {
+
                     }
                     else {
                         throw new WcException("Unknown option for wc!");
@@ -114,7 +125,6 @@ public class WcApplication implements WcInterface {
             String[] fileNamesArray = fileNames.toArray(new String[0]);
             result = countFromFiles(isBytes, isLines, isWords, fileNamesArray);
         }
-
         try {
             stdout.write(result.getBytes(CHARSET_UTF8));
         } catch (IOException e) {
@@ -150,7 +160,7 @@ public class WcApplication implements WcInterface {
                     }
                 }
             } catch (IOException e) {
-                throw (WcException) new WcException("IO not working").initCause(e);
+                throw (WcException) new WcException("Problem reading the result!").initCause(e);
             }
 
         }
