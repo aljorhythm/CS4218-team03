@@ -12,13 +12,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class DateApplication implements DateInterface {
 
     public void initMap(HashMap<String,String> dateStr){
         Date date = new Date();
         // Should specify Locale.US (or whatever)
-        DateFormat sdf = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss", Locale.CHINA);
+        DateFormat sdf = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss", Locale.ENGLISH);
         String formatDate = sdf.format(date);
         dateStr.put("%y",formatDate.substring(6,10));
         dateStr.put("%m",formatDate.substring(0,2));
@@ -52,6 +53,7 @@ public class DateApplication implements DateInterface {
         else{
             if(formatStr.charAt(0)=='+'){
                 formatStr = formatStr.substring(1);
+                check(formatStr,dateStr);
             } else {
                 throw new DateException("Invalid format. Date format must start with '+'");
             }
@@ -61,6 +63,26 @@ public class DateApplication implements DateInterface {
             formatDate = formatStr;
         }
         return formatDate;
+    }
+
+    public static void check(String argument, Map<String,String> dataStr) throws DateException {
+        // Empty argument: default date format
+        if (argument.length() == 0) {
+            return;
+        }
+
+        // Format arguments provided in SimpleDateFormat
+        for(int iter = 0; iter < argument.length(); iter++) {
+            char character = argument.charAt(iter);
+            // If argument starts with '%', treat it as a tag.
+            if (character == '%') {
+                String arg = "" + character + argument.charAt(iter + 1);
+                if (!dataStr.containsKey(arg)) {
+                    throw new DateException("Invalid format.");
+                }
+                iter++;
+            }
+        }
     }
 
     /**
