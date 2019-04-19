@@ -31,6 +31,9 @@ public class PwdApplication implements PwdInterface {
      */
     @Override
     public void run(String[] args, InputStream stdin, OutputStream stdout) throws PwdException {
+        if (args == null) {
+            throw new PwdException("Argument is null!");
+        }
         try {
             stdout.write(getAbsolutePath().getBytes());
         } catch (IOException e) {
