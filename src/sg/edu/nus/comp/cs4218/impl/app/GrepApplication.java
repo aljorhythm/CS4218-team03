@@ -115,12 +115,14 @@ public class GrepApplication implements GrepInterface {
         List<String> fileNames = new ArrayList<>();
         for (int i = 0; i < args.length; i++) {
             if (args[i].length() > 0 && args[i].charAt(0) == '-') {
-                if (args[i].charAt(1) == 'i') {
-                    isCaseInsensitive = true;
-                } else if (args[i].charAt(1) == 'c') {
-                    isLineCountsOnly = true;
-                } else {
-                    throw new GrepException("Unknown option for grep!");
+                for (int j = 1; j < args[i].length(); j++) {
+                    if (args[i].charAt(j) == 'i') {
+                        isCaseInsensitive = true;
+                    } else if (args[i].charAt(j) == 'c') {
+                        isLineCountsOnly = true;
+                    } else {
+                        throw new GrepException("Unknown option for grep!");
+                    }
                 }
             } else{
                 if (patternProvided) {
