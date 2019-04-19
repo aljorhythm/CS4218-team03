@@ -11,6 +11,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class DateApplication implements DateInterface {
@@ -18,7 +19,7 @@ public class DateApplication implements DateInterface {
     public void initMap(HashMap<String,String> dateStr){
         Date date = new Date();
         // Should specify Locale.US (or whatever)
-        DateFormat sdf = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
+        DateFormat sdf = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss", Locale.ENGLISH);
         String formatDate = sdf.format(date);
         dateStr.put("%y",formatDate.substring(6,10));
         dateStr.put("%m",formatDate.substring(0,2));
@@ -70,18 +71,16 @@ public class DateApplication implements DateInterface {
             return;
         }
 
-        StringBuilder res = new StringBuilder();
-
         // Format arguments provided in SimpleDateFormat
-        for(int i = 0; i < argument.length(); i++) {
-            char c = argument.charAt(i);
+        for(int iter = 0; iter < argument.length(); iter++) {
+            char character = argument.charAt(iter);
             // If argument starts with '%', treat it as a tag.
-            if (c == '%') {
-                String arg = "" + c + argument.charAt(i + 1);
+            if (character == '%') {
+                String arg = "" + character + argument.charAt(iter + 1);
                 if (!dataStr.containsKey(arg)) {
                     throw new DateException("Invalid format.");
                 }
-                i++;
+                iter++;
             }
         }
     }

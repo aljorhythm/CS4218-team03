@@ -17,7 +17,7 @@ public class EchoApplication implements EchoInterface {
     @Override
     public String constructResult(String... args) throws EchoException {
         if(args == null) {
-            return "";
+            throw new EchoException(FAIL_ECHO_EMPTY);
         }
         return String.join(" ", args);
     }
