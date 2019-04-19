@@ -1,7 +1,6 @@
 package sg.edu.nus.comp.cs4218.impl.app;
 
 import sg.edu.nus.comp.cs4218.app.EchoInterface;
-import sg.edu.nus.comp.cs4218.exception.AbstractApplicationException;
 import sg.edu.nus.comp.cs4218.exception.EchoException;
 
 import java.io.IOException;
@@ -18,7 +17,7 @@ public class EchoApplication implements EchoInterface {
     @Override
     public String constructResult(String... args) throws EchoException {
         if(args == null) {
-            throw new EchoException(FAIL_ECHO_EMPTY);
+            return "";
         }
         return String.join(" ", args);
     }
